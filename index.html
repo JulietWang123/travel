@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 端午 · 杭州→泾县→绩溪 旅行攻略</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    color: #2d2d2d;
+    background: #faf8f5;
+  }
+  .hero {
+    height: 320px;
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('images/chaji-aerial.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.4rem; margin-bottom: 12px; font-weight: 600; }
+  .hero .subtitle { font-size: 1.05rem; opacity: 0.9; }
+  .container {
+    max-width: 920px;
+    margin: -40px auto 0;
+    padding: 0 24px 80px;
+    position: relative;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  h2 {
+    color: #8B4513;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0e6d6;
+  }
+  h3 {
+    color: #5a4030;
+    font-size: 1.25rem;
+    margin: 20px 0 12px;
+  }
+  h4 { color: #6b4d3a; margin: 16px 0 8px; font-size: 1.05rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0ece5;
+  }
+  th {
+    background: #f9f5ed;
+    color: #6b4d3a;
+    font-weight: 600;
+  }
+  tr:hover { background: #fdfaf3; }
+  .day-card {
+    background: linear-gradient(135deg, #fef9f0 0%, #faf2e3 100%);
+    border-left: 4px solid #c89f6e;
+    padding: 24px 28px;
+    margin: 24px 0;
+    border-radius: 8px;
+  }
+  .day-card h3 {
+    color: #8B4513;
+    font-size: 1.4rem;
+    margin-top: 0;
+  }
+  .day-card .keywords {
+    color: #a07852;
+    font-style: italic;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 16px 0 8px;
+    display: block;
+  }
+  .img-caption {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  blockquote {
+    background: #fef6e8;
+    border-left: 4px solid #d4a062;
+    padding: 14px 18px;
+    margin: 16px 0;
+    color: #6b4d3a;
+    border-radius: 4px;
+  }
+  blockquote.warning {
+    background: #fef0f0;
+    border-left-color: #e57373;
+    color: #8b3a3a;
+  }
+  blockquote.tip {
+    background: #f0f9f4;
+    border-left-color: #66bb6a;
+    color: #2e6e3e;
+  }
+  .star { color: #d4a062; font-weight: bold; }
+  .highlight {
+    background: linear-gradient(180deg, transparent 60%, #ffe9b6 60%);
+    padding: 0 4px;
+    font-weight: 600;
+  }
+  .price-box {
+    background: #f9f5ed;
+    padding: 18px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .price-box .total {
+    font-size: 1.8rem;
+    color: #8B4513;
+    font-weight: 700;
+  }
+  ul, ol { padding-left: 24px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  .checklist li {
+    list-style: none;
+    margin-left: -24px;
+    padding-left: 28px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: #c89f6e;
+    font-size: 1.2rem;
+  }
+  code {
+    background: #f4ede0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: #8B4513;
+  }
+  pre {
+    background: #2d2d2d;
+    color: #f0e6d6;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+    font-size: 0.9rem;
+  }
+  .badge {
+    display: inline-block;
+    background: #d4a062;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin: 0 4px;
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .container { padding: 0 12px 40px; }
+    .card, .day-card { padding: 20px 18px; }
+    table { font-size: 0.85rem; }
+    th, td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>2026 端午 · 皖南旅行攻略</h1>
+  <p class="subtitle">杭州 → 泾县 → 绩溪 · 3天2晚 · 全程高铁</p>
+</header>
+
+<div class="container">
+
+<section class="card">
+  <h2>📌 行程概览</h2>
+  <table>
+    <tr><th>项目</th><th>内容</th></tr>
+    <tr><td><strong>出行日期</strong></td><td>2026年6月19日（周五）- 6月21日（周日）</td></tr>
+    <tr><td><strong>天数</strong></td><td>3天2晚（<span class="highlight">不请假</span>）</td></tr>
+    <tr><td><strong>目的地</strong></td><td>安徽 · 泾县（查济+桃花潭+宣纸园）+ 绩溪（龙川+老街）</td></tr>
+    <tr><td><strong>核心体验</strong></td><td>古村旅拍写真 · 桃花潭竹筏漂流 · 宣纸非遗体验 · 徽派古村慢游</td></tr>
+    <tr><td><strong>预算（2人）</strong></td><td>约 3,000 - 4,900 元（含旅拍）</td></tr>
+    <tr><td><strong>季节提示</strong></td><td>6月皖南已入梅雨季，必带雨具，气温 25-33°C</td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <h2>🚄 高铁车次（已确认 · 务必抢票）</h2>
+  <table>
+    <tr><th>班次</th><th>日期</th><th>时间</th><th>车次</th><th>单价</th><th>2人</th><th>开售</th></tr>
+    <tr>
+      <td>杭州东 → 泾县（黄山北中转）</td><td>06/19 周五</td>
+      <td><strong>09:33-12:04</strong></td><td>—</td>
+      <td>¥173.5</td><td>¥347</td><td>06/05 10:00</td>
+    </tr>
+    <tr>
+      <td>泾县 → 绩溪北</td><td>06/20 周六</td>
+      <td><strong>21:29-21:56</strong></td><td>G7745</td>
+      <td>¥32.5</td><td>¥65</td><td>06/06 10:00</td>
+    </tr>
+    <tr>
+      <td>绩溪北 → 杭州东</td><td>06/21 周日</td>
+      <td><strong>18:31-19:49</strong></td><td>D5580</td>
+      <td>¥99</td><td>¥198</td><td>06/07 10:00</td>
+    </tr>
+    <tr style="background: #fef6e8;">
+      <td colspan="5"><strong>高铁小计</strong></td><td colspan="2"><strong>¥610</strong></td>
+    </tr>
+  </table>
+  <blockquote class="warning">🎫 <strong>抢票提醒</strong>：在 12306 App 提前"预约下单"，开售时间到自动秒杀。端午热门线路必须提前抢！</blockquote>
+</section>
+
+<section class="card">
+  <h2>🗺️ 路线图</h2>
+<pre>
+Day 1（周五）：杭州 09:33 ──高铁──► 泾县 12:04 ──打车──► 查济（住古村·黄昏旅拍）
+Day 2（周六）：查济清晨空镜 ──► 桃花潭竹筏 ──► 宣纸文化园 ──► 泾县 21:29 ──高铁──► 绩溪 21:56
+Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩溪北 18:31 ──高铁──► 杭州 19:49
+</pre>
+</section>
+
+<section class="day-card">
+  <h3>📅 Day 1（6/19 周五）：杭州 → 泾县 → 查济</h3>
+  <p class="keywords">关键词：高铁直达 · 入住古村 · 黄昏旅拍</p>
+  <table>
+    <tr><th>时间</th><th>安排</th><th>交通/备注</th></tr>
+    <tr><td>09:00</td><td>抵达杭州东站候车</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>09:33</strong></td><td><strong>杭州东 → 泾县</strong>（黄山北中转停27分）</td><td>高铁 2h31m / ¥173.5</td></tr>
+    <tr><td>12:04</td><td>抵达泾县站</td><td>—</td></tr>
+    <tr><td>12:30</td><td>泾县站附近午餐：<strong>臭鳜鱼、泾县锅巴、蕨菜炒腊肉</strong></td><td>步行5min</td></tr>
+    <tr><td>14:00</td><td>打车前往 <strong>查济古村</strong>（约1h，约80-100元）</td><td>滴滴/高德</td></tr>
+    <tr><td>15:00</td><td>抵达查济，办理 <strong>古村内民宿</strong> 入住</td><td>—</td></tr>
+    <tr><td>15:30</td><td>查济初探：午后人流减少，自由踩点拍空镜</td><td>步行</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>17:30</strong></td><td><span class="star">⭐</span> <strong>查济旅拍写真</strong>（黄昏档，光线柔和+游客已散）</td><td>提前预约</td></tr>
+  </table>
+
+  <img src="images/chaji-street.jpg" alt="查济古村">
+  <p class="img-caption">▲ 查济古村：皖南最大古村落，明清三代建筑保存完好，溪水穿村而过，旅拍圣地</p>
+
+  <h4>🗺️ 查济游览路线图</h4>
+  <img src="images/chaji-route-map.jpg" alt="查济古村路线图">
+  <p class="img-caption">▲ 查济古镇游览路线参考图（图源小红书 · @冷三岁）</p>
+
+  <table>
+    <tr><td>19:00</td><td>古村农家菜晚餐：<strong>笋干烧肉、土鸡汤、溪鱼</strong></td><td>—</td></tr>
+    <tr><td>晚上</td><td>民宿院子喝茶，看星空（古村夜晚很安静）</td><td>—</td></tr>
+  </table>
+
+  <h4>🏠 住宿（重点！）</h4>
+  <ul>
+    <li><strong>查济古村内民宿</strong> 250-500 元/晚（端午旺季偏贵，提前2周预订）</li>
+    <li>推荐：携程/美团搜「查济古村民宿」，选择村内或溪边带院子的精品民宿</li>
+    <li><strong>核心价值</strong>：早上 6-9 点游客没进村时，整个查济古村几乎无人，是拍空镜和写真的黄金窗口</li>
+  </ul>
+
+  <h4>📸 旅拍预约 Tips</h4>
+  <ul>
+    <li><strong>平台</strong>：小红书搜「查济旅拍」「皖南旅拍摄影师」</li>
+    <li><strong>价格</strong>：约 500-1,500 元/2人（含化妆+服装+精修10-20张）</li>
+    <li><strong>黄金时段</strong>：黄昏 17:00-19:00（光线柔和，游客已散）</li>
+    <li><strong>服装推荐</strong>：新中式马面裙、汉服、白色棉麻裙，与粉墙黛瓦绝配</li>
+  </ul>
+</section>
+
+<section class="day-card">
+  <h3>📅 Day 2（6/20 周六）：查济清晨 + 桃花潭竹筏 + 宣纸园 → 绩溪</h3>
+  <p class="keywords">关键词：早起避人流 · 竹筏漂流 · 非遗体验 · 高铁夜行</p>
+  <table>
+    <tr><th>时间</th><th>安排</th><th>交通/备注</th></tr>
+    <tr style="background:#fef6e8;"><td><strong>06:00</strong></td><td><span class="star">⭐</span> <strong>查济清晨空镜</strong>（摄影黄金窗口！晨雾未散+无游客）</td><td>步行</td></tr>
+    <tr><td>08:30</td><td>民宿早餐</td><td>—</td></tr>
+    <tr><td>09:30</td><td>退房，<strong>打车直接去桃花潭</strong>（约30min，60-80元）</td><td>行李一起带</td></tr>
+    <tr><td>10:00</td><td>抵达桃花潭，<strong>寄存行李在景区游客中心</strong>（约20元）</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>10:15</strong></td><td><span class="star">⭐</span> <strong>桃花潭竹筏漂流</strong>（早班最美！）</td><td>30-50元/人</td></tr>
+  </table>
+
+  <img src="images/taohuatan-river.jpg" alt="桃花潭山水">
+  <p class="img-caption">▲ 桃花潭：青山绿水间的徽派村落，"桃花潭水深千尺，不及汪伦送我情"——李白名篇诞生地</p>
+
+  <img src="images/taohuatan-raft.jpg" alt="桃花潭竹筏">
+  <p class="img-caption">▲ 晨雾中的竹筏漂流：水面如镜、灯笼悬岸，意境堪比山水画</p>
+
+  <table>
+    <tr><td>11:30</td><td>游览踏歌古岸、太白楼、万村老街</td><td>步行</td></tr>
+    <tr><td>12:30</td><td>桃花潭附近午餐：<strong>溪鱼、农家菜</strong></td><td>—</td></tr>
+    <tr><td>14:00</td><td>取行李，打车前往 <strong>中国宣纸文化园</strong>（约30min，60-80元）</td><td>—</td></tr>
+    <tr><td>14:30</td><td><span class="star">⭐</span> 参观宣纸制作全流程，<strong>亲手捞一张宣纸</strong>作为纪念（约1.5h）</td><td>—</td></tr>
+  </table>
+
+  <img src="images/xuanpaper-hall.jpg" alt="宣纸文化馆建筑">
+  <p class="img-caption">▲ 中国宣纸文化园：曲面流线型建筑本身就值得打卡</p>
+
+  <img src="images/xuanpaper-making.jpg" alt="宣纸捞纸工艺">
+  <p class="img-caption">▲ 千年非遗"捞纸"工艺：多人协作，揭起一张完整的大尺幅宣纸</p>
+
+  <table>
+    <tr><td>16:30</td><td>打车回泾县县城（约30min）</td><td>—</td></tr>
+    <tr><td>17:00</td><td>泾县老街闲逛+采购伴手礼（<strong>宣纸、宣笔、笋干、山核桃</strong>）</td><td>—</td></tr>
+    <tr><td>18:30</td><td>泾县晚餐：<strong>臭鳜鱼、笋干土鸡、河鲜</strong></td><td>—</td></tr>
+    <tr><td>20:30</td><td>打车 → 泾县站</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>21:29</strong></td><td><strong>泾县 → 绩溪北（G7745）</strong></td><td>高铁 27min / ¥32.5</td></tr>
+    <tr><td>21:56</td><td>抵达绩溪北</td><td>—</td></tr>
+    <tr><td>22:15</td><td>打车 → 绩溪县城酒店入住</td><td>约15min</td></tr>
+  </table>
+
+  <h4>🏨 住宿</h4>
+  <ul>
+    <li><strong>绩溪县城酒店</strong> 150-280 元/晚</li>
+    <li><strong>务必选 24h 前台</strong>（约22:30入住），提前致电备注晚到时间</li>
+  </ul>
+
+  <h4>🚨 行李寄存攻略</h4>
+  <ul>
+    <li><strong>首选</strong>：桃花潭景区游客中心（约 20 元）</li>
+    <li><strong>备选</strong>：泾县火车站行李寄存处</li>
+    <li>也可联系上午退房的民宿询问能否寄存（部分接受）</li>
+  </ul>
+</section>
+
+<section class="day-card">
+  <h3>📅 Day 3（6/21 周日）：龙川早班游 + 绩溪慢游 → 返杭</h3>
+  <p class="keywords">关键词：早起龙川避高峰 · 古镇慢游 · 茶馆下午茶</p>
+  <table>
+    <tr><th>时间</th><th>安排</th><th>交通/备注</th></tr>
+    <tr><td>07:30</td><td>早餐+退房，行李寄存酒店</td><td>—</td></tr>
+    <tr><td>08:00</td><td>打车 → <strong>龙川景区</strong>（约15min，约25元）</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>08:30</strong></td><td><span class="star">⭐</span> <strong>龙川早场游</strong>（避开11点后大批旅游团！）</td><td>约2.5h</td></tr>
+  </table>
+
+  <img src="images/longchuan-aerial.jpg" alt="龙川古村鸟瞰">
+  <p class="img-caption">▲ 绩溪龙川：千年徽州古村，依山傍水，国宝级胡氏宗祠木雕——<strong>只逛古村，不爬山</strong></p>
+
+  <p><strong>游览顺序</strong>：胡氏宗祠（重点看木雕）→ 奕世尚书坊 → 龙川水街 → 龙川胡氏宗祠（国保单位）</p>
+
+  <table>
+    <tr><td>11:00</td><td>打车回绩溪县城</td><td>约15min</td></tr>
+    <tr><td>11:30</td><td>绩溪午餐：<strong>绩溪挞粿、一品锅、笋衣烧肉</strong></td><td>当地老店</td></tr>
+    <tr><td>13:30</td><td>漫步 <strong>绩溪老街</strong>：徽州老街+本地市集烟火气</td><td>步行</td></tr>
+    <tr><td>15:00</td><td>茶馆下午茶 / 徽墨店打卡</td><td>—</td></tr>
+    <tr><td>16:30</td><td>简餐 / 取行李</td><td>—</td></tr>
+    <tr><td>17:45</td><td>打车 → 绩溪北站</td><td>约15min</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>18:31</strong></td><td><strong>绩溪北 → 杭州东（D5580）</strong></td><td>高铁 1h18m / ¥99</td></tr>
+    <tr style="background:#d4f5d4;"><td><strong>19:49</strong></td><td>抵达杭州东 ✅</td><td>—</td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <h2>🍜 宣城必吃美食清单</h2>
+  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&h=350&fit=crop&q=80" alt="徽菜美食">
+  <table>
+    <tr><th>美食</th><th>说明</th><th>推荐地点</th></tr>
+    <tr><td>🐟 <strong>臭鳜鱼</strong></td><td>徽菜代表，腌制发酵后煎烧，外臭内香</td><td>全程各地均有</td></tr>
+    <tr><td>🥟 <strong>绩溪挞粿</strong></td><td>类似韭菜盒子但馅料更丰富，绩溪特色面点</td><td>绩溪县城</td></tr>
+    <tr><td>🍲 <strong>一品锅</strong></td><td>多层食材叠放的徽州火锅，荤素搭配</td><td>绩溪县城</td></tr>
+    <tr><td>🧀 <strong>毛豆腐</strong></td><td>发酵长毛的豆腐煎炸，徽州经典小吃</td><td>全程各地</td></tr>
+    <tr><td>🎋 <strong>笋干烧肉</strong></td><td>时令山笋配五花肉，鲜香入味</td><td>泾县、查济</td></tr>
+    <tr><td>🍘 <strong>泾县锅巴</strong></td><td>酥脆锅巴浇上浓汁，当地特色主食</td><td>泾县县城</td></tr>
+    <tr><td>🍗 <strong>农家土鸡汤</strong></td><td>山区土鸡慢炖，清甜滋补</td><td>查济、泾县</td></tr>
+    <tr><td>🐠 <strong>桃花潭溪鱼</strong></td><td>桃花潭水中野生溪鱼，鲜嫩</td><td>桃花潭附近</td></tr>
+  </table>
+  <blockquote class="tip">💡 <strong>美食tips</strong>：臭鳜鱼和毛豆腐初次尝试可能需要适应，但一旦接受就会上瘾！绩溪挞粿一定要趁热吃。</blockquote>
+</section>
+
+<section class="card">
+  <h2>💰 完整预算明细（2人合计）</h2>
+  <table>
+    <tr><th>项目</th><th>费用</th><th>备注</th></tr>
+    <tr><td>🚄 高铁（确认班次）</td><td>¥610</td><td>杭州↔泾县↔绩溪↔杭州</td></tr>
+    <tr><td>🚖 打车（多段景区间）</td><td>¥450-550</td><td>主要费用：泾县↔查济、桃花潭、宣纸园</td></tr>
+    <tr><td>🏠 住宿（2晚）</td><td>¥400-800</td><td>查济古村民宿 + 绩溪酒店</td></tr>
+    <tr><td>🛅 行李寄存</td><td>¥20-40</td><td>景区/酒店寄存</td></tr>
+    <tr><td>🎫 门票</td><td>¥390</td><td>龙川75 + 桃花潭70 + 宣纸园50（每人）</td></tr>
+    <tr><td>📸 <strong>旅拍写真</strong></td><td>¥500-1,500</td><td>小红书约本地摄影师</td></tr>
+    <tr><td>🛶 <strong>桃花潭竹筏</strong></td><td>¥60-100</td><td>30-50元/人</td></tr>
+    <tr><td>🍴 餐饮（6正餐+2早餐）</td><td>¥600-900</td><td>农家菜+徽菜</td></tr>
+  </table>
+  <div class="price-box">
+    <div>合计</div>
+    <div class="total">约 ¥3,030 - 4,890</div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>✅ 行前准备清单</h2>
+
+  <h3>必带物品</h3>
+  <ul class="checklist">
+    <li><strong>雨具</strong>（6月梅雨季，必备！折叠伞+轻便雨衣）</li>
+    <li>防晒霜（SPF50+）+ 太阳镜 + 帽子</li>
+    <li>舒适步行鞋（古村石板路 + 老街徒步）</li>
+    <li>驱蚊水（山区蚊虫多）</li>
+    <li>充电宝 + 相机/手机</li>
+    <li>现金少量（部分古村小店不支持线上支付）</li>
+    <li>身份证 + 高铁票</li>
+  </ul>
+
+  <h3>旅拍服装</h3>
+  <ul class="checklist">
+    <li>新中式马面裙 / 汉服 / 白色棉麻裙</li>
+    <li>简约耳饰、发簪等小配饰</li>
+    <li>备用平底鞋（拍照走石板路）</li>
+  </ul>
+
+  <h3>提前预订</h3>
+  <ul class="checklist">
+    <li><strong>高铁票</strong>（开售即抢，端午热门）</li>
+    <li><strong>查济古村民宿</strong>（提前2周）</li>
+    <li><strong>绩溪县城酒店</strong>（备注晚到）</li>
+    <li><strong>旅拍摄影师</strong>（小红书提前1周约）</li>
+    <li><strong>下载App</strong>：12306、滴滴/高德、携程/美团</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>⚠️ 重要提示</h2>
+
+  <h3>1. 抢票节奏</h3>
+  <ul>
+    <li>06/05 10:00 抢杭州东→泾县（最重要！这班车热门）</li>
+    <li>06/06 10:00 抢泾县→绩溪北 G7745</li>
+    <li>06/07 10:00 抢绩溪北→杭州东 D5580</li>
+  </ul>
+
+  <h3>2. Day 2 行李处理</h3>
+  <ul>
+    <li>上午退房后，行李一起打车带去桃花潭</li>
+    <li>桃花潭景区游客中心可寄存（约20元）</li>
+    <li>玩完桃花潭+宣纸园后，回泾县直接去火车站</li>
+    <li><strong>不要回查济取</strong>（绕路）</li>
+  </ul>
+
+  <h3>3. 龙川早起避人流</h3>
+  <ul>
+    <li><strong>8:30 抵达景区</strong>（开门时间）</li>
+    <li>11:00 之前完成游览</li>
+    <li>11:00 后大批旅游团涌入</li>
+  </ul>
+
+  <h3>4. 雨天预案</h3>
+  <ul>
+    <li>6月梅雨季，建议查询天气预报</li>
+    <li>如下雨：减少户外行走，增加民宿茶歇/室内体验时间</li>
+    <li>桃花潭竹筏雨天可能停运，建议提前致电景区确认</li>
+  </ul>
+
+  <h3>5. 应急联系</h3>
+  <ul>
+    <li>泾县汽车站：<strong>0563-5022222</strong></li>
+    <li>桃花潭景区：12301（全国旅游服务热线）</li>
+    <li>滴滴客服：4006772626</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>📍 关键地址速查</h2>
+  <table>
+    <tr><th>地点</th><th>地址</th></tr>
+    <tr><td>查济古村</td><td>安徽省宣城市泾县桃花潭镇查济村</td></tr>
+    <tr><td>桃花潭</td><td>安徽省宣城市泾县桃花潭镇</td></tr>
+    <tr><td>中国宣纸文化园</td><td>安徽省宣城市泾县乌溪镇</td></tr>
+    <tr><td>龙川景区</td><td>安徽省宣城市绩溪县瀛洲镇龙川村</td></tr>
+    <tr><td>绩溪老街</td><td>安徽省宣城市绩溪县华阳镇</td></tr>
+  </table>
+</section>
+
+<div class="footer">
+  © 2026 鉴叔 · 本文内容仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>
