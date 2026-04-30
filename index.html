@@ -107,12 +107,19 @@
     gap: 12px;
     margin: 16px 0;
   }
-  .img-grid figure { margin: 0; text-align: center; }
-  .img-grid figure img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin: 0; }
-  .img-grid figure figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; font-style: italic; }
+  .img-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .img-grid figure, .img-grid-2 figure { margin: 0; text-align: center; }
+  .img-grid figure img, .img-grid-2 figure img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin: 0; }
+  .img-grid-2 figure img { height: 280px; }
+  .img-grid figure figcaption, .img-grid-2 figure figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; font-style: italic; }
   @media (max-width: 600px) {
-    .img-grid { grid-template-columns: 1fr; }
-    .img-grid figure img { height: 200px; }
+    .img-grid, .img-grid-2 { grid-template-columns: 1fr; }
+    .img-grid figure img, .img-grid-2 figure img { height: 220px; }
   }
   blockquote {
     background: #fef6e8;
@@ -453,8 +460,10 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
   </ul>
 
   <h3>🥢 绩溪美食推荐</h3>
-  <img src="images/jixifood1.jpg" alt="绩溪美食">
-  <p class="img-caption">▲ 绩溪徽菜·荤素搭配的家常筵席</p>
+  <div class="img-grid-2">
+    <figure><img src="images/jixifood1.jpg" alt="绩溪正餐九宫格"><figcaption>▲ 绩溪正餐九宫格·徽菜风味</figcaption></figure>
+    <figure><img src="images/jixifood2.jpg" alt="绩溪小吃九宫格"><figcaption>▲ 绩溪小吃九宫格·挞粿包子馄饨</figcaption></figure>
+  </div>
 
   <h4>🔸 正餐</h4>
   <table>
@@ -466,9 +475,6 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
     <tr><td><strong>仁里红霞农家乐</strong></td><td>紫藤花炒蛋（春末夏初限定时令菜）</td></tr>
     <tr><td><strong>绩溪牛</strong></td><td>黄牛肉火锅</td></tr>
   </table>
-
-  <img src="images/jixifood2.jpg" alt="绩溪挞粿">
-  <p class="img-caption">▲ 绩溪挞粿·趁热吃才香</p>
 
   <h4>🥖 早餐</h4>
   <ul>
