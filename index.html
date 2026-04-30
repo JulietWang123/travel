@@ -112,14 +112,15 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin: 16px 0;
+    align-items: start;
   }
   .img-grid figure, .img-grid-2 figure { margin: 0; text-align: center; }
-  .img-grid figure img, .img-grid-2 figure img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin: 0; }
-  .img-grid-2 figure img { height: 280px; }
+  .img-grid figure img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin: 0; }
+  .img-grid-2 figure img { width: 100%; height: auto; border-radius: 6px; margin: 0; display: block; }
   .img-grid figure figcaption, .img-grid-2 figure figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; font-style: italic; }
   @media (max-width: 600px) {
     .img-grid, .img-grid-2 { grid-template-columns: 1fr; }
-    .img-grid figure img, .img-grid-2 figure img { height: 220px; }
+    .img-grid figure img { height: 220px; }
   }
   blockquote {
     background: #fef6e8;
