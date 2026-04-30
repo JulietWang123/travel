@@ -101,6 +101,19 @@
     margin-bottom: 16px;
     font-style: italic;
   }
+  .img-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .img-grid figure { margin: 0; text-align: center; }
+  .img-grid figure img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin: 0; }
+  .img-grid figure figcaption { font-size: 0.85rem; color: #888; margin-top: 6px; font-style: italic; }
+  @media (max-width: 600px) {
+    .img-grid { grid-template-columns: 1fr; }
+    .img-grid figure img { height: 200px; }
+  }
   blockquote {
     background: #fef6e8;
     border-left: 4px solid #d4a062;
@@ -298,10 +311,10 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
   <table>
     <tr><th>时间</th><th>安排</th><th>交通/备注</th></tr>
     <tr style="background:#fef6e8;"><td><strong>06:00</strong></td><td><span class="star">⭐</span> <strong>查济清晨空镜</strong>（摄影黄金窗口！晨雾未散+无游客）</td><td>步行</td></tr>
-    <tr><td>08:30</td><td>民宿早餐</td><td>—</td></tr>
-    <tr><td>09:30</td><td>退房，<strong>打车直接去桃花潭</strong>（约30min，60-80元）</td><td>行李一起带</td></tr>
-    <tr><td>10:00</td><td>抵达桃花潭，<strong>寄存行李在景区游客中心</strong>（约20元）</td><td>—</td></tr>
-    <tr style="background:#fef6e8;"><td><strong>10:15</strong></td><td><span class="star">⭐</span> <strong>桃花潭竹筏漂流</strong>（早班最美！）</td><td>30-50元/人</td></tr>
+    <tr><td>08:00</td><td>退房，<strong>打车直接去桃花潭</strong>（约30min，60-80元）</td><td>行李一起带</td></tr>
+    <tr><td>08:30</td><td><strong>桃花潭附近吃早餐</strong>（古镇小吃/油条豆浆）</td><td>顺路解决</td></tr>
+    <tr><td>09:30</td><td>抵达桃花潭，<strong>寄存行李在景区游客中心</strong>（约20元）</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>10:00</strong></td><td><span class="star">⭐</span> <strong>桃花潭竹筏漂流</strong>（早班最美！）</td><td>30-50元/人</td></tr>
   </table>
 
   <img src="images/taohuatan-river.jpg" alt="桃花潭山水">
@@ -353,9 +366,10 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
   <p class="keywords">关键词：早起龙川避高峰 · 古镇慢游 · 茶馆下午茶</p>
   <table>
     <tr><th>时间</th><th>安排</th><th>交通/备注</th></tr>
-    <tr><td>07:30</td><td>早餐+退房，行李寄存酒店</td><td>—</td></tr>
-    <tr><td>08:00</td><td>打车 → <strong>龙川景区</strong>（约15min，约25元）</td><td>—</td></tr>
-    <tr style="background:#fef6e8;"><td><strong>08:30</strong></td><td><span class="star">⭐</span> <strong>龙川早场游</strong>（避开11点后大批旅游团！）</td><td>约2.5h</td></tr>
+    <tr><td>07:00</td><td>退房（行李寄存酒店）</td><td>—</td></tr>
+    <tr><td>07:30</td><td><strong>绩溪老城区当地早餐</strong>：回头客冬瓜包/丁记挞粿/绩溪炒粉丝（详见美食清单）</td><td>打车10min</td></tr>
+    <tr><td>08:30</td><td>打车 → <strong>龙川景区</strong>（约15min，约25元）</td><td>—</td></tr>
+    <tr style="background:#fef6e8;"><td><strong>09:00</strong></td><td><span class="star">⭐</span> <strong>龙川早场游</strong>（避开11点后大批旅游团！）</td><td>约2.5h</td></tr>
   </table>
 
   <img src="images/longchuan-aerial.jpg" alt="龙川古村鸟瞰">
@@ -364,8 +378,8 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
   <p><strong>游览顺序</strong>：胡氏宗祠（重点看木雕）→ 奕世尚书坊 → 龙川水街 → 龙川胡氏宗祠（国保单位）</p>
 
   <table>
-    <tr><td>11:00</td><td>打车回绩溪县城</td><td>约15min</td></tr>
-    <tr><td>11:30</td><td>绩溪午餐：<strong>绩溪挞粿、一品锅、笋衣烧肉</strong></td><td>当地老店</td></tr>
+    <tr><td>11:30</td><td>打车回绩溪县城</td><td>约15min</td></tr>
+    <tr><td>12:00</td><td>绩溪午餐：<strong>绩溪挞粿、一品锅、笋衣烧肉</strong></td><td>当地老店</td></tr>
     <tr><td>13:30</td><td>漫步 <strong>绩溪老街</strong>：徽州老街+本地市集烟火气</td><td>步行</td></tr>
     <tr><td>15:00</td><td>茶馆下午茶 / 徽墨店打卡</td><td>—</td></tr>
     <tr><td>16:30</td><td>简餐 / 取行李</td><td>—</td></tr>
@@ -393,8 +407,11 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
   <blockquote class="tip">💡 臭鳜鱼和毛豆腐初次尝试可能需要适应，但一旦接受就会上瘾！绩溪挞粿一定要<strong>趁热吃</strong>。</blockquote>
 
   <h3>🥘 泾县美食推荐</h3>
-  <img src="images/weibin.jpg" alt="泾县卫兵土菜馆">
-  <p class="img-caption">▲ 泾县当地土菜馆，主打皖南家常菜</p>
+  <div class="img-grid">
+    <figure><img src="images/weibin.jpg" alt="卫兵土菜馆"><figcaption>▲ 卫兵土菜馆·鸡锅仔</figcaption></figure>
+    <figure><img src="images/sanzi.jpg" alt="三子饭店"><figcaption>▲ 三子饭店·糍粑烧鸡</figcaption></figure>
+    <figure><img src="images/wenwen.jpg" alt="文雯食府"><figcaption>▲ 文雯食府·杂鱼锅仔</figcaption></figure>
+  </div>
 
   <h4>🔸 正餐</h4>
   <table>
@@ -403,9 +420,6 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
     <tr><td><strong>三子饭店</strong></td><td>糍粑烧鸡、韭菜炒豆腐皮锅底</td></tr>
     <tr><td><strong>文雯食府</strong></td><td>鸡烧糍粑、酸菜鱼/杂鱼锅仔、鸡脚烧鸡翅、臭鳜鱼</td></tr>
   </table>
-
-  <img src="images/sanzi.jpg" alt="泾县三子饭店">
-  <p class="img-caption">▲ 三子饭店·糍粑烧鸡是当地老饕推荐的特色菜</p>
 
   <h4>🥖 早餐</h4>
   <blockquote class="tip">💡 早餐都是本地人推荐的"家门口味道"，需要早起一点排队，没有外卖。</blockquote>
@@ -436,9 +450,6 @@ Day 3（周日）：龙川早班游 ──► 绩溪老街慢游 ──► 绩�
     <li><strong>阳光烧烤</strong></li>
     <li><strong>眼睛烧烤</strong></li>
   </ul>
-
-  <img src="images/wenwen.jpg" alt="泾县文雯食府">
-  <p class="img-caption">▲ 文雯食府·杂鱼锅仔是招牌</p>
 
   <h3>🥢 绩溪美食推荐</h3>
   <img src="images/jixifood1.jpg" alt="绩溪美食">
