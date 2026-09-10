@@ -6,6 +6,7 @@
 <title>旅行方案 · Travel Plans</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
     background:#f5f7f8; color:#17202a; line-height:1.7; -webkit-font-smoothing:antialiased;
@@ -18,6 +19,14 @@
   .hero .kicker{ font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.6); font-weight:700; margin-bottom:14px; }
   .hero h1{ font-size:clamp(30px,4.6vw,50px); line-height:1.1; letter-spacing:-.5px; }
   .hero p{ margin-top:14px; color:rgba(255,255,255,.82); font-size:16px; max-width:620px; margin-left:auto; margin-right:auto; }
+  .hero .jump{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:26px; }
+  .hero .jump a{
+    font-size:13px; font-weight:700; text-decoration:none;
+    color:rgba(255,255,255,.9); background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:6px 15px;
+    transition:background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .hero .jump a:hover{ background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.55); transform:translateY(-1px); }
   main{ width:min(1120px, calc(100vw - 40px)); margin:-38px auto 0; padding-bottom:72px; position:relative; }
   .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr)); gap:20px; }
   .card{
@@ -49,6 +58,31 @@
   .tag.a{ background:#fff1d6; color:#8a5200; }
   .cta{ font-size:13px; font-weight:800; color:#2364aa; }
   .card:hover .cta{ text-decoration:underline; }
+
+  /* 按目的地分组 */
+  .group{ --accent:#2364aa; margin-bottom:48px; scroll-margin-top:24px; }
+  .group:last-of-type{ margin-bottom:0; }
+  #xuancheng{ --accent:#c77700; }
+  #iceland{ --accent:#2364aa; }
+  #norway{ --accent:#1f5f7a; }
+  .group-head{
+    display:flex; align-items:center; flex-wrap:wrap; gap:6px 12px;
+    padding-bottom:12px; margin-bottom:22px; border-bottom:2px solid #d9e0e7;
+  }
+  .group-head h2{
+    font-size:24px; font-weight:800; letter-spacing:-.3px; color:#17202a;
+    position:relative; padding-left:18px;
+  }
+  .group-head h2::before{
+    content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:6px; height:24px; border-radius:3px; background:var(--accent);
+  }
+  .group-head .count{
+    font-size:12px; font-weight:800; color:#425466; background:#edf2f7;
+    padding:3px 10px; border-radius:999px;
+  }
+  .group-head .group-sub{ font-size:13px; color:#65717d; margin-left:auto; }
+
   footer{ text-align:center; color:#65717d; font-size:12px; padding:0 20px 48px; }
   @media (max-width:600px){
     .hero{ padding:56px 20px 50px; }
@@ -56,6 +90,13 @@
     .card .thumb{ height:168px; }
     .card-body{ padding:16px; }
     .card-body h2{ font-size:18px; }
+    .group{ margin-bottom:34px; }
+    .group-head{ margin-bottom:16px; }
+    .group-head h2{ font-size:20px; padding-left:15px; }
+    .group-head h2::before{ width:5px; height:20px; }
+    .group-head .group-sub{ margin-left:0; width:100%; }
+    .hero .jump{ margin-top:20px; gap:8px; }
+    .hero .jump a{ padding:5px 12px; font-size:12px; }
   }
 </style>
 </head>
@@ -64,11 +105,52 @@
 <div class="hero">
   <p class="kicker">Travel Plans</p>
   <h1>旅行方案</h1>
-  <p>已完成的行程攻略与路线方案。冰岛行程有 <strong>方案A</strong>、<strong>方案B</strong> 与 <strong>方案C</strong> 三个版本，另有一张三方案对照表，以及一张按 9 月底风景价值排序的推荐清单。点击卡片查看详情。</p>
+  <p>已完成的行程攻略与路线方案，按目的地分为 <strong>宣城</strong>、<strong>冰岛</strong>、<strong>挪威</strong> 三组。其中冰岛行程有 <strong>方案A</strong>、<strong>方案B</strong> 与 <strong>方案C</strong> 三个版本，另有三方案对照表，以及一张按 9 月底风景价值排序的推荐清单。</p>
+  <nav class="jump">
+    <a href="#xuancheng">宣城</a>
+    <a href="#iceland">冰岛</a>
+    <a href="#norway">挪威</a>
+  </nav>
 </div>
 
 <main>
-  <div class="grid">
+
+  <section class="group" id="xuancheng">
+    <div class="group-head">
+      <h2>宣城</h2>
+      <span class="count">1 个方案</span>
+      <p class="group-sub">安徽 · 查济古村 · 桃花潭 · 龙川</p>
+    </div>
+    <div class="grid">
+
+    <a class="card" href="xuancheng-2026-06/">
+      <div class="thumb" style="background-image:url('images/chaji-aerial.jpg')">
+        <span class="badge">安徽 · 宣城</span>
+        <span class="dates">2026 端午 · 3 天</span>
+      </div>
+      <div class="card-body">
+        <h2>杭州 → 泾县 → 绩溪 端午攻略</h2>
+        <p class="sub">宣城 · 查济古村 · 桃花潭 · 龙川</p>
+        <p>高铁往返，查济古村、宣纸文化馆、桃花潭、龙川古村一线串联，附当地徽菜餐厅实拍与推荐菜。</p>
+        <div class="tags">
+          <span class="tag">高铁出行</span>
+          <span class="tag">古村人文</span>
+          <span class="tag">徽菜美食</span>
+        </div>
+        <span class="cta">查看行程 →</span>
+      </div>
+    </a>
+
+    </div>
+  </section>
+
+  <section class="group" id="iceland">
+    <div class="group-head">
+      <h2>冰岛</h2>
+      <span class="count">5 个页面</span>
+      <p class="group-sub">2026.09.23 – 09.30 · 6 天 · 三个方案版本</p>
+    </div>
+    <div class="grid">
 
     <a class="card" href="iceland-2026-09/plan-a.html">
       <div class="thumb" style="background-image:url('iceland-2026-09/images/skogafoss.jpg')">
@@ -162,23 +244,16 @@
       </div>
     </a>
 
-    <a class="card" href="xuancheng-2026-06/">
-      <div class="thumb" style="background-image:url('images/chaji-aerial.jpg')">
-        <span class="badge">安徽</span>
-        <span class="dates">2026 端午 · 3 天</span>
-      </div>
-      <div class="card-body">
-        <h2>杭州 → 泾县 → 绩溪 端午攻略</h2>
-        <p class="sub">宣城 · 查济古村 · 桃花潭 · 龙川</p>
-        <p>高铁往返，查济古村、宣纸文化馆、桃花潭、龙川古村一线串联，附当地徽菜餐厅实拍与推荐菜。</p>
-        <div class="tags">
-          <span class="tag">高铁出行</span>
-          <span class="tag">古村人文</span>
-          <span class="tag">徽菜美食</span>
-        </div>
-        <span class="cta">查看行程 →</span>
-      </div>
-    </a>
+    </div>
+  </section>
+
+  <section class="group" id="norway">
+    <div class="group-head">
+      <h2>挪威</h2>
+      <span class="count">1 个站点</span>
+      <p class="group-sub">2026.10 · 秋季行程</p>
+    </div>
+    <div class="grid">
 
     <a class="card" href="https://julietwang123.github.io/norway-trip-github-pages/" target="_blank" rel="noopener">
       <div class="thumb gradient-norway">
@@ -197,7 +272,9 @@
       </div>
     </a>
 
-  </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
