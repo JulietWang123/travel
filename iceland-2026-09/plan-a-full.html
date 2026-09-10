@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案A · 行程与路线评估（整合版） · 冰岛 9.23–9.29</title>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#ffffff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+  }
+  *{box-sizing:border-box}
+  html{ scroll-behavior:smooth; scroll-padding-top:70px; }
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--blue); }
+  code{ background:#eef2f6; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:13px; }
+  .small{ color:var(--muted); font-size:12px; }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    min-height:44vh; display:flex; align-items:flex-end; color:#fff;
+    background-image:linear-gradient(180deg, rgba(10,20,30,.24), rgba(10,20,30,.78)), url('images/skogafoss.jpg');
+    background-size:cover; background-position:center;
+  }
+  .hero-inner, main, footer{ width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  .hero-inner{ padding:0 0 38px; }
+  header.hero h1{ font-size:clamp(30px, 4.4vw, 58px); line-height:1.05; margin:0 0 14px; letter-spacing:-.5px; }
+  header.hero p{ font-size:17px; color:rgba(255,255,255,.92); max-width:920px; margin:0; }
+  .hero-kicker{ font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.8); margin:0 0 14px; font-weight:700; }
+  header.hero p.hero-sub{ margin-top:12px; font-size:15px; color:rgba(255,255,255,.86); }
+
+  /* ---------- sticky tabbar ---------- */
+  .tabbar{
+    position:sticky; top:0; z-index:600;
+    background:rgba(255,255,255,.96); border-bottom:1px solid var(--line);
+    box-shadow:0 2px 12px rgba(18,31,43,.06);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  }
+  .tabbar-inner{
+    width:min(1180px, calc(100vw - 40px)); margin:0 auto;
+    display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{ display:none }
+  .tabbar a{
+    flex:0 0 auto; padding:14px 13px 11px; font-size:14px; font-weight:700; color:var(--muted);
+    text-decoration:none; border-bottom:3px solid transparent; white-space:nowrap;
+  }
+  .tabbar a:hover{ color:var(--ink); }
+  .tabbar a.active{ color:var(--blue); border-bottom-color:var(--blue); }
+
+  main{ padding:24px 0 64px; }
+  .panel{ scroll-margin-top:70px; }
+  section{ margin:26px 0; }
+  h2{ font-size:24px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); }
+  h3{ font-size:17px; margin:0 0 8px; }
+  h4{ font-size:15px; margin:16px 0 6px; }
+  .lead{ color:var(--muted); max-width:940px; font-size:16px; }
+  p{ margin:0 0 10px; }
+  ul{ margin:6px 0 10px; padding-left:20px; }
+  li{ margin:3px 0; }
+
+  .grid{ display:grid; gap:16px; }
+  .two{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .three{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .card-body{ padding:16px; }
+  .tag{ display:inline-block; margin:0 6px 8px 0; padding:4px 8px; border-radius:999px; background:#edf2f7; color:#334155; font-size:12px; font-weight:700; }
+  .tag.best{ background:#e6f4f1; color:#176c61; }
+  .tag.good{ background:#e7f6ef; color:#16603f; }
+  .tag.warn{ background:#fff1d6; color:#8a5200; }
+  .tag.hard{ background:#fde8e5; color:#9d2f20; }
+  .tag.bad{ background:#fde8e5; color:#9d2f20; }
+
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px; }
+  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere; word-break:break-word; }
+  th{ background:#26384a; color:#fff; font-weight:700; }
+  tr:nth-child(even) td{ background:#f9fbfc; }
+
+  /* ---------- notice ---------- */
+  .notice{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; justify-content:space-between;
+    background:#fff; border:1px solid var(--line); border-left:5px solid var(--amber); border-radius:8px;
+    padding:12px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05);
+  }
+  .notice span{ color:var(--muted); }
+  .notice span strong{ color:var(--ink); }
+  .notice .links{ display:flex; gap:16px; flex-wrap:wrap; }
+  .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
+  .notice a:hover{ text-decoration:underline; }
+
+  /* ---------- KPI strip ---------- */
+  .kpis{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0 0 26px; }
+  .kpi{ background:#fff; border:1px solid var(--line); border-top:4px solid var(--blue); border-radius:8px; padding:13px 15px 14px; box-shadow:0 8px 24px rgba(18,31,43,.06); }
+  .kpi-k{ display:block; font-size:24px; font-weight:900; line-height:1.15; color:#26384a; letter-spacing:-.4px; }
+  .kpi p{ margin:6px 0 0; font-size:13px; color:var(--muted); line-height:1.55; }
+  .kpi.k1{ border-top-color:var(--blue); }
+  .kpi.k2{ border-top-color:var(--green); }
+  .kpi.k3{ border-top-color:var(--red); }
+  .kpi.k4{ border-top-color:var(--amber); }
+  .kpi.k5{ border-top-color:var(--violet); }
+  .kpi.k6{ border-top-color:var(--slate); }
+
+  /* ---------- duo cards (逐日对照) ---------- */
+  .duo-list{ display:grid; gap:14px; }
+  .duo-card{ background:var(--panel); border:1px solid var(--line); border-left:6px solid var(--blue); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .duo-list > .duo-card:nth-child(2){ border-left-color:var(--amber); }
+  .duo-list > .duo-card:nth-child(3){ border-left-color:var(--green); }
+  .duo-list > .duo-card:nth-child(4){ border-left-color:var(--red); }
+  .duo-list > .duo-card:nth-child(5){ border-left-color:var(--violet); }
+  .duo-list > .duo-card:nth-child(6){ border-left-color:var(--slate); }
+  .duo-head{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; padding:12px 16px; border-bottom:1px solid var(--line); background:#fbfcfd; }
+  .duo-date{ font-weight:900; font-size:19px; color:#26384a; min-width:50px; }
+  .duo-head h3{ margin:0; font-size:16px; flex:1 1 240px; }
+  .duo-cols{ display:grid; grid-template-columns:1fr 1fr; }
+  .duo-col{ padding:13px 16px 14px; }
+  .duo-col.orig{ background:#fffaf8; border-right:1px solid var(--line); }
+  .duo-col.opt{ background:#f4fbf8; }
+  .duo-col h4{ margin:0 0 8px; font-size:12px; font-weight:800; letter-spacing:.08em; }
+  .duo-col.orig h4{ color:var(--red); }
+  .duo-col.opt h4{ color:#176c61; }
+  .duo-col p{ margin:0 0 8px; font-size:14px; }
+  .duo-col p:last-child{ margin-bottom:0; }
+  .duo-foot{ padding:10px 16px 12px; border-top:1px solid var(--line); background:#fbfcfd; }
+
+  .meta{ display:flex; flex-wrap:wrap; gap:8px; color:var(--muted); font-size:13px; }
+  .meta span{ background:#f1f5f9; border-radius:6px; padding:2px 8px; }
+  .meta span.strong{ background:#eef4fb; color:#1d4e85; font-weight:700; }
+  .meta span.warn{ background:#fff1d6; color:#8a5200; font-weight:700; }
+  .meta span.danger{ background:#fde8e5; color:#9d2f20; font-weight:700; }
+
+  /* ---------- callouts ---------- */
+  .callout{ border:1px solid var(--line); border-left:5px solid var(--amber); background:#fffaf0; border-radius:8px; padding:14px 16px; }
+  .callout.good{ border-left-color:var(--green); background:#f2fbf8; }
+  .callout.bad{ border-left-color:var(--red); background:#fff5f3; }
+  .callout h3{ margin-top:0; }
+
+  /* ---------- maps ---------- */
+  .maps{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .map-card{ background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 10px 24px rgba(18,31,43,.06); }
+  .map-head{ padding:12px 14px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .map-head strong{ font-size:15px; }
+  #mapOriginal, #mapOptimized{ width:100%; height:560px; background:#dfe6eb; }
+  .legend{ display:flex; flex-wrap:wrap; gap:8px; color:var(--muted); font-size:12px; }
+  .dot{ display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:4px; vertical-align:-1px; }
+  .number-marker{ display:grid; place-items:center; width:28px; height:28px; border:2px solid #fff; border-radius:50%; box-shadow:0 4px 10px rgba(15,23,42,.25); color:#fff; font-size:12px; font-weight:900; }
+  .map-label{ padding:3px 7px; border:1px solid rgba(15,23,42,.24); border-radius:6px; background:rgba(255,255,255,.94); box-shadow:0 4px 12px rgba(15,23,42,.16); color:#0f172a; font-size:12px; font-weight:800; white-space:nowrap; }
+
+  .score{ white-space:nowrap; font-weight:900; color:#176c61; }
+  .score.mid{ color:#8a5200; }
+  .score.low{ color:#9d2f20; }
+
+  footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; }
+  footer .flinks{ margin-bottom:0; }
+
+  @media (max-width:980px){
+    .two,.three,.maps,.kpis{ grid-template-columns:1fr; }
+    #mapOriginal, #mapOptimized{ height:500px; }
+  }
+  @media (max-width:900px){
+    .duo-cols{ grid-template-columns:1fr; }
+    .duo-col.orig{ border-right:0; border-bottom:1px solid var(--line); }
+    .duo-head h3{ flex-basis:100%; }
+    header.hero{ min-height:38vh; }
+    header.hero h1{ font-size:clamp(28px,6.5vw,40px); }
+    th,td{ padding:9px 10px; font-size:13px; }
+  }
+  @media (max-width:560px){
+    .hero-inner, main, footer, .tabbar-inner{ width:calc(100vw - 28px); }
+    .tabbar a{ padding:12px 10px 10px; font-size:13px; }
+    html{ scroll-padding-top:62px; }
+    .panel{ scroll-margin-top:62px; }
+    h2{ font-size:20px; }
+    th,td{ padding:8px 9px; font-size:12.5px; }
+    #mapOriginal, #mapOptimized{ height:430px; }
+    .duo-col{ padding:12px 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Iceland · Plan A · 行程 + 路线评估 · 2026.09.23 – 09.29</p>
+    <h1>方案A · 行程与路线评估</h1>
+    <p>本页把<strong>方案A 行程</strong>与<strong>方案A 路线评估报告</strong>合并成一页。方案A 走法为<strong>顺时针</strong>——先南下南岸、以维克为基地，再折返海德拉上兰德曼纳劳卡高地，最后收在黄金圈与雷克雅未克。</p>
+    <p class="hero-sub">评估部分针对你们的实际条件：2 女 1 男、普通油车（2WD）自驾、一名主驾为主、9.24 维克住宿<strong>尚未预订</strong>、9.26 维克酒店已订且不可退。</p>
+  </div>
+</header>
+
+<nav class="tabbar" aria-label="分区导航">
+  <div class="tabbar-inner">
+    <a href="#overview" class="active">行程总览</a>
+    <a href="#daily">逐日对照</a>
+    <a href="#review">路线评估</a>
+    <a href="#stay">住宿决策</a>
+    <a href="#map">路线地图</a>
+    <a href="#risk">风险核查</a>
+  </div>
+</nav>
+
+<main>
+
+<div class="notice">
+  <span>本页是<strong>方案A 的主入口</strong>，把「行程原文」与「路线评估报告」整合成一页。原始两页仍独立保留，需要看原页时从这里进入：</span>
+  <div class="links">
+    <a href="plan-a.html">方案A 行程原文（原页）→</a>
+    <a href="plan-a-assessment.html">路线评估报告（原页）→</a>
+    <a href="compare.html">A / B / C 对照表</a>
+    <a href="spots.html">9 月底推荐清单</a>
+  </div>
+</div>
+
+<!-- ============ 首屏 KPI ============ -->
+<div class="kpis">
+  <div class="kpi k1">
+    <span class="kpi-k">6 天</span>
+    <p>9.23 抵达 – 9.29 收尾；9.30 两人转飞法罗。</p>
+  </div>
+  <div class="kpi k2">
+    <span class="kpi-k">顺时针</span>
+    <p>先南下南岸、以维克为基地，黄金圈放到 9.28 白天。</p>
+  </div>
+  <div class="kpi k3">
+    <span class="kpi-k">9.27</span>
+    <p>全程最大风险日：高地团 Hella 10:00 发车，09:20 前要到上车点，等于 08:00 前必须离开维克。</p>
+  </div>
+  <div class="kpi k4">
+    <span class="kpi-k">9.24</span>
+    <p>维克住宿未订，建议改住 Skógar / Skógafoss，没有退订成本。</p>
+  </div>
+  <div class="kpi k5">
+    <span class="kpi-k">9.26</span>
+    <p>维克酒店已订、不可退；15:00 卡特拉冰川徒步是当天的固定点。</p>
+  </div>
+  <div class="kpi k6">
+    <span class="kpi-k">3 处</span>
+    <p>建议优化：9.24 住 Skógar、9.25 住教堂镇、9.27 团后短住。</p>
+  </div>
+</div>
+
+<!-- ============ 1 行程总览 ============ -->
+<section class="panel" id="overview">
+  <h2>一、这版方案怎么走</h2>
+  <p class="lead">本方案最初整理于 <code>冰岛法罗行程.xls</code> 的「方案1」工作表，冰岛部分覆盖 9.23–9.29，按时间、出发地、到达、景点、交通方式、住宿 6 列列出。里程、集合点、价格等细节另见下方逐日对照与评估部分。</p>
+  <div class="grid three">
+    <div class="card"><div class="card-body">
+      <span class="tag">特征一</span>
+      <h3>顺时针，南岸优先</h3>
+      <p>9.24 一取到车就直奔南岸，把塞里雅兰瀑布、斯科加瀑布和飞机残骸全排在第一天，黄金圈反而留到 9.28。</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <span class="tag">特征二</span>
+      <h3>以维克为基地</h3>
+      <p>9.24 与 9.26 都住维克，9.25 从维克一路东进到冰河湖，9.26 回头玩羽毛峡谷（Fjaðrárgljúfur）并参加卡特拉冰川徒步。</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <span class="tag">特征三</span>
+      <h3>高地靠折返 + 跟团</h3>
+      <p>9.27 从维克折返约 100 km 到海德拉（Hella），在那里坐巴士参加兰德曼纳劳卡高地一日团，结束后北上黄金圈住宿。</p>
+    </div></div>
+  </div>
+
+  <h2 style="margin-top:28px">二、行程原文</h2>
+  <p class="lead">下表为 <code>冰岛法罗行程.xls</code>「方案1」工作表的冰岛部分，原样录入，未做改写。</p>
+  <table>
+    <thead><tr><th style="width:9%">时间</th><th style="width:13%">出发地</th><th style="width:20%">到达</th><th>景点</th><th style="width:10%">交通</th><th style="width:14%">住宿</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>9.23</strong></td>
+        <td>北京</td>
+        <td>雷克雅未克<br><span class="small">哥本哈根转机</span></td>
+        <td>—</td>
+        <td>飞机</td>
+        <td><span class="small">待定</span></td>
+      </tr>
+      <tr>
+        <td><strong>9.24</strong></td>
+        <td>雷克雅未克</td>
+        <td>维克小镇</td>
+        <td>1. 塞里雅兰瀑布<br>2. 斯科加瀑布<br>3. 飞机残骸</td>
+        <td>自驾</td>
+        <td>维克小镇</td>
+      </tr>
+      <tr>
+        <td><strong>9.25</strong></td>
+        <td>维克小镇</td>
+        <td><span class="small">—</span></td>
+        <td>1. 黑沙滩<br>2. 钻石沙滩<br>3. 冰河湖</td>
+        <td>自驾</td>
+        <td><span class="small">待定</span></td>
+      </tr>
+      <tr>
+        <td><strong>9.26</strong></td>
+        <td>维克小镇</td>
+        <td><span class="small">（同上，以维克为基地）</span></td>
+        <td>1. 上午羽毛峡谷（原表写「羽毛瀑布」）<br>2. 下午卡特拉冰川徒步 3 小时</td>
+        <td>自驾</td>
+        <td>维克小镇</td>
+      </tr>
+      <tr>
+        <td><strong>9.27</strong></td>
+        <td>维克</td>
+        <td>黄金圈</td>
+        <td>1. 维克自驾到海德拉小镇坐巴士参加兰德曼纳劳卡高地一日团<br>2. 结束后开车前往黄金圈</td>
+        <td>自驾</td>
+        <td>黄金圈</td>
+      </tr>
+      <tr>
+        <td><strong>9.28</strong></td>
+        <td>黄金圈</td>
+        <td><span class="small">（雷克雅未克）</span></td>
+        <td>黄金圈</td>
+        <td>自驾</td>
+        <td>雷克雅未克</td>
+      </tr>
+      <tr>
+        <td><strong>9.29</strong></td>
+        <td><span class="small">雷克雅未克</span></td>
+        <td>—</td>
+        <td>雷市周边或 citywalk</td>
+        <td>自驾</td>
+        <td>雷克雅未克</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:8px">「到达」列在行程表中多为空白，此处仅用浅色小字补注上下文，方便阅读。</p>
+
+  <h2 style="margin-top:28px">三、与方案B、方案C 的关系</h2>
+  <table>
+    <thead><tr><th style="width:16%">对比项</th><th style="width:28%">方案A（本页）</th><th>方案B / 方案C</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>走法方向</strong></td>
+        <td>顺时针：先南下南岸，以维克为基地（9.25 住宿待定），最后才上黄金圈</td>
+        <td>逆时针：第一天就走黄金圈，再上高地，然后南下南岸</td>
+      </tr>
+      <tr>
+        <td><strong>高地日期</strong></td>
+        <td>9.27（从维克折返海德拉跟团）</td>
+        <td>9.25（住在海德拉一带，就近上车）</td>
+      </tr>
+      <tr>
+        <td><strong>冰河湖 / 钻石沙滩</strong></td>
+        <td>9.25，从维克当天往返（约 400 km）</td>
+        <td>方案B 放 9.27 并住教堂镇；方案C 放 9.27 并住冰河湖旁</td>
+      </tr>
+      <tr>
+        <td><strong>详细信息</strong></td>
+        <td>行程表 6 列，只列景点名</td>
+        <td>方案B 含交互路线地图；方案C 补充里程、集合点、价格、安全与风险清单</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:12px"><a href="compare.html">→ 看完整的 A / B / C 三方案对照表</a></p>
+  <div class="callout">
+    <h3>这版方案的问题与优化建议</h3>
+    <p>方案A 原版有折返与疲劳风险（9.25 冰河湖往返、9.27 高地团前后长途），但不建议完全推翻。本页下半部分把逐日安排与一种优化走法做了逐项对比，并附路线差异地图：<a href="#review">↓ 看路线评估</a> · <a href="#map">↓ 看路线差异地图</a></p>
+  </div>
+</section>
+
+<!-- ============ 2 逐日对照 ============ -->
+<section class="panel" id="daily">
+  <h2>四、逐日对照：原版 vs 优化版</h2>
+  <p class="lead">9.23 是抵达日（北京经哥本哈根转机到雷克雅未克，不计入自驾，当晚住宿待定），不涉及路线调整。左列为行程表原版做法，右列为评估给出的优化做法，底部标签标出里程、住宿变更与风险等级。</p>
+
+  <div class="duo-list">
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.23</span>
+        <h3>抵达日 · 住宿待定</h3>
+        <span class="tag">不占用优化范围</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>北京经哥本哈根转机飞雷克雅未克，落地当天不计入自驾。当晚住宿尚未确定，需要确认是住雷市、还是按航班时间住机场附近（Keflavík）。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>路线不调整。建议视航班落地时间，当晚住雷市或机场附近（Keflavík），为第二天取车留出充裕时间。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span>交通：飞机</span><span>住宿：待补</span><span>落地当天不计入自驾</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.24</span>
+        <h3>雷市 → 南岸瀑布 → 维克 / Skógar</h3>
+        <span class="tag warn">节奏偏紧</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>塞里雅兰瀑布和斯科加瀑布都在 1 号环岛公路旁边，顺路。真正吃时间的是<strong>飞机残骸</strong>（Sólheimasandur 的 DC-3）：沙地上不允许私家车通行，需要步行往返约 8 km（约 2–2.5 小时），另有接驳车季节运营、需现场确认是否开行。</p>
+          <p>所以这一天实际是「约 190 km 车程 + 两个瀑布 + 一次 8 km 步行」，节奏偏紧，取车时间要往前提。当晚住维克。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>雷克雅未克 → 塞里雅兰瀑布 → Gljúfrabúi → 斯科加瀑布 / Kvernufoss → 住 <strong>Skógar</strong>。</p>
+          <p>首日降低驾驶压力；飞机残骸改为<strong>可选</strong>，避免第一天过满。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span>里程约 190 km</span><span class="strong">住宿：维克 → Skógar</span><span class="warn">首日偏满</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.25</span>
+        <h3>东进冰河湖 · 钻石沙滩 · 全天最长</h3>
+        <span class="tag hard">强度最高</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>黑沙滩就在维克旁边，但<strong>钻石沙滩和冰河湖在维克以东约 200 km</strong>，单程需 2.5–3 小时。若当天往返约 400 km、纯驾驶 5–6 小时，再叠加黑沙滩停留，会是比较硬的一天。</p>
+          <p>这一天的<strong>住宿尚未确定</strong>，行程表里是空的，并不默认住维克。可以当天折返维克，也可以直接往东住在冰河湖或教堂镇一带、第二天再往西回——落点不同会明显改变这一天的强度。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>Skógar → 维克黑沙滩 / Dyrhólaey → 羽毛峡谷 → 冰河湖 / 钻石沙滩 → 住 <strong>Kirkjubæjarklaustur 教堂镇</strong>；若摄影优先且订得到房，可选 Skaftafell / Freysnes。</p>
+          <p>顺路东进，<strong>不回维克</strong>；把 9.26 上午的东线内容合并到 9.25。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span>往返约 400 km 或单程东进</span><span class="strong">住宿：待定 → 教堂镇</span><span class="danger">不建议住 Höfn</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.26</span>
+        <h3>羽毛峡谷 + 卡特拉冰川徒步 · 住维克</h3>
+        <span class="tag">15:00 固定点</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>行程表 9.26 上午写的是「羽毛瀑布」，已确认指 <strong>Fjaðrárgljúfur 羽毛峡谷</strong>（维克以东约 70 km，从 206 号路进入；碎石路面平整，干燥天气普通轿车可行）。</p>
+          <p>下午是卡特拉冰川徒步，行程表标注 3 小时，宿维克。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>东边住宿 → 回维克 → 午餐补给 → <strong>15:00 卡特拉</strong>（14:20 前到 Ice Cave Bistro Café 外集合，硬底防水鞋必备）→ 住已订的维克酒店。</p>
+          <p>卡特拉前留足缓冲，避免上午跑太远导致迟到。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span class="danger">住宿：维克（已订不可退）</span><span>羽毛瀑布 = 羽毛峡谷</span><span class="warn">上午不要再硬塞远点</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.27</span>
+        <h3>维克 → Hella → 兰德曼纳劳卡高地 → 黄金圈</h3>
+        <span class="tag hard">全程最大风险日</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>「海德拉」即 <strong>Hella</strong>，维克到海德拉约 100 km。也就是说这一天要先往西开约 1.5 小时回到海德拉，再坐巴士进高地，结束后继续北上黄金圈住宿——是一段<strong>折返</strong>路线。</p>
+          <p>值得一提的是：方案A 从一开始就采用「海德拉（Hella）出发」的高地团，这一点和方案C 的结论方向一致。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>维克 <strong>08:00 前出发</strong> → Hella <strong>09:20 前到上车点</strong>（Bus Stop Hella，Suðurlandsvegur, 850 Hella；<strong>10:00 发车</strong>，团程 8–10 小时）→ 团后住 Hella / Selfoss / Flúðir，<strong>不建议再赶黄金圈深处</strong>。</p>
+          <p>若团取消，这一天可改 Þórsmörk、黄金圈慢游或温泉日。普通油车（2WD）不可自驾进高地，必须用带交通的团。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span>维克 → Hella 约 100–110 km / 约 1.5 h</span><span class="danger">Hella 10:00 发车</span><span class="danger">09:20 前到上车点</span><span class="danger">08:00 前离开维克</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.28</span>
+        <h3>黄金圈 → 雷克雅未克</h3>
+        <span class="tag warn">内容待细化</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>行程表在这一行只写了「黄金圈」三个字，没有细分辛格维利尔、间歇泉、黄金瀑布、Kerið 火山口等具体停留点。当晚回雷克雅未克住宿。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>Hella / Selfoss / Flúðir → 白天完成 Gullfoss、Geysir、Þingvellir、Kerið 等点位 → 傍晚回雷市。</p>
+          <p>这样比 9.27 夜里赶黄金圈舒服很多。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span class="strong">黄金圈放在白天游览</span><span>住宿：雷克雅未克</span><span>避开夜间驾驶</span></div></div>
+    </article>
+
+    <article class="duo-card">
+      <div class="duo-head">
+        <span class="duo-date">9.29</span>
+        <h3>雷市周边或 citywalk</h3>
+        <span class="tag best">弹性缓冲日</span>
+      </div>
+      <div class="duo-cols">
+        <div class="duo-col orig">
+          <h4>原版做法</h4>
+          <p>行程表写「雷市周边或 citywalk」，比较开放，没有指定具体安排，宿雷克雅未克。这是方案A 的最后一天。</p>
+        </div>
+        <div class="duo-col opt">
+          <h4>优化后</h4>
+          <p>保留弹性：雷市 citywalk + Sky Lagoon，或 Reykjanes + 温泉。</p>
+          <p>斯奈山一日团风景好，但飞前一天太长，不作为三人共同首选。</p>
+        </div>
+      </div>
+      <div class="duo-foot"><div class="meta"><span>作为天气与体力缓冲</span><span>可分开行动</span><span>住宿：雷克雅未克</span></div></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 3 路线评估 ============ -->
+<section class="panel" id="review">
+  <h2>五、评估结论</h2>
+  <div class="callout good">
+    <p><strong>方案A 的方向值得保留，但不建议按表格原样执行。</strong>它最大的优点是景观类型丰富、没有贪多去环线；最大问题是部分住宿节点会造成折返和疲劳，尤其是 9.27 从 Vik 去 Hella 参加高地团，结束后再赶黄金圈。</p>
+    <p><strong>推荐优化：</strong>9.24 不优先住 Vik，优先住 Skógar/Skógafoss；9.25 住 Vik 东边，首选 Kirkjubæjarklaustur，摄影优先可选 Skaftafell/Freysnes；9.27 高地团后住 Hella/Selfoss/Flúðir，不要继续赶黄金圈深处。</p>
+  </div>
+
+  <h2 style="margin-top:28px">六、景观类型与推荐程度</h2>
+  <p class="lead">评分只针对你们 2026 年 9 月底、6 天自驾、主驾压力有限的条件。不是"景点绝对排名"，而是"值不值得为它安排时间与路线"的综合推荐值。</p>
+  <table>
+    <thead>
+      <tr>
+        <th>地貌/体验类型</th>
+        <th>包含景点</th>
+        <th style="width:11%">9月底推荐度</th>
+        <th>理由</th>
+        <th>安排建议</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>冰川湖泊与黑沙浮冰</td>
+        <td>Jökulsárlón 冰河湖、Diamond Beach 钻石沙滩</td>
+        <td><span class="score">5/5</span></td>
+        <td>蓝冰、浮冰、黑沙滩组合独特，和瀑布/高地差异最大；低角度光线适合摄影。</td>
+        <td>9.25 单独东进，尽量住东边，不要当天回 Vik。</td>
+      </tr>
+      <tr>
+        <td>高地流纹岩、熔岩原、地热</td>
+        <td>Landmannalaugar 兰德曼纳劳卡</td>
+        <td><span class="score">5/5</span></td>
+        <td>是全程最稀缺的地貌，9月底可能有秋色和初雪氛围。</td>
+        <td>不要普通油车自驾进高地；用 Hella 出发带交通团。</td>
+      </tr>
+      <tr>
+        <td>冰川徒步/火山冰川</td>
+        <td>Katla 冰川/冰洞，Mýrdalsjökull 区域</td>
+        <td><span class="score">4.5/5</span></td>
+        <td>活动体验强，和单纯看风景不同；你们已有 9.26 Vik 固定点，匹配度高。</td>
+        <td>9.26 下午保留，上午不要安排太远。</td>
+      </tr>
+      <tr>
+        <td>南岸瀑布群</td>
+        <td>Seljalandsfoss、Gljúfrabúi、Skógafoss、Kvernufoss</td>
+        <td><span class="score">4.5/5</span></td>
+        <td>密集、顺路、拍摄效率高；9月底瀑布周边风大湿冷但画面稳定。</td>
+        <td>9.24 慢慢走，住 Skógar 比住 Vik 更护体力。</td>
+      </tr>
+      <tr>
+        <td>黑沙滩、玄武岩、海蚀地貌</td>
+        <td>Reynisfjara、Dyrhólaey</td>
+        <td><span class="score">4.5/5</span></td>
+        <td>火山黑沙、玄武岩柱、海蚀柱和海岬视角鲜明，是南岸代表景观。</td>
+        <td>放在 9.25 或 9.26 上午，注意黑沙滩危险浪。</td>
+      </tr>
+      <tr>
+        <td>峡谷流水侵蚀</td>
+        <td>Fjaðrárgljúfur 羽毛峡谷</td>
+        <td><span class="score mid">4/5</span></td>
+        <td>与瀑布和海岸不同，地貌变化明显；但天气差时观感下降。</td>
+        <td>9.25 东进路上顺带，不建议 9.26 专门折返。</td>
+      </tr>
+      <tr>
+        <td>黄金圈地热、裂谷、火山口</td>
+        <td>Gullfoss、Geysir、Þingvellir、Kerið</td>
+        <td><span class="score mid">4/5</span></td>
+        <td>经典且好到达，地貌教育性强；但游客较多，独特性略低于冰河湖和高地。</td>
+        <td>9.28 白天走，不要 9.27 高地团后夜赶。</td>
+      </tr>
+      <tr>
+        <td>人文废墟/荒原摄影</td>
+        <td>Sólheimasandur 飞机残骸</td>
+        <td><span class="score low">2.5/5</span></td>
+        <td>出片取决于天气和审美，但会消耗时间与体力，第一天安排会偏满。</td>
+        <td>只作为 9.24 天气好、不累时的可选项。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 4 住宿决策 ============ -->
+<section class="panel" id="stay">
+  <h2>七、9.24 住宿：维克合适吗？</h2>
+  <p class="lead">9.24 的维克住宿<strong>尚未预订</strong>，所以下边的建议可以直接采用，没有退订成本；真正的硬锤只有 9.26 已订且不可退的 Vik 酒店。</p>
+  <div class="grid three">
+    <div class="card">
+      <div class="card-body">
+        <span class="tag good">最推荐</span>
+        <h3>Skógar / Skógafoss</h3>
+        <p>路线最平衡：比 Vik 少开一段，第二天又比 Hella 更靠东。适合把首日瀑布慢慢拍完，晚上不过度消耗主驾。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <span class="tag warn">可以</span>
+        <h3>Vik</h3>
+        <p>餐饮、超市和第二天黑沙滩都方便，但 9.24 首日会偏长。若住 Vik，飞机残骸建议降级为可选。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <span class="tag warn">稳妥但偏西</span>
+        <h3>Hella / Hvolsvöllur</h3>
+        <p>第一天最轻松、补给方便，但会把 9.25 冰河湖东线拉长。更适合不追求 9.25 到冰河湖的人。</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:28px">八、9.25 住宿：住哪里最顺？</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>住宿地</th>
+        <th style="width:11%">推荐度</th>
+        <th>优点</th>
+        <th>风险/代价</th>
+        <th>适合程度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kirkjubæjarklaustur 教堂镇</td>
+        <td><span class="score">首选</span></td>
+        <td>不回 Vik，9.26 回 Vik 压力可控；有基本补给。</td>
+        <td>离冰河湖还有距离，9.25 要早出发。</td>
+        <td>最均衡，适合你们的驾驶结构。</td>
+      </tr>
+      <tr>
+        <td>Skaftafell / Freysnes</td>
+        <td><span class="score">推荐</span></td>
+        <td>更靠近冰川区，冰河湖和钻石沙滩更从容。</td>
+        <td>房少且贵；9.26 回 Vik 更早出发。</td>
+        <td>风景体验优先时很好。</td>
+      </tr>
+      <tr>
+        <td>Jökulsárlón / Hali / Gerði</td>
+        <td><span class="score mid">有条件推荐</span></td>
+        <td>最适合拍冰河湖日落和清晨。</td>
+        <td>9.26 回 Vik 距离最长，卡特拉前缓冲变少。</td>
+        <td>摄影优先、订到好房才选。</td>
+      </tr>
+      <tr>
+        <td>Vik</td>
+        <td><span class="score low">不推荐</span></td>
+        <td>不用搬酒店。</td>
+        <td>冰河湖东进后折返，效率低且主驾累。</td>
+        <td>除非 9.25 不去冰河湖。</td>
+      </tr>
+      <tr>
+        <td>Höfn</td>
+        <td><span class="score low">不推荐</span></td>
+        <td>可继续看东南部。</td>
+        <td>9.26 回 Vik 过远，不适合 15:00 卡特拉。</td>
+        <td>不适合这版 A。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 5 路线地图 ============ -->
+<section class="panel" id="map">
+  <h2>九、路线差异地图</h2>
+  <p class="lead">左图是行程表原版逻辑，右图是优化后版本。地图中的直线为规划示意，不代表精确导航轨迹；实际路线请用 Google Maps，并在每天出发前查 road.is / umferdin.is。</p>
+  <div class="maps">
+    <div class="map-card">
+      <div class="map-head">
+        <strong>原版（行程表）</strong>
+        <div class="legend"><span><i class="dot" style="background:#c2412d"></i>原方案路线</span><span><i class="dot" style="background:#c77700"></i>住宿待定带</span></div>
+      </div>
+      <div id="mapOriginal"></div>
+    </div>
+    <div class="map-card">
+      <div class="map-head">
+        <strong>优化后版本</strong>
+        <div class="legend"><span><i class="dot" style="background:#2a9d8f"></i>推荐顺路版</span><span><i class="dot" style="background:#2364aa"></i>备选住宿</span></div>
+      </div>
+      <div id="mapOptimized"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 风险核查 ============ -->
+<section class="panel" id="risk">
+  <h2>十、风险与核查</h2>
+  <div class="grid two">
+    <div class="callout bad">
+      <h3>最大风险：9.27</h3>
+      <p>Vik 到 Hella 后参加兰德曼纳高地团，已经是长日。团 10:00 从 Hella 发车、09:20 前要到上车点，意味着 <strong>08:00 前必须离开 Vik</strong>；团后再继续去黄金圈，会形成夜间驾驶和疲劳驾驶风险。优化版把住宿控制在 Hella/Selfoss/Flúðir。</p>
+    </div>
+    <div class="callout">
+      <h3>高地交通</h3>
+      <p>普通油车不建议、也通常不允许自驾 F 路进入高地。兰德曼纳应使用带交通团，并在出发前确认 2026 年 9 月下旬是否成团。</p>
+    </div>
+  </div>
+  <table style="margin-top:16px">
+    <thead>
+      <tr><th style="width:14%">事项</th><th style="width:32%">行动</th><th>备注</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>路况</td><td>每天早上查 road.is / umferdin.is</td><td>尤其是高地、南岸横风、碎石路和桥梁路段。</td></tr>
+      <tr><td>天气</td><td>查 vedur.is 风速和天气预警</td><td>9月底天气变化快，不要把每日计划排满。</td></tr>
+      <tr><td>兰德曼纳团</td><td>提前邮件确认 Hella 出发团是否成团，并核对发车时间</td><td>Hella 常规发车 10:00（Bus Stop Hella，Suðurlandsvegur, 850 Hella），要求 09:20 前到上车点，团程 8–10 小时；即 9.27 需 08:00 前离开 Vik。若取消，9.27 可改 Þórsmörk、黄金圈慢游或温泉日。</td></tr>
+      <tr><td>卡特拉</td><td>以确认邮件为准核对集合点和装备</td><td>15:00 前建议至少提前 30-40 分钟到 Vik；硬底防水鞋为必备装备。</td></tr>
+      <tr><td>黑沙滩</td><td>遵守警示牌，不靠近水线</td><td>Reynisfjara 有危险浪，不为照片冒险。</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top:28px">十一、资料依据</h2>
+  <p class="lead">本页中的行程判断基于行程表内容、此前确认的旅行条件，以及下列需要出发前复核的公开信息。道路、天气、发团时间属于动态信息，最终以出行前官方/商家信息为准。</p>
+  <table>
+    <thead>
+      <tr><th style="width:30%">用途</th><th>来源</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>高地/F-road 风险和路况提醒</td><td><a href="https://safetravel.is/driving/summer/highland-driving/" target="_blank" rel="noreferrer">SafeTravel Iceland: Highland driving</a>；<a href="https://umferdin.is/en/region/south" target="_blank" rel="noreferrer">umferdin.is South road conditions</a></td></tr>
+      <tr><td>兰德曼纳高地团与卡特拉团信息</td><td><a href="https://www.southadventure.is/tours/landmannalaugar/" target="_blank" rel="noreferrer">Southcoast Adventure Landmannalaugar</a>；<a href="https://www.southadventure.is/tours/katla-ice-cave-tour/" target="_blank" rel="noreferrer">Southcoast Adventure Katla Ice Cave</a></td></tr>
+      <tr><td>9月底日照参考</td><td><a href="https://alpenglowapp.com/times/reykjav-k-39-is/2026/09" target="_blank" rel="noreferrer">Alpenglow: Reykjavík September 2026 daylight</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <p>方案A · 行程与路线评估（整合版）· 冰岛 9.23–9.29。本页把「方案A 行程」与「方案A 路线评估报告」合并成一页，两个原页仍独立保留。里程与地图线路为示意，不替代导航；住宿、活动、道路开放和天气请在预订与出发前复核。</p>
+  <p class="small flinks">
+    <a href="plan-a.html">方案A 行程（原页）</a> ·
+    <a href="plan-a-assessment.html">方案A 路线评估报告（原页）</a> ·
+    <a href="compare.html">A / B / C 对照表</a> ·
+    <a href="spots.html">9 月底推荐清单（DeepSeek 推荐版）</a> ·
+    <a href="./">方案B</a> ·
+    <a href="plan-c.html">方案C</a> ·
+    <a href="../">返回首页</a>
+  </p>
+</footer>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script>
+  /* ---- 分区导航：滚动高亮（无 IntersectionObserver 也照常可用，锚点本身不受影响） ---- */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.tabbar-inner a'));
+    var panels = links.map(function (a) {
+      return document.querySelector(a.getAttribute('href'));
+    });
+    if (panels.some(function (p) { return !p; })) return;
+
+    function barHeight() {
+      var bar = document.querySelector('.tabbar');
+      return bar ? bar.offsetHeight : 60;
+    }
+    function onScroll() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var h = barHeight() + 12;
+      var idx = 0;
+      for (var i = 0; i < panels.length; i++) {
+        if (panels[i].offsetTop <= y + h) idx = i;
+      }
+      for (var j = 0; j < links.length; j++) {
+        links[j].classList.toggle('active', j === idx);
+      }
+    }
+    var ticking = false;
+    function requestTick() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        onScroll();
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('resize', requestTick);
+    onScroll();
+  })();
+</script>
+<script>
+  const stops = {
+    reykjavik: { name: "雷克雅未克", ll: [64.1466, -21.9426] },
+    seljalandsfoss: { name: "塞里雅兰瀑布", ll: [63.6156, -19.9896] },
+    gljufrabui: { name: "Gljúfrabúi", ll: [63.6209, -19.9864] },
+    skogafoss: { name: "斯科加瀑布", ll: [63.5321, -19.5114] },
+    kvernufoss: { name: "Kvernufoss", ll: [63.5278, -19.4801] },
+    plane: { name: "飞机残骸", ll: [63.4591, -19.3647] },
+    skogar: { name: "Skógar住宿", ll: [63.5270, -19.5120] },
+    vik: { name: "Vik住宿/卡特拉集合", ll: [63.4186, -19.0060] },
+    reynisfjara: { name: "Reynisfjara黑沙滩", ll: [63.4044, -19.0450] },
+    dyrholaey: { name: "Dyrhólaey", ll: [63.4028, -19.1278] },
+    fjadrargljufur: { name: "羽毛峡谷", ll: [63.7713, -18.1719] },
+    klaustur: { name: "教堂镇首选住宿", ll: [63.7896, -18.0560] },
+    skaftafell: { name: "Skaftafell备选", ll: [64.0169, -16.9661] },
+    freysnes: { name: "Freysnes备选", ll: [63.9967, -16.8950] },
+    jokulsarlon: { name: "冰河湖", ll: [64.0481, -16.1795] },
+    diamond: { name: "钻石沙滩", ll: [64.0454, -16.1777] },
+    katla: { name: "卡特拉冰川", ll: [63.5490, -19.2360] },
+    hella: { name: "Hella高地团", ll: [63.8350, -20.4000] },
+    landmannalaugar: { name: "兰德曼纳高地", ll: [63.9926, -19.0608] },
+    fludir: { name: "Flúðir备选住宿", ll: [64.1300, -20.3220] },
+    selfoss: { name: "Selfoss备选住宿", ll: [63.9335, -20.9970] },
+    kerid: { name: "Kerið", ll: [64.0413, -20.8844] },
+    geysir: { name: "Geysir", ll: [64.3138, -20.3008] },
+    gullfoss: { name: "黄金瀑布", ll: [64.3271, -20.1199] },
+    thingvellir: { name: "辛格维利尔", ll: [64.2559, -21.1295] },
+    sky: { name: "Sky Lagoon/雷市", ll: [64.1136, -21.8410] },
+    reykjanes: { name: "Reykjanes可选", ll: [63.9200, -22.2500] }
+  };
+
+  const colors = {
+    original: "#c2412d",
+    optimized: "#2a9d8f",
+    stay: "#2364aa",
+    uncertain: "#c77700"
+  };
+
+  const originalRoutes = [
+    { title: "9.24 原版：雷市到Vik", color: colors.original, route: ["reykjavik", "seljalandsfoss", "skogafoss", "plane", "vik"] },
+    { title: "9.25 原版：Vik东进，住宿待定", color: colors.original, route: ["vik", "reynisfjara", "jokulsarlon", "diamond", "klaustur"], dash: true },
+    { title: "9.26 原版：东边/羽毛峡谷回Vik卡特拉", color: colors.original, route: ["klaustur", "fjadrargljufur", "vik", "katla", "vik"], dash: true },
+    { title: "9.27 原版：Vik到Hella高地团后赶黄金圈", color: colors.original, route: ["vik", "hella", "landmannalaugar", "hella", "geysir"], dash: true },
+    { title: "9.28 原版：黄金圈回雷市", color: colors.original, route: ["geysir", "gullfoss", "thingvellir", "reykjavik"] }
+  ];
+
+  const optimizedRoutes = [
+    { title: "9.24 优化：雷市到Skógar", color: colors.optimized, route: ["reykjavik", "seljalandsfoss", "gljufrabui", "skogafoss", "kvernufoss", "skogar"] },
+    { title: "9.25 优化：顺路东进", color: colors.optimized, route: ["skogar", "dyrholaey", "reynisfjara", "fjadrargljufur", "jokulsarlon", "diamond", "klaustur"] },
+    { title: "9.26 优化：回Vik卡特拉", color: colors.optimized, route: ["klaustur", "vik", "katla", "vik"] },
+    { title: "9.27 优化：高地团后短住", color: colors.optimized, route: ["vik", "hella", "landmannalaugar", "hella", "selfoss"] },
+    { title: "9.28 优化：白天黄金圈回雷市", color: colors.optimized, route: ["selfoss", "kerid", "geysir", "gullfoss", "thingvellir", "reykjavik"] },
+    { title: "9.29 优化：弹性收尾", color: colors.optimized, route: ["reykjavik", "sky", "reykjanes"], dash: true }
+  ];
+
+  function makeMap(id, routes, variant) {
+    const map = L.map(id, { scrollWheelZoom: false }).setView([63.9, -19.5], 7);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    const group = L.featureGroup().addTo(map);
+    const seen = new Set();
+    let markerIndex = 1;
+
+    routes.forEach((item) => {
+      const latlngs = item.route.map((key) => stops[key].ll);
+      L.polyline(latlngs, {
+        color: item.color,
+        weight: 5,
+        opacity: .86,
+        dashArray: item.dash ? "8 9" : null
+      }).addTo(group).bindPopup("<strong>" + item.title + "</strong>");
+
+      item.route.forEach((key) => {
+        if (seen.has(key)) return;
+        seen.add(key);
+        const stop = stops[key];
+        const markerColor = key === "klaustur" || key === "skogar" || key === "selfoss" || key === "vik" ? colors.stay : item.color;
+        L.marker(stop.ll, {
+          icon: L.divIcon({
+            className: "",
+            html: '<div class="number-marker" style="background:' + markerColor + '">' + markerIndex + '</div>',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14]
+          })
+        }).addTo(group).bindPopup("<strong>" + stop.name + "</strong><br>" + item.title);
+        L.marker(stop.ll, {
+          icon: L.divIcon({
+            className: "map-label",
+            html: stop.name,
+            iconSize: null,
+            iconAnchor: [-16, 36]
+          }),
+          interactive: false
+        }).addTo(group);
+        markerIndex += 1;
+      });
+    });
+
+    if (variant === "original") {
+      const uncertain = L.circle([63.91, -17.25], {
+        radius: 62000,
+        color: colors.uncertain,
+        fillColor: colors.uncertain,
+        fillOpacity: .13,
+        weight: 2,
+        dashArray: "6 8"
+      }).addTo(group).bindPopup("<strong>9.25住宿待定带</strong><br>Kirkjubæjarklaustur / Skaftafell / 冰河湖附近都可能。越靠东，9.26回Vik越紧。");
+    } else {
+      [["klaustur", "9.25首选住宿"], ["skaftafell", "摄影备选"], ["freysnes", "摄影备选"], ["selfoss", "9.27短住备选"], ["fludir", "9.27短住备选"]].forEach(([key, label]) => {
+        const stop = stops[key];
+        L.circleMarker(stop.ll, {
+          radius: 8,
+          color: colors.stay,
+          fillColor: colors.stay,
+          fillOpacity: .85,
+          weight: 2
+        }).addTo(group).bindPopup("<strong>" + label + "</strong><br>" + stop.name);
+      });
+    }
+
+    map.fitBounds(group.getBounds(), { padding: [48, 48], maxZoom: 8 });
+    setTimeout(() => map.invalidateSize(), 250);
+  }
+
+  makeMap("mapOriginal", originalRoutes, "original");
+  makeMap("mapOptimized", optimizedRoutes, "optimized");
+</script>
+</body>
+</html>
