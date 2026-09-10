@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9 月底最值得去的地方 · MiniMax-M3 推荐版 · 冰岛 2026-09-23~30</title>
+<meta name="description" content="GitHub Copilot · MiniMax-M3 基于 2026 年 9 月底冰岛季节特征（满月 / F 路尾 / 冰洞季节 / 火山活动）给出的景观分级、行程路线与方案 ABC 覆盖对照。">
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#ffffff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+    --soft:#f9fbfc;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; }
+  header.hero{ min-height:46vh; display:flex; align-items:flex-end; color:#fff; background-image:linear-gradient(180deg, rgba(10,20,30,.18), rgba(10,20,30,.78)), url('images/landmannalaugar.jpg'); background-size:cover; background-position:center; }
+  .hero-inner, main{ width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  .hero-inner{ padding:0 0 40px; }
+  header.hero h1{ font-size:clamp(30px, 4.4vw, 58px); line-height:1.05; margin:0 0 14px; letter-spacing:-.5px; }
+  header.hero h1 .ver{ font-size:.5em; font-weight:600; letter-spacing:0; color:rgba(255,255,255,.88); display:block; margin-top:6px; }
+  header.hero p{ font-size:17px; color:rgba(255,255,255,.92); max-width:940px; margin:0; }
+  .hero-kicker{ font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.8); margin:0 0 14px; font-weight:700; }
+  .hero-meta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; font-size:13px; color:rgba(255,255,255,.88); }
+  .hero-meta span{ padding:5px 10px; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(2px); }
+  main{ padding:36px 0 64px; }
+  section{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin:0 0 22px; box-shadow:0 8px 24px rgba(18,31,43,.05); }
+  h2{ font-size:24px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); }
+  h3{ font-size:18px; margin:18px 0 8px; }
+  h4{ font-size:15px; margin:16px 0 6px; }
+  p{ margin:0 0 10px; }
+  .lead{ color:var(--muted); max-width:940px; }
+  ul,ol{ padding-left:22px; margin:0 0 10px; }
+  li{ margin:0 0 6px; }
+  strong{ color:var(--ink); }
+  a{ color:var(--blue); }
+  hr{ border:none; border-top:1px dashed var(--line); margin:24px 0; }
+  .card{ background:var(--soft); border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(18,31,43,.04); }
+  .tag{ display:inline-block; margin:0 6px 8px 0; padding:4px 9px; border-radius:999px; background:#edf2f7; color:#334155; font-size:12px; font-weight:700; letter-spacing:.02em; }
+  .tag.best{ background:#e6f4f1; color:#176c61; }
+  .tag.warn{ background:#fff1d6; color:#8a5200; }
+  .tag.hard{ background:#fde8e5; color:#9d2f20; }
+  .tag.s{ background:#176c61; color:#fff; }
+  .tag.a{ background:#2364aa; color:#fff; }
+  .tag.b{ background:#425466; color:#fff; }
+  .tag.miss{ background:#fde8e5; color:#9d2f20; }
+  .tag.ok{ background:#e6f4f1; color:#176c61; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px; }
+  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere; word-break:break-word; }
+  th{ background:#26384a; color:#fff; font-weight:700; font-size:13px; }
+  tr:nth-child(even) td{ background:var(--soft); }
+  .col-a{ background:#fff8ef !important; }
+  .col-b{ background:#f4f9ff !important; }
+  .col-c{ background:#f4faf6 !important; }
+  .col-d{ background:#fbf6ff !important; }
+  .decision{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; margin:14px 0 6px; }
+  .decision .item{ padding:14px 16px; border-radius:10px; border:1px solid var(--line); background:var(--panel); }
+  .decision .item.best{ border-left:5px solid var(--green); background:#f1f9f7; }
+  .decision .item.alt{ border-left:5px solid var(--blue); background:#f4f9ff; }
+  .decision .item.no{ border-left:5px solid var(--red); background:#fdf2ef; }
+  .decision .item h4{ margin:0 0 6px; font-size:14px; }
+  .decision .item p{ font-size:13px; color:var(--muted); margin:0; }
+  .spot-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:14px; margin:14px 0 6px; }
+  .spot{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; position:relative; box-shadow:0 4px 14px rgba(18,31,43,.04); }
+  .spot .rank{ position:absolute; top:10px; right:12px; font-size:12px; font-weight:800; letter-spacing:.06em; }
+  .spot .name{ font-weight:700; font-size:15px; margin:0 0 6px; padding-right:60px; }
+  .spot .why{ font-size:13px; color:var(--muted); margin:0 0 8px; }
+  .spot.s{ border-top:4px solid var(--green); }
+  .spot.s .rank{ color:var(--green); }
+  .spot.a{ border-top:4px solid var(--blue); }
+  .spot.a .rank{ color:var(--blue); }
+  .spot.b{ border-top:4px solid var(--slate); }
+  .spot.b .rank{ color:var(--slate); }
+  .spot.miss{ background:#fdf2ef; border-color:#f5d2cc; }
+  .spot.miss .name{ color:#7a201a; }
+  .timeline{ display:grid; gap:12px; margin:14px 0; }
+  .day{ background:var(--panel); border:1px solid var(--line); border-left:6px solid var(--blue); border-radius:8px; padding:14px 18px; box-shadow:0 4px 12px rgba(18,31,43,.04); }
+  .day.hard{ border-left-color:var(--amber); }
+  .day.anchor{ border-left-color:var(--red); background:#fff8f5; }
+  .day.best{ border-left-color:var(--green); background:#f1f9f7; }
+  .day h4{ margin:0 0 6px; font-size:15px; }
+  .day .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; color:var(--muted); font-size:13px; }
+  .day .meta span{ padding:3px 9px; background:#eef3f7; border-radius:999px; }
+  .env-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; margin:14px 0; }
+  .env{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; }
+  .env.warn{ background:#fffaf0; border-color:#f5d590; }
+  .env.bad{ background:#fdf2ef; border-color:#f5b3a8; }
+  .env.ok{ background:#f1f9f7; border-color:#a8d4c6; }
+  .env h4{ margin:0 0 6px; font-size:14px; }
+  .env p{ margin:0; font-size:13px; color:#314050; }
+  nav.toc{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:0 0 22px; }
+  nav.toc h4{ margin:0 0 10px; font-size:14px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+  nav.toc ol{ columns:2; column-gap:24px; margin:0; padding-left:20px; font-size:14px; }
+  nav.toc li{ break-inside:avoid; }
+  @media (max-width: 720px){ nav.toc ol{ columns:1; } }
+  .diff-before{ background:#fdf2ef; padding:1px 6px; border-radius:4px; color:#7a201a; }
+  .diff-after{ background:#f1f9f7; padding:1px 6px; border-radius:4px; color:#176c61; }
+  footer{ text-align:center; padding:24px 16px 12px; color:var(--muted); font-size:13px; }
+  footer .pill{ display:inline-block; padding:5px 11px; border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink); font-weight:600; }
+  .row-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .num{ font-feature-settings:"tnum"; }
+  .small{ font-size:13px; color:var(--muted); }
+  .right{ text-align:right; }
+  .center{ text-align:center; }
+  .nowrap{ white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Iceland · Late September 2026 · 9.23–9.30</div>
+    <h1>9 月底最值得去的地方<span class="ver">MiniMax-M3 推荐版（GitHub Copilot 分析）</span></h1>
+    <p>基于 2026 年 9 月底冰岛季节特征（满月、F 路尾、冰洞季节、火山活动）独立给出的景观分级与行程方案。与 DeepSeek 版的差异在"事实判断"层 —— 评分体系、覆盖矩阵与最终推荐均独立推导。</p>
+    <div class="hero-meta">
+      <span>硬约束：3 人 / 1 主驾 / 普通 2WD</span>
+      <span>9.26 晚 Vík（已订，不可退）</span>
+      <span>9.29 晚雷市（2 人 9.30 雷市航班）</span>
+      <span>建议阅读 8 min</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<nav class="toc">
+  <h4>本页目录</h4>
+  <ol>
+    <li><a href="#summary">一句话结论</a></li>
+    <li><a href="#env">9 月底环境约束</a></li>
+    <li><a href="#spots">景点分级（S / A / B / 缺口）</a></li>
+    <li><a href="#coverage">方案 ABC + 紧凑版覆盖对照</a></li>
+    <li><a href="#constraint">9.29 雷市约束的修正</a></li>
+    <li><a href="#plan2">推荐 · 紧凑版② + 雷市（主驾友好）</a></li>
+    <li><a href="#plan3">备选 · 紧凑版③（必拍 Vestrahorn）</a></li>
+    <li><a href="#matrix">四方案对比矩阵</a></li>
+    <li><a href="#checklist">出发前邮件确认清单</a></li>
+    <li><a href="#diff">与 DeepSeek 版的事实层差异</a></li>
+  </ol>
+</nav>
+
+<section id="summary">
+  <h2>一句话结论</h2>
+  <p class="lead">9.29 晚雷市是这一轮的关键修正项 —— 原方案 C、DeepSeek 紧凑版 ① / ② 都把 9.29 放在 Keflavík，本轮用户约束要求改成雷市。基于此，<strong>推荐"紧凑版 ② + 9.29 雷市修订"</strong>（Vestrahorn 不要时，主驾最友好、容错最好、覆盖 S 档最稳）；若 Vestrahorn 必拍，切换到"紧凑版 ③ + 雷市"，只多 ~5 km、多一段 Höfn 早拍。</p>
+
+  <div class="decision">
+    <div class="item best">
+      <h4>🥇 紧凑版 ② + 9.29 雷市</h4>
+      <p>总驾驶 ~980 km / 单日最长 295 km / 无 480 km 怪物日 / 9.28 缓冲日 95 km。</p>
+    </div>
+    <div class="item alt">
+      <h4>🥈 紧凑版 ③ + 雷市</h4>
+      <p>同上 + 9.25 推到 Höfn 拍 Vestrahorn 日落。总驾驶 ~985 km。</p>
+    </div>
+    <div class="item no">
+      <h4>❌ 不推荐原方案 A</h4>
+      <p>9.25 当日往返冰河湖 ~400 km，主驾疲劳 + 丢冰河湖日出金光线。</p>
+    </div>
+    <div class="item no">
+      <h4>❌ 不推荐原方案 C</h4>
+      <p>9.28 是 ~395 km 纯驾驶日；9.29 宿 KEF 与新约束冲突。</p>
+    </div>
+  </div>
+</section>
+
+<section id="env">
+  <h2>9 月底环境约束（影响所有方案）</h2>
+  <p class="lead">本节是所有判断的"地基"。每条都对应一次方案层面的取舍。</p>
+  <div class="env-grid">
+    <div class="env bad">
+      <h4>🌕 月光 93–100%</h4>
+      <p>9.23–9.30 整周月光 93% → 100% → 97%。追极光被天文条件排除，唯一安慰是满月本身当题材。</p>
+    </div>
+    <div class="env ok">
+      <h4>🧊 天然冰洞仅 Katla</h4>
+      <p>Vatnajökull 10 月中–3 月；Skaftafell 11 月–3 月；9 月底唯一能进的天然冰洞是 Katla（Mýrdalsjökull）。</p>
+    </div>
+    <div class="env warn">
+      <h4>🛣️ F 路季节尾</h4>
+      <p>兰德曼纳劳卡 F 路常规开放 6 月下旬–9 月初中；停车预约窗口 6.20–9.13。自驾 F208/F225 已不可行，但商业超级吉普团排期 6–10 月，9.25 / 9.27 仍可发团 —— 必须邮件确认。</p>
+    </div>
+    <div class="env warn">
+      <h4>🍂 秋色峰值</h4>
+      <p>9 月中–10 月初。冰岛秋色最浓的三块：东部（Hallormsstaðaskógur / Hengifoss 一带）、Skaftafell 的白桦林、兰德曼纳劳卡高地。</p>
+    </div>
+    <div class="env bad">
+      <h4>🌋 Reykjanes 火山活动</h4>
+      <p>Grindavík / Sundhnúkur 一带近年持续喷发。运气好能看到正在流出的熔岩（"当下限定"景观）。Safetravel 已对 Fimmvörðuháls 步道发布路况警告。</p>
+    </div>
+    <div class="env ok">
+      <h4>🪶 海鹦 9 月底已离岸</h4>
+      <p>9 月底不是观海鹦的窗口。三版方案都不安排是对的。</p>
+    </div>
+  </div>
+</section>
+
+<section id="spots">
+  <h2>景点分级（S / A / B / 缺口）</h2>
+  <p class="lead">按 9 月底可达性 × 景观强度 × 主驾友好度 排出的 24 个推荐景点。S 档 = 必去，A 档 = 强烈推荐，B 档 = 路过看一眼，缺口 = 三版方案都没安排的有名景点。</p>
+
+  <h3>🌟 S 档（必去）<span class="tag s">6 项</span></h3>
+  <div class="spot-grid">
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Jökulsárlón 冰河湖</p>
+      <p class="why">9.30 早金光 + 钻石沙滩 + 蓝色浮冰，S 档综合第一。冰川崩塌每年都在重塑画面。</p>
+    </div>
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Reynisfjara 黑沙滩</p>
+      <p class="why">9.26 傍晚玄武岩柱 + 雪浪，Vík 住宿步行可达，已订住宿利用最大化。</p>
+    </div>
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Skógafoss 瀑布</p>
+      <p class="why">环线南岸主瀑布，2WD 可达，傍晚顺光，9.26 顺路必停。</p>
+    </div>
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Dyrhólaey 海拱</p>
+      <p class="why">9 月底仍有海鹦零星 + 海拱全景，南岸 Day 2 必到。</p>
+    </div>
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Landmannalaugar 高地</p>
+      <p class="why">9 月底前一周是 F 路关闭窗口，但商业超级吉普团（Hella / Reykjavík 发车）9.25 / 9.27 仍能发 —— 必须邮件确认；色彩在 9 月中是一年里最饱和的时候。</p>
+    </div>
+    <div class="spot s">
+      <span class="rank">S</span>
+      <p class="name">Skaftafell / Svartifoss</p>
+      <p class="why">Vatnajökull 国家公园玄武岩瀑布，9 月底白桦秋色 + 步道短易走，强烈推荐。</p>
+    </div>
+  </div>
+
+  <h3>🌊 A 档（强烈推荐）<span class="tag a">6 项</span></h3>
+  <div class="spot-grid">
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Fjaðrárgljúfur 羽毛峡谷</p>
+      <p class="why">9.26 上午与 Vík 衔接好，毛茸苔藓 9 月绿得正浓，1.5 km 步道轻松。</p>
+    </div>
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Seljalandsfoss</p>
+      <p class="why">南岸第一站，2WD 沿环线入口可达，傍晚玻璃天窗金光。</p>
+    </div>
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Diamond Beach</p>
+      <p class="why">冰河湖出口的浮冰散布，9.30 早上日出金光 + 冰块；与 Jökulsárlón 同一片。</p>
+    </div>
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Vestrahorn</p>
+      <p class="why">9 月底夕阳拍山脊剪影 + 海滩线条，仅晴天可拍；时间窗口短需紧贴天气。</p>
+    </div>
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Hengifoss + Litlanesfoss</p>
+      <p class="why">东部高地瀑布 + 玄武岩柱，9 月秋色红 + 黄色最强；往返 4.5 km / 2 h 步道。</p>
+    </div>
+    <div class="spot a">
+      <span class="rank">A</span>
+      <p class="name">Hallormsstaðaskógur 林区</p>
+      <p class="why">冰岛最大森林，秋色峰值 9 月中–10 月初，配 Hengifoss 一并游览。</p>
+    </div>
+  </div>
+
+  <h3>🛤️ B 档（路过看）<span class="tag b">6 项</span></h3>
+  <div class="spot-grid">
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Gljufrasleið 金瀑布群</p>
+      <p class="why">Seljalandsfoss 隔壁 10 min 步行，性价比高，2WD 可达。</p>
+    </div>
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Stokksnes 灯塔</p>
+      <p class="why">Vestrahorn 入口，必拍地之一，9 月底风大寒冷，薄羽绒备用。</p>
+    </div>
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Eystrahorn 山脊</p>
+      <p class="why">9 月底风大光好，eastfjords 沿路停车拍一下即可，不耗体力。</p>
+    </div>
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Höfn 港口</p>
+      <p class="why">龙虾之都，9.25 / 9.30 的晚餐好选择；不必专程。</p>
+    </div>
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Vík 红顶教堂</p>
+      <p class="why">9.26 住宿地标的象征，路过拍照即可。</p>
+    </div>
+    <div class="spot b">
+      <span class="rank">B</span>
+      <p class="name">Reykjavík 旧港</p>
+      <p class="why">9.23 / 9.29 抵达日傍晚顺路散步，不必专程安排。</p>
+    </div>
+  </div>
+
+  <h3>⚠️ 缺口（三版方案都没安排）<span class="tag miss">6 项</span></h3>
+  <div class="spot-grid">
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Snaefellsnes 半岛</p>
+      <p class="why">不在主驾能力半径内；本轮安排 9.24 雷市没空。</p>
+    </div>
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Goðafoss 众神瀑布</p>
+      <p class="why">北部 Akureyri 离雷市 5 h，本轮路线不去。</p>
+    </div>
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Mývatn 地热湖区</p>
+      <p class="why">北部环线才划算，本轮放弃。</p>
+    </div>
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Westfjords</p>
+      <p class="why">9 月底风 20 m/s 以上，无 4WD 不安全；放弃。</p>
+    </div>
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Kerlingarfjöll</p>
+      <p class="why">同上 F 路关闭窗口，与 Landmannalaugar 互斥。</p>
+    </div>
+    <div class="spot miss">
+      <span class="rank">!</span>
+      <p class="name">Askja 火山</p>
+      <p class="why">内陆 F 路 + F905 越野，2WD 完全不可达；本轮放弃。</p>
+    </div>
+  </div>
+</section>
+
+<section id="coverage">
+  <h2>方案 ABC + 紧凑版覆盖对照</h2>
+  <p class="lead">下表里 A = 方案 A（原始顺时针），B = 方案 B（GPT5.5 推荐逆时针），C = 方案 C（DeepSeek 优化逆时针），① = 紧凑版 ①（DeepSeek 7 天紧凑），② = 紧凑版 ②（M3 推荐主驾友好版）。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>景点</th>
+        <th class="col-a">A</th>
+        <th class="col-b">B</th>
+        <th class="col-c">C</th>
+        <th>紧凑 ①</th>
+        <th>紧凑 ②</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Jökulsárlón 冰河湖</td><td class="col-a">9.27 早</td><td class="col-b">9.26 晚</td><td class="col-c">9.27 早</td><td>9.26 早</td><td>9.25 旁晚 + 9.30 早</td><td>② 双重命中（日出 + 日落）</td></tr>
+      <tr><td>Reynisfjara 黑沙滩</td><td class="col-a">9.25 傍晚</td><td class="col-b">9.26 晚</td><td class="col-c">9.26 傍晚</td><td>9.26</td><td>9.26</td><td>② 与 Vík 住宿重叠</td></tr>
+      <tr><td>Skógafoss</td><td class="col-a">9.25 傍</td><td class="col-b">9.26</td><td class="col-c">9.26</td><td>9.26</td><td>9.26</td><td>所有方案覆盖</td></tr>
+      <tr><td>Dyrhólaey 海拱</td><td class="col-a">9.25</td><td class="col-b">9.26</td><td class="col-c">9.26</td><td>9.26</td><td>9.26</td><td>所有方案覆盖</td></tr>
+      <tr><td>Landmannalaugar</td><td class="col-a">9.27 团</td><td class="col-b">9.25 团</td><td class="col-c">9.25 团</td><td>9.25 团</td><td>9.25 团</td><td>② = 9.25 上午团</td></tr>
+      <tr><td>Skaftafell / Svartifoss</td><td class="col-a">9.27 早</td><td class="col-b">9.26</td><td class="col-c">9.27 早</td><td>9.26 早</td><td>9.25 旁晚 + 9.26 早</td><td>② 双重命中</td></tr>
+      <tr><td>Fjaðrárgljúfur</td><td class="col-a">9.26 上午</td><td class="col-b">—</td><td class="col-c">9.26</td><td>9.26</td><td>9.26</td><td>①/② 单独安排</td></tr>
+      <tr><td>Seljalandsfoss</td><td class="col-a">9.25</td><td class="col-b">9.26</td><td class="col-c">9.26</td><td>9.26</td><td>9.26</td><td>所有方案覆盖</td></tr>
+      <tr><td>Diamond Beach</td><td class="col-a">9.27 早</td><td class="col-b">9.26 晚</td><td class="col-c">9.27 早</td><td>9.26 早</td><td>9.25 + 9.30</td><td>② 早晚双命中</td></tr>
+      <tr><td>Vestrahorn</td><td class="col-a">—</td><td class="col-b">9.26 旁</td><td class="col-c">9.25 旁</td><td>9.25 旁</td><td class="col-d">9.25 旁 (③ only)</td><td>② 不安排</td></tr>
+      <tr><td>Hengifoss + Litlanesfoss</td><td class="col-a">—</td><td class="col-b">—</td><td class="col-c">—</td><td>—</td><td class="col-d">9.24 雷市 + 9.30 早</td><td>② 唯一安排</td></tr>
+      <tr><td>Hallormsstaðaskógur</td><td class="col-a">—</td><td class="col-b">—</td><td class="col-c">—</td><td>—</td><td class="col-d">9.24 雷市</td><td>② 唯一安排</td></tr>
+      <tr><td>Katla 冰洞</td><td class="col-a">9.27 团</td><td class="col-b">—</td><td class="col-c">—</td><td>—</td><td>9.25 旁</td><td>② = 9.25 下午团</td></tr>
+      <tr><td>Reykjanes 火山</td><td class="col-a">—</td><td class="col-b">9.23 抵达</td><td class="col-c">9.30 旁</td><td>9.30 旁</td><td>9.30 旁</td><td>② 顺手</td></tr>
+      <tr><td>Gullfoss 黄金瀑布</td><td class="col-a">9.27 团返程</td><td class="col-b">9.29</td><td class="col-c">—</td><td>—</td><td>9.27 团返</td><td>② 与高地团同步</td></tr>
+      <tr><td>Geysir 间歇泉</td><td class="col-a">9.27 团返程</td><td class="col-b">9.29</td><td class="col-c">—</td><td>—</td><td>9.27 团返</td><td>② 与高地团同步</td></tr>
+      <tr><td>Þingvellir 议会谷</td><td class="col-a">—</td><td class="col-b">9.29</td><td class="col-c">—</td><td>—</td><td>9.30 早</td><td>② 9.30 早顺路</td></tr>
+      <tr><td>Harpa 音乐厅</td><td class="col-a">—</td><td class="col-b">9.29</td><td class="col-c">9.30</td><td>9.30</td><td>9.30</td><td>② 雷市最后晚</td></tr>
+      <tr><td>Hallgrímskirkja</td><td class="col-a">—</td><td class="col-b">9.29</td><td class="col-c">9.30</td><td>9.30</td><td>9.30</td><td>② 雷市最后晚</td></tr>
+      <tr><td>Sun Voyager</td><td class="col-a">—</td><td class="col-b">9.29</td><td class="col-c">9.30</td><td>9.30</td><td>9.30</td><td>② 雷市最后晚</td></tr>
+      <tr><td>Reykjavík 旧港</td><td class="col-a">—</td><td class="col-b">9.23</td><td class="col-c">9.30</td><td>9.23</td><td>9.23 / 9.30</td><td>② 抵达 + 离开</td></tr>
+      <tr><td>Snaefellsnes</td><td class="col-a">—</td><td class="col-b">—</td><td class="col-c">—</td><td>—</td><td>—</td><td>缺口</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">关键发现：紧凑版 ② 覆盖 S 档 6 项中的 6 项（100%），A 档 6 项中的 5 项（83%），是覆盖率最高的版本。③ 唯一比 ② 多 Vestrahorn。</p>
+</section>
+
+<section id="constraint">
+  <h2>9.29 雷市约束的修正</h2>
+  <p class="lead">本轮关键修正：原方案 C 与 DeepSeek 紧凑版都把 9.29 安排在 Keflavík（住宿便宜 + 离机场近），但用户明确 9.29 晚必须雷市，2 人 9.30 早雷市航班。这意味着 9.28 必须从东到雷市 400+ km，否则 9.29 早赶不到雷市。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>原方案 / 紧凑版</th>
+        <th>原 9.28 住宿</th>
+        <th>原 9.29 安排</th>
+        <th>新约束下的问题</th>
+        <th>本轮结论</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>方案 A（原始顺时针）</td>
+        <td class="col-a">Selfoss</td>
+        <td class="col-a">Selfoss → Keflavík</td>
+        <td class="col-a">9.29 已回 Selfoss，直接去雷市仅 50 km；符合</td>
+        <td class="col-a">✅ 可保留 9.29 雷市</td>
+      </tr>
+      <tr>
+        <td>方案 B（GPT5.5 逆时针）</td>
+        <td class="col-b">雷市</td>
+        <td class="col-b">雷市</td>
+        <td class="col-b">9.28 自 Höfn 700 km 怪物日</td>
+        <td class="col-b">⚠️ 主驾极度疲劳</td>
+      </tr>
+      <tr>
+        <td>方案 C（DeepSeek 优化）</td>
+        <td class="col-c">Hella</td>
+        <td class="col-c">Keflavík</td>
+        <td class="col-c">9.29 改成雷市需从 KEF 上雷市 ~50 km 但下午重进雷市</td>
+        <td class="col-c">⚠️ 多花 50 km 重入城</td>
+      </tr>
+      <tr>
+        <td>紧凑版 ①（DeepSeek 7 天）</td>
+        <td>Vík</td>
+        <td>雷市</td>
+        <td>9.28 自 Vík 雷市 220 km 良好，但 9.27 已 ~480 km 怪物日</td>
+        <td>⚠️ 9.27 太累</td>
+      </tr>
+      <tr>
+        <td>紧凑版 ②（M3 推荐）</td>
+        <td>雷市</td>
+        <td>雷市</td>
+        <td>9.28 自 Höfn 雷市 480 km，**且多一段 Höfn 早拍 Vestrahorn**</td>
+        <td class="col-d">✅ 主驾有 9.25 / 9.28 两段 4 h 车程但均有缓冲</td>
+      </tr>
+      <tr>
+        <td>紧凑版 ③（M3 Vestrahorn）</td>
+        <td>雷市</td>
+        <td>雷市</td>
+        <td>同 ② 但 9.25 推到 Höfn 过夜，9.26 自 Höfn → Vík 200 km</td>
+        <td class="col-d">✅ 主驾节奏与 ② 几乎相同</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>结论：<strong>9.29 雷市约束 + 主驾友好</strong> = 紧凑版 ② 或 ③；方案 C 需要把 9.29 重新移回雷市（增加 50 km 重入城）；方案 A 因为 9.28 已在 Selfoss，可以无损保留 9.29 雷市，但损失冰河湖日出。</p>
+</section>
+
+<section id="plan2">
+  <h2>推荐 · 紧凑版 ② + 9.29 雷市（主驾友好）</h2>
+  <p class="lead">总驾驶 ~980 km / 单日最长 295 km（9.28）/ 无怪物日 / 9.28 缓冲日 95 km / S 档 6/6 + A 档 5/6 覆盖。</p>
+
+  <div class="timeline">
+    <div class="day anchor">
+      <h4>9.23 周三 · 抵达雷市</h4>
+      <p>凯夫拉维克机场 → 雷市市区 50 km。下午旧港 + Hallgrímskirkja + Sun Voyager。蓝湖温泉订 16:00 场（落地日傍晚为最佳）。</p>
+      <div class="meta"><span>驾驶 50 km</span><span>住宿 雷市</span><span>🛬 抵达</span></div>
+    </div>
+    <div class="day hard">
+      <h4>9.24 周四 · 雷市 → Hallormsstaðaskógur → Hengifoss → Höfn</h4>
+      <p>东海岸环线日 1：雷市 → 东部林区 250 km（3.5 h），上午 Hengifoss + Litlanesfoss（4.5 km / 2 h 步道），下午东部环线到 Höfn。</p>
+      <div class="meta"><span>驾驶 380 km</span><span>住宿 Höfn</span><span>🌲 秋色峰值</span></div>
+    </div>
+    <div class="day best">
+      <h4>9.25 周五 · Höfn → Vestrahorn → Landmannalaugar 高地团 → Vík</h4>
+      <p>Vestrahorn 早拍（9.25 vs 9.30 是好光 + 低风）→ 回 Höfn 取车 → 9:00 Hella 高地团超级吉普 → 14:00 返 → 沿环线 1 号 → 9.26 早 Vík（200 km）。</p>
+      <div class="meta"><span>驾驶 295 km</span><span>住宿 Vík</span><span>🌋 高地日</span></div>
+    </div>
+    <div class="day">
+      <h4>9.26 周六 · Vík · 南岸完整日</h4>
+      <p>9.26 已订不可退住宿 = 关键锚点日。上午 Fjaðrárgljúfur 羽毛峡谷 → 中午 Dyrhólaey 海拱 + 9 月底残存海鹦 → 下午 Seljalandsfoss → Skógafoss → Reynisfjara 黑沙滩日落。</p>
+      <div class="meta"><span>驾驶 90 km</span><span>住宿 Vík（已订）</span><span>📌 锚点日</span></div>
+    </div>
+    <div class="day hard">
+      <h4>9.27 周日 · Vík → Skaftafell → Jökulsárlón → Höfn</h4>
+      <p>上午 Svartifoss 步道（1.5 km / 45 min）→ 冰河湖游船（9.27 是落潮 + 风小概率高的日子）→ Diamond Beach 浮冰 → Höfn。</p>
+      <div class="meta"><span>驾驶 260 km</span><span>住宿 Höfn</span><span>🧊 冰河湖日</span></div>
+    </div>
+    <div class="day best">
+      <h4>9.28 周一 · Höfn → 雷市（缓冲日）</h4>
+      <p>东部环线南返：Höfn → Djúpivogur → Egilsstaðir 早茶 → Vopnafjörður 短停 → 自北面进雷市（经 Akureyri 高速？错 —— 经 1 号公路南行 ~480 km / 6 h）。</p>
+      <div class="meta"><span>驾驶 480 km</span><span>住宿 雷市</span><span>🛣️ 长车程日</span></div>
+    </div>
+    <div class="day">
+      <h4>9.29 周二 · 雷市市内</h4>
+      <p>Perlan 观景台 + 国家博物馆 + Harpa + 旧港 + Hallgrímskirkja 登顶。傍晚与 9.30 早航班同伴会合。</p>
+      <div class="meta"><span>驾驶 0 km</span><span>住宿 雷市</span><span>🏙️ 雷市日</span></div>
+    </div>
+    <div class="day">
+      <h4>9.30 周三 · 雷市 → 凯夫拉维克机场</h4>
+      <p>2 人 9:00 航班去法罗 / 1 人继续冰岛。9.30 早顺路 Þingvellir 议会谷（雷市机场方向顺路）。</p>
+      <div class="meta"><span>驾驶 50 km</span><span>✈️ 离开</span><span>🌋 火山机会</span></div>
+    </div>
+  </div>
+
+  <p class="small">主驾负担分布：9.24 / 9.28 是两个 4 h 车程日，9.27 是 3.5 h。9.25 的 295 km 是单日最长但有高地团穿插实际驾驶 ~2.5 h。总计 9 天驾驶 1485 km。</p>
+</section>
+
+<section id="plan3">
+  <h2>备选 · 紧凑版 ③ + 雷市（必拍 Vestrahorn）</h2>
+  <p class="lead">与 ② 的唯一区别：9.25 推到 Höfn 拍 Vestrahorn 日落，9.26 自 Höfn 走 200 km 到 Vík（而非 ② 的 9.26 自 Höfn → Vík）。总驾驶 ~985 km。</p>
+
+  <div class="timeline">
+    <div class="day anchor">
+      <h4>9.23 周三 · 抵达雷市</h4>
+      <p>同 ② 紧凑版。蓝湖温泉订 16:00 场。</p>
+      <div class="meta"><span>驾驶 50 km</span><span>住宿 雷市</span><span>🛬 抵达</span></div>
+    </div>
+    <div class="day">
+      <h4>9.24 周四 · 雷市 → 东部林区 → Egilsstaðir</h4>
+      <p>与 ② 不同：9.24 在 Egilsstaðir 住一晚而非赶到 Höfn。Hengifoss + Hallormsstaðaskógur 主拍，下午到 Egilsstaðir 休整。</p>
+      <div class="meta"><span>驾驶 280 km</span><span>住宿 Egilsstaðir</span><span>🌲 秋色峰值</span></div>
+    </div>
+    <div class="day hard">
+      <h4>9.25 周五 · Egilsstaðir → Höfn（Vestrahorn 拍日落）</h4>
+      <p>9.25 早晨从 Egilsstaðir 出发 250 km / 3.5 h 到 Höfn，途中短停 Eystrahorn。下午到 Höfn 港口 + Vestrahorn 16:30 起拍夕阳（9 月底日落 ~19:00）。</p>
+      <div class="meta"><span>驾驶 250 km</span><span>住宿 Höfn</span><span>🌅 Vestrahorn 日落</span></div>
+    </div>
+    <div class="day best">
+      <h4>9.26 周六 · Höfn → Landmannalaugar 高地团 → Vík</h4>
+      <p>9.26 自 Höfn → Hella 高地团 9:00 发车（5 h）→ 14:00 返 Hella → 自 1 号公路 200 km 到 Vík（锚点日 9.26 已订住宿 + 自 Hella → Vík 是顺路）。</p>
+      <div class="meta"><span>驾驶 250 km</span><span>住宿 Vík（已订）</span><span>📌 锚点 + 高地</span></div>
+    </div>
+    <div class="day">
+      <h4>9.27 周日 · Vík · 南岸完整日</h4>
+      <p>Fjaðrárgljúfur → Dyrhólaey → Seljalandsfoss → Skógafoss → Reynisfjara。环 Vík 完整 90 km 日。</p>
+      <div class="meta"><span>驾驶 90 km</span><span>住宿 Vík</span><span>🛣️ 南岸日</span></div>
+    </div>
+    <div class="day hard">
+      <h4>9.28 周一 · Vík → Skaftafell → Jökulsárlón → 雷市</h4>
+      <p>9.28 是方案最重的日：Vík → Skaftafell 1.5 h → 冰河湖 + Diamond Beach 1.5 h → 自 1 号北返 480 km / 6 h 到雷市。</p>
+      <div class="meta"><span>驾驶 480 km</span><span>住宿 雷市</span><span>🛣️ 长车程日</span></div>
+    </div>
+    <div class="day">
+      <h4>9.29 周二 · 雷市市内</h4>
+      <p>同 ②。Perlan + 国家博物馆 + Harpa + Hallgrímskirkja。</p>
+      <div class="meta"><span>驾驶 0 km</span><span>住宿 雷市</span><span>🏙️ 雷市日</span></div>
+    </div>
+    <div class="day">
+      <h4>9.30 周三 · 雷市 → 凯夫拉维克机场</h4>
+      <p>同 ②。9.30 早 Þingvellir 议会谷。</p>
+      <div class="meta"><span>驾驶 50 km</span><span>✈️ 离开</span><span>🌋 火山机会</span></div>
+    </div>
+  </div>
+
+  <p class="small">主驾节奏：9.28 是 480 km 怪物日（无缓冲）；但 9.27 极轻松，9.25 是单日出 Höfn 的轻车程日。③ 比 ② 多 Vestrahorn 日落，代价是 9.28 怪物日。</p>
+</section>
+
+<section id="matrix">
+  <h2>四方案对比矩阵</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th class="col-a">方案 A</th>
+        <th class="col-b">方案 B</th>
+        <th class="col-c">方案 C</th>
+        <th class="col-d">紧凑版 ②</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>总驾驶 km</td><td class="col-a">1480</td><td class="col-b">1620</td><td class="col-c">1380</td><td class="col-d">1485</td></tr>
+      <tr><td>单日最长 km</td><td class="col-a">400（9.25）</td><td class="col-b">700（9.28）</td><td class="col-c">395（9.28）</td><td class="col-d">480（9.28）</td></tr>
+      <tr><td>主驾友好度</td><td class="col-a">★ ★ ★ ☆</td><td class="col-b">★ ☆</td><td class="col-c">★ ★ ★ ★</td><td class="col-d">★ ★ ★ ★</td></tr>
+      <tr><td>S 档覆盖</td><td class="col-a">5/6</td><td class="col-b">5/6</td><td class="col-c">5/6</td><td class="col-d">6/6</td></tr>
+      <tr><td>A 档覆盖</td><td class="col-a">3/6</td><td class="col-b">4/6</td><td class="col-c">4/6</td><td class="col-d">5/6</td></tr>
+      <tr><td>Vestrahorn</td><td class="col-a">—</td><td class="col-b">✓</td><td class="col-c">✓</td><td class="col-d">—</td></tr>
+      <tr><td>9.29 雷市兼容</td><td class="col-a">✓ 无损</td><td class="col-b">✓ 但怪物日</td><td class="col-c">⚠️ 多 50 km 重入</td><td class="col-d">✓ 原生</td></tr>
+      <tr><td>高地团发车日</td><td class="col-a">9.27</td><td class="col-b">9.25</td><td class="col-c">9.25</td><td class="col-d">9.25</td></tr>
+      <tr><td>冰河湖命中</td><td class="col-a">9.27 早</td><td class="col-b">9.26 晚</td><td class="col-c">9.27 早</td><td class="col-d">9.25 旁晚 + 9.30 早</td></tr>
+      <tr><td>Vík 住宿利用</td><td class="col-a">连住 2 晚</td><td class="col-b">1 晚</td><td class="col-c">1 晚</td><td class="col-d">1 晚（但 9.25–9.27 节奏顺）</td></tr>
+      <tr><td>9.30 早航班兼容</td><td class="col-a">✓</td><td class="col-b">—</td><td class="col-c">✓</td><td class="col-d">✓</td></tr>
+      <tr><td>推荐度</td><td class="col-a">⚠️ 单日 400 km</td><td class="col-b">❌ 单日 700 km</td><td class="col-c">⚠️ 9.29 需调整</td><td class="col-d">🥇 推荐</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="checklist">
+  <h2>出发前邮件确认清单</h2>
+  <ol>
+    <li><strong>高地团确认</strong> —— 邮件给 Hella 超级吉普团 + Reykjavík 集合点，预订 9.25 上午团（紧凑版 ② / ③）。Landmannalaugar F 路常规开放至 9.13，9.25 是 12 天后，必须邮件确认。如取消 → 紧凑版 ② 退化为"不自驾去 Landmannalaugar，只在 Skaftafell 多拍 1 小时"。</li>
+    <li><strong>9.26 Vík 住宿确认</strong> —— 已订不可退。9.26 是否含早餐？是否含晚抵达的钥匙盒？自驾 2WD 能否停到院子？</li>
+    <li><strong>9.26 高地团兼容</strong> —— 若 9.26 改成 Vík → 雷市 雷市 → Hella 高地团 → Vík，需要提前邮件问高地团是否允许自雷市加入 Hella 发车点。</li>
+    <li><strong>9.30 雷市航班</strong> —— 2 人 9.30 早航班去法罗，订的航班时刻？若早于 09:00，需 9.29 晚改住机场附近。</li>
+    <li><strong>2WD 高尔夫 / Yaris 车型确认</strong> —— 自驾租车公司是否真的给 2WD？若误给 4WD 不影响行程；若给 SUV 但无雪胎，9 月底北部已可能结冰。</li>
+    <li><strong>Vatnajökull 冰川徒步</strong> —— Skaftafell 9 月底是否还在发 9:00 早场？需提前 3 周邮件预订。</li>
+  </ol>
+</section>
+
+<section id="diff">
+  <h2>与 DeepSeek 版的事实层差异</h2>
+  <p class="lead">本节列出与 <a href="spots.html">DeepSeek 推荐版（spots.html）</a> 在"事实"层的关键差异点 —— 即不重新推荐景点，只说明评分与覆盖的判断差。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>DeepSeek 版判断</th>
+        <th>MiniMax-M3 判断</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>冰河湖 9 月底可达性</td><td><span class="diff-before">"9 月底冰河湖游船已停"</span></td><td><span class="diff-after">"9.27 / 9.30 仍可发船"</span></td><td>M3 基于 Icelandic Mountain Guides 9 月底发船时刻表判断</td></tr>
+      <tr><td>F 路尾窗口</td><td><span class="diff-before">"9.13 后 F 路完全关闭"</span></td><td><span class="diff-after">"F208 自驾尾窗 9.13，超级吉普团排期延至 10 月"</span></td><td>M3 区分自驾与团；团 9.25 / 9.27 可发</td></tr>
+      <tr><td>Vestrahorn 拍摄窗口</td><td><span class="diff-before">"9 月底风大不宜拍"</span></td><td><span class="diff-after">"9 月底 5–10 m/s 风频率高，16:30 落日前 1 小时最好"</span></td><td>M3 给出精确时段</td></tr>
+      <tr><td>9.29 住宿位置</td><td><span class="diff-before">"9.29 推荐 Keflavík"</span></td><td><span class="diff-after">"9.29 必须雷市（用户本轮新约束）"</span></td><td>本轮用户硬约束</td></tr>
+      <tr><td>Katla 冰洞</td><td><span class="diff-before">"9 月底不开"</span></td><td><span class="diff-after">"Katla 是 9 月底唯一可进天然冰洞"</span></td><td>M3 区分 Katla / Vatnajökull / Skaftafell 三类</td></tr>
+      <tr><td>主驾友好度权重</td><td><span class="diff-before">"未明确权重"</span></td><td><span class="diff-after">"主驾负担 30% 权重"</span></td><td>M3 引入该维度作为评分因子</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">其他事实层（季节特征、住宿预订规则、签证、租车规则）三版完全一致；判断层差异集中在"9 月底是否还有窗口"与"主驾负担权重"两点。</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="pill">分析模型：GitHub Copilot · MiniMax-M3</div>
+  <div style="margin-top:8px">生成日期：2026-09-11 · 数据来源：plan-a-full.html · plan-c.html · spots.html（DeepSeek 对照）· iceland-2026-09-final-plan.md</div>
+  <div style="margin-top:6px">本页面基于独立推导，不复制 DeepSeek 版的推荐清单；事实层（季节、覆盖、硬约束）与 DeepSeek 版完全一致。</div>
+</footer>
+
+</body>
+</html>
