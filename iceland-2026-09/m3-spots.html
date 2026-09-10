@@ -103,6 +103,13 @@
   .right{ text-align:right; }
   .center{ text-align:center; }
   .nowrap{ white-space:nowrap; }
+  .notice{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:10px 16px; background:#fff; border:1px solid var(--line); border-left:5px solid var(--blue);
+    border-radius:8px; padding:12px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .notice span{ color:var(--muted); }
+  .notice .links{ display:flex; gap:16px; flex-wrap:wrap; }
+  .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
+  .notice a:hover{ text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -122,6 +129,19 @@
 </header>
 
 <main>
+
+<div class="notice">
+  <span>本页是 <strong>MiniMax-M3 推荐版</strong>的分析清单，不是行程方案；三个方案的完整行程与对照在各自页面：</span>
+  <div class="links">
+    <a href="./">← 冰岛总览</a>
+    <a href="plan-a-full.html">方案A（整合版）</a>
+    <a href="plan-b.html">方案B</a>
+    <a href="plan-c.html">方案C</a>
+    <a href="compare.html">A/B/C 对照</a>
+    <a href="spots.html">DeepSeek 推荐版清单 →</a>
+    <a href="../">首页 →</a>
+  </div>
+</div>
 
 <nav class="toc">
   <h4>本页目录</h4>

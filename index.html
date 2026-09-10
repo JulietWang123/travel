@@ -18,15 +18,7 @@
   }
   .hero .kicker{ font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.6); font-weight:700; margin-bottom:14px; }
   .hero h1{ font-size:clamp(30px,4.6vw,50px); line-height:1.1; letter-spacing:-.5px; }
-  .hero p{ margin-top:14px; color:rgba(255,255,255,.82); font-size:16px; max-width:620px; margin-left:auto; margin-right:auto; }
-  .hero .jump{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:26px; }
-  .hero .jump a{
-    font-size:13px; font-weight:700; text-decoration:none;
-    color:rgba(255,255,255,.9); background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:6px 15px;
-    transition:background .18s ease, border-color .18s ease, transform .18s ease;
-  }
-  .hero .jump a:hover{ background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.55); transform:translateY(-1px); }
+  .hero p{ margin-top:14px; color:rgba(255,255,255,.82); font-size:16px; max-width:660px; margin-left:auto; margin-right:auto; }
   main{ width:min(1120px, calc(100vw - 40px)); margin:-38px auto 0; padding-bottom:72px; position:relative; }
   .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr)); gap:20px; }
   .card{
@@ -48,6 +40,12 @@
     font-size:13px; font-weight:700; text-shadow:0 2px 8px rgba(0,0,0,.5);
   }
   .thumb.gradient-norway{ background:linear-gradient(150deg,#0f2b46 0%,#1f5f7a 45%,#4a8fa8 100%); }
+  .card .thumb .count{
+    position:absolute; right:14px; top:14px; z-index:2;
+    background:rgba(23,32,42,.7); color:#fff; font-size:12px; font-weight:800;
+    padding:4px 10px; border-radius:999px; letter-spacing:.02em;
+    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+  }
   .card-body{ padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
   .card-body h2{ font-size:20px; margin-bottom:6px; }
   .card-body .sub{ color:#65717d; font-size:13px; margin-bottom:12px; }
@@ -59,30 +57,6 @@
   .cta{ font-size:13px; font-weight:800; color:#2364aa; }
   .card:hover .cta{ text-decoration:underline; }
 
-  /* 按目的地分组 */
-  .group{ --accent:#2364aa; margin-bottom:48px; scroll-margin-top:24px; }
-  .group:last-of-type{ margin-bottom:0; }
-  #xuancheng{ --accent:#c77700; }
-  #iceland{ --accent:#2364aa; }
-  #norway{ --accent:#1f5f7a; }
-  .group-head{
-    display:flex; align-items:center; flex-wrap:wrap; gap:6px 12px;
-    padding-bottom:12px; margin-bottom:22px; border-bottom:2px solid #d9e0e7;
-  }
-  .group-head h2{
-    font-size:24px; font-weight:800; letter-spacing:-.3px; color:#17202a;
-    position:relative; padding-left:18px;
-  }
-  .group-head h2::before{
-    content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
-    width:6px; height:24px; border-radius:3px; background:var(--accent);
-  }
-  .group-head .count{
-    font-size:12px; font-weight:800; color:#425466; background:#edf2f7;
-    padding:3px 10px; border-radius:999px;
-  }
-  .group-head .group-sub{ font-size:13px; color:#65717d; margin-left:auto; }
-
   footer{ text-align:center; color:#65717d; font-size:12px; padding:0 20px 48px; }
   @media (max-width:600px){
     .hero{ padding:56px 20px 50px; }
@@ -90,48 +64,32 @@
     .card .thumb{ height:168px; }
     .card-body{ padding:16px; }
     .card-body h2{ font-size:18px; }
-    .group{ margin-bottom:34px; }
-    .group-head{ margin-bottom:16px; }
-    .group-head h2{ font-size:20px; padding-left:15px; }
-    .group-head h2::before{ width:5px; height:20px; }
-    .group-head .group-sub{ margin-left:0; width:100%; }
-    .hero .jump{ margin-top:20px; gap:8px; }
-    .hero .jump a{ padding:5px 12px; font-size:12px; }
+    .card .thumb .count{ right:10px; top:10px; font-size:11px; padding:3px 8px; }
   }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <p class="kicker">Travel Plans</p>
+  <p class="kicker">Travel Plans · 2026</p>
   <h1>旅行方案</h1>
-  <p>已完成的行程攻略与路线方案，按目的地分为 <strong>宣城</strong>、<strong>冰岛</strong>、<strong>挪威</strong> 三组。其中冰岛行程有 <strong>方案A</strong>、<strong>方案B</strong> 与 <strong>方案C</strong> 三个版本，另有三方案对照表，以及一张按 9 月底风景价值排序的推荐清单。方案A 提供单页整合版，把行程与路线评估合并在一起；原始行程页与评估报告可从整合版内进入。</p>
-  <nav class="jump">
-    <a href="#xuancheng">宣城</a>
-    <a href="#iceland">冰岛</a>
-    <a href="#norway">挪威</a>
-  </nav>
+  <p>三个目的地的行程攻略与路线方案。点击卡片进入对应目的地：<strong>宣城</strong>与<strong>挪威</strong>各自只有一个页面，直接打开；<strong>冰岛</strong>有多个方案，先进总览再选一个。</p>
 </div>
 
 <main>
 
-  <section class="group" id="xuancheng">
-    <div class="group-head">
-      <h2>宣城</h2>
-      <span class="count">1 个方案</span>
-      <p class="group-sub">安徽 · 查济古村 · 桃花潭 · 龙川</p>
-    </div>
-    <div class="grid">
+  <div class="grid">
 
     <a class="card" href="xuancheng-2026-06/">
       <div class="thumb" style="background-image:url('images/chaji-aerial.jpg')">
         <span class="badge">安徽 · 宣城</span>
+        <span class="count">1 个方案</span>
         <span class="dates">2026 端午 · 3 天</span>
       </div>
       <div class="card-body">
-        <h2>杭州 → 泾县 → 绩溪 端午攻略</h2>
-        <p class="sub">宣城 · 查济古村 · 桃花潭 · 龙川</p>
-        <p>高铁往返，查济古村、宣纸文化馆、桃花潭、龙川古村一线串联，附当地徽菜餐厅实拍与推荐菜。</p>
+        <h2>宣城 · 查济古村一线</h2>
+        <p class="sub">杭州 → 泾县 → 绩溪 · 高铁往返</p>
+        <p>查济古村、宣纸文化馆、桃花潭、龙川古村一线串联，附当地徽菜餐厅实拍与推荐菜。</p>
         <div class="tags">
           <span class="tag">高铁出行</span>
           <span class="tag">古村人文</span>
@@ -141,158 +99,45 @@
       </div>
     </a>
 
-    </div>
-  </section>
-
-  <section class="group" id="iceland">
-    <div class="group-head">
-      <h2>冰岛</h2>
-      <span class="count">6 个页面</span>
-      <p class="group-sub">2026.09.23 – 09.30 · 6 天 · 三个方案版本</p>
-    </div>
-    <div class="grid">
-
-    <a class="card" href="iceland-2026-09/plan-a-full.html">
-      <div class="thumb" style="background-image:url('iceland-2026-09/images/skogafoss.jpg')">
-        <span class="badge">冰岛 · 方案A 整合版</span>
-        <span class="dates">2026.09.23 – 09.29 · 行程 + 路线评估 · 一页看完</span>
-      </div>
-      <div class="card-body">
-        <h2>方案A · 行程与路线评估（整合版）</h2>
-        <p class="sub">顺时针走法 · 总览 · 逐日对照 · 评估 · 住宿 · 地图 · 风险</p>
-        <p>方案A 的主入口。首屏给出 6 天关键指标，再用 sticky 分区导航串起行程总览、逐日「原版 vs 优化版」双列对照、评估结论、9.24/9.25 住宿决策、左右对照的路线差异地图与风险核查；原始行程页与评估报告可从页内进入。</p>
-        <div class="tags">
-          <span class="tag">顺时针</span>
-          <span class="tag a">逐日对照</span>
-          <span class="tag g">分区导航</span>
-          <span class="tag">路线差异地图</span>
-        </div>
-        <span class="cta">查看整合版 →</span>
-      </div>
-    </a>
-
     <a class="card" href="iceland-2026-09/">
       <div class="thumb" style="background-image:url('iceland-2026-09/images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · 方案B</span>
-        <span class="dates">2026.09.24 – 09.29 · 6 天 · GPT5.5 推荐版</span>
+        <span class="badge">冰岛 · Iceland</span>
+        <span class="count">3 个方案 + 3 份分析</span>
+        <span class="dates">2026.09.23 – 09.30 · 6 天自驾</span>
       </div>
       <div class="card-body">
-        <h2>方案B · 冰岛 6 天行程</h2>
-        <p class="sub">2 女 1 男 · 单主驾 · 油车自驾 + 高地跟团</p>
-        <p>黄金圈、兰德曼纳劳卡高地、南岸瀑布群、Vik 卡特拉冰川徒步与冰河湖/钻石沙滩。含交互路线地图、9.25 高地交通选项、住宿地对比与 9.29 可用方案。</p>
+        <h2>冰岛 · 9 月底 6 天自驾</h2>
+        <p class="sub">方案A · 方案B · 方案C 三个版本</p>
+        <p>三个版本的逐日行程并列，另含 A/B/C 对照表与两份「9 月底最值得去的地方」清单。进入总览后可分别打开各方案、对照表与清单。</p>
         <div class="tags">
+          <span class="tag">3 个方案</span>
+          <span class="tag a">方案对照</span>
+          <span class="tag g">推荐清单</span>
+        </div>
+        <span class="cta">进入冰岛总览 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="norway-2026-10/">
+      <div class="thumb" style="background-image:url('norway-2026-10/norway-images/lofoten-aurora.jpg')">
+        <span class="badge">挪威 · Norway</span>
+        <span class="count">6 个方案 · 1 页</span>
+        <span class="dates">2026.10.01 – 10.06 · OSL 往返</span>
+      </div>
+      <div class="card-body">
+        <h2>挪威 · 罗弗敦自驾</h2>
+        <p class="sub">冰岛之后 · 罗弗敦 3 版 + 峡湾/特罗姆瑟/哈当厄尔 3 版</p>
+        <p>10 月 1 日从雷克雅未克飞奥斯陆接手，以罗弗敦群岛与极光为主线，另备峡湾、特罗姆瑟与哈当厄尔三个方向；含交互路线地图、住宿点选择与奥斯陆衔接安排。</p>
+        <div class="tags">
+          <span class="tag">罗弗敦</span>
+          <span class="tag a">极光</span>
           <span class="tag g">含交互地图</span>
-          <span class="tag">黄金圈</span>
-          <span class="tag a">高地交通</span>
-          <span class="tag">冰河湖</span>
         </div>
-        <span class="cta">查看行程 →</span>
+        <span class="cta">进入挪威行程 →</span>
       </div>
     </a>
 
-    <a class="card" href="iceland-2026-09/plan-c.html">
-      <div class="thumb" style="background-image:url('iceland-2026-09/images/jokulsarlon-diamond.jpg')">
-        <span class="badge">冰岛 · 方案C</span>
-        <span class="dates">2026.09.24 – 09.30 · DeepSeek 优化版</span>
-      </div>
-      <div class="card-body">
-        <h2>方案C · 冰岛 6 天行程（DeepSeek 优化版）</h2>
-        <p class="sub">DeepSeek 优化版 · 按 2WD 限制与实测信息落地</p>
-        <p>9.25 改为 Hella 出发的超级吉普团、9.27 住宿改冰河湖旁、9.28 两种走法、9.29 三人分头宿 Keflavík；并新增里程与驾驶时间、风险提醒、安全检查清单与待确认事项。</p>
-        <div class="tags">
-          <span class="tag a">2WD 限制</span>
-          <span class="tag">方案对照</span>
-          <span class="tag g">风险清单</span>
-          <span class="tag">待确认</span>
-        </div>
-        <span class="cta">查看更新 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="iceland-2026-09/compare.html">
-      <div class="thumb" style="background-image:url('iceland-2026-09/images/reynisfjara.jpg')">
-        <span class="badge">冰岛 · 对照</span>
-        <span class="dates">方案A / B / C</span>
-      </div>
-      <div class="card-body">
-        <h2>A / B / C 方案对照表</h2>
-        <p class="sub">三个版本放在一起看</p>
-        <p>走法方向、住宿落点、高地日期、冰河湖安排与收尾方式的逐项对照，另有逐日骨架对照表，以及每个方案适合什么情况、各自的代价。</p>
-        <div class="tags">
-          <span class="tag">逐日对照</span>
-          <span class="tag a">关键差异</span>
-          <span class="tag g">取舍建议</span>
-        </div>
-        <span class="cta">查看对照 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="iceland-2026-09/spots.html">
-      <div class="thumb" style="background-image:url('iceland-2026-09/images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · DeepSeek 推荐版</span>
-        <span class="dates">9 月底风景优先级 · 含 A/B/C 覆盖对照</span>
-      </div>
-      <div class="card-body">
-        <h2>冰岛 9 月底最值得去的地方（DeepSeek 推荐版）</h2>
-        <p class="sub">S / A / B 三档清单 + 三方案覆盖对照</p>
-        <p>按「9 月底这个窗口值不值得去」排序的点位清单，逐项标注方案A / B / C 是否包含、排在哪一天，并给出把 9.24–9.29 排得更密的可行走法与要付的代价。</p>
-        <div class="tags">
-          <span class="tag g">S 档清单</span>
-          <span class="tag a">季节失效项</span>
-          <span class="tag">覆盖对照</span>
-        </div>
-        <span class="cta">查看清单 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="iceland-2026-09/m3-spots.html">
-      <div class="thumb" style="background-image:url('iceland-2026-09/images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · MiniMax-M3 推荐版</span>
-        <span class="dates">9 月底风景优先级 · 含 紧凑版②+雷市 推荐路线</span>
-      </div>
-      <div class="card-body">
-        <h2>9 月底最值得去的地方（MiniMax-M3 推荐版）</h2>
-        <p class="sub">S / A / B 档清单 + 紧凑版②/③ 推荐路线 + 雷市修正</p>
-        <p>与 DeepSeek 版同样的 9 月底风景优先级，但按 9.29 雷市硬约束给出 紧凑版②（7 天含雷市晚回）+ 紧凑版③（Vestrahorn 替代）两条 9.23–9.30 路线，含四方案对比矩阵与出发前邮件确认清单。</p>
-        <div class="tags">
-          <span class="tag g">紧凑版②</span>
-          <span class="tag a">雷市修正</span>
-          <span class="tag">四方案对比</span>
-        </div>
-        <span class="cta">查看清单 →</span>
-      </div>
-    </a>
-
-    </div>
-  </section>
-
-  <section class="group" id="norway">
-    <div class="group-head">
-      <h2>挪威</h2>
-      <span class="count">1 个站点</span>
-      <p class="group-sub">2026.10 · 秋季行程</p>
-    </div>
-    <div class="grid">
-
-    <a class="card" href="https://julietwang123.github.io/norway-trip-github-pages/" target="_blank" rel="noopener">
-      <div class="thumb gradient-norway">
-        <span class="badge">挪威</span>
-        <span class="dates">2026.10 · 独立站点</span>
-      </div>
-      <div class="card-body">
-        <h2>挪威 10 月行程</h2>
-        <p class="sub">norway-trip-github-pages</p>
-        <p>挪威秋季行程方案，发布于独立站点。点击将在新标签页打开。</p>
-        <div class="tags">
-          <span class="tag">独立站点</span>
-          <span class="tag">秋季</span>
-        </div>
-        <span class="cta">打开站点 ↗</span>
-      </div>
-    </a>
-
-    </div>
-  </section>
+  </div>
 
 </main>
 

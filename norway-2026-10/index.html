@@ -1,0 +1,1792 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>挪威 10 月初行程方案推荐</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <style>
+    :root {
+      --ink: #182024;
+      --muted: #647079;
+      --line: #d8ded9;
+      --paper: #f4f1e8;
+      --white: #fffaf0;
+      --blue: #1c5d77;
+      --green: #426b54;
+      --rust: #b65b36;
+      --gold: #c8963e;
+      --dark: #102028;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      color: white;
+      background:
+        linear-gradient(180deg, rgba(13, 27, 33, .18) 0%, rgba(13, 27, 33, .78) 78%),
+        url("norway-images/lofoten-aurora.jpg") center / cover;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 44px 0 58px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #e8f1ef;
+      border: 1px solid rgba(255,255,255,.45);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: clamp(44px, 9vw, 104px);
+      line-height: .96;
+      letter-spacing: 0;
+      font-weight: 860;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: clamp(17px, 2vw, 23px);
+      color: #edf3ef;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    section { padding: 56px 0; }
+    .section-title {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 28px;
+      align-items: end;
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .fact {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 132px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1.1;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .fact span { color: var(--muted); font-size: 14px; }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .panel.dark {
+      color: white;
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .recommend {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(24,32,36,.12);
+    }
+
+    .recommend:last-child { border-bottom: 0; }
+    .rank {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--rust);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .recommend h3, .route h3 {
+      margin: 0 0 6px;
+      font-size: 23px;
+      line-height: 1.15;
+    }
+
+    .recommend p, .route p, .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .dark p, .dark .score-note { color: #cad6d5; }
+    .tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      border: 1px solid rgba(24,32,36,.18);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.42);
+    }
+
+    .dark .tag {
+      border-color: rgba(255,255,255,.24);
+      color: #edf3ef;
+      background: rgba(255,255,255,.08);
+    }
+
+    .matrix {
+      overflow-x: auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--dark);
+      background: #e9e4d7;
+      font-size: 13px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .score {
+      display: inline-block;
+      min-width: 44px;
+      text-align: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: white;
+      background: var(--green);
+      font-weight: 760;
+    }
+
+    .score.mid { background: var(--gold); color: #21190c; }
+    .score.low { background: #8b4a3a; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .photo-card {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--dark);
+      color: white;
+      isolation: isolate;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      filter: saturate(.92) contrast(1.04);
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.68));
+      z-index: -1;
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 18px;
+    }
+
+    .photo-caption h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    .photo-caption p {
+      margin: 0;
+      color: #e6ece9;
+      font-size: 14px;
+    }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .map-frame {
+      min-height: 680px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #dce6e2;
+    }
+
+    #lofoten-map {
+      width: 100%;
+      height: 100%;
+      min-height: 680px;
+    }
+
+    .map-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .map-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .map-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .map-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.18);
+      flex: 0 0 auto;
+    }
+
+    .dot.airport { background: #1c5d77; }
+    .dot.base { background: #b65b36; }
+    .dot.stay { background: #c8963e; }
+    .dot.view { background: #426b54; }
+    .dot.aurora { background: #5a4b92; }
+    .dot.hike { background: #7f4f24; }
+    .dot.iconic { background: #b02f3a; }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 8px;
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+
+    .popup-title {
+      font-weight: 800;
+      margin-bottom: 3px;
+      color: var(--ink);
+    }
+
+    .popup-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .popup-meta {
+      display: grid;
+      gap: 4px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .popup-meta b { color: var(--ink); }
+
+    .popup-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--blue);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .map-tooltip {
+      border: 0;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+      color: white;
+      font: 800 12px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      padding: 4px 8px;
+    }
+
+    .map-tooltip.base { background: rgba(182,91,54,.92); }
+    .map-tooltip.stay { background: rgba(200,150,62,.96); color: #21190c; }
+    .map-tooltip.iconic { background: rgba(176,47,58,.94); }
+    .map-tooltip.hike { background: rgba(127,79,36,.94); }
+
+    .attraction-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .attraction-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .attraction-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .attraction-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .starline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 10px;
+      color: var(--rust);
+      font-weight: 850;
+      font-size: 14px;
+    }
+
+    .weather-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(24,32,36,.12);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .weather-list b { color: var(--ink); }
+
+    .offline-map {
+      margin-top: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .offline-map h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .offline-map p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .offline-map svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 280px;
+    }
+
+    .map-label {
+      font: 700 15px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      fill: var(--ink);
+    }
+
+    .map-small {
+      font: 13px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      fill: var(--muted);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .detail-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 190px;
+      overflow: hidden;
+    }
+
+    .detail-card.recommended {
+      border-color: rgba(182,91,54,.55);
+      box-shadow: inset 0 0 0 2px rgba(182,91,54,.12);
+    }
+
+    .detail-card img {
+      width: calc(100% + 36px);
+      height: 180px;
+      margin: -18px -18px 16px;
+      object-fit: cover;
+      background: #dce6e2;
+    }
+
+    .detail-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .detail-card .tagline {
+      margin-top: 12px;
+    }
+
+    .focus-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .focus-btn {
+      appearance: none;
+      border: 1px solid rgba(24,32,36,.22);
+      background: #fffaf0;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font: 700 13px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      cursor: pointer;
+    }
+
+    .focus-btn:hover,
+    .focus-btn:focus-visible {
+      border-color: var(--rust);
+      outline: 2px solid rgba(182,91,54,.22);
+      outline-offset: 2px;
+    }
+
+    .route-switch {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .route-choice {
+      appearance: none;
+      border: 1px solid rgba(24,32,36,.2);
+      background: #fffaf0;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: 760 13px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .route-choice.active {
+      color: #fffaf0;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .route-choice:hover,
+    .route-choice:focus-visible {
+      border-color: var(--blue);
+      outline: 2px solid rgba(28,93,119,.18);
+      outline-offset: 2px;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(28,93,119,.3);
+      border-radius: 999px;
+      padding: 7px 11px;
+      color: var(--blue);
+      background: rgba(28,93,119,.06);
+      font-size: 13px;
+      font-weight: 760;
+      text-decoration: none;
+    }
+
+    .text-link:hover,
+    .text-link:focus-visible {
+      border-color: var(--blue);
+      outline: 2px solid rgba(28,93,119,.18);
+      outline-offset: 2px;
+    }
+
+    .routes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .route {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+    }
+
+    .route-visual {
+      min-height: 100%;
+      background: var(--dark);
+    }
+
+    .route-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+    }
+
+    .route-body { padding: 24px; }
+    .route-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+
+    .days {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .date {
+      color: var(--rust);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .day b { display: block; margin-bottom: 2px; }
+    .day span { color: var(--muted); font-size: 14px; }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .note {
+      padding: 20px;
+      border-radius: 8px;
+      background: #e7edf0;
+      border: 1px solid #cad8de;
+    }
+
+    .note:nth-child(2) { background: #e7ece4; border-color: #cbd8ca; }
+    .note:nth-child(3) { background: #f0e5d5; border-color: #dec9a9; }
+    .note h3 { margin: 0 0 8px; font-size: 20px; }
+    .note p { margin: 0; color: var(--muted); }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .source {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: var(--white);
+      color: var(--muted);
+    }
+
+    .source b { color: var(--ink); }
+
+    @media (max-width: 880px) {
+      .section-title, .verdict, .route, .notes, .map-layout, .detail-grid, .attraction-grid { grid-template-columns: 1fr; }
+      .facts, .photo-grid, .sources { grid-template-columns: 1fr 1fr; }
+      .route-visual img { min-height: 260px; }
+      .map-frame, #lofoten-map { min-height: 560px; }
+      section { padding: 42px 0; }
+    }
+
+    @media (max-width: 560px) {
+      .facts, .photo-grid, .sources { grid-template-columns: 1fr; }
+      .recommend { grid-template-columns: 56px 1fr; }
+      .rank { width: 48px; height: 48px; font-size: 22px; }
+      .hero { min-height: 86vh; }
+    }
+
+    .site-nav {
+      width: min(1180px, calc(100% - 36px));
+      margin: 26px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--blue);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .site-nav span { color: var(--muted); }
+    .site-nav .links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .site-nav a { font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .site-nav a:hover { text-decoration: underline; }
+
+    .handoff {
+      width: min(1180px, calc(100% - 36px));
+      margin: 14px auto 0;
+      border: 1px dashed var(--line);
+      background: rgba(28, 93, 119, .06);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .handoff strong { color: var(--ink); }
+    .handoff a { color: var(--blue); font-weight: 700; }
+
+    footer {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      padding: 22px 0 44px;
+    }
+    footer a { font-weight: 700; color: var(--blue); }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Norway · 2026.10.01-10.06 · OSL 往返</div>
+      <h1>挪威十月初：别赶路，选一种风景住进去。</h1>
+      <p class="hero-copy">基于你的已购机票、冰岛行程衔接、对象长途飞行后需要恢复、膝盖不适和每日驾驶不超过 6 小时的偏好，下面是几套更接近“浪漫、不虚此行”的挪威路线。</p>
+    </div>
+  </header>
+
+  <div class="site-nav">
+    <span>本页是<strong>挪威 10 月初</strong>的行程方案总表，共 6 套：罗弗敦 A / B / C 三个自驾版本，加卑尔根 + 弗洛姆、特罗姆瑟 + 海岛、哈当厄尔 + 弗洛姆三个备选方向。</span>
+    <div class="links">
+      <a href="../iceland-2026-09/">← 冰岛总览</a>
+      <a href="../">旅行方案首页 →</a>
+    </div>
+  </div>
+
+  <div class="handoff">
+    <p style="margin:0;"><strong>行程衔接：</strong>冰岛段在 <strong>9 月 30 日</strong>结束——两位同行人当天各自飞往自己的下一站，之后不再同行。你 <strong>10 月 1 日 15:55 从雷克雅未克（KEF）飞抵奥斯陆（OSL）</strong>，与对象会合，从这里开始挪威段；因此 10/1 只安排晚餐与休息，不排景点。冰岛段的三个方案与清单见 <a href="../iceland-2026-09/">冰岛总览</a>。</p>
+  </div>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>硬约束</h2>
+          <p>10 月 1 日下午在奥斯陆机场会合，10 月 6 日下午从奥斯陆返程。真正可用的是 4 个整天，行程需要服务于体验质量，而不是城市数量。</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><strong>10/1 15:55</strong><span>你从 KEF 抵达 OSL；对象 14:30 抵达 OSL，会合后只建议晚餐和休息。</span></div>
+          <div class="fact"><strong>4 天</strong><span>10/2-10/5 是主要旅行窗口，10/6 上午只适合轻松收尾。</span></div>
+          <div class="fact"><strong>&lt; 6h</strong><span>每天自驾上限按 6 小时处理，更理想是 2-4 小时。</span></div>
+          <div class="fact"><strong>低徒步</strong><span>优先车览、游船、铁路、缆车、短步行，避开 Reinebringen 等膝盖压力路线。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap verdict">
+        <div class="panel">
+          <h2>推荐排序</h2>
+          <div class="recommend">
+            <div class="rank">1</div>
+            <div>
+              <h3>罗弗敦 3 晚 + 奥斯陆缓冲</h3>
+              <p>最符合“国内少见的自然景观 + 浪漫 + 有极光机会”。高上限，也最吃天气和航班衔接。</p>
+              <div class="tagline"><span class="tag">极光机会高</span><span class="tag">白天风景很强</span><span class="tag">天气波动大</span></div>
+            </div>
+          </div>
+          <div class="recommend">
+            <div class="rank">2</div>
+            <div>
+              <h3>卑尔根 + 弗洛姆 / 纳柔依峡湾</h3>
+              <p>最稳妥舒服，峡湾、铁路、游船都对膝盖友好；缺点是极光基本不用期待。</p>
+              <div class="tagline"><span class="tag">舒适度最高</span><span class="tag">体验稳定</span><span class="tag">极光弱</span></div>
+            </div>
+          </div>
+          <div class="recommend">
+            <div class="rank">3</div>
+            <div>
+              <h3>特罗姆瑟 + Kvaløya / Sommarøy</h3>
+              <p>比纯追光更有白天内容，城市备胎强；自然冲击力略低于罗弗敦，但执行更省心。</p>
+              <div class="tagline"><span class="tag">追光成熟</span><span class="tag">低徒步</span><span class="tag">北境海岛</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel dark">
+          <h2>一句话建议</h2>
+          <p style="margin-top:14px;">如果你们愿意为更大的视觉回报接受天气不确定性，选罗弗敦。它即使没看到极光，也有海上尖峰、渔村、公路和秋季低光。</p>
+          <p style="margin-top:14px;">如果你们更想要一次低风险、舒服、完整的情侣旅行，选卑尔根 + 弗洛姆。它不是最刺激，但最不容易翻车。</p>
+          <div class="tagline"><span class="tag">不建议混搭北部 + 西部</span><span class="tag">不建议塞太多城市</span><span class="tag">10/1 必须休息</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>对比矩阵</h2>
+          <p>分数是按你的偏好加权：独特风光、浪漫感、极光机会、舒适度、天气备胎和每日驾驶压力。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead>
+              <tr>
+                <th>方案</th>
+                <th>自然独特性</th>
+                <th>极光机会</th>
+                <th>舒适度</th>
+                <th>驾驶压力</th>
+                <th>没极光时是否仍值得</th>
+                <th>主要风险</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>罗弗敦 3 晚</b></td>
+                <td><span class="score">5/5</span></td>
+                <td><span class="score">4/5</span></td>
+                <td><span class="score mid">3/5</span></td>
+                <td>每日 2-5h，取决于基地</td>
+                <td>非常值得：海上山峰、渔村、海滩、公路本身就是主菜。</td>
+                <td>天气、航班衔接、E10 窄路和风雨。</td>
+              </tr>
+              <tr>
+                <td><b>卑尔根 + 弗洛姆</b></td>
+                <td><span class="score">4/5</span></td>
+                <td><span class="score low">1/5</span></td>
+                <td><span class="score">5/5</span></td>
+                <td>每日 0-4h，可火车/船替代</td>
+                <td>很值得：峡湾、铁路、游船和秋色稳定。</td>
+                <td>西部多雨，高山公路可能受天气影响。</td>
+              </tr>
+              <tr>
+                <td><b>特罗姆瑟 + 海岛</b></td>
+                <td><span class="score mid">3.5/5</span></td>
+                <td><span class="score">4.5/5</span></td>
+                <td><span class="score">4/5</span></td>
+                <td>每日 1-4h，可少开</td>
+                <td>值得：城市、缆车、峡湾海岛、公路风景可兜底。</td>
+                <td>云量影响极光，十月北部可能早雪。</td>
+              </tr>
+              <tr>
+                <td><b>哈当厄尔 + 弗洛姆</b></td>
+                <td><span class="score mid">3.5/5</span></td>
+                <td><span class="score low">1/5</span></td>
+                <td><span class="score">4/5</span></td>
+                <td>每日 2-4h</td>
+                <td>值得：果园、瀑布、峡湾秋色，情侣感强。</td>
+                <td>阴雨会削弱观景，震撼感略低于罗弗敦。</td>
+              </tr>
+              <tr>
+                <td><b>纯特罗姆瑟追光</b></td>
+                <td><span class="score mid">3/5</span></td>
+                <td><span class="score">5/5</span></td>
+                <td><span class="score">4/5</span></td>
+                <td>可不自驾</td>
+                <td>中等：没极光时白天内容够，但自然厚度不如罗弗敦。</td>
+                <td>容易变成等天气；旅行记忆过度押注夜晚。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>实拍参考</h2>
+          <p>下面的图片已保存到本地，打开 HTML 时不再依赖远程图片加载。照片用于建立现场感；页面底部列出十月游记和官方来源，方便继续核对真实照片与运营状态。</p>
+        </div>
+        <div class="photo-grid">
+          <article class="photo-card">
+            <img src="norway-images/lofoten-day.jpg" alt="罗弗敦群岛海边山峰与渔村" />
+            <div class="photo-caption"><h3>罗弗敦：海上山峰</h3><p>这类“山直接从海里长出来”的北极圈景观，是本次最强的视觉回报。</p></div>
+          </article>
+          <article class="photo-card">
+            <img src="norway-images/flam-aurlandsfjord.jpg" alt="弗洛姆与艾于兰峡湾" />
+            <div class="photo-caption"><h3>弗洛姆：峡湾秋色</h3><p>低徒步、低风险，可以靠游船和铁路获得完整体验。</p></div>
+          </article>
+          <article class="photo-card">
+            <img src="norway-images/tromso-aurora.jpg" alt="特罗姆瑟北极光" />
+            <div class="photo-caption"><h3>北挪：极光窗口</h3><p>十月夜够黑，罗弗敦和特罗姆瑟都有机会，但必须接受云量不确定性。</p></div>
+          </article>
+          <article class="photo-card">
+            <img src="norway-images/hardanger-sorfjorden.jpg" alt="哈当厄尔南峡湾" />
+            <div class="photo-caption"><h3>哈当厄尔：秋色慢游</h3><p>更适合轻松情侣自驾，强项是舒服、颜色和路上的停顿。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>罗弗敦自驾地图</h2>
+          <p>地图保留三种罗弗敦自驾选择：EVE 往返稳妥版、EVE 还车的“局部小环线 + E10 折返版”、以及 Moskenes-Bodø 单向退出版。罗弗敦地形是东西向岛链，西端深入 Reine / Å 后若仍回 EVE，无法做到真正全程不走回头路，只能靠北海岸、海滩和小镇支线减少重复感。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-frame">
+            <div id="lofoten-map" aria-label="罗弗敦自驾路线地图"></div>
+          </div>
+          <aside class="map-panel">
+            <div class="map-card">
+              <h3>路线切换</h3>
+              <p>三条线的景点基本相同，差别在于最后一天怎么退出罗弗敦，以及是否愿意换住宿换取“向西推进”的仪式感。</p>
+              <div class="route-switch">
+                <button class="route-choice active" data-route-mode="return">A EVE 往返</button>
+                <button class="route-choice" data-route-mode="partial">B 小环线折返</button>
+                <button class="route-choice" data-route-mode="bodo">C Bodø 单向</button>
+                <button class="route-choice" data-route-mode="all">全部叠加</button>
+              </div>
+            </div>
+            <div class="map-card">
+              <h3>推荐住宿基地</h3>
+              <p><b>首选 Ballstad / Napp / Leknes</b>：如果选择 EVE 往返，建议 2-3 晚放在中部，东西两侧都能辐射，返程日压力可控。若选择 Bodø 单向退出，再把最后一晚放到 Reine / Hamnøy / Å。</p>
+              <div class="legend">
+                <span><i class="dot airport"></i>机场/航班</span>
+                <span><i class="dot base"></i>住宿区域</span>
+                <span><i class="dot stay"></i>民宿/酒店参考</span>
+                <span><i class="dot view"></i>白天风景点</span>
+                <span><i class="dot aurora"></i>极光候选</span>
+                <span><i class="dot iconic"></i>经典打卡点</span>
+                <span><i class="dot hike"></i>知名徒步点</span>
+              </div>
+              <div class="focus-actions">
+                <button class="focus-btn" data-focus-all-stays="true">看全部住宿点</button>
+                <button class="focus-btn" data-focus-type="iconic">看打卡点</button>
+                <button class="focus-btn" data-focus-type="hike">看徒步点</button>
+                <button class="focus-btn" data-focus-type="aurora">看极光点</button>
+                <button class="focus-btn" data-focus="Ballstad">看 Ballstad</button>
+                <button class="focus-btn" data-focus="Napp">看 Napp</button>
+                <button class="focus-btn" data-focus="Leknes">看 Leknes</button>
+                <button class="focus-btn" data-focus="Henningsvær Harbour">看 Henningsvær</button>
+                <button class="focus-btn" data-focus="Reine">看 Reine</button>
+              </div>
+            </div>
+            <div class="map-card">
+              <h3>A｜EVE 往返稳妥版</h3>
+              <p>推荐度最高的执行版：10/2 进岛后住中部，10/3 北海岸和海滩，10/4 西线一整天，10/5 从中部回 EVE。会有折返，但每天驾驶可控，天气和航班风险最低。</p>
+            </div>
+            <div class="map-card">
+              <h3>B｜局部小环线 + E10 折返</h3>
+              <p>不去 Bodø 且回 EVE 还车时，不能形成真正闭环；可用 Henningsvær、Gimsøy、Eggum、Unstad、Haukland、Uttakleiv、Ballstad/Napp 等支线做“局部环线”，最后仍沿 E10 向东返回。</p>
+            </div>
+            <div class="map-card">
+              <h3>C｜Moskenes-Bodø 单向版</h3>
+              <p>真正不走回头路：EVE 进、一路向西、Moskenes 车渡轮到 Bodø、BOO 飞 Oslo。风景节奏最漂亮，但必须确认 2026 年 10 月船班、车位、海况、异地还车费和 BOO-OSL 航班衔接。</p>
+            </div>
+            <div class="map-card">
+              <h3>住宿取舍</h3>
+              <p>不走回头路时，推荐“1 晚 Henningsvær / Svolvær + 1 晚 Ballstad / Napp + 1 晚 Reine / Hamnøy”。如果渡轮或异地还车不稳，再改回 3 晚中部连住或 1 晚东部 + 2 晚中部。</p>
+            </div>
+            <div class="map-card">
+              <h3>住宿点概览</h3>
+              <p><b>东部过渡</b>：Svolvær、Svinøya Rorbuer、Thon Hotel Svolvær、Kabelvåg、Nyvågar Rorbuhotell。<br />
+              <b>中部首选</b>：Leknes、Gravdal、Scandic Leknes Lofoten、Ballstad、Hattvika Lodge、Solsiden Brygge、Napp、Nappstraumen。<br />
+              <b>海滩/极光</b>：Ramberg、Skagsanden / Flakstad、Lofoten Beach Camp。<br />
+              <b>西线体验</b>：Nusfjord、Nusfjord Arctic Resort、Hamnøy、Eliassen Rorbuer、Sakrisøy、Sakrisøy Rorbuer、Reine、Reine Rorbuer、Å。</p>
+            </div>
+          </aside>
+        </div>
+        <div class="offline-map">
+          <h3>离线线路示意图</h3>
+          <p>如果上方交互地图没有加载，这张示意图也能帮助你理解空间关系：Evenes 在东侧机场，推荐住宿在中部，10/3 向北部海滩展开，10/4 向西端经典渔村展开。</p>
+          <svg viewBox="0 0 1120 420" role="img" aria-label="罗弗敦自驾路线离线示意图">
+            <rect x="0" y="0" width="1120" height="420" rx="18" fill="#e7edf0" />
+            <path d="M38 315 C170 250, 230 270, 328 214 S530 197, 641 169 S840 96, 1068 76" fill="none" stroke="#9bb7bd" stroke-width="38" stroke-linecap="round" opacity=".5" />
+            <path d="M62 304 C180 242, 238 263, 338 210 S532 195, 648 166 S836 98, 1046 82" fill="none" stroke="#647079" stroke-width="7" stroke-linecap="round" opacity=".9" />
+            <path d="M989 91 L814 133 L690 162 L590 186" fill="none" stroke="#1c5d77" stroke-width="6" stroke-linecap="round" />
+            <path d="M590 186 L525 99 L459 70 L396 94 L353 142 L473 178 L590 186" fill="none" stroke="#426b54" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M590 186 L500 220 L421 244 L338 254 L257 281 L180 304 L94 334 L590 186" fill="none" stroke="#b65b36" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            <g fill="#1c5d77" stroke="#fff" stroke-width="5"><circle cx="989" cy="91" r="12" /></g>
+            <g fill="#426b54" stroke="#fff" stroke-width="5">
+              <circle cx="814" cy="133" r="10" /><circle cx="690" cy="162" r="10" /><circle cx="525" cy="99" r="10" />
+              <circle cx="459" cy="70" r="10" /><circle cx="396" cy="94" r="10" /><circle cx="353" cy="142" r="10" />
+              <circle cx="500" cy="220" r="10" /><circle cx="338" cy="254" r="10" /><circle cx="257" cy="281" r="10" />
+              <circle cx="180" cy="304" r="10" /><circle cx="94" cy="334" r="10" />
+            </g>
+            <g fill="#5a4b92" stroke="#fff" stroke-width="5">
+              <circle cx="473" cy="178" r="11" /><circle cx="421" cy="244" r="11" />
+            </g>
+            <g fill="#b65b36" stroke="#fff" stroke-width="5">
+              <circle cx="590" cy="186" r="13" /><circle cx="552" cy="200" r="13" /><circle cx="628" cy="170" r="13" />
+            </g>
+            <text x="1000" y="68" class="map-label">EVE Evenes</text>
+            <text x="806" y="111" class="map-label">Svolvær</text>
+            <text x="660" y="139" class="map-label">Henningsvær</text>
+            <text x="642" y="196" class="map-label">Leknes</text>
+            <text x="548" y="228" class="map-label">Ballstad</text>
+            <text x="604" y="152" class="map-label">Napp</text>
+            <text x="500" y="76" class="map-label">Haukland / Uttakleiv</text>
+            <text x="350" y="53" class="map-label">Unstad / Eggum</text>
+            <text x="425" y="275" class="map-label">Skagsanden / Ramberg</text>
+            <text x="240" y="244" class="map-label">Hamnøy / Sakrisøy</text>
+            <text x="157" y="285" class="map-label">Reine</text>
+            <text x="62" y="363" class="map-label">Å</text>
+            <text x="740" y="39" class="map-small">10/2 进岛</text>
+            <text x="375" y="125" class="map-small">10/3 中北部海滩线</text>
+            <text x="268" y="338" class="map-small">10/4 西线经典渔村线</text>
+          </svg>
+        </div>
+
+        <div class="section-title" style="margin-top:34px;">
+          <h2>小镇与风景点</h2>
+          <p>从东向西看，罗弗敦的节奏会越来越“野”：东部更适合补给和缓冲，中部最适合做基地，西部最像明信片但也最远。对你们来说，关键是把住宿放在中部，把西部作为一整天慢游。</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/svolvaer.jpg" alt="Svolvær 港口与山景实景照片" />
+            <h3>Svolvær / Kabelvåg</h3>
+            <p>进岛后的第一个舒适区。适合超市、加油、咖啡、简单晚餐，也适合对象刚长途飞行后用来缓冲。缺点是离 Reine、Å 太远，住三晚会让西线日变成长距离往返。</p>
+            <div class="tagline"><span class="tag">补给方便</span><span class="tag">适合第一晚</span><span class="tag">景观上限中等</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/henningsvaer.jpg" alt="Henningsvær 港口小镇实景照片" />
+            <h3>Henningsvær</h3>
+            <p>港口、画廊、咖啡馆和海边小路组合，最有“有人生活在北境”的浪漫感。适合住一晚体验小镇，但作为三晚基地偏东，去西线和北部海滩都会多绕。</p>
+            <div class="tagline"><span class="tag">小镇感强</span><span class="tag">适合散步</span><span class="tag">停车需留意</span></div>
+          </article>
+          <article class="detail-card recommended">
+            <img src="norway-images/lofoten-towns/ballstad.jpg" alt="Ballstad 渔村与海湾实景照片" />
+            <h3><b>Ballstad</b></h3>
+            <p>我最推荐的平衡点。它比 Leknes 更有渔村度假气质，又比 Reine/Hamnøy 更不压返程。适合订海景 rorbu 或带厨房的民宿，白天向东西两边辐射，晚上回到安静海湾。</p>
+            <div class="tagline"><span class="tag">特别推荐</span><span class="tag">浪漫但不偏</span><span class="tag">适合连住</span></div>
+          </article>
+          <article class="detail-card recommended">
+            <img src="norway-images/lofoten-towns/ramberg.jpg" alt="Ramberg 沙滩与山景实景照片" />
+            <h3><b>Napp / Ramberg / Skagsanden</b></h3>
+            <p>更靠近沙滩和西线，夜间看极光的空间感很好。适合你们想把“自然感”和“极光候选点”放在住宿体验里。代价是餐饮少一些，晚餐和早餐更依赖民宿厨房。</p>
+            <div class="tagline"><span class="tag">特别推荐</span><span class="tag">极光友好</span><span class="tag">补给较少</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-day.jpg" alt="Leknes 周边罗弗敦山海景观照片" />
+            <h3>Leknes / Gravdal</h3>
+            <p>最实际的中部基地。超市、餐厅、加油、药店都更方便，遇到坏天气时改线成本低。缺点是镇本身不如 Ballstad、Henningsvær、Reine 有度假感。</p>
+            <div class="tagline"><span class="tag">最省心</span><span class="tag">天气弹性强</span><span class="tag">浪漫感较弱</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/nusfjord.jpg" alt="Nusfjord 历史渔村实景照片" />
+            <h3>Nusfjord</h3>
+            <p>历史渔村氛围浓，适合拍照和慢逛，也适合把某一餐或下午茶安排在这里。住宿会更有记忆点，但位置略偏、选择少，作为三晚基地不如 Ballstad 灵活。</p>
+            <div class="tagline"><span class="tag">特色强</span><span class="tag">适合半日</span><span class="tag">价格可能偏高</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/uttakleiv.jpg" alt="Uttakleiv 海滩实景照片" />
+            <h3>Haukland / Uttakleiv</h3>
+            <p>白沙滩、山体、海湾和北向视野都很强，是白天散步和夜间看极光都能兼顾的点。适合短步行，不需要爬山也有好景观。</p>
+            <div class="tagline"><span class="tag">低徒步</span><span class="tag">极光候选</span><span class="tag">风大需保暖</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/unstad.jpg" alt="Unstad 北极冲浪海滩实景照片" />
+            <h3>Unstad / Eggum</h3>
+            <p>Unstad 是北极冲浪海滩，Eggum 更开阔安静。天气好时这里和冰岛的黑沙滩气质差异很明显：不是荒凉火山感，而是冷海、村落和山脊贴得很近。</p>
+            <div class="tagline"><span class="tag">北海岸</span><span class="tag">开阔视野</span><span class="tag">适合 10/3</span></div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/hamnoy.jpg" alt="Hamnøy 与 Reine 一带红色渔屋实景照片" />
+            <h3>Hamnøy / Sakrisøy / Reine / Å</h3>
+            <p>罗弗敦最经典、最“值回机票”的西线。山峰贴着海和红黄渔屋，是和冰岛差异最大的部分。缺点是离 Evenes 最远，所以适合做完整一日游，不适合最后一晚还住最西端再赶飞机。</p>
+            <div class="tagline"><span class="tag">经典上限最高</span><span class="tag">适合 10/4</span><span class="tag">不爬 Reinebringen</span></div>
+          </article>
+        </div>
+
+        <div class="section-title" style="margin-top:34px;">
+          <h2>沿途可玩点排序</h2>
+          <p>按“你们这次最可能觉得不虚此行”的程度排序：先保留高差异化、低徒步、坏天气也有内容的点；长徒步只标为备选或远观。星级不是名气排名，而是结合十月天气、膝盖友好度、和冰岛行程后的差异化体验来排。</p>
+        </div>
+        <div class="attraction-grid">
+          <article class="attraction-card">
+            <div class="starline">★★★★★ 必去 · 1.5-2.5 小时 · 低徒步</div>
+            <h3>Henningsvær Football Field + Henningsvær Harbour</h3>
+            <p>著名海上足球场在 Henningsvær 外侧小岛上，最好和港口、码头、咖啡馆一起慢逛。它和冰岛的荒原感完全不同，更像“人类把生活轻轻放在海和山之间”。</p>
+            <div class="weather-list">
+              <span><b>晴 / 多云：</b>足球场、桥、港口层次最清楚，适合拍全景和散步。</span>
+              <span><b>小雨：</b>可逛港口、画廊和咖啡馆，体验仍然成立。</span>
+              <span><b>强风大雨：</b>只短暂停车拍照，不建议在外海侧久留。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★★ 必去 · 2-3 小时 · 低徒步</div>
+            <h3>Hamnøy Bridge Viewpoint + Sakrisøy + Reine</h3>
+            <p>罗弗敦最经典的红黄渔屋、尖峰、桥和海湾组合。即使刚从冰岛来，这一天也很容易惊艳，因为冰岛强在火山地貌，罗弗敦强在“海上阿尔卑斯 + 渔村生活感”。</p>
+            <div class="weather-list">
+              <span><b>晴 / 云隙：</b>山体轮廓、渔屋色彩和海面反光最漂亮。</span>
+              <span><b>阴天：</b>依然很有北境电影感，适合慢拍和吃鱼汤。</span>
+              <span><b>低云暴雨：</b>把 Å 或 Reinebringen 删除，集中在 Hamnøy、Sakrisøy 短停。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★★ 必去 · 白天 1-2 小时 / 夜间 1-3 小时 · 低徒步</div>
+            <h3>Haukland Beach + Uttakleiv Beach</h3>
+            <p>白天是白沙滩、山墙和冷蓝色海湾；夜晚如果北面晴朗，是很好的极光观测组合点。两处相距近，适合根据风向和云量灵活切换。</p>
+            <div class="weather-list">
+              <span><b>晴 / 少云：</b>白天看海湾，夜晚作为极光第一候选。</span>
+              <span><b>多云有云缝：</b>仍可等短窗口，拍摄前景强。</span>
+              <span><b>强风：</b>车边观测为主，别在湿滑礁石上走远。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★☆ 强推荐 · 1-2 小时 / 夜间 1-3 小时 · 低徒步</div>
+            <h3>Skagsanden Beach + Flakstad Church + Ramberg Beach</h3>
+            <p>西线途中最适合“顺路多次停”的海滩组合。Skagsanden 是摄影和极光候选点，Ramberg 更开阔柔和，Flakstad Church 适合做雨天短停。</p>
+            <div class="weather-list">
+              <span><b>晴 / 日落：</b>沙滩、远山和浪线很出片。</span>
+              <span><b>阴雨：</b>教堂和海边短停即可，不强行久等。</span>
+              <span><b>夜间晴窗：</b>Skagsanden 可作为西线极光候选，但注意潮水和浪。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★☆ 强推荐 · 1.5-2.5 小时 · 低徒步</div>
+            <h3>Nusfjord Historic Fishing Village</h3>
+            <p>历史渔村体验比单纯观景更完整，适合安排午餐、咖啡或短逛。相比冰岛，它的重点不是自然荒野，而是老港口、木屋、码头和山海夹缝里的生活痕迹。</p>
+            <div class="weather-list">
+              <span><b>阴天 / 小雨：</b>反而有气氛，适合慢逛、吃饭、躲风。</span>
+              <span><b>晴天：</b>可和 Ramberg、Skagsanden、Hamnøy 串成西线慢游。</span>
+              <span><b>大雨：</b>作为室内餐饮和短停备胎，别安排太久。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★☆ 强推荐 · 白天 1-2 小时 / 夜间 1-3 小时 · 低徒步</div>
+            <h3>Eggum Viewpoint + Unstad Arctic Surf</h3>
+            <p>Eggum 是北向开阔地，适合极光；Unstad 是北极冲浪海滩，天气好时很有“世界边缘有人冲浪”的奇妙感。两处适合放在中北部海滩日。</p>
+            <div class="weather-list">
+              <span><b>晴 / 少云夜晚：</b>Eggum 适合作为 Haukland/Uttakleiv 之外的追光备选。</span>
+              <span><b>晴或多云白天：</b>Unstad 看海浪和冲浪氛围最有趣。</span>
+              <span><b>风暴天：</b>可车内看浪，避免靠近湿滑海岸。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★★☆ 强推荐 · 45-90 分钟 · 低徒步</div>
+            <h3>Gimsøy / Hov Beach Aurora Area</h3>
+            <p>Gimsøy 北向、开阔、光污染较少，适合从 Henningsvær 或 Svolvær 回中部时作为夜间极光候选。若天气白天好，也可安排海边散步或骑马体验。</p>
+            <div class="weather-list">
+              <span><b>晴朗夜晚：</b>作为东中段极光点，减少夜里长距离折返。</span>
+              <span><b>白天多云：</b>适合海岸短走，不必专程太久。</span>
+              <span><b>雨雪强风：</b>不建议夜间绕行，优先回住宿休息。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★☆☆ 备选 · 1.5-2 小时 · 室内友好</div>
+            <h3>Lofotr Viking Museum</h3>
+            <p>如果遇到低云、连续雨或对象膝盖状态不好，这里是很实用的文化备胎。它不抢自然风景的主线，但能让坏天气日不只是困在车里。</p>
+            <div class="weather-list">
+              <span><b>雨天 / 低云：</b>优先级上升，适合作为 10/3 中段缓冲。</span>
+              <span><b>晴天：</b>除非特别感兴趣，否则把时间留给海滩和渔村。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★★☆☆ 知名徒步 · 2-3 小时 · 中等强度</div>
+            <h3>Offersøykammen Trailhead</h3>
+            <p>Leknes 附近的短峰线，天气晴朗时回报高，但仍有上坡和湿滑风险。你们这次可以把它当“精神和膝盖状态都很好时的加菜”，不作为固定安排。</p>
+            <div class="weather-list">
+              <span><b>晴 / 风小 / 地面干：</b>可考虑走一小段或登顶。</span>
+              <span><b>雨后 / 强风 / 低云：</b>放弃，改 Haukland、Uttakleiv 车览。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★☆☆☆ 知名徒步 · 3-5 小时 · 不建议本次完整徒步</div>
+            <h3>Ryten / Kvalvika Trailhead</h3>
+            <p>非常有名，但往返时间和坡度都不适合“膝盖不太好 + 十月天气不稳定 + 只在罗弗敦 3 晚”的组合。地图标注是为了识别位置，不建议压进核心行程。</p>
+            <div class="weather-list">
+              <span><b>只有晴、风小、地面干、体力状态好：</b>才考虑缩短版。</span>
+              <span><b>任何低云雨雪：</b>直接删除，西线车览更值得。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★☆☆☆ 知名徒步 · 2-3 小时 · 不建议本次完整徒步</div>
+            <h3>Reinebringen Trailhead</h3>
+            <p>名气极高，但台阶多、坡度集中，对膝盖不友好，十月湿滑时风险更高。你们完全可以在 Reine、Hamnøy、Sakrisøy 获得足够强的视觉回报，不需要靠爬它证明来过。</p>
+            <div class="weather-list">
+              <span><b>晴且地面干：</b>也只建议把它当可选，不作为情侣慢游主线。</span>
+              <span><b>雨、风、低云、天黑前时间不足：</b>不要爬。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">★★☆☆☆ 知名徒步 · 2.5-4 小时 · 备选</div>
+            <h3>Festvågtind Trailhead / Henningsvær View</h3>
+            <p>这是俯瞰 Henningsvær 的经典徒步视角，但路程和坡度对本次并不友好。更推荐把 Henningsvær 当作港口小镇散步点，足球场和码头已经足够有记忆点。</p>
+            <div class="weather-list">
+              <span><b>晴、风小、膝盖状态很好：</b>可评估走一小段。</span>
+              <span><b>云低或下雨：</b>不要为了俯瞰视角硬上山。</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-title" style="margin-top:34px;">
+          <h2>住宿点选择</h2>
+          <p>下面按你们的节奏排序。具体酒店/民宿是否有房、价格和取消政策需要以预订平台或官网为准；这里先用于判断“住在哪一段”最合理。</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card recommended">
+            <img src="norway-images/lofoten-towns/ballstad.jpg" alt="Ballstad 海边渔村住宿区域实景照片" />
+            <h3><b>首选：Ballstad 海景 rorbu / 公寓</b></h3>
+            <p>适合三晚连住。优点是浪漫、安静、停车容易、可做饭，去 Haukland/Uttakleiv 和 Reine 两边都不崩。可看 Hattvika Lodge、Solsiden Brygge 这类 Ballstad 海边住宿作风格参考。</p>
+            <div class="tagline"><span class="tag">最均衡</span><span class="tag">适合情侣</span><span class="tag">厨房优先</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://hattvikalodge.no/en/">Hattvika Lodge</a>
+              <a class="text-link" href="https://solsiden-brygge.no/">Solsiden Brygge</a>
+            </div>
+          </article>
+          <article class="detail-card recommended">
+            <img src="norway-images/lofoten-towns/ramberg.jpg" alt="Ramberg 与 Skagsanden 海边住宿区域实景照片" />
+            <h3><b>次选：Napp / Ramberg / Skagsanden 海边民宿</b></h3>
+            <p>适合想把极光和海滩放到住宿附近的人。白天去西线更轻松，晚上少开一段路就能到开阔海滩。缺点是餐饮选择少，最好提前采购。</p>
+            <div class="tagline"><span class="tag">极光优先</span><span class="tag">自然感强</span><span class="tag">需自备餐食</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://www.lofotenbeachcamp.no/">Lofoten Beach Camp</a>
+              <a class="text-link" href="https://visitlofoten.com/en/accommodation/cabins/camping-by-the-midnight-sun-lofoten-beach-camp/">Visit Lofoten 页面</a>
+            </div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-day.jpg" alt="Leknes 周边罗弗敦住宿区域实景照片" />
+            <h3>Leknes / Gravdal 公寓或酒店</h3>
+            <p>适合重视便利、预算和天气弹性的人。它不是最美的住宿体验，但作为“操作基地”很好用：超市、餐厅、加油都近，坏天气时也更容易调整。</p>
+            <div class="tagline"><span class="tag">最实用</span><span class="tag">补给强</span><span class="tag">氛围一般</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://visitlofoten.com/en/topic/accommodation-in-lofoten/">Visit Lofoten 住宿索引</a>
+            </div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/henningsvaer.jpg" alt="Henningsvær 港口住宿区域实景照片" />
+            <h3>Henningsvær 1 晚 + 中部 2 晚</h3>
+            <p>如果你们很想体验不同民宿，这是我认可的换住方案。第一晚住 Henningsvær，看港口和小店；后两晚移到 Ballstad/Napp，服务西线和极光。</p>
+            <div class="tagline"><span class="tag">体验更丰富</span><span class="tag">搬家一次</span><span class="tag">仍可控</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://visitlofoten.com/en/destination/henningsvaer/">Henningsvær 官方目的地页</a>
+              <a class="text-link" href="https://visitlofoten.com/en/topic/accommodation-in-lofoten/">住宿索引</a>
+            </div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/hamnoy.jpg" alt="Hamnøy 与 Reine 红色渔屋住宿区域实景照片" />
+            <h3>Reine / Hamnøy 1 晚体验</h3>
+            <p>最经典、最上镜，适合想要“醒来就在明信片里”的人。问题是远、贵、热门，且返程压力更大。若住这里，最好不要安排在 10/4 最后一晚。</p>
+            <div class="tagline"><span class="tag">景观最强</span><span class="tag">返程压力大</span><span class="tag">不宜最后一晚</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://eliassenrorbuer.no/">Eliassen Rorbuer</a>
+              <a class="text-link" href="https://reinerorbuer.no/en/">Reine Rorbuer</a>
+              <a class="text-link" href="https://sakrisoy.no/">Sakrisøy</a>
+            </div>
+          </article>
+          <article class="detail-card">
+            <img src="norway-images/lofoten-towns/svolvaer.jpg" alt="Svolvær 过渡住宿区域实景照片" />
+            <h3>Svolvær / Kabelvåg 过渡住宿</h3>
+            <p>适合航班晚到、天气差或不想当天开太久时使用。作为备用很有价值，但如果三晚都住这里，会把最精华的西线变成过长往返。</p>
+            <div class="tagline"><span class="tag">进岛轻松</span><span class="tag">备用优秀</span><span class="tag">离西线远</span></div>
+            <div class="link-row">
+              <a class="text-link" href="https://visitlofoten.com/en/topic/accommodation-in-lofoten/">Visit Lofoten 住宿索引</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>路线详案</h2>
+          <p>每套都按“10/1 不硬玩、每日驾驶不超过 6 小时、膝盖友好”设计。罗弗敦部分先给三种自驾版本并列比较；后面保留峡湾、特罗姆瑟和哈当厄尔作为备选方向。实际预订前，需要再核对 2026 年 10 月具体航班、船班和租车条款。</p>
+        </div>
+        <div class="matrix" style="margin-bottom:18px;">
+          <table>
+            <thead>
+              <tr>
+                <th>罗弗敦自驾版本</th>
+                <th>推荐度</th>
+                <th>回头路比例</th>
+                <th>疲劳度</th>
+                <th>天气 / 交通风险</th>
+                <th>住宿体验</th>
+                <th>结论</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>A｜EVE 往返稳妥版</b></td>
+                <td><span class="score">5/5</span></td>
+                <td>中等：西线当天往返或中部折返</td>
+                <td>最低，10/5 回机场最可控</td>
+                <td>低：不依赖车渡轮，不吃异地还车</td>
+                <td>适合 Ballstad / Napp / Leknes 连住，休息质量最好</td>
+                <td>我最推荐的落地执行版。对膝盖、天气、航班衔接最友好。</td>
+              </tr>
+              <tr>
+                <td><b>B｜EVE 小环线 + E10 折返版</b></td>
+                <td><span class="score mid">4.3/5</span></td>
+                <td>中低：支线少重复，主干仍必须折返</td>
+                <td>中等，换住宿会增加收拾行李成本</td>
+                <td>低到中：仍回 EVE，但末日距离更长</td>
+                <td>可体验东部、中部、西部不同民宿；更有推进感</td>
+                <td>想体验多种住宿时可选，但不要把它误解为真正闭环。</td>
+              </tr>
+              <tr>
+                <td><b>C｜Moskenes-Bodø 单向版</b></td>
+                <td><span class="score mid">4.1/5</span></td>
+                <td>最低：真正东进西出</td>
+                <td>视觉节奏最好，但 10/5 衔接压力最高</td>
+                <td>最高：车渡轮、海况、异地还车和 BOO 航班都要卡住</td>
+                <td>最适合最后一晚住 Reine / Hamnøy / Å</td>
+                <td>确认船班和租车费用后才值得选；否则会把浪漫变成赶场。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="routes">
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/lofoten-day.jpg" alt="Lofoten road trip" /></div>
+            <div class="route-body">
+              <h3>罗弗敦 A｜EVE 往返稳妥版：中部连住，少搬家</h3>
+              <p>这是我给你们的首选执行方案。它承认 E10 会有回头路，但把风险压到最低：不依赖 Moskenes-Bodø 车渡轮，不用承担异地还车，10/5 回 EVE 飞 Oslo 更稳。重点不是少开几公里，而是把风景最强的 10/3-10/4 留给白天慢玩。</p>
+              <div class="route-meta"><span class="tag">推荐指数 5/5</span><span class="tag">执行最稳</span><span class="tag">驾驶 2-5h/天</span><span class="tag">住宿少搬家</span><span class="tag">膝盖友好</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，机场酒店或市中心酒店</b><span>只安排轻晚餐和散步；如果第二天早班飞 EVE，住机场更稳。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>OSL 飞 EVE，取车进岛，住 Ballstad / Napp / Leknes</b><span>Evenes - Svolvær - Kabelvåg - Rørvikstranda - Henningsvær 足球场与港口 - 中部住宿。若航班晚或天气差，把 Henningsvær 降级为短停。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>中北部慢游，继续住中部</b><span>Gimsøy / Hov Beach、Eggum、Unstad、Haukland、Uttakleiv 组成低徒步的一天。晚上按云图去 Haukland、Uttakleiv、Eggum 或 Gimsøy 看极光。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>西线经典日，继续住中部</b><span>Nusfjord、Skagsanden、Ramberg、Fredvang Bridges、Hamnøy、Sakrisøy、Reine、Å。只做短步行和停车观景，不安排 Reinebringen。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>中部回 EVE，飞回 Oslo</b><span>上午留给补拍、咖啡或天气备胎；从 Ballstad / Napp / Leknes 回 EVE 比从 Reine / Å 回机场轻松得多。</span></div></div>
+                <div class="day"><div class="date">10/6</div><div><b>Oslo 轻松收尾，16:05 OSL 起飞</b><span>只排市中心短线或机场附近休息，建议最晚 13:00-13:30 到机场。</span></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/lofoten-towns/henningsvaer.jpg" alt="Henningsvær harbour road trip" /></div>
+            <div class="route-body">
+              <h3>罗弗敦 B｜EVE 小环线 + E10 折返版：多住几处，但仍回 EVE</h3>
+              <p>如果你很想体验不同民宿，可以把 3 晚拆成“东部 1 晚 + 中部 1 晚 + 西部或中西部 1 晚”。它能减少审美重复，但地理上不能真正闭环：西端到 EVE 仍要沿 E10 往东返回。为了不超过每天 6 小时，最后一晚更建议住 Napp / Ramberg / Ballstad，不建议住 Å。</p>
+              <div class="route-meta"><span class="tag">推荐指数 4.3/5</span><span class="tag">住宿体验更多</span><span class="tag">主干仍需折返</span><span class="tag">末日较累</span><span class="tag">不去 Bodø</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，机场酒店休息</b><span>保留体力，第二天北上。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>EVE - Svolvær / Kabelvåg / Henningsvær，住东部</b><span>第一晚住进港口小镇，轻松看 Henningsvær 足球场、港口和咖啡馆。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>东部 - Gimsøy - Eggum - Unstad - Haukland / Uttakleiv - 中部住宿</b><span>用北海岸支线做局部环线，减少第二天和返程的重复感。低云雨天改 Lofotr Viking Museum + Leknes 补给。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>中部 - Nusfjord - Skagsanden - Ramberg - Hamnøy - Reine - 住 Napp / Ramberg / Ballstad</b><span>想体验西线民宿可住 Hamnøy / Reine，但会显著增加 10/5 回 EVE 压力；更稳是住回中西部。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>沿 E10 回 EVE，途中挑 1-2 个未去点短停</b><span>这是不可避免的折返日。不要再加长徒步，优先按航班时间倒推取还车和加油。</span></div></div>
+                <div class="day"><div class="date">10/6</div><div><b>Oslo 轻松收尾，16:05 OSL 起飞</b><span>适合市中心短线、咖啡和机场缓冲。</span></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/lofoten-towns/reine.jpg" alt="Reine and Hamnøy Lofoten" /></div>
+            <div class="route-body">
+              <h3>罗弗敦 C｜EVE 进、Moskenes-Bodø 出：真正不走回头路</h3>
+              <p>这是风景叙事最完整的版本：一路从东部生活感，推到中部海滩，再推到西部明信片渔村，最后从海上离开罗弗敦。它的美感很强，但执行风险也最高，尤其是 10 月海况、渡轮车位、异地还车费和 BOO-OSL 航班衔接。</p>
+              <div class="route-meta"><span class="tag">推荐指数 4.1/5</span><span class="tag">真正单向</span><span class="tag">最后一晚西线</span><span class="tag">渡轮风险</span><span class="tag">异地还车</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，机场酒店或市中心酒店</b><span>只安排轻晚餐和散步。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>OSL 飞 EVE，取车进岛，住 Henningsvær / Svolvær</b><span>Evenes - Svolvær - Kabelvåg - Rørvikstranda - Henningsvær 足球场与港口。当天不压到中西部，控制疲劳。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>东部到中部：Gimsøy、Eggum、Unstad、Haukland、Uttakleiv，住 Ballstad / Napp</b><span>把北海岸、白沙滩和极光候选点串起来。若下雨低云，加入 Lofotr Viking Museum 作为室内备胎。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>中部到西端：Nusfjord、Ramberg、Skagsanden、Hamnøy、Sakrisøy、Reine、Å，住 Reine / Hamnøy / Å</b><span>全程向西推进，不折返中部；只短步行和停车观景，不爬 Reinebringen。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>Moskenes 车渡轮到 Bodø，BOO 飞 OSL</b><span>早上从 Reine / Å 到 Moskenes 码头，渡轮过海后在 Bodø 还车或机场还车。若渡轮停航、异地还车太贵，需要立刻切回 A 或 B。</span></div></div>
+                <div class="day"><div class="date">10/6</div><div><b>Oslo 轻松收尾，16:05 OSL 起飞</b><span>如果 10/5 抵达 Oslo 较晚，10/6 只安排市中心短线。</span></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/flam-aurlandsfjord.jpg" alt="Fjord and autumn forest" /></div>
+            <div class="route-body">
+              <h3>方案 D｜卑尔根 + 弗洛姆：最稳妥的峡湾慢游</h3>
+              <p>适合把舒适度放第一位。峡湾游船、Flåm 铁路、Stegastein 观景台组成“几乎不用徒步”的挪威精华。</p>
+              <div class="route-meta"><span class="tag">推荐指数 4.5/5</span><span class="tag">舒适度最高</span><span class="tag">极光弱</span><span class="tag">天气备胎多</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，住奥斯陆</b><span>只安排休息。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>飞 Bergen，取车到 Aurland/Flåm</b><span>路上不塞景点，傍晚住峡湾边。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>Nærøyfjord 游船 + Stegastein</b><span>核心体验日，走路少，风景密度高。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>Flåm 铁路往返，下午回 Bergen</b><span>坐火车看峡谷、瀑布和山地，再回城市吃饭。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>Bergen 慢逛，傍晚飞 OSL</b><span>Bryggen、Fløibanen、鱼市，强度可控。</span></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/tromso-aurora.jpg" alt="Northern lights" /></div>
+            <div class="route-body">
+              <h3>方案 E｜特罗姆瑟 + 海岛：追光但不只追光</h3>
+              <p>适合极光优先，但不想整趟旅行都在等天黑。白天靠 Kvaløya、Sommarøy、Ersfjordbotn 或缆车补足风景。</p>
+              <div class="route-meta"><span class="tag">推荐指数 4/5</span><span class="tag">极光机会最高</span><span class="tag">低徒步</span><span class="tag">城市备胎强</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，住机场酒店</b><span>为第二天北上留体力。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>飞 Tromsø，城市轻松日</b><span>主街、港口、北极大教堂，晚上视天气追光。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>Kvaløya / Sommarøy 半日自驾</b><span>海岛、峡湾、沙滩，晚上第二次追光机会。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>Fjellheisen 缆车 + 桑拿/餐厅</b><span>把体力消耗降到最低，等天气窗口。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>飞回 Oslo</b><span>不压末班机，避免影响返程。</span></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="route">
+            <div class="route-visual"><img src="norway-images/hardanger-sorfjorden.jpg" alt="Autumn road and lake" /></div>
+            <div class="route-body">
+              <h3>方案 F｜哈当厄尔 + 弗洛姆：秋色情侣自驾</h3>
+              <p>适合想要开车、停停走走、吃苹果酒和看瀑布的人。它没有极光，但很适合“舒服地沉浸在十月挪威”。</p>
+              <div class="route-meta"><span class="tag">推荐指数 3.8/5</span><span class="tag">浪漫慢游</span><span class="tag">秋色强</span><span class="tag">极光弱</span></div>
+              <div class="days">
+                <div class="day"><div class="date">10/1</div><div><b>OSL 会合，住奥斯陆</b><span>休息优先。</span></div></div>
+                <div class="day"><div class="date">10/2</div><div><b>飞 Bergen，取车到 Voss/Ulvik</b><span>沿峡湾和瀑布慢开，车程控制在可接受范围。</span></div></div>
+                <div class="day"><div class="date">10/3</div><div><b>Hardanger 秋色自驾</b><span>果园、峡湾、瀑布，选 2-3 个点足够。</span></div></div>
+                <div class="day"><div class="date">10/4</div><div><b>转向 Flåm / Aurland</b><span>补 Nærøyfjord 游船或 Stegastein。</span></div></div>
+                <div class="day"><div class="date">10/5</div><div><b>回 Bergen 飞 OSL</b><span>不建议当晚再安排复杂活动。</span></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>奥斯陆衔接安排</h2>
+          <p>10/1 是双人会合和恢复日，10/6 是 16:05 从 OSL 起飞的返程日。奥斯陆不要当作“补景点”的地方，而要当作把北部行程接顺、让身体恢复、避免误机的缓冲城市。</p>
+        </div>
+        <div class="attraction-grid">
+          <article class="attraction-card">
+            <div class="starline">10/1 首选 · 低强度 · 机场稳妥版</div>
+            <h3>OSL 会合 + 机场酒店 + 轻晚餐</h3>
+            <p>对象 14:30 到 OSL，你 15:55 到 OSL；取行李、会合、入住后，不建议进市中心再赶行程。最稳是住 Gardermoen 机场附近，吃一顿热饭，散步 20-30 分钟，早点睡，为 10/2 飞 EVE 留体力。</p>
+            <div class="weather-list">
+              <span><b>适合：</b>第二天飞 EVE 较早、对象长途飞行疲劳、天气差或行李多。</span>
+              <span><b>体验：</b>把第一晚从“旅行任务”改成“回血”，后面罗弗敦体验会明显更稳。</span>
+              <span><b>住宿：</b>优先选 OSL 航站楼步行可达或机场接驳方便的酒店。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">10/1 备选 · 3-4 小时 · 市中心轻松版</div>
+            <h3>机场快线进城 + Opera House / Bjørvika 海边晚餐</h3>
+            <p>如果两个人精神都不错，可以住 Oslo S / Bjørvika 一带。傍晚只走 Opera House 屋顶和海边步道，晚餐放在 Bjørvika、Aker Brygge 或 Grünerløkka，不再加博物馆和远距离移动。</p>
+            <div class="weather-list">
+              <span><b>晴 / 多云：</b>Opera House 屋顶、Munch 外观、海边栈道很适合轻松散步。</span>
+              <span><b>小雨：</b>缩短户外步行，改成市中心晚餐 + 酒店休息。</span>
+              <span><b>不适合：</b>行李多、延误、第二天早班机，或对象明显疲劳。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">10/6 首选 · 3-4 小时 · 返程安全版</div>
+            <h3>Oslo S / Bjørvika 慢收尾 + 13:00-13:30 到 OSL</h3>
+            <p>如果 10/5 晚住 Oslo S 附近，10/6 上午最舒服：早餐后寄存行李或晚退房，走 Deichman Bjørvika、Opera House、Munch Museum 外观和海边步道，中午吃简餐，然后去机场。16:05 起飞，建议 13:00-13:30 到 OSL。</p>
+            <div class="weather-list">
+              <span><b>晴 / 多云：</b>海边步道、歌剧院屋顶和 Sørenga 水边都很轻松。</span>
+              <span><b>雨天：</b>Deichman 图书馆、Munch Museum 或咖啡馆作为室内替代。</span>
+              <span><b>关键：</b>不要安排需要排队、跨城或不可控交通的项目。</span>
+            </div>
+          </article>
+          <article class="attraction-card">
+            <div class="starline">10/6 晴天备选 · 2-3 小时 · 城市公园版</div>
+            <h3>Vigeland Park + Frogner 咖啡，随后去机场</h3>
+            <p>如果天气好、你们想看一点奥斯陆城市生活，可以去 Vigeland Park 轻松走一圈，再在 Frogner 附近喝咖啡。它比博物馆更自由，但从公园去机场要多一次城市交通衔接，所以时间必须保守。</p>
+            <div class="weather-list">
+              <span><b>适合：</b>晴天、行李已寄存、前一晚睡得好。</span>
+              <span><b>不适合：</b>雨天、拖着大行李、前一晚从 Bodø 回来较晚。</span>
+              <span><b>时间线：</b>建议 12:15 前离开市区去取行李，13:00-13:30 到 OSL。</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>执行提醒</h2>
+          <p>十月初的关键不是“能不能去”，而是每天留出天气弹性。把强体验放上午和中午，夜晚只作为极光窗口，不作为唯一目标。</p>
+        </div>
+        <div class="notes">
+          <div class="note"><h3>租车</h3><p>确认轮胎是否适合当时路况；挪威官方强调驾驶者全年都要确保车辆抓地力足够。</p></div>
+          <div class="note"><h3>路线</h3><p>高山景观路只当加分项。若遇到雨雪、强风、临时关闭，宁可改为峡湾边低海拔路线。</p></div>
+          <div class="note"><h3>极光</h3><p>北部路线要订至少 2-3 晚同一区域，增加遇到晴窗的概率；不要为了极光每天换城市。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <h2>来源与照片入口</h2>
+          <p>这些链接用于复核季节、路况、船/铁路体验，以及查看十月实拍游记。预订前请以官方页面的 2026 年实时班次为准。</p>
+        </div>
+        <div class="sources">
+          <a class="source" href="https://www.visitnorway.com/plan-your-trip/seasons-climate/autumn/"><b>Visit Norway</b><br />秋季天气、十月可能转冬、北部和山区更早变冷。</a>
+          <a class="source" href="https://www.visitnorway.com/things-to-do/nature-attractions/northern-lights/"><b>Visit Norway</b><br />北极光区域与季节参考。</a>
+          <a class="source" href="https://www.nasjonaleturistveger.no/en/routes/lofoten"><b>Norwegian Scenic Routes</b><br />罗弗敦 E10 官方景观路线和支线。</a>
+          <a class="source" href="https://www.reisnordland.com/travel-planner"><b>Reis Nordland</b><br />Moskenes-Bodø 渡轮班次查询入口；不走回头路方案必须出发前复核。</a>
+          <a class="source" href="https://avinor.no/en/airport/bodo-airport/"><b>Avinor Bodø Airport</b><br />Bodø 机场信息，用于 Moskenes 渡轮后接飞 Oslo 的衔接判断。</a>
+          <a class="source" href="https://www.visitoslo.com/en/"><b>Visit Oslo</b><br />奥斯陆市中心、Bjørvika、博物馆和公园行程入口。</a>
+          <a class="source" href="https://ruter.no/en/"><b>Ruter</b><br />奥斯陆市内公共交通查询，适合 10/1 和 10/6 轻量行程。</a>
+          <a class="source" href="https://flytoget.no/en/"><b>Flytoget</b><br />OSL 机场与 Oslo S 之间机场快线参考。</a>
+          <a class="source" href="https://www.norwaysbest.com/en/flam/things-to-do/fjord-cruise-naeroyfjord"><b>Norway's Best</b><br />Nærøyfjord 游船，Flåm-Gudvangen 约 2 小时。</a>
+          <a class="source" href="https://www.norwaysbest.com/en/flam/things-to-do/the-flam-railway-round-trip"><b>Norway's Best</b><br />Flåm 铁路往返，全年、轻松、1-2 小时。</a>
+          <a class="source" href="https://www.vegvesen.no/en/vehicles/own-and-maintain/tyre-requirements/"><b>Statens vegvesen</b><br />挪威轮胎和抓地力要求。</a>
+          <a class="source" href="https://larry.photo/en/journal/lofoten-october-fjords-aurora-unexpected-rewards/"><b>October Lofoten Photo Journal</b><br />十月初罗弗敦峡湾、云隙、极光实拍游记。</a>
+          <a class="source" href="https://belindashi.com/photography-tips/one-week-itinerary-in-lofoten-islands-in-october-part-2"><b>Belinda Shi Photography</b><br />十月罗弗敦行程与极光照片。</a>
+          <a class="source" href="https://hattvikalodge.no/en/"><b>Hattvika Lodge</b><br />Ballstad 海边住宿参考，适合作为中部连住候选。</a>
+          <a class="source" href="https://solsiden-brygge.no/"><b>Solsiden Brygge</b><br />Ballstad 港湾住宿参考，适合查看 rorbu、公寓和餐饮条件。</a>
+          <a class="source" href="https://svinoya.no/"><b>Svinøya Rorbuer</b><br />Svolvær 一带渔屋住宿参考，适合作为东部过渡住宿。</a>
+          <a class="source" href="https://nyvagar.no/"><b>Nyvågar Rorbuhotell</b><br />Kabelvåg 一带 rorbu 酒店参考，适合安静过渡。</a>
+          <a class="source" href="https://www.trevarefabrikken.no/"><b>Trevarefabrikken</b><br />Henningsvær 小镇住宿与餐饮氛围参考。</a>
+          <a class="source" href="https://www.scandichotels.com/hotels/norway/leknes/scandic-leknes-lofoten"><b>Scandic Leknes Lofoten</b><br />Leknes 镇内实用型住宿参考。</a>
+          <a class="source" href="https://nusfjordarcticresort.com/"><b>Nusfjord Arctic Resort</b><br />Nusfjord 历史渔村住宿参考。</a>
+          <a class="source" href="https://www.lofotenbeachcamp.no/"><b>Lofoten Beach Camp</b><br />Skagsanden / Flakstad 一带海滩住宿参考，适合极光和海岸线优先。</a>
+          <a class="source" href="https://eliassenrorbuer.no/"><b>Eliassen Rorbuer</b><br />Hamnøy 经典红色渔屋住宿参考，景观强但位置更西。</a>
+          <a class="source" href="https://reinerorbuer.no/en/"><b>Reine Rorbuer</b><br />Reine 经典渔屋住宿参考，适合体验一晚。</a>
+          <a class="source" href="https://sakrisoy.no/"><b>Sakrisøy</b><br />Sakrisøy 一带住宿与餐饮参考。</a>
+          <a class="source" href="https://commons.wikimedia.org/"><b>Wikimedia Commons</b><br />新增小镇与风景配图来源，已下载到本地 norway-images/lofoten-towns 文件夹。</a>
+          <a class="source" href="https://www.fjords.com/en/western-norwegian-fjords/fjord-guide/aurlandsfjord-naeroyfjord/flam/autumn-trip-to-flam/"><b>Fjords.com</b><br />十月 Flåm 秋季旅行与峡湾照片入口。</a>
+          <a class="source" href="https://visitlofoten.com/en/topic/hiking-in-lofoten/"><b>Visit Lofoten</b><br />罗弗敦徒步路线总览，用于区分短步行和需要体力的山线。</a>
+          <a class="source" href="https://visitlofoten.com/en/destination/henningsvaer/"><b>Visit Lofoten</b><br />Henningsvær 小镇、港口和足球场目的地信息。</a>
+          <a class="source" href="https://www.68north.com/lofoten-hikes/hiking-reinebringen/"><b>68 North</b><br />Reinebringen 徒步难度与路线参考，用于“不建议硬爬”的判断。</a>
+          <a class="source" href="https://www.68north.com/lofoten-hikes/hiking-ryten/"><b>68 North</b><br />Ryten / Kvalvika 徒步路线参考，用于标注时间和体力风险。</a>
+          <a class="source" href="https://www.68north.com/lofoten-hikes/hiking-offersoykammen/"><b>68 North</b><br />Offersøykammen 徒步路线参考，适合作为晴天加菜而非固定安排。</a>
+          <a class="source" href="https://tromsotrip.com/tromso-in-october/"><b>Tromsø Trip</b><br />十月 Tromsø 天气、活动和实地建议。</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>挪威十月初行程方案 · 紧接冰岛段 · 内容仅供行程讨论参考 · <a href="../">返回旅行方案首页</a></p>
+  </footer>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script>
+    const map = L.map("lofoten-map", { scrollWheelZoom: false }).setView([68.1, 13.95], 8);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const colors = {
+      airport: "#1c5d77",
+      base: "#b65b36",
+      stay: "#c8963e",
+      view: "#426b54",
+      aurora: "#5a4b92",
+      iconic: "#b02f3a",
+      hike: "#7f4f24"
+    };
+
+    const points = [
+      { name: "EVE Evenes 机场", type: "airport", lat: 68.4913, lng: 16.6781, note: "10/2 抵达取车，10/5 还车飞回奥斯陆。进出罗弗敦的最实用机场。", stars: "交通", duration: "取还车各 1-1.5 小时", weather: "雨雪强风时给 E10 多留缓冲。", knee: "无徒步" },
+      { name: "Svolvær", type: "view", lat: 68.2342, lng: 14.5683, note: "东部小城，适合补给、午餐和短暂停靠。", stars: "★★★☆☆", duration: "45-90 分钟", weather: "雨天也能吃饭补给；晴天可看港口与 Svolværgeita 山形。", knee: "低" },
+      { name: "Svolvær 住宿区", type: "base", label: "Svolvær 住宿", lat: 68.2358, lng: 14.5636, note: "进岛第一晚或天气差时的过渡住宿区。优点是补给、餐厅和租车服务多；缺点是离西线远。", stars: "★★★☆☆", duration: "适合 1 晚过渡", weather: "航班晚到、雨雪或疲劳时优先。", knee: "低" },
+      { name: "Svinøya Rorbuer / Svolvær", type: "stay", label: "Svinøya", lat: 68.2330, lng: 14.5768, note: "Svolvær 一带经典渔屋住宿参考。适合把第一晚做成轻松过渡。", stars: "★★★☆☆", duration: "1 晚过渡", weather: "天气差也有餐饮和室内休息条件。", knee: "低", url: "https://svinoya.no/" },
+      { name: "Thon Hotel Svolvær", type: "stay", label: "Thon Svolvær", lat: 68.2337, lng: 14.5674, note: "Svolvær 镇中心酒店参考。更像省心过渡点，不是最有民宿感。", stars: "★★★☆☆", duration: "1 晚过渡", weather: "需要便利和停车时好用。", knee: "低", url: "https://www.thonhotels.com/our-hotels/norway/svolvar/thon-hotel-svolvar/" },
+      { name: "Kabelvåg", type: "view", lat: 68.2119, lng: 14.4750, note: "比 Svolvær 更安静，有老渔村和港湾气质。", stars: "★★★☆☆", duration: "45-90 分钟", weather: "阴天小雨适合慢逛，强风时缩短停留。", knee: "低" },
+      { name: "Kabelvåg 住宿区", type: "base", label: "Kabelvåg 住宿", lat: 68.2112, lng: 14.4814, note: "比 Svolvær 安静，更偏渔村和港湾氛围；适合第一晚缓冲，不适合三晚全程基地。", stars: "★★★☆☆", duration: "1 晚过渡", weather: "想安静但不想进太深时可选。", knee: "低" },
+      { name: "Nyvågar Rorbuhotell / Kabelvåg", type: "stay", label: "Nyvågar", lat: 68.2119, lng: 14.4945, note: "Kabelvåg 一带 rorbu 酒店参考。适合想要东部安静过渡、又不想住城市酒店的人。", stars: "★★★☆☆", duration: "1 晚过渡", weather: "雨天休息体验比纯赶路好。", knee: "低", url: "https://nyvagar.no/" },
+      { name: "Rørvikstranda Beach", type: "view", lat: 68.1788, lng: 14.2112, note: "E10 支线旁的浅色海滩，适合进岛途中短停，看第一眼罗弗敦白沙滩。", stars: "★★★☆☆", duration: "20-45 分钟", weather: "晴天水色最好；风雨天短暂停车即可。", knee: "低" },
+      { name: "Henningsvær Football Field", type: "iconic", label: "足球场", lat: 68.1530, lng: 14.2098, note: "著名海上足球场打卡点，建议和 Henningsvær 港口一起慢逛，不单独为了它赶路。", stars: "★★★★★", duration: "30-60 分钟", weather: "晴或多云最适合拍全景；小雨可短停；强风不久留。", knee: "低" },
+      { name: "Henningsvær Harbour", type: "iconic", label: "Henningsvær", lat: 68.1517, lng: 14.2010, note: "港口、画廊、咖啡馆和海边小路，适合第一天下午慢逛。", stars: "★★★★★", duration: "1-2 小时", weather: "小雨也有氛围；晴天适合桥上和码头散步。", knee: "低" },
+      { name: "Henningsvær 住宿区", type: "base", label: "Henningsvær 住宿", lat: 68.1536, lng: 14.2050, note: "港口小镇体验最强，适合 1 晚；作为三晚基地偏东。", stars: "★★★★☆", duration: "1 晚体验", weather: "第一晚精神状态好、想住进小镇时可选。", knee: "低" },
+      { name: "Trevarefabrikken / Henningsvær", type: "stay", label: "Trevarefabrikken", lat: 68.1552, lng: 14.2090, note: "Henningsvær 小镇风格住宿参考，适合想要咖啡馆、酒吧和港口氛围的一晚。", stars: "★★★★☆", duration: "1 晚体验", weather: "雨天也能靠餐饮和室内氛围兜底。", knee: "低", url: "https://www.trevarefabrikken.no/" },
+      { name: "Festvågtind Trailhead", type: "hike", label: "Festvågtind", lat: 68.1580, lng: 14.2230, note: "俯瞰 Henningsvær 的知名徒步起点。对膝盖不友好，本次更建议只标记位置，不安排完整徒步。", stars: "★★☆☆☆", duration: "2.5-4 小时", weather: "只适合晴、风小、地面干；低云雨雪不要上。", knee: "中高" },
+      { name: "Leknes", type: "base", label: "Leknes 住宿", lat: 68.1475, lng: 13.6115, note: "最实用的中部基地：超市、加油、餐厅更多，天气差时调整方便。", stars: "★★★★☆", duration: "适合 2-3 晚基地", weather: "天气越不稳定，Leknes 的实用性越高。", knee: "低" },
+      { name: "Gravdal 住宿区", type: "base", label: "Gravdal", lat: 68.1185, lng: 13.5525, note: "Leknes 旁边的安静住宿区，机动性接近 Leknes，氛围更松一点。", stars: "★★★★☆", duration: "适合 2-3 晚基地", weather: "适合想兼顾便利和安静。", knee: "低" },
+      { name: "Scandic Leknes Lofoten", type: "stay", label: "Scandic Leknes", lat: 68.1483, lng: 13.6116, note: "Leknes 镇内酒店参考。适合重视便利、停车和补给的人。", stars: "★★★☆☆", duration: "1-3 晚", weather: "雨天和临时改线最省心。", knee: "低", url: "https://www.scandichotels.com/hotels/norway/leknes/scandic-leknes-lofoten" },
+      { name: "Ballstad", type: "base", label: "Ballstad 住宿", lat: 68.0730, lng: 13.5450, note: "更有渔村度假感，是我最推荐的 3 晚连住区域之一。", stars: "★★★★★", duration: "适合 2-3 晚基地", weather: "晴天有海湾散步，雨天可在民宿休息做饭。", knee: "低" },
+      { name: "Napp", type: "base", label: "Napp 住宿", lat: 68.1300, lng: 13.4600, note: "靠近西线和海滩，安静、自然感强，适合看海和夜间追光。", stars: "★★★★★", duration: "适合 2-3 晚基地", weather: "极光晴窗和西线慢游都方便，餐食需提前采购。", knee: "低" },
+      { name: "Hattvika Lodge / Ballstad", type: "stay", label: "Hattvika", lat: 68.0678, lng: 13.5404, note: "Ballstad 海边住宿风格参考：适合想住得有设计感、又保持中部机动性的情侣。", stars: "★★★★★", duration: "2-3 晚", weather: "雨天也能把住宿本身当体验。", knee: "低", url: "https://hattvikalodge.no/en/" },
+      { name: "Solsiden Brygge / Ballstad", type: "stay", label: "Solsiden", lat: 68.0737, lng: 13.5441, note: "Ballstad 住宿风格参考：港湾位置，适合连住、做饭和夜间回撤休息。", stars: "★★★★☆", duration: "2-3 晚", weather: "适合需要厨房和港湾氛围。", knee: "低", url: "https://solsiden-brygge.no/" },
+      { name: "Nappstraumen / Napp", type: "stay", label: "Nappstraumen", lat: 68.1325, lng: 13.4413, note: "Napp 一带住宿参考：更接近海滩和西线，自然感强，补给需要提前安排。", stars: "★★★★☆", duration: "2-3 晚", weather: "晴窗追光方便，坏天气依赖自备餐食。", knee: "低" },
+      { name: "Offersøykammen Trailhead", type: "hike", label: "Offersøykammen", lat: 68.1375, lng: 13.5560, note: "Leknes 附近的短峰线，视野好但有上坡。本次只适合作为晴天、状态好时的加菜。", stars: "★★★☆☆", duration: "1.5-2.5 小时", weather: "晴、风小、地面干才考虑；雨后或低云放弃。", knee: "中" },
+      { name: "Haukland Beach", type: "aurora", label: "Haukland", lat: 68.1983, lng: 13.5297, note: "白天看白沙滩和海湾，夜里视野开阔，是很好的极光候选点。", stars: "★★★★★", duration: "1-2 小时；夜间 1-3 小时", weather: "晴天看水色，少云夜晚追光；强风时车边观测。", knee: "低" },
+      { name: "Mannen Trailhead", type: "hike", label: "Mannen", lat: 68.2036, lng: 13.5256, note: "Haukland 附近的经典山景徒步，视野很美，但对膝盖和天气要求高。", stars: "★★★☆☆", duration: "2-3 小时", weather: "只适合晴、风小、地面干；低云时没有必要。", knee: "中高" },
+      { name: "Uttakleiv Beach", type: "aurora", label: "Uttakleiv", lat: 68.2092, lng: 13.5037, note: "海岸线和山体很有戏剧性，适合短步行和夜间守极光。", stars: "★★★★★", duration: "1-2 小时；夜间 1-3 小时", weather: "多云有云缝也值得等；强风不要靠近湿滑礁石。", knee: "低" },
+      { name: "Unstad Arctic Surf", type: "view", label: "Unstad", lat: 68.2697, lng: 13.5840, note: "北极冲浪海滩，天气好时很特别；路上山海变化明显。", stars: "★★★★☆", duration: "45-90 分钟", weather: "晴或多云看海浪和冲浪氛围；暴风天车览即可。", knee: "低" },
+      { name: "Eggum Aurora Viewpoint", type: "aurora", label: "Eggum", lat: 68.3020, lng: 13.6490, note: "面向北方、视野开阔，适合作为 10/3 晚上的极光备选点。", stars: "★★★★☆", duration: "白天 45-90 分钟；夜间 1-3 小时", weather: "北面晴朗时优先；低云雨雪不专程去。", knee: "低" },
+      { name: "Lofotr Viking Museum", type: "view", lat: 68.2455, lng: 13.7597, note: "雨天和低云时很实用的室内文化备胎，适合不想把坏天气浪费在车上。", stars: "★★★☆☆", duration: "1.5-2 小时", weather: "连续雨、低云或体力不足时优先级上升。", knee: "低" },
+      { name: "Gimsøy / Hov Beach", type: "aurora", label: "Gimsøy", lat: 68.3065, lng: 14.1890, note: "北向开阔、光污染较少，适合从东中段夜间追光；白天可海岸短走。", stars: "★★★★☆", duration: "45-90 分钟；夜间 1-3 小时", weather: "晴朗夜晚适合作为东段极光点；雨雪强风时不绕行。", knee: "低" },
+      { name: "Ramberg Beach", type: "view", lat: 68.0890, lng: 13.2310, note: "白沙滩、山和海的组合很典型，去西线时适合停留。", stars: "★★★★☆", duration: "30-60 分钟", weather: "晴天和日落最好；阴天也可短停。", knee: "低" },
+      { name: "Ramberg 住宿区", type: "base", label: "Ramberg 住宿", lat: 68.0906, lng: 13.2300, note: "靠近西线和海滩，适合自然感优先；餐饮和补给不如 Leknes。", stars: "★★★★☆", duration: "1-2 晚", weather: "晴窗追光方便；雨天餐饮选择少。", knee: "低" },
+      { name: "Skagsanden Beach", type: "aurora", label: "Skagsanden", lat: 68.1020, lng: 13.2970, note: "摄影师常用的海滩点位，白天和夜晚都可用，但要注意风和潮水。", stars: "★★★★☆", duration: "45-90 分钟；夜间 1-3 小时", weather: "日落和晴夜都适合；强风浪大时只在安全区域停留。", knee: "低" },
+      { name: "Flakstad Church", type: "iconic", label: "Flakstad Church", lat: 68.1058, lng: 13.3038, note: "红色木教堂，靠近 Skagsanden，适合雨天或西线途中短停。", stars: "★★★☆☆", duration: "15-30 分钟", weather: "阴雨天也可停，作为海滩之外的轻松补充。", knee: "低" },
+      { name: "Skagsanden / Flakstad 住宿区", type: "base", label: "Skagsanden 住宿", lat: 68.1010, lng: 13.3018, note: "海滩和极光优先的住宿区。适合晚上少开车看天，但吃饭更依赖自备。", stars: "★★★★☆", duration: "1-2 晚", weather: "适合把极光点放在门口。", knee: "低" },
+      { name: "Lofoten Beach Camp / Skagsanden", type: "stay", label: "Beach Camp", lat: 68.1005, lng: 13.2994, note: "Skagsanden 海滩住宿参考。适合把海滩、日落和极光候选点放在门口。", stars: "★★★★☆", duration: "1-2 晚", weather: "晴夜加分很大，餐食要提前计划。", knee: "低", url: "https://www.lofotenbeachcamp.no/" },
+      { name: "Nusfjord", type: "view", lat: 68.0340, lng: 13.3490, note: "历史渔村，适合做西线或中部的慢节奏补充点。", stars: "★★★★☆", duration: "1.5-2.5 小时", weather: "阴天小雨有氛围；大雨可作为餐饮短停。", knee: "低" },
+      { name: "Nusfjord 住宿区", type: "base", label: "Nusfjord 住宿", lat: 68.0354, lng: 13.3524, note: "历史渔村住宿区，氛围独特，适合体验一晚；三晚连住则灵活性稍弱。", stars: "★★★★☆", duration: "1 晚体验", weather: "想住进历史渔村时可选。", knee: "低" },
+      { name: "Nusfjord Arctic Resort", type: "stay", label: "Nusfjord Resort", lat: 68.0350, lng: 13.3480, note: "特色住宿参考：历史渔村氛围强，适合体验一晚；做三晚基地则略偏。", stars: "★★★★☆", duration: "1 晚体验", weather: "阴雨天住宿体验也比较完整。", knee: "低", url: "https://nusfjordarcticresort.com/" },
+      { name: "Fredvang Bridges", type: "iconic", label: "Fredvang Bridges", lat: 68.0753, lng: 13.1857, note: "通往 Fredvang 和 Kvalvika/Ryten 区域的桥梁，适合西线途中短暂停车看海湾线条。", stars: "★★★☆☆", duration: "15-30 分钟", weather: "晴天和云隙最适合；强风时不在桥边久留。", knee: "低" },
+      { name: "Ryten / Kvalvika Trailhead", type: "hike", label: "Ryten", lat: 68.0803, lng: 13.1655, note: "知名徒步点，风景上限高，但往返时间长、坡度和湿滑风险不适合本次作为固定项目。", stars: "★★☆☆☆", duration: "3-5 小时", weather: "只在晴、风小、地面干且膝盖状态好时考虑缩短版。", knee: "中高" },
+      { name: "Hamnøy Bridge Viewpoint", type: "iconic", label: "Hamnøy", lat: 67.9466, lng: 13.1330, note: "罗弗敦最经典的渔屋与尖峰组合，适合停车拍照和短暂停留。", stars: "★★★★★", duration: "30-60 分钟", weather: "晴或有云隙最漂亮；阴天仍有戏剧感。", knee: "低" },
+      { name: "Hamnøy 住宿区", type: "base", label: "Hamnøy 住宿", lat: 67.9475, lng: 13.1356, note: "经典红色渔屋区域，视觉回报很高；离 Evenes 远，不建议最后一晚住。", stars: "★★★★☆", duration: "1 晚体验", weather: "想住进明信片时可选，返程前夜慎选。", knee: "低" },
+      { name: "Sakrisøy", type: "iconic", label: "Sakrisøy", lat: 67.9410, lng: 13.1110, note: "黄色渔屋、海湾和山景，很适合慢慢看。", stars: "★★★★★", duration: "30-60 分钟", weather: "云隙和阴天都好看，强雨缩短停留。", knee: "低" },
+      { name: "Sakrisøy 住宿区", type: "base", label: "Sakrisøy 住宿", lat: 67.9402, lng: 13.1128, note: "黄色渔屋和海湾气质明显，适合想体验西线一晚的人。", stars: "★★★★☆", duration: "1 晚体验", weather: "景观强但返程压力偏大。", knee: "低" },
+      { name: "Reine", type: "iconic", label: "Reine", lat: 67.9326, lng: 13.0895, note: "经典村庄。建议只短步行，不安排 Reinebringen 徒步。", stars: "★★★★★", duration: "45-90 分钟", weather: "晴天和阴天都值得；低云时不爬山，逛村即可。", knee: "低" },
+      { name: "Reinebringen Trailhead", type: "hike", label: "Reinebringen", lat: 67.9277, lng: 13.0882, note: "知名台阶徒步，名气很高但对膝盖压力大。此次不建议作为必做项目。", stars: "★★☆☆☆", duration: "2-3 小时", weather: "只适合晴、风小、地面干；雨雪低云不要爬。", knee: "高" },
+      { name: "Reine 住宿区", type: "base", label: "Reine 住宿", lat: 67.9336, lng: 13.0880, note: "西线经典住宿区，景观强；距离 Evenes 最远，返程日压力大。", stars: "★★★★☆", duration: "1 晚体验", weather: "不建议放在返程前一晚。", knee: "低" },
+      { name: "Eliassen Rorbuer / Hamnøy", type: "stay", label: "Eliassen", lat: 67.9450, lng: 13.1346, note: "Hamnøy 经典渔屋住宿参考：景观强、很浪漫，但远离 Evenes，返程压力更大。", stars: "★★★★☆", duration: "1 晚体验", weather: "晴天醒来很惊艳，坏天气也有渔屋氛围。", knee: "低", url: "https://eliassenrorbuer.no/" },
+      { name: "Reine Rorbuer", type: "stay", label: "Reine Rorbuer", lat: 67.9335, lng: 13.0890, note: "Reine 住宿参考：明信片视角强，适合体验一晚，不建议作为最后一晚。", stars: "★★★★☆", duration: "1 晚体验", weather: "适合不赶返程的夜晚。", knee: "低", url: "https://reinerorbuer.no/en/" },
+      { name: "Sakrisøy Rorbuer", type: "stay", label: "Sakrisøy", lat: 67.9407, lng: 13.1103, note: "Sakrisøy 住宿参考：黄色渔屋和海湾气质明显，适合想住进经典画面的人。", stars: "★★★★☆", duration: "1 晚体验", weather: "阴天也有强识别度。", knee: "低", url: "https://sakrisoy.no/" },
+      { name: "Å", type: "iconic", label: "Å", lat: 67.8795, lng: 12.9815, note: "E10 西端，世界尽头感很强；天气差时可把这里降级为可选。", stars: "★★★★☆", duration: "45-90 分钟", weather: "晴或阴天都能感受尽头感；低云暴雨时可跳过。", knee: "低" },
+      { name: "Å 住宿区", type: "base", label: "Å 住宿", lat: 67.8808, lng: 12.9804, note: "岛链尽头的安静住宿区，氛围独特但位置最西，除非特别想体验，否则不适合本次三晚主基地。", stars: "★★★☆☆", duration: "1 晚体验", weather: "适合慢旅行，不适合赶 EVE 返程。", knee: "低" },
+      { name: "Moskenes Ferry Quay", type: "airport", label: "Moskenes 渡轮", lat: 67.9006, lng: 13.0467, note: "不走回头路版本的关键出口：从这里坐 Moskenes-Bodø 车渡轮离开罗弗敦。", stars: "交通", duration: "提前 45-90 分钟到码头", weather: "强风或海况差可能影响船班，必须提前查实时运营。", knee: "低" },
+      { name: "Bodø Ferry Terminal", type: "airport", label: "Bodø 码头", lat: 67.2836, lng: 14.3761, note: "车渡轮抵达 Bodø 后，前往机场距离很短，适合接傍晚飞 Oslo 的航班。", stars: "交通", duration: "下船后到机场约留 30-60 分钟机动", weather: "雨天也可执行，重点是船班和航班衔接。", knee: "低" },
+      { name: "BOO Bodø Airport", type: "airport", label: "BOO Bodø", lat: 67.2692, lng: 14.3653, note: "不走回头路版本建议从 Bodø 飞回 Oslo，避免从西线折返 Evenes。", stars: "交通", duration: "国内航班建议至少提前 1.5-2 小时到机场", weather: "关注渡轮延误，航班不要接得太紧。", knee: "低" }
+    ];
+
+    const pointByName = Object.fromEntries(points.map((point) => [point.name, point]));
+
+    function markerIcon(type) {
+      const size = type === "stay" ? 16 : 18;
+      return L.divIcon({
+        className: "",
+        html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:50%;background:${colors[type]};border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.35);"></span>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+        popupAnchor: [0, -9]
+      });
+    }
+
+    const stayBounds = [];
+    const typeBounds = { iconic: [], hike: [], aurora: [] };
+    points.forEach((point) => {
+      const popupLink = point.url ? `<a class="popup-link" href="${point.url}">打开官网 / 预订页</a>` : "";
+      const marker = L.marker([point.lat, point.lng], { icon: markerIcon(point.type) })
+        .addTo(map)
+        .bindPopup(`<div class="popup-title">${point.name}</div><div class="popup-note">${point.note}</div><div class="popup-meta"><span><b>推荐：</b>${point.stars || "参考"}</span><span><b>建议时长：</b>${point.duration || "按现场调整"}</span><span><b>适合天气：</b>${point.weather || "以当日路况和云量为准"}</span><span><b>膝盖压力：</b>${point.knee || "低"}</span></div>${popupLink}`);
+
+      if (point.type === "base" || point.type === "stay" || point.type === "iconic" || point.type === "hike" || point.type === "aurora") {
+        marker.bindTooltip(point.label || point.name, {
+          permanent: true,
+          direction: "top",
+          offset: [0, -10],
+          className: `map-tooltip ${point.type}`
+        });
+      }
+
+      if (typeBounds[point.type]) {
+        typeBounds[point.type].push([point.lat, point.lng]);
+      }
+
+      if (point.type === "base" || point.type === "stay") {
+        stayBounds.push([point.lat, point.lng]);
+      }
+    });
+
+    const routeLayers = { return: [], partial: [], bodo: [] };
+    const routeBounds = { return: [], partial: [], bodo: [] };
+
+    function route(mode, names, color, label, options = {}) {
+      const line = names.map((name) => [pointByName[name].lat, pointByName[name].lng]);
+      const polyline = L.polyline(line, {
+        color,
+        weight: options.weight || 4,
+        opacity: options.opacity || .86,
+        dashArray: options.dashArray || null
+      }).bindPopup(label);
+      routeLayers[mode].push(polyline);
+      routeBounds[mode].push(...line);
+    }
+
+    route("return", ["EVE Evenes 机场", "Svolvær", "Kabelvåg", "Rørvikstranda Beach", "Henningsvær Football Field", "Henningsvær Harbour", "Leknes", "Ballstad"], "#1c5d77", "A 10/2：EVE 进岛到中部住宿，东段轻松玩");
+    route("return", ["Ballstad", "Haukland Beach", "Uttakleiv Beach", "Unstad Arctic Surf", "Eggum Aurora Viewpoint", "Gimsøy / Hov Beach", "Ballstad"], "#426b54", "A 10/3：中北部海滩与极光点小环线");
+    route("return", ["Ballstad", "Napp", "Nusfjord", "Skagsanden Beach", "Flakstad Church", "Ramberg Beach", "Fredvang Bridges", "Hamnøy Bridge Viewpoint", "Sakrisøy", "Reine", "Å", "Reine", "Hamnøy Bridge Viewpoint", "Ballstad"], "#b65b36", "A 10/4：西线一日慢游后回中部");
+    route("return", ["Ballstad", "Leknes", "Svolvær", "EVE Evenes 机场"], "#647079", "A 10/5：中部回 EVE，还车飞 Oslo", { dashArray: "7 7" });
+
+    route("partial", ["EVE Evenes 机场", "Svolvær", "Kabelvåg", "Rørvikstranda Beach", "Henningsvær Football Field", "Henningsvær Harbour"], "#1c5d77", "B 10/2：EVE 到东部小镇，住 Henningsvær / Svolvær");
+    route("partial", ["Henningsvær Harbour", "Gimsøy / Hov Beach", "Eggum Aurora Viewpoint", "Unstad Arctic Surf", "Lofotr Viking Museum", "Haukland Beach", "Uttakleiv Beach", "Leknes", "Ballstad", "Napp"], "#426b54", "B 10/3：用北海岸支线减少重复，住中部");
+    route("partial", ["Napp", "Nusfjord", "Skagsanden Beach", "Flakstad Church", "Ramberg Beach", "Fredvang Bridges", "Hamnøy Bridge Viewpoint", "Sakrisøy", "Reine", "Å", "Reine", "Hamnøy Bridge Viewpoint", "Ramberg Beach"], "#b65b36", "B 10/4：西线推进，可住 Ramberg / Napp / Ballstad 或体验 Reine");
+    route("partial", ["Ramberg Beach", "Napp", "Leknes", "Svolvær", "EVE Evenes 机场"], "#647079", "B 10/5：主干 E10 折返到 EVE，不是真正闭环", { dashArray: "7 7" });
+
+    route("bodo", ["EVE Evenes 机场", "Svolvær", "Kabelvåg", "Rørvikstranda Beach", "Henningsvær Football Field", "Henningsvær Harbour"], "#1c5d77", "C 10/2：Evenes 取车进岛，东段轻松过夜");
+    route("bodo", ["Henningsvær Harbour", "Gimsøy / Hov Beach", "Eggum Aurora Viewpoint", "Unstad Arctic Surf", "Lofotr Viking Museum", "Haukland Beach", "Uttakleiv Beach", "Leknes", "Ballstad"], "#426b54", "C 10/3：东段向中部推进，北海岸与白沙滩");
+    route("bodo", ["Ballstad", "Napp", "Nusfjord", "Skagsanden Beach", "Flakstad Church", "Ramberg Beach", "Fredvang Bridges", "Hamnøy Bridge Viewpoint", "Sakrisøy", "Reine", "Å"], "#b65b36", "C 10/4：中部向西端推进，不折返");
+    route("bodo", ["Å", "Moskenes Ferry Quay", "Bodø Ferry Terminal", "BOO Bodø Airport"], "#647079", "C 10/5：Moskenes-Bodø 车渡轮 + Bodø 飞 Oslo", { weight: 5, dashArray: "10 8" });
+
+    function setRouteMode(mode) {
+      Object.values(routeLayers).flat().forEach((layer) => map.removeLayer(layer));
+      const modes = mode === "all" ? Object.keys(routeLayers) : [mode];
+      modes.forEach((routeMode) => routeLayers[routeMode].forEach((layer) => layer.addTo(map)));
+
+      const bounds = modes.flatMap((routeMode) => routeBounds[routeMode]);
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [18, 18], animate: true });
+      }
+
+      document.querySelectorAll("[data-route-mode]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.routeMode === mode);
+      });
+    }
+
+    document.querySelectorAll("[data-route-mode]").forEach((button) => {
+      button.addEventListener("click", () => setRouteMode(button.dataset.routeMode));
+    });
+
+    setRouteMode("return");
+
+    document.querySelectorAll("[data-focus]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const point = pointByName[button.dataset.focus];
+        if (!point) return;
+        map.setView([point.lat, point.lng], 11, { animate: true });
+      });
+    });
+
+    document.querySelectorAll("[data-focus-all-stays]").forEach((button) => {
+      button.addEventListener("click", () => {
+        map.fitBounds(stayBounds, { padding: [42, 42], animate: true });
+      });
+    });
+
+    document.querySelectorAll("[data-focus-type]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const bounds = typeBounds[button.dataset.focusType] || [];
+        if (!bounds.length) return;
+        map.fitBounds(bounds, { padding: [42, 42], animate: true });
+      });
+    });
+
+  </script>
+</body>
+</html>
