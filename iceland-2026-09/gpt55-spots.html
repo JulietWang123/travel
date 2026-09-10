@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冰岛 9 月底最值得去的地方（GPT-5.5 推荐版） · 景点推荐与 ABC 方案对照</title>
+<meta name="description" content="GPT-5.5 对 2026 年 9 月底冰岛的景点推荐清单，逐项标注方案 A/B/C 覆盖情况、可行加强路线与最终建议。">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#fff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:70px}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.72; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--blue)}
+  .hero{
+    min-height:52vh; color:#fff; display:flex; align-items:flex-end;
+    background-image:linear-gradient(180deg,rgba(10,20,30,.18),rgba(10,20,30,.82)),url("images/jokulsarlon-diamond.jpg");
+    background-size:cover; background-position:center;
+  }
+  .hero-inner,main,footer{width:min(1180px,calc(100vw - 40px)); margin:0 auto}
+  .hero-inner{padding:80px 0 46px}
+  .kicker{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.78); font-weight:800; margin-bottom:14px}
+  h1{font-size:clamp(31px,4.6vw,58px); line-height:1.08; margin:0 0 16px; letter-spacing:0}
+  h1 .ver{display:block; margin-top:6px; font-size:.5em; font-weight:600; letter-spacing:0; color:rgba(255,255,255,.88)}
+  .hero p{max-width:920px; margin:0; color:rgba(255,255,255,.9); font-size:17px}
+  .tabbar{
+    position:sticky; top:0; z-index:600; background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line); box-shadow:0 2px 12px rgba(18,31,43,.06);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  }
+  .tabbar-inner{width:min(1180px,calc(100vw - 40px)); margin:0 auto; display:flex; gap:2px; overflow-x:auto; scrollbar-width:none}
+  .tabbar-inner::-webkit-scrollbar{display:none}
+  .tabbar a{flex:0 0 auto; padding:14px 13px 11px; font-size:14px; font-weight:800; color:var(--muted); text-decoration:none; border-bottom:3px solid transparent; white-space:nowrap}
+  .tabbar a:hover{color:var(--ink)}
+  main{padding:26px 0 70px}
+  section{margin:28px 0}
+  h2{font-size:25px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line)}
+  h3{font-size:17px; margin:0 0 8px}
+  p{margin:0 0 10px}
+  .lead{color:var(--muted); max-width:980px; font-size:16px}
+  .small{font-size:12px; color:var(--muted)}
+  .notice{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px;
+    background:#fff; border:1px solid var(--line); border-left:5px solid var(--blue); border-radius:8px;
+    padding:13px 16px; margin-bottom:22px; box-shadow:0 8px 24px rgba(18,31,43,.06);
+  }
+  .notice span{color:var(--muted)}
+  .notice .links{display:flex; flex-wrap:wrap; gap:16px}
+  .notice a{font-weight:800; text-decoration:none; white-space:nowrap}
+  .notice a:hover{text-decoration:underline}
+  .grid{display:grid; gap:16px}
+  .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .four{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(18,31,43,.06)}
+  .card-body{padding:16px}
+  .metric{border-top:4px solid var(--blue)}
+  .metric:nth-child(2){border-top-color:var(--green)}
+  .metric:nth-child(3){border-top-color:var(--amber)}
+  .metric:nth-child(4){border-top-color:var(--violet)}
+  .metric b{display:block; font-size:24px; line-height:1.2; color:#26384a}
+  .metric span{display:block; margin-top:5px; color:var(--muted); font-size:13px}
+  .callout{border:1px solid var(--line); border-left:5px solid var(--green); background:#f2fbf8; border-radius:8px; padding:15px 17px; box-shadow:0 6px 18px rgba(18,31,43,.04)}
+  .callout.warn{border-left-color:var(--amber); background:#fffaf0}
+  .callout.danger{border-left-color:var(--red); background:#fff5f3}
+  .tag{display:inline-block; margin:0 6px 8px 0; padding:4px 8px; border-radius:999px; background:#edf2f7; color:#334155; font-size:12px; font-weight:800}
+  .tag.best{background:#e6f4f1; color:#176c61}
+  .tag.warn{background:#fff1d6; color:#8a5200}
+  .tag.hard{background:#fde8e5; color:#9d2f20}
+  table{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px}
+  th,td{padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere}
+  th{background:#26384a; color:#fff}
+  tr:nth-child(even) td{background:#f9fbfc}
+  .table-wrap{overflow:auto; border-radius:8px}
+  .spot-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+  .photo{min-height:230px; display:flex; align-items:flex-end; color:#fff; background-size:cover; background-position:center; position:relative}
+  .photo:before{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,20,30,.08),rgba(10,20,30,.78))}
+  .photo .card-body{position:relative; z-index:2}
+  .photo h3{font-size:19px; margin-bottom:4px}
+  .photo p{font-size:13px; color:rgba(255,255,255,.86)}
+  .route-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:16px}
+  #map{height:520px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#dfe7ec}
+  .legend{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .legend span{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--muted)}
+  .line{width:26px; height:4px; display:inline-block; border-radius:999px}
+  .line.a{background:var(--amber)}
+  .line.d{background:var(--green)}
+  .timeline{position:relative; padding-left:18px}
+  .timeline:before{content:""; position:absolute; left:5px; top:4px; bottom:4px; width:2px; background:#d7e0e7}
+  .day{position:relative; margin:0 0 13px; padding:0 0 13px 14px; border-bottom:1px dashed #e1e7ec}
+  .day:before{content:""; position:absolute; left:-18px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--green); border:2px solid #fff; box-shadow:0 0 0 1px var(--green)}
+  .day h3{font-size:15px; margin-bottom:3px}
+  .day p{font-size:13px; color:var(--muted); margin:0}
+  .score{font-weight:900; color:#176c61}
+  .partial{font-weight:900; color:#8a5200}
+  .miss{font-weight:900; color:#9d2f20}
+  .option{border-top:4px solid var(--blue)}
+  .option.best{border-top-color:var(--green)}
+  .option.warn{border-top-color:var(--amber)}
+  .option.hard{border-top-color:var(--red)}
+  footer{padding:0 0 36px; color:var(--muted); font-size:12px}
+  @media (max-width:920px){
+    .two,.three,.four,.spot-grid,.route-grid{grid-template-columns:1fr}
+    .spot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #map{height:430px}
+  }
+  @media (max-width:560px){
+    .hero-inner,main,footer,.tabbar-inner{width:min(100vw - 28px,1180px)}
+    .spot-grid{grid-template-columns:1fr}
+    table{font-size:13px}
+    th,td{padding:9px}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Iceland · GPT-5.5 推荐版 · 2026 年 9 月底</div>
+    <h1>冰岛 9 月底最值得去的地方<span class="ver">（GPT-5.5 推荐版）</span></h1>
+    <p>汇总 GPT-5.5 对 9 月底冰岛景观价值、方案 A/B/C 覆盖情况、可行加强路线与最终建议的判断。核心目标不是跑最远，而是在一名主驾为主、9.26 必须住 Vik、9.29 优先回雷市同住的约束下，看见足够丰富且不疲劳失控的冰岛。</p>
+  </div>
+</header>
+
+<nav class="tabbar">
+  <div class="tabbar-inner">
+    <a href="#summary">结论</a>
+    <a href="#spots">景点推荐</a>
+    <a href="#coverage">方案覆盖</a>
+    <a href="#map-section">路线差异</a>
+    <a href="#options">可行方案</a>
+    <a href="#final">最终建议</a>
+  </div>
+</nav>
+
+<main>
+  <div class="notice">
+    <span>本页是 <strong>GPT-5.5 推荐版</strong>的 9 月底景点清单，含方案 A/B/C 覆盖对照；三个方案的完整行程在各自页面：</span>
+    <div class="links">
+      <a href="./">← 冰岛总览</a>
+      <a href="plan-a-full.html">方案A（整合版）</a>
+      <a href="plan-b.html">方案B</a>
+      <a href="plan-c.html">方案C</a>
+      <a href="compare.html">A/B/C 对照</a>
+      <a href="spots.html">DeepSeek 推荐版 →</a>
+      <a href="m3-spots.html">M3 推荐版 →</a>
+      <a href="../">首页 →</a>
+    </div>
+  </div>
+
+  <section id="summary">
+    <h2>0. 一屏结论</h2>
+    <div class="grid four">
+      <div class="card metric"><div class="card-body"><b>D/C+</b><span>当前最推荐：C 的顺路前半段 + B 的雷市收尾。</span></div></div>
+      <div class="card metric"><div class="card-body"><b>8 类</b><span>可覆盖高地、冰川、黑沙滩、瀑布、峡谷、地热、裂谷、火山海岸。</span></div></div>
+      <div class="card metric"><div class="card-body"><b>9.26</b><span>固定住 Vik，15:00 Vik 集合 Katla，与推荐路线兼容。</span></div></div>
+      <div class="card metric"><div class="card-body"><b>9.29</b><span>优先三人同住雷市，白天可分头安排轻量活动。</span></div></div>
+    </div>
+    <div class="callout">
+      <h3>最终判断</h3>
+      <p>不要为了多拿 Vestrahorn、东峡湾、米湖或斯奈山，把这趟从“高质量南岸 + 高地 + 冰川体验”变成赶路行程。当前最优解是：Hella 连住配合 Landmannalaugar 带交通团，9.26 稳稳到 Vik 接 Katla，9.27 看东南冰川，9.28 回雷市，9.29 弹性收尾。</p>
+    </div>
+  </section>
+
+  <section id="spots">
+    <h2>1. 冰岛 9 月底景点推荐详情</h2>
+    <p class="lead">下面是 GPT-5.5 推荐清单，并结合 DeepSeek 与 MiniMax-M3 版本做过横向对比。三版共同认为最该守住的是：冰河湖、兰德曼纳高地、Katla、南岸瀑布、Vik 黑沙滩海岸、羽毛峡谷，以及 Skaftafell/Fjallsárlón 这类东南冰川补强点。</p>
+
+    <div class="spot-grid">
+      <div class="card photo" style="background-image:url('images/jokulsarlon-diamond.jpg')"><div class="card-body"><h3>冰河湖 + 钻石沙滩</h3><p>5/5｜冰川湖、浮冰、黑沙滩，是本次南岸路线的视觉上限。</p></div></div>
+      <div class="card photo" style="background-image:url('images/landmannalaugar.jpg')"><div class="card-body"><h3>Landmannalaugar</h3><p>5/5｜彩色流纹岩、高地熔岩、温泉地貌，建议带交通团。</p></div></div>
+      <div class="card photo" style="background-image:url('images/skogafoss.jpg')"><div class="card-body"><h3>南岸瀑布群</h3><p>4.5/5｜Seljalandsfoss、Skógafoss、Kvernufoss 密集顺路。</p></div></div>
+      <div class="card photo" style="background-image:url('images/reynisfjara.jpg')"><div class="card-body"><h3>Vik 黑沙滩海岸</h3><p>4.5/5｜玄武岩、海蚀柱、海岬，与高地和冰川互补。</p></div></div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>推荐级别</th><th>景点/区域</th><th>地貌/体验类型</th><th>推荐理由</th><th>当前适配</th></tr></thead>
+        <tbody>
+          <tr><td>5/5</td><td>Jökulsárlón + Diamond Beach</td><td>冰川湖、浮冰、黑沙滩</td><td>蓝冰、浮冰和黑沙滩同框，9 月底低角度光线适合摄影。</td><td><span class="tag best">强烈保留</span></td></tr>
+          <tr><td>5/5</td><td>Landmannalaugar</td><td>彩色流纹岩高地、熔岩原、温泉地貌</td><td>本次南岸路线里最稀缺的高地景观。</td><td><span class="tag best">带交通团</span></td></tr>
+          <tr><td>4.5/5</td><td>Katla 冰川/冰洞</td><td>黑冰洞、火山灰层、冰川体验</td><td>和常规瀑布海岸差异明显，且 9.26 Vik 住宿使衔接合理。</td><td><span class="tag best">保留 15:00 Vik</span></td></tr>
+          <tr><td>4.5/5</td><td>南岸瀑布群</td><td>大瀑布、峡谷瀑布、草坡</td><td>顺路、高效率、景观稳定，是南岸基本盘。</td><td><span class="tag best">强烈保留</span></td></tr>
+          <tr><td>4.5/5</td><td>Reynisfjara + Dyrhólaey</td><td>黑沙滩、玄武岩、海蚀柱、海岬</td><td>火山海岸辨识度强，和高地/冰川形成反差。</td><td><span class="tag best">保留，注意危险浪</span></td></tr>
+          <tr><td>4/5</td><td>Fjaðrárgljúfur</td><td>峡谷、苔原、河谷</td><td>顺路价值高，天气好时很出片。</td><td><span class="tag best">顺路去</span></td></tr>
+          <tr><td>4/5</td><td>Golden Circle</td><td>裂谷、间歇泉、瀑布、火山口</td><td>地质类型丰富，交通成熟，适合开头或结尾。</td><td><span class="tag best">建议保留</span></td></tr>
+          <tr><td>4/5</td><td>Skaftafell / Svartifoss / Fjallsárlón</td><td>冰缘地貌、玄武岩瀑布、小冰河湖</td><td>东南段的高价值加强点，需看体力和天气。</td><td><span class="tag warn">可选加强</span></td></tr>
+          <tr><td>2.5/5</td><td>Sólheimasandur 飞机残骸</td><td>荒原、人文打卡</td><td>题材特别但步行耗时，容易挤压更高价值景点。</td><td><span class="tag warn">降级可选</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="coverage">
+    <h2>2. 方案 A/B/C 与优化版覆盖情况</h2>
+    <p class="lead">A 原版的问题不是“不能走”，而是折返感和疲劳风险偏高；B 稳妥，C 前半段更顺；D/C+ 把 C 的顺路结构和 B 的雷市收尾合并，是当前约束下最均衡的版本。</p>
+
+    <div class="grid three">
+      <div class="card"><div class="card-body"><h3>方案 A 原版</h3><span class="tag warn">景点不少</span><span class="tag hard">折返明显</span><p>先南岸到 Vik，再折返 Hella/高地，最后黄金圈。能覆盖核心点，但路线顺畅度不如优化版。</p></div></div>
+      <div class="card"><div class="card-body"><h3>方案 B</h3><span class="tag best">稳妥</span><span class="tag">雷市收尾好</span><p>黄金圈、高地、南岸、Katla、冰河湖顺序较自然，9.29 返回雷市的弹性最好。</p></div></div>
+      <div class="card"><div class="card-body"><h3>方案 C</h3><span class="tag best">前半最顺</span><span class="tag warn">9.28 可能长</span><p>Hella 连住配合高地非常顺，冰河湖体验最好；需要控制 9.28 回雷市强度。</p></div></div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>推荐景点</th><th>A 原版</th><th>A 优化版</th><th>B</th><th>C</th><th>推荐 D/C+</th></tr></thead>
+        <tbody>
+          <tr><td>冰河湖 + 钻石沙滩</td><td class="partial">包含但可能过累</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含且体验好</td><td class="score">包含</td></tr>
+          <tr><td>Landmannalaugar</td><td class="partial">包含但折返</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含，Hella 连住最顺</td><td class="score">包含</td></tr>
+          <tr><td>Katla</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td></tr>
+          <tr><td>南岸瀑布群</td><td class="score">包含</td><td class="score">包含更完整</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td></tr>
+          <tr><td>Reynisfjara + Dyrhólaey</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td></tr>
+          <tr><td>Fjaðrárgljúfur</td><td class="score">包含</td><td class="score">顺路包含</td><td class="partial">包含/补漏</td><td class="score">顺路包含</td><td class="score">顺路包含</td></tr>
+          <tr><td>Golden Circle</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td><td class="score">包含</td></tr>
+          <tr><td>Skaftafell / Fjallsárlón</td><td class="partial">不明确</td><td class="partial">可选</td><td class="partial">可短停</td><td class="score">明确包含</td><td class="score">建议包含</td></tr>
+          <tr><td>Vestrahorn</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不默认加入</td></tr>
+          <tr><td>东峡湾 / 米湖 / 北部</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不含</td><td class="miss">不建议硬塞</td></tr>
+          <tr><td>斯奈山半岛</td><td class="miss">不含</td><td class="miss">不含</td><td class="partial">9.29 可选</td><td class="partial">9.29 可选</td><td class="partial">分组备选，不默认</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="map-section">
+    <h2>3. 路线差异可视化</h2>
+    <p class="lead">绿色为推荐 D/C+：先 Golden Circle 与 Hella 连住，高地用带交通团，再向 Vik 和东南冰川推进，最后回雷市。橙色为 A 原版的典型折返结构：较早压到 Vik，再为高地和黄金圈回拉。</p>
+    <div class="route-grid">
+      <div>
+        <div id="map"></div>
+        <div class="legend">
+          <span><i class="line d"></i>D/C+ 推荐路线</span>
+          <span><i class="line a"></i>A 原版折返逻辑</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>D/C+ 逐日骨架</h3>
+          <div class="timeline">
+            <div class="day"><h3>9.24 雷市 → 黄金圈 → Hella</h3><p>先完成交通成熟的地质景观，降低后续折返。</p></div>
+            <div class="day"><h3>9.25 Hella → Landmannalaugar → Hella</h3><p>高地用带交通团，普通油车不承担 F 路风险。</p></div>
+            <div class="day"><h3>9.26 Hella → 南岸瀑布 → Vik → Katla</h3><p>15:00 Vik 集合，晚上住 Vik，节奏最稳。</p></div>
+            <div class="day"><h3>9.27 Vik → 羽毛峡谷 → Skaftafell/冰河湖</h3><p>东南冰川日，住宿在 Skaftafell/Freysnes 或冰河湖旁二选一。</p></div>
+            <div class="day"><h3>9.28 东南部 → 南岸补漏 → 雷市</h3><p>返程为主，按天气补 Dyrhólaey、黑沙滩或瀑布。</p></div>
+            <div class="day"><h3>9.29 雷市弹性日</h3><p>三人可分头，晚上优先同住雷市。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="options">
+    <h2>4. 想尽可能多看推荐景点的可行方案</h2>
+    <div class="grid three">
+      <div class="card option best"><div class="card-body"><h3>方案 1：稳妥均衡版 D/C+</h3><span class="tag best">最推荐</span><p>覆盖南岸、高地、Katla、东南冰川和黄金圈，9.29 回雷市。是景观丰富度、驾驶安全和住宿约束之间的最佳平衡。</p></div></div>
+      <div class="card option"><div class="card-body"><h3>方案 2：摄影优先版</h3><span class="tag">9.27 住冰河湖旁</span><p>冰河湖日落/清晨体验最好，但 9.28 回雷市会更长，更依赖主驾状态和天气。</p></div></div>
+      <div class="card option"><div class="card-body"><h3>方案 3：驾驶均衡版</h3><span class="tag best">适合你们</span><p>9.27 住 Skaftafell/Freysnes，仍覆盖冰河湖和钻石沙滩，同时让 9.27、9.28 车程更平均。</p></div></div>
+      <div class="card option hard"><div class="card-body"><h3>方案 4：加入 Vestrahorn</h3><span class="tag hard">不默认</span><p>风景上限高，但需要继续东推到 Höfn 一带，9.28 返雷市非常硬，9 月底天气差时回报不稳定。</p></div></div>
+      <div class="card option warn"><div class="card-body"><h3>方案 5：9.29 斯奈山一日团</h3><span class="tag warn">分组备选</span><p>不自驾可补一个新区域，但通常是长时间坐车，不适合作为三人离境前一天的共同默认方案。</p></div></div>
+      <div class="card option"><div class="card-body"><h3>9.29 轻量收尾</h3><span class="tag best">低风险</span><p>雷市 citywalk、Sky Lagoon、Reykjanes、购物和休整，最适合保留体力与航班缓冲。</p></div></div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>不建议硬塞的地方</th><th>是否值得</th><th>本次不默认加入的原因</th></tr></thead>
+        <tbody>
+          <tr><td>Vestrahorn / Stokksnes</td><td>值得，摄影价值高</td><td>会把路线继续推向 Höfn，导致 9.28 回雷市变成很硬的长途。</td></tr>
+          <tr><td>东峡湾 / Hengifoss / Hallormsstaðaskógur</td><td>值得，9 月底秋色有吸引力</td><td>更接近环线逻辑，和 9.26 Vik 锚点、6 天节奏不匹配。</td></tr>
+          <tr><td>Stuðlagil</td><td>值得</td><td>位置偏东/东北，南岸主线无法顺路覆盖。</td></tr>
+          <tr><td>米湖 / Dettifoss / Ásbyrgi</td><td>值得</td><td>与南岸相隔太远，需要完整北部或环线行程。</td></tr>
+          <tr><td>斯奈山半岛</td><td>值得</td><td>9.29 一日团可行但很长，适合作为个人或分组备选。</td></tr>
+          <tr><td>西峡湾 / Askja / 深入高地</td><td>很值得但门槛高</td><td>时间、车辆、9 月底道路和天气不确定性都不支持临时加入。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="final">
+    <h2>5. 最终建议与待确认</h2>
+    <div class="grid two">
+      <div class="callout">
+        <h3>我建议采用 D/C+</h3>
+        <p>9.24 住 Hella；9.25 从 Hella 跟团去 Landmannalaugar 后回 Hella；9.26 南岸瀑布 + Vik + 15:00 Katla，住 Vik；9.27 东进羽毛峡谷、Skaftafell/Fjallsárlón、冰河湖和钻石沙滩；9.28 回雷克雅未克；9.29 雷市弹性收尾。</p>
+      </div>
+      <div class="callout warn">
+        <h3>9.27 住宿二选一</h3>
+        <p>摄影优先选冰河湖旁或 Hali/Gerði/Fosshotel Glacier Lagoon；主驾舒适优先选 Skaftafell/Freysnes。结合你们“一名女生主驾为主，另一名女生仅替补”的结构，我略偏向 Skaftafell/Freysnes。</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-body">
+        <h3>出发前必须复核</h3>
+        <p><span class="tag warn">Landmannalaugar</span> 9 月下旬是否确认发团、集合点、最晚到达时间。</p>
+        <p><span class="tag warn">Katla</span> 9.26 15:00 是否仍为最优价格/时段、集合点与装备要求。</p>
+        <p><span class="tag warn">道路天气</span> 出发前复核 road.is / umferdin.is、vedur.is、SafeTravel，以及 Reynisfjara 现场危险浪警示。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>生成时间：2026-09-11。本页为行程分析与可视化整理，不替代出发前对天气、道路、团期、住宿和航班的实时复核。</p>
+  <p style="margin-top:6px">
+    <a href="./">← 冰岛总览</a> ·
+    <a href="spots.html">DeepSeek 推荐版</a> ·
+    <a href="m3-spots.html">M3 推荐版</a> ·
+    <a href="compare.html">A / B / C 对照表</a> ·
+    <a href="../">返回首页</a>
+  </p>
+</footer>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script>
+  const map = L.map('map', {scrollWheelZoom:false}).setView([64.05,-19.1], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 12,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const places = {
+    "Reykjavik": [64.1466,-21.9426],
+    "Thingvellir": [64.2559,-21.1295],
+    "Geysir": [64.3138,-20.3000],
+    "Gullfoss": [64.3271,-20.1199],
+    "Hella": [63.8350,-20.4000],
+    "Landmannalaugar": [63.9927,-19.0607],
+    "Seljalandsfoss": [63.6156,-19.9886],
+    "Skogafoss": [63.5321,-19.5114],
+    "Vik": [63.4186,-19.0060],
+    "Katla": [63.5270,-19.0500],
+    "Fjadrargljufur": [63.7713,-18.1724],
+    "Skaftafell": [64.0167,-16.9667],
+    "Jokulsarlon": [64.0470,-16.1794]
+  };
+
+  const routeD = ["Reykjavik","Thingvellir","Geysir","Gullfoss","Hella","Landmannalaugar","Hella","Seljalandsfoss","Skogafoss","Vik","Katla","Vik","Fjadrargljufur","Skaftafell","Jokulsarlon","Skaftafell","Reykjavik"].map(k => places[k]);
+  const routeA = ["Reykjavik","Seljalandsfoss","Skogafoss","Vik","Fjadrargljufur","Jokulsarlon","Vik","Hella","Landmannalaugar","Hella","Gullfoss","Geysir","Thingvellir","Reykjavik"].map(k => places[k]);
+  L.polyline(routeA, {color:'#c77700', weight:4, opacity:.75, dashArray:'8 8'}).addTo(map).bindPopup('A 原版：景点多，但 Vik / 高地 / 黄金圈之间折返更明显');
+  L.polyline(routeD, {color:'#2a9d8f', weight:5, opacity:.9}).addTo(map).bindPopup('D/C+ 推荐：Hella 连住接高地，Vik 接 Katla，东南冰川后回雷市');
+
+  const markers = [
+    ["雷克雅未克", places.Reykjavik, "9.23 抵达；9.28/9.29/9.30 收尾住宿核心"],
+    ["黄金圈", places.Geysir, "推荐 4/5｜裂谷、间歇泉、瀑布、火山口"],
+    ["Hella", places.Hella, "推荐住宿点｜适合 9.24-9.25 连住接高地团"],
+    ["Landmannalaugar", places.Landmannalaugar, "推荐 5/5｜高地彩色流纹岩，建议带交通团"],
+    ["南岸瀑布", places.Skogafoss, "推荐 4.5/5｜Skogafoss / Kvernufoss 等顺路点"],
+    ["Vik", places.Vik, "固定锚点｜9.26 必须住；15:00 Katla 集合"],
+    ["Katla", places.Katla, "推荐 4.5/5｜黑冰洞/冰川体验"],
+    ["羽毛峡谷", places.Fjadrargljufur, "推荐 4/5｜顺路峡谷地貌"],
+    ["Skaftafell", places.Skaftafell, "推荐 4/5｜驾驶均衡住宿与冰川补强点"],
+    ["冰河湖/钻石沙滩", places.Jokulsarlon, "推荐 5/5｜东南冰川视觉上限"]
+  ];
+  markers.forEach(([name, coord, desc]) => {
+    L.marker(coord).addTo(map).bindPopup(`<strong>${name}</strong><br>${desc}`);
+  });
+  map.fitBounds(L.latLngBounds(routeD.concat(routeA)).pad(.18));
+</script>
+</body>
+</html>
