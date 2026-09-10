@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 年 9 月底冰岛 6 天行程建议</title>
+<title>2026 年 9 月底冰岛 6 天自驾行程建议</title>
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
 <style>
   :root{
@@ -56,7 +56,6 @@
   .timeline .day-card:nth-child(4){ border-left-color:var(--red); }
   .timeline .day-card:nth-child(5){ border-left-color:var(--violet); }
   .timeline .day-card:nth-child(6){ border-left-color:var(--slate); }
-  .timeline .day-card:nth-child(7){ border-left-color:var(--blue); }
   .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; color:var(--muted); font-size:13px; }
   .meta span{ background:#f1f5f9; border-radius:6px; padding:2px 8px; }
   .photos{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
@@ -76,10 +75,12 @@
   .small{ color:var(--muted); font-size:12px; }
   .callout{ border:1px solid var(--line); border-left:5px solid var(--amber); background:#fffaf0; border-radius:8px; padding:14px 16px; }
   .callout.hard{ border-left-color:var(--red); background:#fff5f3; }
-  .callout.ok{ border-left-color:var(--green); background:#f2fbf8; }
-  .kpi{ display:flex; flex-wrap:wrap; gap:10px; }
-  .kpi div{ flex:1 1 150px; background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
-  .kpi b{ display:block; font-size:22px; }
+  .notice{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; justify-content:space-between;
+    background:#fff; border:1px solid var(--line); border-left:5px solid var(--blue); border-radius:8px;
+    padding:12px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .notice span{ color:var(--muted); }
+  .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
+  .notice a:hover{ text-decoration:underline; }
   footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
   @media (max-width:900px){
     .two,.three,.photos,.map-wrap{ grid-template-columns:1fr; }
@@ -103,397 +104,209 @@
 
 <header class="hero">
   <div class="hero-inner">
-    <p class="hero-kicker">Iceland · 2026.09.24 – 09.30</p>
+    <p class="hero-kicker">Iceland · 2026.09.24 – 09.29</p>
     <h1>2026 年 9 月底冰岛 6 天行程建议</h1>
-    <p>为 2 女 1 男、单主驾为主、<strong>大众高尔夫（2WD 油车）</strong>自驾设计。保留兰德曼纳劳卡高地与 Vik 集合的卡特拉冰川徒步，同时避免每天都在赶路。9.26 Vik 住宿已锁定，9.25 兰德曼纳劳卡与 9.27 冰河湖住宿保留多个方案供选择。</p>
+    <p>为 2 女 1 男、单主驾为主、油车自驾设计。目标是保留兰德曼纳高地和 Vik 集合的卡特拉冰川徒步，同时避免每天都在赶路。</p>
   </div>
 </header>
 
 <main>
 
+<div class="notice">
+  <span>本页为<strong>原始方案</strong>（9.24–9.29 · 6 天 · 自驾）。跟团、住宿与走法的更新另有一页。</span>
+  <a href="updates.html">变动与新增 →</a>
+</div>
+
 <section>
-  <h2>一、推荐结论</h2>
-  <p class="lead">先说结论，再看每天怎么走。整个方案围绕三条硬约束设计：<strong>车是 2WD 高尔夫（上不了 F 路）</strong>、<strong>Vik 9.26 住宿已订</strong>、<strong>9.30 两人飞法罗群岛</strong>。</p>
+  <h2>推荐结论</h2>
+  <p class="lead">推荐走“黄金圈 + 兰德曼纳高地 + 南岸 + 卡特拉 + 冰河湖/钻石沙滩”的慢节奏路线。不建议这 6 天去米湖、东峡湾、赫本或完整斯奈山自驾，因为会显著增加主驾疲劳，也会压缩自由摄影时间。</p>
   <div class="grid three">
     <div class="card"><div class="card-body">
-      <h3>① 9.25 兰德曼纳劳卡：换 Southcoast 的 Hella 团</h3>
-      <p class="small">高尔夫不能走 F208/F225 高地路，自行开到兰德曼纳劳卡属于违约且无保险。「Rejkjavík 出发 + 接送」方案会强制 9.24、9.25 两晚住雷市，拖慢整体节奏。</p>
-      <p><span class="tag best">推荐</span> Southcoast Adventure · Hella 10:00 上车 · 8–10 小时 · 含温泉</p>
+      <span class="tag best">最优先保留</span>
+      <h3>兰德曼纳高地</h3>
+      <p>9 月底的高地秋色、彩色流纹岩山、熔岩地貌差异感最强。建议保留，但交通方式要谨慎。</p>
     </div></div>
     <div class="card"><div class="card-body">
-      <h3>② 9.27 住宿：优先「冰河湖旁」</h3>
-      <p class="small">住冰河湖旁可以把 9.27 控制在 ~200 km，把长距离推到 9.28 的返程日，节奏最舒服。</p>
-      <p><span class="tag best">推荐 A</span> 冰河湖旁（Hali / Gerdi / Fosshotel Glacier Lagoon）</p>
+      <span class="tag best">已锁定住宿</span>
+      <h3>9.26 住 Vik</h3>
+      <p>15:00 Vik 集合去卡特拉后，当晚住 Vik 是合理的，不建议结束后继续东进。</p>
     </div></div>
     <div class="card"><div class="card-body">
-      <h3>③ 9.29 三人分头，宿 Keflavík</h3>
-      <p class="small">9.30 有两人从 KEF 飞法罗群岛，9.29 晚上直接睡 Keflavík 最稳。白天三人可各选一条线：Reykjanes / 雷市 citywalk+温泉 / 斯奈山。</p>
-      <p><span class="tag best">推荐</span> ① Reykjanes + 温泉（~150 km）</p>
+      <span class="tag warn">需要取舍</span>
+      <h3>放弃赫本/蝙蝠山</h3>
+      <p>风景很好，但对 6 天且有高地和冰川活动的行程来说太远，会牺牲体验质量。</p>
     </div></div>
-  </div>
-  <div class="callout" style="margin-top:16px">
-    <p><strong>一句话总结：</strong>9.24 用黄金圈从雷市顺路到 Hella 住下 → 9.25 从 Hella 上超级吉普去高地（自驾 0 km）→ 9.26 慢走到 Vik 做卡特拉 → 9.27 一路向东到冰河湖住下 → 9.28 边玩边回雷市 → 9.29 分头活动 → 9.30 从 Keflavík 出发。全程只有 9.28 一天是长距离，其余都在 240 km 以内。</p>
   </div>
 </section>
 
 <section>
-  <h2>二、每天安排</h2>
+  <h2>每天安排</h2>
   <div class="timeline">
 
     <article class="day-card">
-      <h3>9.24（四）雷市取车 → 黄金圈 → Hella</h3>
-      <p>上午在雷市取车（建议 09:00 前完成提车，检查车况与保险档位），先在 Bónus / Krónan / Costco 做一次大采购（水、干粮、三明治材料、保温杯），然后走黄金圈经典线，傍晚落到 Hella 住宿，为次日 Hella 上车做准备。</p>
-      <ul>
-        <li><strong>辛格维利尔国家公园</strong> Þingvellir — 欧美板块裂谷，可走 Almannagjá 峡谷步道；停车收费（Parka App 或现场）。</li>
-        <li><strong>Geysir 间歇泉</strong> — Strokkur 每 6–10 分钟喷一次，20–40 m。</li>
-        <li><strong>Gullfoss 黄金瀑布</strong> — 双层跌水，上层观景台风大。</li>
-        <li><strong>Faxi 瀑布</strong>（可选）— 人少，可近距离。</li>
-        <li><strong>Friðheimar 番茄农场</strong>（可选，需订位）— 温室里吃番茄汤+面包自助；没订位可只逛商店。</li>
-        <li><strong>Skálholt 草皮教堂</strong>（可选）— 冰岛历史主教座。</li>
-        <li><strong>Kerið 火山口湖</strong> — 红土+蓝绿湖，门票约 400 ISK，绕口沿走一圈 20 分钟。</li>
-      </ul>
-      <div class="meta"><span>里程 ~240 km</span><span>驾驶 ~3.5 h</span><span>宿：Hella</span><span>补给：雷市大采购 + Selfoss</span></div>
+      <h3>9.24 雷克雅未克 → 黄金圈 → Hella / Flúðir / Selfoss</h3>
+      <p>一早取车出发。建议按辛格维利尔、间歇泉、黄金瀑布、Kerið 火山口推进。晚上住南部内陆，方便第二天去兰德曼纳。</p>
+      <div class="meta"><span>景观：裂谷、地热、瀑布、火山口湖</span><span>补给：雷市 / Selfoss</span><span>节奏：轻松</span></div>
     </article>
 
     <article class="day-card">
-      <h3>9.25（五）Hella 上车 → 兰德曼纳劳卡高地超级吉普 → 回 Hella</h3>
-      <p>这天的关键决策：<strong>不要自驾上高地。</strong>高尔夫是 2WD，走 F208/F225 属于违反租车合同、保险失效，且需涉水过河。改用 Southcoast Adventure 的超级吉普团，从 Hella（Suðurlandsvegur, 850 Hella）10:00 出发，8–10 小时，含地热温泉泡浴（<strong>记得带泳衣</strong>）。</p>
-      <ul>
-        <li>09:20 前到 Hella 上车点，车停在 Hella 住宿处或指定停车区。</li>
-        <li>路线通常经 Hrauneyjar / F208 进入，沿途熔岩原、黑沙、流纹岩山脉（Ljósártungur 一带的色彩最出片）。</li>
-        <li>中午在营地一带用餐（可选 6,000 ISK 的 lunchbox，或自备三明治）。</li>
-        <li>下午泡地热河温泉，约 18:00–20:00 回到 Hella。</li>
-        <li><strong>务必提前邮件确认 9.25 是否确认发团</strong>（info@southadventure.is / +354 867 3535）。</li>
-      </ul>
-      <div class="meta"><span>自驾 0 km</span><span>团 8–10 h</span><span>宿：Hella（连住）</span><span>补给：Hella 加油+午餐</span></div>
-      <p class="small">高地内没有加油站、没有商店，只有营地旁边用旧校车改的 "Mountain Mall" 小卖部 —— 水和干粮一定在 Hella 带够。</p>
+      <h3>9.25 兰德曼纳劳卡高地</h3>
+      <p>保留两个选择：A 自驾到集合点参加 11:30 一日游；B 改成带交通团。以你们的驾驶结构和油车条件，我更推荐 B。</p>
+      <div class="meta"><span>景观：彩色山、熔岩原、高地秋色</span><span>补给：前一晚备好午餐和水</span><span>节奏：中等偏累</span></div>
     </article>
 
     <article class="day-card">
-      <h3>9.26（六）Hella → 瀑布群 → Vik（卡特拉冰川徒步）</h3>
-      <p>路线短、拍点多，是全程最「出片」的一天。傍晚在 Vik 集合做卡特拉冰洞+冰川徒步（超吉普往返 Kötlujökull，约 3 小时，18:15 左右结束）。<strong>Vik 住宿已订，这天锁定。</strong></p>
-      <ul>
-        <li><strong>Seljalandsfoss 塞里雅兰瀑布</strong> — 可走到瀑布后方，会湿，穿防水外套。</li>
-        <li><strong>Gljúfrabúi</strong> — 就在塞里雅兰旁边，藏在峡谷缝里，需踩石块进入。</li>
-        <li><strong>Skógafoss 斯科加瀑布</strong> — 60 m 落差，可爬 527 级台阶到顶部平台。</li>
-        <li><strong>Kvernufoss</strong> — 藏在 Skógar 博物馆后面的「隐藏瀑布」，人少。</li>
-        <li><strong>Sólheimajökull 冰川舌</strong> — 停车场到冰川前缘步行 ~20 分钟，安全线内不要越过围栏。</li>
-        <li><strong>Vik 集合点</strong> — Southcoast 卡特拉团的集合点在 Vík 的 Ice Cave Bistro Café 建筑外拐角处，请以确认邮件为准。</li>
-      </ul>
-      <div class="meta"><span>里程 ~100 km</span><span>驾驶 ~1.5 h</span><span>宿：Vik（已订）</span><span>补给：Hvolsvöllur + Vik（Krónan / N1）</span></div>
-      <p class="small"><strong>Vik 是东路最后一个价格合理的加油点</strong>，从 Vik 往东油价明显上涨，离开 Vik 前加满。卡特拉需要<strong>硬底防水登山鞋</strong>，冰爪由团方提供，鞋不提供。</p>
+      <h3>9.26 南岸瀑布 → Vik → 15:00 卡特拉冰川徒步</h3>
+      <p>上午看塞里雅兰瀑布、斯科加瀑布，午后抵达 Vik。14:20 左右到集合点，15:00 跟团去卡特拉。晚上住已订的 Vik 酒店。</p>
+      <div class="meta"><span>景观：瀑布、海岸、冰川/冰洞</span><span>补给：Hella / Hvolsvöllur / Vik</span><span>节奏：舒适</span></div>
     </article>
 
     <article class="day-card">
-      <h3>9.27（日）Vik → 羽毛峡谷 → Skaftafell → 冰河湖 → 宿冰河湖旁</h3>
-      <p>从 Vik 一路向东，穿越冰岛最壮观的冰缘地貌带。傍晚在 Jökulsárlón 冰河湖 + 钻石沙滩看日落（9 月底日落约 19:10），晚上住冰河湖旁，把长距离留给次日。</p>
-      <ul>
-        <li><strong>Fjaðrárgljúfur 羽毛峡谷</strong> — 从 206 号路进入（碎石路，路面平整，干燥天气高尔夫没问题）。</li>
-        <li><strong>Skaftafell 国家公园</strong> — Svartifoss 玄武岩瀑布往返 ~1.5 h，或走 Skaftafellsjökull 冰川舌短线。</li>
-        <li><strong>Fjallsárlón</strong> 冰河湖 — 比 Jökulsárlón 小但人少，可看到冰山与冰川同框。</li>
-        <li><strong>Jökulsárlón 冰河湖 + Diamond Beach 钻石沙滩</strong> — 日落前 1.5 小时到，光线最好。</li>
-      </ul>
-      <div class="meta"><span>里程 ~200 km</span><span>驾驶 ~3 h</span><span>宿：冰河湖旁（方案 A/B/C 见第五节）</span><span>补给：Kirkjubæjarklaustur（最后正经补给）+ Freysnes N1</span></div>
-      <p class="small"><strong>Jökulsárlón 一带完全没有加油站</strong>，离开 Skaftafell 前在 Freysnes 的 N1 加满；Kirkjubæjarklaustur 是最后一个有超市的镇子。</p>
+      <h3>9.27 Vik → 冰河湖 → 钻石沙滩 → Kirkjubæjarklaustur</h3>
+      <p>早出发，把冰河湖和钻石沙滩留在白天。Skaftafell 可短停，不建议再安排长徒步。晚上住教堂镇，降低 9.28 回程压力。</p>
+      <div class="meta"><span>景观：冰川舌、冰湖、黑沙滩浮冰</span><span>补给：Vik / 教堂镇</span><span>节奏：中等</span></div>
     </article>
 
     <article class="day-card">
-      <h3>9.28（一）冰河湖 → Vik → 黑沙滩 → 雷市（当天还车）</h3>
-      <p>返程日，也是全程唯一的长距离日。<strong>是否当天开回雷市并还车，尚未定，见第六节的两种走法。</strong>沿途把前一天天气不好而错过的点补上。</p>
-      <ul>
-        <li>返程路上二刷 Fjallsárlón / 羽毛峡谷（光线不同）。</li>
-        <li><strong>Vik 午餐</strong>，休整。</li>
-        <li><strong>Dyrhólaey 迪霍拉里海岬</strong> — 白色灯塔崖顶俯瞰黑沙滩拱门（218 号路，路面铺装，末端略陡）。</li>
-        <li><strong>Reynisfjara 黑沙滩</strong> — 玄武岩柱 + 海蚀柱 Reynisdrangar。<strong>走到水线附近有 sneaker wave 致命风险，务必站在安全区、背对大海方向。</strong></li>
-        <li>傍晚回到雷市，如选择当天还车，注意还车点营业时间（多数 18:00–20:00 前）。</li>
-      </ul>
-      <div class="meta"><span>里程 ~395 km</span><span>驾驶 ~5 h</span><span>宿：雷市 或 Selfoss/Hella</span><span>补给：Vik / Selfoss</span></div>
+      <h3>9.28 教堂镇 → 南岸补漏 → 雷克雅未克</h3>
+      <p>上午看羽毛峡谷，回程补黑沙滩或 Dyrhólaey。下午慢慢回雷克雅未克，避免天黑后还在长距离驾驶。</p>
+      <div class="meta"><span>景观：峡谷、黑沙滩、海岬</span><span>补给：教堂镇 / Vik / Selfoss</span><span>节奏：中等</span></div>
     </article>
 
     <article class="day-card">
-      <h3>9.29（二）三人分头活动 → 宿 Keflavík</h3>
-      <p>这天三人可以各走各的，晚上统一睡 Keflavík，为 9.30 早班机做准备。三条线见第七节。</p>
-      <ul>
-        <li><strong>① Reykjanes 半岛 + 温泉</strong>（~150 km）：Gunnuhver 地热区、大陆桥、Grindavík 一带（视火山活动开放情况）、Blue Lagoon 或 Sky Lagoon。</li>
-        <li><strong>② 雷市 citywalk + Sky Lagoon</strong>（0 km）：Hallgrímskirkja、Harpa、Sun Voyager、老港；下午泡 Sky Lagoon，最省力。</li>
-        <li><strong>③ Snæfellsnes 斯奈山一日游</strong>（11–12 h）：<strong>不推荐</strong>在飞前一天做，回程太晚、体力风险高。</li>
-      </ul>
-      <div class="meta"><span>宿：Keflavík（Hótel Berg / Park Inn / Courtyard）</span><span>补给：Keflavík</span></div>
-    </article>
-
-    <article class="day-card">
-      <h3>9.30（三）两人飞法罗群岛；剩下一人自由日</h3>
-      <p>两人从 KEF 出发飞法罗群岛。剩下一人可补一个一日团：黄金圈 / Reykjanes / Silfra 裂缝浮潜（需干衣、需提前订）。</p>
-      <div class="meta"><span>宿：Keflavík 或雷市（视 10.1 航班时间）</span></div>
+      <h3>9.29 雷市周边弹性日</h3>
+      <p>三人可一起，也可分开。优先考虑不自驾的一日团、温泉或 citywalk，给 9.30 离境的人留体力和安全余量。</p>
+      <div class="meta"><span>景观：城市、温泉、海岸熔岩或斯奈山</span><span>补给：雷克雅未克</span><span>节奏：轻松到偏长，取决于选择</span></div>
     </article>
 
   </div>
 </section>
 
 <section>
-  <h2>三、路线地图</h2>
-  <p class="lead">点击右侧按钮切换每天的路线（含 9.29 三个可选方案）。地图基于本地 Leaflet + OpenStreetMap 瓦片，可离线打开页面后联网加载瓦片。</p>
+  <h2>路线地图</h2>
   <div class="map-wrap">
     <div id="map"></div>
     <div class="map-side" id="mapButtons"></div>
   </div>
+  <p class="small">地图线条为行程规划示意，不是逐路口导航。实际路线请以 Google Maps 和当天 road.is 路况为准。</p>
 </section>
 
 <section>
-  <h2>四、9 月底能看到的不同风光</h2>
-  <p class="lead">9 月底是冰岛色彩转折期：桦树转金黄、苔原变红褐，高地开始有初雪，形成「黑火山岩 + 白金三色」的画面。日照约 11 h 45 m（日出 ~07:10 / 日落 ~19:10）。</p>
+  <h2>9 月底能看到的不同风光</h2>
   <div class="photos">
     <figure>
-      <img src="images/landmannalaugar.jpg" alt="兰德曼纳劳卡流纹岩山脉">
-      <figcaption><strong>高地流纹岩（9.25）</strong>黄、绿、赭、黑层叠的流纹岩山脉，配合地热河温泉，是冰岛最不像地球的一处。</figcaption>
+      <img src="images/landmannalaugar.jpg" alt="Landmannalaugar 彩色山">
+      <figcaption><strong>高地彩色山</strong>兰德曼纳的流纹岩山、熔岩原和秋色，是全程最特别的一类地貌。</figcaption>
     </figure>
     <figure>
-      <img src="images/skogafoss.jpg" alt="斯科加瀑布">
-      <figcaption><strong>南岸瀑布群（9.26）</strong>塞里雅兰、斯科加、Kvernufoss 三连击，水量仍足，光线柔和。</figcaption>
+      <img src="images/skogafoss.jpg" alt="Skógafoss 瀑布">
+      <figcaption><strong>南岸瀑布</strong>塞里雅兰和斯科加都很适合慢拍，天气好时层次非常漂亮。</figcaption>
     </figure>
     <figure>
-      <img src="images/reynisfjara.jpg" alt="Reynisfjara 黑沙滩玄武岩柱">
-      <figcaption><strong>黑沙滩与海蚀柱（9.26 / 9.28）</strong>玄武岩柱、Reynisdrangar 海蚀柱，9 月底低角度阳光让黑色更沉、白色浪花更亮。</figcaption>
+      <img src="images/reynisfjara.jpg" alt="Reynisfjara 黑沙滩">
+      <figcaption><strong>黑沙滩与海岬</strong>Reynisfjara、Dyrhólaey 是火山黑沙、海蚀柱和海岸线风景。</figcaption>
     </figure>
     <figure>
-      <img src="images/jokulsarlon-diamond.jpg" alt="Jökulsárlón 与钻石沙滩浮冰">
-      <figcaption><strong>冰河湖与钻石沙滩（9.27）</strong>冰山在海湖与黑色沙滩之间漂流，日落前 1 小时是黄金时段。</figcaption>
+      <img src="images/jokulsarlon-diamond.jpg" alt="Jökulsárlón 钻石沙滩">
+      <figcaption><strong>冰河湖与钻石沙滩</strong>蓝冰、浮冰、黑沙滩同框，和前几天的高地/瀑布形成强差异。</figcaption>
     </figure>
   </div>
-  <div class="callout hard" style="margin-top:16px">
-    <p><strong>关于极光，先做预期管理：</strong>2026-09-26 是<strong>满月</strong>（100% 亮度），9.24–9.29 整个窗口月亮都很亮，<strong>会显著降低极光的对比度</strong>。9 月底确实处在极光季初期、夜长也够，但满月 + 可能的多云，不要把它当成本次行程的主目标。看到算惊喜。</p>
-    <p class="small">另外：海鹦（puffin）8 月底前基本已离岸飞走，<strong>不要为看海鹦安排行程</strong>。</p>
-  </div>
 </section>
 
 <section>
-  <h2>五、9.25 兰德曼纳劳卡 · 方案对照</h2>
+  <h2>9.25 兰德曼纳交通选项</h2>
   <table>
-    <thead>
-      <tr><th style="width:20%">方案</th><th>出发 / 集合</th><th>时长 / 价格</th><th>住宿影响</th><th>评价</th></tr>
-    </thead>
+    <thead><tr><th>选项</th><th>适合度</th><th>优点</th><th>风险/代价</th><th>我的建议</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>A. Southcoast · Hella 出发</strong></td>
-        <td>10:00 于 Bus Stop Hella（Suðurlandsvegur, 850 Hella）上车</td>
-        <td>8–10 h；<strong>44,990 ISK 起</strong>/人；接送 Hella·Hvolsvöllur 加 2,500 ISK/人/单程</td>
-        <td>9.24 / 9.25 两晚都住 Hella，节奏连贯</td>
-        <td><span class="tag best">推荐</span>自驾 0 km，不违约，含温泉（带泳衣）</td>
+        <td>保留 11:30 meet on location，自驾到集合点</td>
+        <td>低到中</td>
+        <td>时间自由，订单不用改；如果车和路况都合适，成本可能更低。</td>
+        <td>必须确认租车允许走 F 路，通常需要 4x4；9 月底高地天气和路况不稳定，主驾压力大。</td>
+        <td>只有在确认车辆、保险、F 路开放、无涉水压力时才考虑。</td>
       </tr>
       <tr>
-        <td><strong>B. 雷市出发 + 接送</strong></td>
-        <td>雷市集合，含往返接送</td>
-        <td>全天；接送约 10,000 ISK/人/单程</td>
-        <td>强制 9.24 / 9.25 两晚住雷市，之后再南下</td>
-        <td><span class="tag warn">备用</span>如 A 未成团再考虑，会牺牲南岸节奏</td>
-      </tr>
-      <tr>
-        <td><strong>C. 自行开高尔夫进高地</strong></td>
-        <td>自驾 F208 / F225</td>
-        <td>—</td>
-        <td>—</td>
-        <td><span class="tag hard">不可行</span>2WD 车走 F 路违约、保险失效、需涉水过河</td>
+        <td>改成带交通的一日团</td>
+        <td>高</td>
+        <td>主驾休息，风险低；不用自己处理高地路况，体验更放松。</td>
+        <td>价格可能更高；集合点/接送点和时间需要重新匹配住宿。</td>
+        <td>最推荐。尤其你们是一名主驾为主，且后面还有卡特拉和南岸长线。</td>
       </tr>
     </tbody>
   </table>
-  <div class="callout" style="margin-top:14px">
-    <p><strong>需要你确认的一件事：</strong>给 Southcoast（info@southadventure.is / +354 867 3535）发邮件确认 <strong>9.25 是否确认发团</strong>。确认后我们锁定方案 A，并同步预订 Hella 的住宿两晚。</p>
-    <p class="small">Southcoast 也运营「Hvolsvöllur 出发的 Þórsmörk 巴士（5–11 月）」和「Landmannalaugar Highland Bus」，后者季节性很强、9 月下旬大概率已停运，<strong>不要把它当作 9.25 的备选</strong>。</p>
-  </div>
 </section>
 
 <section>
-  <h2>六、9.27 住宿地与 9.28 走法</h2>
-
-  <h3>9.27 住宿：三方案对照</h3>
+  <h2>9.24 和 9.25 住宿地对比</h2>
   <table>
-    <thead><tr><th style="width:22%">方案</th><th>9.27 里程</th><th>9.28 里程</th><th>说明</th></tr></thead>
+    <thead><tr><th>住宿地</th><th>优势</th><th>劣势</th><th>适合情况</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>A. 冰河湖旁</strong><br><span class="small">Hali / Gerdi / Fosshotel Glacier Lagoon</span></td>
-        <td>~200 km</td><td>~395 km</td>
-        <td><span class="tag best">推荐</span>9.27 轻松、日落拍湖，长距离丢给返程日</td>
+        <td>Hella</td>
+        <td>最均衡，去高地和第二天往 Vik 都顺；小镇安静，停车方便。</td>
+        <td>餐饮和超市选择少于 Selfoss。</td>
+        <td>我的首选，适合 9.24、9.25 连住。</td>
       </tr>
       <tr>
-        <td><strong>B. Skaftafell 一带</strong></td>
-        <td>~230 km</td><td>~360 km</td>
-        <td>两日较均衡，但 9.27 到冰河湖拍日落需再往东开 50 km</td>
+        <td>Flúðir</td>
+        <td>靠近黄金圈内侧，有温泉氛围；去高地位置也不错。</td>
+        <td>第二天去 Vik 会比 Hella 稍绕；补给不如 Selfoss。</td>
+        <td>想住得更乡野、更安静时选。</td>
       </tr>
       <tr>
-        <td><strong>C. 教堂镇</strong><br><span class="small">Kirkjubæjarklaustur</span></td>
-        <td>~330 km</td><td>~265 km</td>
-        <td>9.27 太长，好处是次日轻松；不推荐</td>
+        <td>Selfoss</td>
+        <td>补给最强，超市、餐饮、加油都方便；住宿选择多。</td>
+        <td>去兰德曼和去 Vik 都会多一点路程；城镇感更强。</td>
+        <td>如果你们想稳妥补给、住宿性价比好，选它。</td>
+      </tr>
+      <tr>
+        <td>Vik</td>
+        <td>最适合 9.26 卡特拉集合；黑沙滩和 Dyrhólaey 很方便。</td>
+        <td>不适合作为 9.25 兰德曼基地，从这里去高地很折腾。</td>
+        <td>只建议 9.26 住，正好你们已经订了。</td>
       </tr>
     </tbody>
   </table>
-
-  <h3 style="margin-top:22px">9.28 走法：两种，待你决定</h3>
-  <div class="grid two">
-    <div class="card"><div class="card-body">
-      <h3>(a) 一路开回雷市，当天还车</h3>
-      <ul>
-        <li>好处：省一天租车费 + 雷市停车费；9.29 三人完全自由，不用迁就停车。</li>
-        <li>坏处：9.28 车程长（~395 km），赶到还车点有压力。</li>
-      </ul>
-      <p class="small">适合：9.29 打算 citywalk / 一日团，不想再碰车的方案。</p>
-    </div></div>
-    <div class="card"><div class="card-body">
-      <h3>(b) 停在 Selfoss / Hella，留车到 Keflavík</h3>
-      <ul>
-        <li>好处：9.28 轻松，9.29 仍可自驾去 Reykjanes，9.30 直接在 KEF 还车。</li>
-        <li>坏处：多付一天租金 + 雷市市区停车费。</li>
-      </ul>
-      <p class="small">适合：9.29 想去 Reykjanes 半岛、且想省事的方案。</p>
-    </div></div>
-  </div>
-  <p class="small" style="margin-top:8px">两种走法在第九节的风险表里对应不同的「还车分工」安排，决定后我们再补一份具体的还车时间表。</p>
 </section>
 
 <section>
-  <h2>七、9.29 三方案对照（三人分头）</h2>
+  <h2>9.29 可选方案</h2>
   <table>
-    <thead><tr><th style="width:20%">方案</th><th>里程 / 时长</th><th>内容</th><th>适合谁</th><th>评价</th></tr></thead>
+    <thead><tr><th>方案</th><th>优点</th><th>劣势</th><th>适合谁</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>① Reykjanes + 温泉</strong></td>
-        <td>~150 km / 半天</td>
-        <td>Gunnuhver 地热区、大陆桥、Brimketill 海岸，下午 Blue Lagoon 或 Sky Lagoon</td>
-        <td>想再看一次火山地貌 + 泡温泉</td>
-        <td><span class="tag best">推荐</span>顺路、强度低、离 Keflavík 近</td>
+        <td>雷市 citywalk + Sky Lagoon</td>
+        <td>最轻松，完全不折腾；适合整理照片、休息、吃饭、买纪念品。</td>
+        <td>自然风景增量较少。</td>
+        <td>适合 9.30 要离开的两人，或前几天遇到大风雨后恢复。</td>
       </tr>
       <tr>
-        <td><strong>② 雷市 citywalk + Sky Lagoon</strong></td>
-        <td>0 km / 全天</td>
-        <td>Hallgrímskirkja、Harpa、Sun Voyager、老港、下午 Sky Lagoon</td>
-        <td>不想开车、想逛城市</td>
-        <td><span class="tag best">推荐</span>最省力，购物也在这里解决</td>
+        <td>Reykjanes 半岛 + Blue Lagoon / Sky Lagoon 一日团</td>
+        <td>路程短，地热、熔岩、海岸和温泉都能补上；离机场方向也近。</td>
+        <td>景观震撼度不如斯奈山，但更稳。</td>
+        <td>三人一起最推荐的收尾方案。</td>
       </tr>
       <tr>
-        <td><strong>③ Snæfellsnes 一日游</strong></td>
-        <td>~500 km / 11–12 h</td>
-        <td>Kirkjufell 草帽山、Arnarstapi、黑教堂 Búðir</td>
-        <td>体力好、不在乎早出晚归</td>
-        <td><span class="tag hard">不推荐</span>飞前一天、回程太晚</td>
+        <td>斯奈山半岛一日团</td>
+        <td>风景最丰富，有草帽山、海岸、黑教堂、火山冰川。</td>
+        <td>团时长通常很长，坐车时间多；9.30 离境前一天会比较累。</td>
+        <td>适合体力很好、想多看一个大区域的人；三人也可分开。</td>
       </tr>
     </tbody>
   </table>
-  <p class="small" style="margin-top:8px">住宿统一建议 Keflavík：<strong>Hótel Berg</strong>（近机场、有接送）、<strong>Park Inn by Radisson Keflavík</strong>、<strong>Courtyard by Marriott Keflavík</strong>。</p>
 </section>
 
 <section>
-  <h2>八、里程与驾驶时间</h2>
+  <h2>补给与安全检查</h2>
   <table>
-    <thead><tr><th>日期</th><th>路线</th><th>里程</th><th>纯驾驶时间</th><th>强度</th></tr></thead>
+    <thead><tr><th>地点</th><th>建议做什么</th></tr></thead>
     <tbody>
-      <tr><td>9.24</td><td>雷市 → 黄金圈 → Hella</td><td>~240 km</td><td>~3.5 h</td><td>中（景点停靠多）</td></tr>
-      <tr><td>9.25</td><td>Hella ⇄ 兰德曼纳劳卡（团）</td><td>0 km</td><td>—</td><td>低（但全天在车上）</td></tr>
-      <tr><td>9.26</td><td>Hella → Vik</td><td>~100 km</td><td>~1.5 h</td><td>低</td></tr>
-      <tr><td>9.27</td><td>Vik → 冰河湖</td><td>~200 km</td><td>~3 h</td><td>中</td></tr>
-      <tr><td>9.28</td><td>冰河湖 → 雷市（方案 a）</td><td>~395 km</td><td>~5 h</td><td><strong>高</strong></td></tr>
-      <tr><td>9.29</td><td>分头活动</td><td>0–500 km</td><td>视方案</td><td>低–高</td></tr>
-    </tbody>
-  </table>
-  <p class="small" style="margin-top:8px">冰岛限速：城区 50、砂石路 80、铺装公路 90 km/h。全程有测速摄像头，超速罚款很重。9 月底可能有阵风与横风，尤其是 Vik 一带和桥梁上。</p>
-</section>
-
-<section>
-  <h2>九、补给与安全检查</h2>
-  <table>
-    <thead><tr><th style="width:14%">日期</th><th>补给点</th><th>要买什么</th></tr></thead>
-    <tbody>
-      <tr><td>9.24</td><td>雷市（Bónus / Krónan / Costco）→ Selfoss</td><td>全程饮水、早餐、三明治材料、水果、湿巾；保温杯装热水</td></tr>
-      <tr><td>9.25</td><td>Hella（加油 + 午餐）</td><td>高地无补给，带够 1.5 L/人/天的水、能量棒；泳衣、毛巾</td></tr>
-      <tr><td>9.26</td><td>Hvolsvöllur → Vik（Krónan / N1）</td><td><strong>Vik 加满油</strong>，东路油价明显更贵；买次日早餐</td></tr>
-      <tr><td>9.27</td><td>Kirkjubæjarklaustur（最后正经补给）→ Freysnes N1</td><td>离开 Skaftafell 前加满；冰河湖周边无加油站</td></tr>
-      <tr><td>9.28</td><td>Vik → Selfoss</td><td>返程路上的午餐、咖啡</td></tr>
-      <tr><td>9.29</td><td>Keflavík</td><td>路上零食、水；机场前还车前加满油</td></tr>
-    </tbody>
-  </table>
-
-  <h4>安全检查清单</h4>
-  <ul>
-    <li><strong>路况网站</strong>：出发前每天查 road.is（路况）和 vedur.is（天气/风）。</li>
-    <li><strong>风</strong>：冰岛车门被风掀翻很常见 —— <strong>开门时手扶住门、或用身体顶住</strong>，尤其 Vik 和黑沙滩停车场。</li>
-    <li><strong>sneaker wave</strong>：Reynisfjara 的「偷袭浪」多次致人死亡。永远不要背对大海、不要走到水线附近、遵守黄色警示牌。</li>
-    <li><strong>Dyrhólaey</strong>：崖顶有围栏，不要翻越；鸟类繁殖季（至 8 月）部分区域封闭。</li>
-    <li><strong>加油站</strong>：多为无人自助，需要<strong>带 PIN 的信用卡</strong>；没有 PIN 的卡可以去 N1 找人工，或买预付油卡。</li>
-    <li><strong>手机信号</strong>：高地和东部山谷有盲区，提前下载离线地图。</li>
-  </ul>
-</section>
-
-<section>
-  <h2>十、风险与提醒</h2>
-
-  <div class="callout hard">
-    <h3>1. 车是 2WD 高尔夫 —— 这是本行程最大的约束</h3>
-    <p>高尔夫是两驱轿车，<strong>不是高底盘四驱</strong>。开 F 路（F208 / F225 进兰德曼纳劳卡）属于违反租车合同，出了事故保险不赔，而且需要<strong>涉水过河</strong>。所以 9.25 必须跟团。</p>
-    <table style="margin-top:10px">
-      <thead><tr><th style="width:50%">高尔夫 ✅ 可以走</th><th>高尔夫 ❌ 不能走</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>
-            <ul>
-              <li>1 号环岛公路全段（南岸全部铺装）</li>
-              <li>36 / 365 / 37 / 35（黄金圈，全铺装）</li>
-              <li>26 号路到 Hrauneyjar（铺装）</li>
-              <li>218 号路到 Dyrhólaey（铺装，末端略陡）</li>
-              <li>Sólheimajökull 的短支路</li>
-              <li>206 号路到 Fjaðrárgljúfur（碎石，路面平整，干燥天气没问题）</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li>F208 / F225（兰德曼纳劳卡）</li>
-              <li>214 号路（Þakgil）</li>
-              <li>332 号路末端（Háifoss）</li>
-              <li>327 号路（Gjáin）</li>
-            </ul>
-            <p class="small">另外：F 路只在 6 月底–9 月中旬开放，且 9:00–16:00 需要提前用 Parka 预订停车位。</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout" style="margin-top:14px">
-    <h3>2. 极光：请降低预期</h3>
-    <p>9.26 是满月，整个 9.24–9.29 窗口月光都很强，会压掉极光的对比度。9 月底确实是极光季初期，但满月 + 多云意味着「看到」不是大概率事件。看到就是运气。</p>
-  </div>
-
-  <h3 style="margin-top:18px">3. 六条容易踩的坑</h3>
-  <ul>
-    <li><strong>加油卡 PIN：</strong>无人加油站只认带 PIN 的信用卡，出发前跟银行确认 PIN 或准备预付油卡。</li>
-    <li><strong>驾照翻译件：</strong>中国驾照需带官方英文翻译件或公证件，租车行会查验。</li>
-    <li><strong>保险：</strong>务必加购<strong>碎石险（GP）</strong>和<strong>沙尘暴险（SAAP）</strong>——这是冰岛最常见的两类损伤，CDW 通常不覆盖 F 路。</li>
-    <li><strong>F 路资格：</strong>即使租车合同允许，2WD 车型本身也不具备走 F 路的条件（本行程已避开）。</li>
-    <li><strong>还车分工：</strong>9.28 方案 a 需要当晚还车（注意营业时间）；方案 b 则 9.30 直接在 KEF 还，需预留 2 小时。</li>
-    <li><strong>大风掀车门：</strong>停车开门前先看风向，用手扶门 —— 一次掀门可能损坏铰链，维修费很贵。</li>
-  </ul>
-
-  <h3 style="margin-top:18px">4. 行李建议</h3>
-  <p>高尔夫后备箱约 380 L，3 人 + 6 天 + 卡特拉徒步装备，<strong>建议带软包 / 登山包，不要用大号硬壳箱</strong>。后座放一个登机包会更从容。</p>
-
-  <h3 style="margin-top:18px">5. 装备清单（9 月底）</h3>
-  <ul>
-    <li>防水外壳冲锋衣 + 防水裤（瀑布会湿）</li>
-    <li>硬底防水登山鞋（卡特拉要求；冰爪由团方提供）</li>
-    <li>抓绒 / 薄羽绒中层，帽子手套</li>
-    <li>泳衣 + 快干毛巾（9.25 高地温泉、9.29 Blue/Sky Lagoon 都要用）</li>
-    <li>墨镜、防晒（高地和雪面紫外线强）</li>
-    <li>充电宝、车载充电器、离线地图已下载</li>
-  </ul>
-</section>
-
-<section>
-  <h2>十一、待确认事项</h2>
-  <table>
-    <thead><tr><th style="width:22%">事项</th><th>状态</th><th>下一步</th></tr></thead>
-    <tbody>
-      <tr><td>9.25 兰德曼纳劳卡发团</td><td>待确认</td><td>邮件 Southcoast 确认 9.25 是否成团 → 确认后订 Hella 两晚住宿</td></tr>
-      <tr><td>9.27 住宿地</td><td>保留多方案（A/B/C）</td><td>看完本节后选 A（冰河湖旁）并尽早订房，9 月底房源紧</td></tr>
-      <tr><td>9.28 是否当天还车</td><td>未定</td><td>在两种走法里选定，我们再出一份还车时间表</td></tr>
-      <tr><td>9.29 三人怎么分</td><td>待定</td><td>从三个方案里各选一个，早餐前定即可</td></tr>
-      <tr><td>卡特拉团集合点/时长</td><td>基本确认</td><td>Southcoast 卡特拉团从 Vík 出发（Ice Cave Bistro Café 外拐角集合），超吉普往返约 3 h；以确认邮件为准</td></tr>
+      <tr><td>雷克雅未克</td><td>9.24 出发前大采购：水、零食、简餐、防水外套、手套、保暖层、移动电源。</td></tr>
+      <tr><td>Selfoss</td><td>南部最稳的补给点，适合采购、加油、买药品和备用食品。</td></tr>
+      <tr><td>Hella / Hvolsvöllur</td><td>高地前后、南岸出发前后加油和咖啡休息。</td></tr>
+      <tr><td>Vik</td><td>9.26 午餐、加油、卡特拉集合前休整；也是黑沙滩和 Dyrhólaey 的基地。</td></tr>
+      <tr><td>Kirkjubæjarklaustur</td><td>9.27/9.28 中转补给点，适合降低冰河湖往返压力。</td></tr>
+      <tr><td>冰河湖附近</td><td>只当景点，不依赖补给；提前带好水、热饮和食物。</td></tr>
     </tbody>
   </table>
 </section>
@@ -501,7 +314,7 @@
 </main>
 
 <footer>
-  <p>2026 年 9 月底冰岛 6 天行程建议 · 内部讨论稿，非最终预订依据。所有价格、时间、路况信息请在出行前以官方渠道复查。</p>
+  <p>2026 年 9 月底冰岛 6 天自驾行程建议 · 内部讨论稿。本页内容来自原始方案文件，未作行程结论修改。</p>
 </footer>
 
 <script src="vendor/leaflet/leaflet.js"></script>
@@ -510,54 +323,41 @@
   const colors = { "9.24":"#2364aa", "9.25":"#c77700", "9.26":"#2a9d8f", "9.27":"#c2412d", "9.28":"#6d5bd0", "9.29":"#425466" };
 
   const stops = {
-    reykjavik:      { name:"雷克雅未克",        ll:[64.1466,-21.9426] },
-    thingvellir:    { name:"辛格维利尔",        ll:[64.2559,-21.1300] },
-    geysir:         { name:"Geysir 间歇泉",     ll:[64.3104,-20.3024] },
-    gullfoss:       { name:"黄金瀑布",          ll:[64.3271,-20.1199] },
-    faxi:           { name:"Faxi 瀑布",         ll:[64.2264,-20.3369] },
-    fridheimar:     { name:"Friðheimar 温室",   ll:[64.0077,-20.4497] },
-    skalholt:       { name:"Skálholt 教堂",     ll:[64.1277,-20.5244] },
-    kerid:          { name:"Kerið 火山口",      ll:[64.0411,-20.8850] },
-    selfoss:        { name:"Selfoss",           ll:[63.9333,-20.9969] },
-    hella:          { name:"Hella（住宿）",     ll:[63.8346,-20.4011] },
-    hrauneyjar:     { name:"Hrauneyjar",        ll:[64.1906,-19.4019] },
-    landmannalaugar:{ name:"兰德曼纳劳卡",      ll:[63.9894,-19.0625] },
-    seljalandsfoss: { name:"塞里雅兰瀑布",      ll:[63.6156,-19.9936] },
-    skogafoss:      { name:"斯科加瀑布",        ll:[63.5321,-19.5114] },
-    solheimajokull: { name:"Sólheimajökull",    ll:[63.5325,-19.3619] },
-    vik:            { name:"Vík（住宿）",       ll:[63.4187,-19.0060] },
-    fjadrargljufur: { name:"羽毛峡谷",          ll:[63.7722,-18.1739] },
-    klaustur:       { name:"教堂镇",            ll:[63.7903,-18.0574] },
-    skaftafell:     { name:"Skaftafell",        ll:[64.0159,-16.9662] },
-    fjallsarlon:    { name:"Fjallsárlón",       ll:[64.0147,-16.3762] },
-    jokulsarlon:    { name:"冰河湖（住宿）",    ll:[64.0784,-16.2306] },
-    diamondbeach:   { name:"钻石沙滩",          ll:[64.0440,-16.1797] },
-    dyrholaey:      { name:"Dyrhólaey",         ll:[63.4028,-19.1278] },
-    reynisfjara:    { name:"Reynisfjara",       ll:[63.4044,-19.0450] },
-    keflavik:       { name:"Keflavík（住宿）",  ll:[63.9850,-22.6056] },
-    gunnuhver:      { name:"Gunnuhver",         ll:[63.8186,-22.6897] },
-    bluelagoon:     { name:"Blue Lagoon",       ll:[63.8804,-22.4495] },
-    skylagoon:      { name:"Sky Lagoon",        ll:[64.1150,-21.9330] },
-    kirkjufell:     { name:"Kirkjufell",        ll:[64.9411,-23.3069] }
+    reykjavik:      { name:"雷克雅未克",        ll:[64.1466,-21.9426], score:"4/5",    time:"半天-1天" },
+    thingvellir:    { name:"辛格维利尔",        ll:[64.2559,-21.1295], score:"4/5",    time:"1-1.5h" },
+    geysir:         { name:"间歇泉",            ll:[64.3138,-20.3008], score:"3.5/5",  time:"45-60min" },
+    gullfoss:       { name:"黄金瀑布",          ll:[64.3271,-20.1199], score:"4/5",    time:"45-75min" },
+    kerid:          { name:"Kerið 火山口",      ll:[64.0413,-20.8844], score:"3.5/5",  time:"30-45min" },
+    selfoss:        { name:"Selfoss 补给/住宿", ll:[63.9335,-20.9970], score:"补给强", time:"采购 30-60min" },
+    hella:          { name:"Hella 推荐住宿",    ll:[63.8350,-20.4000], score:"住宿推荐", time:"过夜" },
+    fludir:         { name:"Flúðir 住宿备选",   ll:[64.1300,-20.3220], score:"住宿备选", time:"过夜" },
+    landmannalaugar:{ name:"兰德曼纳劳卡",      ll:[63.9926,-19.0608], score:"5/5",    time:"一日" },
+    seljalandsfoss: { name:"塞里雅兰瀑布",      ll:[63.6156,-19.9896], score:"4/5",    time:"45-75min" },
+    skogafoss:      { name:"斯科加瀑布",        ll:[63.5321,-19.5114], score:"4/5",    time:"45-90min" },
+    vik:            { name:"Vik 已订住宿/卡特拉集合", ll:[63.4186,-19.0060], score:"住宿锁定", time:"过夜" },
+    katla:          { name:"卡特拉冰川徒步",    ll:[63.5490,-19.2360], score:"4.5/5",  time:"约 3h" },
+    klaustur:       { name:"Kirkjubæjarklaustur", ll:[63.7896,-18.0560], score:"住宿推荐", time:"过夜" },
+    skaftafell:     { name:"Skaftafell 可选短停", ll:[64.0169,-16.9661], score:"4/5",  time:"30-90min" },
+    jokulsarlon:    { name:"杰古沙龙冰河湖",    ll:[64.0481,-16.1795], score:"5/5",    time:"1-2h" },
+    diamondBeach:   { name:"钻石沙滩",          ll:[64.0454,-16.1777], score:"5/5",    time:"45-90min" },
+    dyrholaey:      { name:"Dyrhólaey 海岬",    ll:[63.3996,-19.1268], score:"4.5/5",  time:"45-75min" },
+    reynisfjara:    { name:"Reynisfjara 黑沙滩", ll:[63.4056,-19.0718], score:"4.5/5", time:"45-75min" },
+    fjadrargljufur: { name:"羽毛峡谷",          ll:[63.7713,-18.1719], score:"4/5",    time:"45-75min" },
+    skyLagoon:      { name:"Sky Lagoon",        ll:[64.1136,-21.8410], score:"放松",   time:"2-3h" },
+    blueLagoon:     { name:"Blue Lagoon",       ll:[63.8804,-22.4495], score:"放松",   time:"2-3h" },
+    snaefellsnes:   { name:"斯奈山半岛一日团方向", ll:[64.8610,-23.1220], score:"4.5/5", time:"长团 11-12h" },
+    reykjanes:      { name:"Reykjanes 半岛一日团方向", ll:[63.9200,-22.2500], score:"4/5", time:"6-9h" }
   };
 
   const routes = [
-    { day:"9.24", title:"雷市 → 黄金圈 → Hella",
-      route:["reykjavik","thingvellir","geysir","gullfoss","faxi","fridheimar","skalholt","kerid","selfoss","hella"] },
-    { day:"9.25", title:"Hella ⇄ 兰德曼纳劳卡（跟团）",
-      route:["hella","hrauneyjar","landmannalaugar","hrauneyjar","hella"] },
-    { day:"9.26", title:"Hella → 瀑布群 → Vik",
-      route:["hella","seljalandsfoss","skogafoss","solheimajokull","vik"] },
-    { day:"9.27", title:"Vik → 羽毛峡谷 → Skaftafell → 冰河湖",
-      route:["vik","fjadrargljufur","skaftafell","fjallsarlon","jokulsarlon","diamondbeach"] },
-    { day:"9.28", title:"冰河湖 → Vik → 黑沙滩 → 雷市",
-      route:["jokulsarlon","vik","dyrholaey","reynisfjara","selfoss","reykjavik"] },
-    { day:"9.29", title:"9.29A · Reykjanes 半岛 + 温泉",
-      route:["keflavik","gunnuhver","bluelagoon"] },
-    { day:"9.29", title:"9.29B · 雷市 citywalk + Sky Lagoon",
-      route:["reykjavik","skylagoon","keflavik"] },
-    { day:"9.29", title:"9.29C · Snæfellsnes 一日（不推荐）",
-      route:["reykjavik","kirkjufell","reykjavik"] }
+    { day:"9.24",  title:"黄金圈到南部住宿区",       route:["reykjavik","thingvellir","geysir","gullfoss","kerid","selfoss","hella"] },
+    { day:"9.25",  title:"兰德曼纳高地往返",         route:["hella","landmannalaugar","hella"], dash:true },
+    { day:"9.26",  title:"南岸瀑布到 Vik，下午卡特拉", route:["hella","seljalandsfoss","skogafoss","vik","katla","vik"] },
+    { day:"9.27",  title:"Vik 到冰河湖，回住教堂镇",  route:["vik","klaustur","skaftafell","jokulsarlon","diamondBeach","klaustur"] },
+    { day:"9.28",  title:"教堂镇经南岸回雷市",       route:["klaustur","fjadrargljufur","reynisfjara","dyrholaey","vik","reykjavik"] },
+    { day:"9.29A", title:"雷市 + 温泉轻松日",        route:["reykjavik","skyLagoon","reykjavik"], dash:true },
+    { day:"9.29B", title:"Reykjanes + 温泉一日团",   route:["reykjavik","reykjanes","blueLagoon","reykjavik"], dash:true },
+    { day:"9.29C", title:"斯奈山半岛一日团",         route:["reykjavik","snaefellsnes","reykjavik"], dash:true }
   ];
 
   const map = L.map("map").setView([63.9,-19.8], 7);
@@ -566,60 +366,86 @@
     attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);
 
-  // 每天一个图层组，编号按「去重后的停靠顺序」
   const groups = {};
-  routes.forEach(function(item, idx){
-    const g = L.featureGroup();
-    const color = colors[item.day] || "#425466";
-    L.polyline(item.route.map(function(k){ return stops[k].ll; }), { color:color, weight:6, opacity:.88 }).addTo(g);
-    const order = [];
-    item.route.forEach(function(k){ if(order.indexOf(k) === -1) order.push(k); });
-    order.forEach(function(k, i){
-      const s = stops[k];
-      L.marker(s.ll, {
-        icon: L.divIcon({ className:"", html:'<div class="number-marker" style="background:'+color+'">'+(i+1)+'</div>', iconSize:[26,26], iconAnchor:[13,13] })
-      }).addTo(g).bindPopup('<strong>'+s.name+'</strong><br><span class="small">'+item.title+'</span>');
-      L.marker(s.ll, {
-        icon: L.divIcon({ className:"map-label", html:s.name, iconSize:null, iconAnchor:[-16,34] }),
-        interactive:false
-      }).addTo(g);
+  routes.forEach(function(item){
+    const group = L.layerGroup();
+    groups[item.day] = group;
+    const color = colors[item.day.slice(0,4)] || colors["9.29"];
+    const latlngs = item.route.map(function(key){ return stops[key].ll; });
+
+    L.polyline(latlngs, {
+      color: color, weight: 6, opacity: .88, dashArray: item.dash ? "8 9" : null
+    }).addTo(group).bindPopup("<strong>" + item.day + "</strong><br>" + item.title);
+
+    item.route.forEach(function(key, index){
+      const stop = stops[key];
+      L.marker(stop.ll, {
+        icon: L.divIcon({
+          className: "",
+          html: '<div class="number-marker" style="background:' + color + '">' + (index + 1) + '</div>',
+          iconSize: [26,26], iconAnchor: [13,13]
+        })
+      }).addTo(group).bindPopup("<strong>" + stop.name + "</strong><br>9月底推荐值：" + stop.score + "<br>建议停留：" + stop.time);
+
+      L.marker(stop.ll, {
+        icon: L.divIcon({ className:"map-label", html: stop.name, iconSize: null, iconAnchor: [-16,34] }),
+        interactive: false
+      }).addTo(group);
     });
-    groups["g"+idx] = g;
   });
 
-  // 总览：住宿推进路线
-  const overview = L.featureGroup();
+  const overview = L.layerGroup();
   const overviewRoute = ["reykjavik","hella","landmannalaugar","hella","vik","jokulsarlon","klaustur","reykjavik"];
-  L.polyline(overviewRoute.map(function(k){ return stops[k].ll; }), { color:"#17202a", weight:5, opacity:.7, dashArray:"8 9" }).addTo(overview);
-  [ ["hella","1","Hella ×2"], ["vik","2","Vík ×1"], ["jokulsarlon","3","冰河湖 ×1"], ["keflavik","4","Keflavík ×1"] ].forEach(function(x){
-    const s = stops[x[0]];
-    L.marker(s.ll, { icon: L.divIcon({ className:"", html:'<div class="number-marker" style="background:#17202a">'+x[1]+'</div>', iconSize:[26,26], iconAnchor:[13,13] }) })
-      .addTo(overview).bindPopup('<strong>'+s.name+'</strong><br><span class="small">'+x[2]+'</span>');
-    L.marker(s.ll, { icon: L.divIcon({ className:"map-label", html:x[2], iconSize:null, iconAnchor:[-16,34] }), interactive:false }).addTo(overview);
+  L.polyline(overviewRoute.map(function(key){ return stops[key].ll; }), { color:"#17202a", weight:6, opacity:.86 }).addTo(overview);
+  [
+    ["9.24/9.25 住 Hella/Flúðir/Selfoss", "hella"],
+    ["9.26 住 Vik", "vik"],
+    ["9.27 住 Kirkjubæjarklaustur", "klaustur"],
+    ["9.28/9.29 住雷克雅未克", "reykjavik"]
+  ].forEach(function(x, index){
+    const stop = stops[x[1]];
+    L.marker(stop.ll, {
+      icon: L.divIcon({
+        className: "",
+        html: '<div class="number-marker" style="background:#17202a">' + (index + 1) + '</div>',
+        iconSize: [26,26], iconAnchor: [13,13]
+      })
+    }).addTo(overview).bindPopup("<strong>" + x[0] + "</strong>");
+
+    L.marker(stop.ll, {
+      icon: L.divIcon({ className:"map-label", html: x[0], iconSize: null, iconAnchor: [-16,34] }),
+      interactive: false
+    }).addTo(overview);
   });
+  overview.addTo(map);
 
-  let current = null;
-
-  function setMode(key){
-    if(current){ map.removeLayer(current); }
-    const target = (key === "overview") ? overview : groups[key];
-    if(!target){ return; }
-    current = target;
-    map.addLayer(target);
-    const b = target.getBounds();
-    if(b && b.isValid()){ map.fitBounds(b, { padding:[60,60], maxZoom: 9 }); }
-    document.querySelectorAll(".map-button").forEach(function(btn){ btn.classList.toggle("active", btn.dataset.key === key); });
+  function setMode(mode){
+    map.removeLayer(overview);
+    Object.keys(groups).forEach(function(key){ map.removeLayer(groups[key]); });
+    let fitPoints = overviewRoute.map(function(key){ return stops[key].ll; });
+    if(mode === "overview"){
+      overview.addTo(map);
+    } else {
+      groups[mode].addTo(map);
+      fitPoints = routes.filter(function(i){ return i.day === mode; })[0].route.map(function(key){ return stops[key].ll; });
+    }
+    map.fitBounds(L.latLngBounds(fitPoints), { padding: [60,60] });
+    document.querySelectorAll(".map-button").forEach(function(button){
+      button.classList.toggle("active", button.dataset.mode === mode);
+    });
   }
 
-  const buttons = [["overview","总览","住宿推进路线"]].concat(routes.map(function(i, idx){ return ["g"+idx, i.day, i.title]; }));
-  const box = document.getElementById("mapButtons");
-  buttons.forEach(function(b){
-    const el = document.createElement("button");
-    el.className = "map-button";
-    el.dataset.key = b[0];
-    el.innerHTML = "<strong>"+b[1]+"</strong><span>"+b[2]+"</span>";
-    el.addEventListener("click", function(){ setMode(b[0]); });
-    box.appendChild(el);
+  const buttons = [["overview","总览","住宿推进路线"]].concat(
+    routes.map(function(item){ return [item.day, item.day, item.title]; })
+  );
+  const container = document.getElementById("mapButtons");
+  buttons.forEach(function(entry){
+    const button = document.createElement("button");
+    button.className = "map-button";
+    button.dataset.mode = entry[0];
+    button.innerHTML = "<strong>" + entry[1] + "</strong><span>" + entry[2] + "</span>";
+    button.addEventListener("click", function(){ setMode(entry[0]); });
+    container.appendChild(button);
   });
 
   setMode("overview");
