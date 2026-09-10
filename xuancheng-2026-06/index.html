@@ -62,6 +62,8 @@
     padding: 10px 12px;
     text-align: left;
     border-bottom: 1px solid #f0ece5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   th {
     background: #f9f5ed;
@@ -208,6 +210,8 @@
     .hero h1 { font-size: 1.6rem; }
     .container { padding: 0 12px 40px; }
     .card, .day-card { padding: 20px 18px; }
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table th, table td { white-space: normal; }
     table { font-size: 0.85rem; }
     th, td { padding: 8px 6px; }
   }

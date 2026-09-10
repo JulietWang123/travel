@@ -46,7 +46,7 @@
   .tag.warn{ background:#fff1d6; color:#8a5200; }
   .tag.hard{ background:#fde8e5; color:#9d2f20; }
   table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px; }
-  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; }
+  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere; word-break:break-word; }
   th{ background:#26384a; color:#fff; font-weight:700; }
   tr:nth-child(even) td{ background:#f9fbfc; }
   .timeline{ display:grid; gap:14px; }
@@ -85,6 +85,17 @@
     .two,.three,.photos,.map-wrap{ grid-template-columns:1fr; }
     header.hero{ min-height:50vh; }
     #map{ height:520px; }
+    th,td{ padding:9px 10px; font-size:13px; }
+    .map-side{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .map-button{ font-size:12px; padding:9px 10px; }
+    header.hero h1{ font-size:clamp(30px,7vw,44px); }
+  }
+  @media (max-width:560px){
+    th,td{ padding:8px 9px; font-size:12.5px; }
+    .map-side{ grid-template-columns:1fr; }
+    .hero-inner, main, footer{ width:calc(100vw - 28px); }
+    h2{ font-size:20px; }
+    figure img{ height:200px; }
   }
 </style>
 </head>
