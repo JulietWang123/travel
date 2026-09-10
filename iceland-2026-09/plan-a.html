@@ -69,6 +69,13 @@
   .notice .links{ display:flex; gap:16px; flex-wrap:wrap; }
   .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
   .notice a:hover{ text-decoration:underline; }
+  .jumpbar{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; justify-content:space-between;
+    background:#eef5fd; border:1px solid #c4d9f0; border-left:5px solid var(--blue); border-radius:8px;
+    padding:14px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .jumpbar span{ color:#33465a; }
+  .jumpbar .cta{ display:inline-block; background:var(--blue); color:#fff; font-weight:700; text-decoration:none;
+    padding:8px 14px; border-radius:6px; white-space:nowrap; }
+  .jumpbar .cta:hover{ background:#1b4f8a; text-decoration:none; }
   footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
   @media (max-width:900px){
     .two,.three{ grid-template-columns:1fr; }
@@ -90,16 +97,23 @@
     <p class="hero-kicker">方案A · Iceland · 2026.09.23 – 09.29</p>
     <h1>方案A · 冰岛行程</h1>
     <p>本页为<strong>方案A</strong>，与方案B、方案C 并列的一版行程。走法为<strong>顺时针</strong>——先南下南岸，以维克为基地，再折返海德拉上兰德曼纳劳卡高地，最后收在黄金圈与雷克雅未克。</p>
+    <p style="font-size:14px; color:rgba(255,255,255,.86); margin-top:12px">前提口径与其它页面一致：全程唯一的硬约束是 <strong>9.26 晚住 Vik（已订、不可退）</strong>；车是<strong>已订的 2WD 高尔夫（可免费取消）</strong>；卡特拉冰川徒步与兰德曼纳劳卡高地一日游是<strong>想去的体验</strong>，团期<strong>可调可退</strong>。</p>
   </div>
 </header>
 
 <main>
 
+<div class="jumpbar">
+  <span>本页只收录<strong>方案A 的行程表</strong>。方案A 的主入口是整合版（行程 + 路线评估合并成一页）——<strong>建议直接跳转</strong>到整合版看完整内容。</span>
+  <a class="cta" href="plan-a-full.html">↪ 跳转到 方案A 整合版</a>
+</div>
+
 <div class="notice">
-  <span>本页是<strong>方案A 的行程原文</strong>。方案A 的主入口为整合版（行程 + 路线评估合并成一页）：</span>
+  <span>其它相关页面：</span>
   <div class="links">
-    <a href="plan-a-full.html">方案A 整合版（行程 + 评估）→</a>
-    <a href="compare.html">A / B / C 对照表</a>
+    <a href="plan-a-full.html">方案A 整合版（行程 + 评估）</a>
+    <a href="plan-a-assessment.html">路线评估报告 →</a>
+    <a href="compare.html">A / B / C 对照表 →</a>
     <a href="./">方案B →</a>
     <a href="plan-c.html">方案C →</a>
   </div>
@@ -107,12 +121,13 @@
 
 <section>
   <h2>一、这版方案怎么走</h2>
-  <p class="lead">本方案最初整理于 <code>冰岛法罗行程.xls</code> 的「方案1」工作表，冰岛部分覆盖 9.23–9.29，按时间、出发地、到达、景点、交通方式、住宿 6 列列出。里程、集合点、价格等细节另见下方逐日备注。</p>
+  <p class="lead">本方案对应 <code>冰岛法罗行程.xls</code> 的「方案1」工作表，冰岛部分覆盖 9.23–9.29，按时间、出发地、到达、景点、交通方式、住宿 6 列列出。里程、集合点、价格等细节另见下方逐日备注。</p>
+  <p class="lead">前提口径与其它页面保持一致：全程<strong>唯一的硬约束是 9.26 晚住 Vik（已订、不可退）</strong>；车是<strong>已订的 2WD 高尔夫（可免费取消）</strong>；卡特拉冰川徒步（当前计划 9.26）与兰德曼纳劳卡高地一日游（当前计划 9.27）都是<strong>想去的体验</strong>，团期<strong>可调可退</strong>；此外 <strong>9.30 两人飞法罗群岛（机票已订）</strong>是既定节点，而本页行程只覆盖到 9.29。</p>
   <div class="grid three">
     <div class="card"><div class="card-body">
       <span class="tag">特征一</span>
       <h3>顺时针，南岸优先</h3>
-      <p>9.24 一取到车就直奔南岸，把塞里雅兰瀑布、斯科加瀑布和飞机残骸全排在第一天，黄金圈反而留到 9.28。</p>
+      <p>9.24 取到车就直奔南岸，把塞里雅兰瀑布、斯科加瀑布和飞机残骸全排在第一天，黄金圈反而留到 9.28。这一天基本都在 1 号环岛公路上，2WD 没有压力。</p>
     </div></div>
     <div class="card"><div class="card-body">
       <span class="tag">特征二</span>
@@ -122,7 +137,7 @@
     <div class="card"><div class="card-body">
       <span class="tag">特征三</span>
       <h3>高地靠折返 + 跟团</h3>
-      <p>9.27 从维克折返约 100 km 到海德拉（Hella），在那里坐巴士参加兰德曼纳劳卡高地一日团，结束后北上黄金圈住宿。</p>
+      <p>9.27 从维克折返约 100 km 到海德拉（Hella），在那里坐巴士参加兰德曼纳劳卡高地一日团，结束后北上黄金圈住宿。这一段只能跟团：已订的 2WD 高尔夫上不了 F 路（F208 / F225），而 F208 还有无桥过河段，多数租车合同即便 4WD 也禁止涉水。团期可调可退。</p>
     </div></div>
   </div>
 </section>
@@ -207,7 +222,7 @@
       <h3>9.24 雷市 → 维克（约 190 km）</h3>
       <p>塞里雅兰瀑布和斯科加瀑布都在 1 号环岛公路旁边，顺路。真正吃时间的是<strong>飞机残骸</strong>（Sólheimasandur 的 DC-3）：沙地上不允许私家车通行，需要步行往返约 8 km（约 2–2.5 小时），另有接驳车季节运营、需现场确认是否开行。</p>
       <p>所以这一天实际是「约 190 km 车程 + 两个瀑布 + 一次 8 km 步行」，节奏偏紧，取车时间要往前提。</p>
-      <div class="meta"><span>里程约 190 km</span><span>住宿：维克</span><span class="tag warn">节奏偏紧</span></div>
+      <div class="meta"><span>里程约 190 km</span><span>住宿：维克（计划，尚未预订）</span><span>用车：已订 2WD 高尔夫</span><span class="tag warn">节奏偏紧</span></div>
     </article>
 
     <article class="day-card">
@@ -219,16 +234,16 @@
 
     <article class="day-card">
       <h3>9.26 维克 · 羽毛峡谷 + 卡特拉冰川徒步</h3>
-      <p>行程表 9.26 上午写的是「羽毛瀑布」，已确认指 <strong>Fjaðrárgljúfur 羽毛峡谷</strong>（维克以东约 70 km，从 206 号路进入；碎石路面平整，干燥天气普通轿车可行）。</p>
-      <p>下午是卡特拉冰川徒步，行程表标注 3 小时，宿维克。</p>
-      <div class="meta"><span>住宿：维克</span><span class="tag">羽毛瀑布 = 羽毛峡谷</span></div>
+      <p>行程表 9.26 上午写的是「羽毛瀑布」，指的是 <strong>Fjaðrárgljúfur 羽毛峡谷</strong>（维克以东约 70 km，从 206 号路进入；碎石路面平整，干燥天气普通轿车可行，已订的 2WD 高尔夫可走）。</p>
+      <p>下午是卡特拉冰川徒步，行程表标注 3 小时，宿维克。当晚的维克住宿<strong>已订、不可退</strong>，是全程<strong>唯一的硬约束</strong>；15:00 是当前的计划时间点，团期可调可退。</p>
+      <div class="meta"><span>住宿：维克（已订、不可退）</span><span class="tag hard">唯一硬约束</span><span class="tag">羽毛瀑布 = 羽毛峡谷</span></div>
     </article>
 
     <article class="day-card">
       <h3>9.27 维克 → 海德拉 → 兰德曼纳劳卡高地 → 黄金圈</h3>
       <p>「海德拉」即 <strong>Hella</strong>，维克到海德拉约 100 km。也就是说这一天要先往西开约 1.5 小时回到海德拉，再坐巴士进高地，结束后继续北上黄金圈住宿——是一段<strong>折返</strong>路线。</p>
-      <p>值得一提的是：方案A 从一开始就采用「海德拉（Hella）出发」的高地团，这一点和方案C 的结论方向一致。</p>
-      <div class="meta"><span>维克 → Hella 约 100 km</span><span>住宿：黄金圈一带</span><span class="tag">含折返</span></div>
+      <p>这一段必须跟团：已订的 2WD 高尔夫上不了 F 路，而 F208 还有无桥过河段，多数租车合同即便 4WD 也禁止涉水。高地团<strong>可调可退</strong>，当前计划是 10:00 从 Hella 发车——顺带一提，方案C 的高地日也选在 Hella 上车，方向一致。</p>
+      <div class="meta"><span>维克 → Hella 约 100 km</span><span>住宿：黄金圈一带</span><span class="tag">含折返</span><span class="tag">团期可调可退</span></div>
     </article>
 
     <article class="day-card">
@@ -277,7 +292,7 @@
   <p style="margin-top:12px"><a href="compare.html">→ 看完整的 A / B / C 三方案对照表</a></p>
   <div class="callout">
     <h3>这版方案的问题与优化建议</h3>
-    <p>方案A 原版有折返与疲劳风险（9.25 冰河湖往返、9.27 高地团前后长途），但不建议完全推翻。整合版把逐日安排与一种优化走法做了逐项对比，并附路线差异地图：<a href="plan-a-full.html">→ 方案A 整合版（行程 + 评估）</a></p>
+    <p>方案A 这版排期有折返与疲劳风险（9.25 冰河湖往返、9.27 高地团前后长途），但不建议完全推翻。整合版把逐日安排与一种优化走法做了逐项对比，并附路线差异地图：<a href="plan-a-full.html">↪ 跳转到 方案A 整合版（行程 + 评估）</a></p>
   </div>
 </section>
 
@@ -285,6 +300,7 @@
 
 <footer>
   <p>方案A · 冰岛 9.23–9.29 行程 · 三版并列方案之一，内容整理自 <code>冰岛法罗行程.xls</code> 的冰岛部分。里程为估算值，实际请以 Google Maps 为准。</p>
+  <p>本页只收录行程表本身；完整内容见 <a href="plan-a-full.html">↪ 方案A 整合版（行程 + 评估）</a>。前提口径（唯一硬约束、用车、团期）与其它页面一致。</p>
 </footer>
 
 </body>
