@@ -72,6 +72,8 @@
   .diff-card:nth-child(4){ border-left-color:var(--red); }
   .diff-card:nth-child(5){ border-left-color:var(--violet); }
   .diff-card:nth-child(6){ border-left-color:var(--slate); }
+  .diff-card:nth-child(7){ border-left-color:var(--blue); }
+  .diff-card:nth-child(8){ border-left-color:var(--green); }
   footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
   @media (max-width:900px){
     .two,.three{ grid-template-columns:1fr; }
@@ -92,14 +94,14 @@
   <div class="hero-inner">
     <p class="hero-kicker">Iceland · 方案对照 · 2026 年 9 月</p>
     <h1>A / B / C 三方案对照</h1>
-    <p>同一批人、同一段时间、同一台车（2WD 高尔夫），三个并列版本的行程放在一起看。差别不在「去哪些地方」，而在<strong>顺序、住宿落点和收尾方式</strong>。</p>
+    <p>同一批人、同一段时间、同一台车（2WD 高尔夫），三个并列版本的行程放在一起看。差别不在「去哪些地方」，而在<strong>顺序、住宿落点和收尾方式</strong>。本页已按方案A 的整合页（行程 + 评估）同步更新。</p>
   </div>
 </header>
 
 <main>
 
 <div class="notice">
-  <span>点击进入各方案完整页面：</span>
+  <span>方案A 已整理为整合页（行程 + 逐日优化对照 + 双路线差异地图）。点击进入各方案完整页面：</span>
   <div class="links">
     <a href="plan-a-full.html">方案A · 行程 + 评估（整合版）</a>
     <a href="./">方案B · GPT5.5 推荐版</a>
@@ -128,7 +130,7 @@
       </tr>
       <tr>
         <td><strong>来源</strong></td>
-        <td class="col-a"><code>冰岛法罗行程.xls</code>「方案1」工作表的冰岛部分</td>
+        <td class="col-a"><code>冰岛法罗行程.xls</code>「方案1」工作表的冰岛部分；另有整合页 <code>plan-a-full.html</code>，把行程原文与路线评估合并成一页</td>
         <td class="col-b">GPT5.5 推荐版（含交互路线地图）</td>
         <td class="col-c">DeepSeek 优化版：在方案B 基础上按 2WD 限制与实测信息细化</td>
       </tr>
@@ -140,19 +142,19 @@
       </tr>
       <tr>
         <td><strong>住宿结构</strong></td>
-        <td class="col-a">维克 2 晚（9.24、9.26）+ 9.25 住宿<strong>待定</strong> + 黄金圈 1 晚 + 雷市 2 晚</td>
+        <td class="col-a">行程表原文：维克 2 晚（9.24、9.26）+ 9.25 住宿<strong>待定</strong> + 黄金圈 1 晚 + 雷市 2 晚<span class="small"><br>整合页建议：9.24 改住 Skógar / Skógafoss、9.25 东进住教堂镇、9.27 团后住 Hella / Selfoss / Flúðir</span></td>
         <td class="col-b">南部内陆（Hella / Flúðir / Selfoss 待定）→ Vik（已订）→ 教堂镇</td>
         <td class="col-c">Hella <strong>连住 2 晚</strong> → Vik（已订）→ 冰河湖旁 → Keflavík</td>
       </tr>
       <tr>
         <td><strong>兰德曼纳劳卡高地</strong></td>
-        <td class="col-a"><strong>9.27</strong>，从维克折返海德拉（Hella）坐巴士跟团</td>
+        <td class="col-a"><strong>9.27</strong>，从维克折返海德拉（Hella）坐巴士跟团<span class="small"><br>Hella 10:00 发车，09:20 前到上车点，等于 08:00 前离开维克</span></td>
         <td class="col-b"><strong>9.25</strong>，自驾到集合点参加 11:30 出发的行程，或改为带交通的团</td>
         <td class="col-c"><strong>9.25</strong>，Southcoast 超级吉普团，<strong>Hella 10:00 上车</strong>（不自己开进高地）</td>
       </tr>
       <tr>
         <td><strong>冰河湖 / 钻石沙滩</strong></td>
-        <td class="col-a">9.25，从维克当天往返</td>
+        <td class="col-a">9.25，从维克当天往返（约 400 km）<span class="small"><br>整合页建议：改为顺路东进、不回维克</span></td>
         <td class="col-b">9.27，Vik → 冰河湖 → 钻石沙滩，宿教堂镇</td>
         <td class="col-c">9.27，Vik → 羽毛峡谷 → Skaftafell → 冰河湖，宿冰河湖旁</td>
       </tr>
@@ -164,21 +166,27 @@
       </tr>
       <tr>
         <td><strong>9.30</strong></td>
-        <td class="col-a">—</td>
+        <td class="col-a">—<span class="small"><br>9.30 两人转飞法罗群岛</span></td>
         <td class="col-b">未涉及</td>
         <td class="col-c">两人飞法罗群岛，剩一人自由日</td>
       </tr>
       <tr>
         <td><strong>交互路线地图</strong></td>
-        <td class="col-a">无</td>
+        <td class="col-a">有（原版 / 优化双幅 Leaflet 地图，直观对照路线差异）</td>
         <td class="col-b">有（总览 + 逐日共 9 条线路）</td>
         <td class="col-c">无，地图指引到方案B 页</td>
       </tr>
       <tr>
         <td><strong>信息颗粒度</strong></td>
-        <td class="col-a">6 列，仅到景点名</td>
+        <td class="col-a">行程表本身 6 列、仅到景点名；整合页补齐了逐日「原版 / 优化」对照、里程提示、住宿决策与风险核查</td>
         <td class="col-b">中等：每天附景观 / 补给 / 节奏标签，另有高地交通、住宿地、9.29 选项等专项对照表</td>
         <td class="col-c">最细：含里程与驾驶时间、集合点、价格、联系方式、补给清单、风险提醒、待确认事项</td>
+      </tr>
+      <tr>
+        <td><strong>评估与风险提示</strong></td>
+        <td class="col-a">有：整合页含路线评估、住宿决策两章、最大风险日 9.27 拆解、路况 / 天气 / 活动核查表与资料依据</td>
+        <td class="col-b">有：高地交通、住宿地、9.29 选项等专项对照表</td>
+        <td class="col-c">有：每天列出风险提醒与待确认事项，9.28 的长距离单独标注</td>
       </tr>
     </tbody>
   </table>
@@ -205,43 +213,43 @@
       </tr>
       <tr>
         <td><strong>9.24</strong></td>
-        <td class="col-a">雷市 → 维克｜塞里雅兰瀑布、斯科加瀑布、飞机残骸｜宿维克</td>
+        <td class="col-a">雷市 → 维克｜塞里雅兰瀑布、斯科加瀑布、飞机残骸｜宿维克<span class="small"><br>整合页建议改宿 Skógar（维克未订、无退订成本）</span></td>
         <td class="col-b">雷市 → 黄金圈（辛格维利尔、间歇泉、黄金瀑布、Kerið）→ Hella / Flúðir / Selfoss</td>
         <td class="col-c">雷市取车 → 黄金圈 → Hella（约 240 km）｜宿 Hella</td>
       </tr>
       <tr>
         <td><strong>9.25</strong></td>
-        <td class="col-a">维克 ⇄ 冰河湖｜黑沙滩、钻石沙滩、冰河湖｜住宿<strong>待定</strong></td>
+        <td class="col-a">维克 ⇄ 冰河湖（约 400 km）｜黑沙滩、钻石沙滩、冰河湖｜住宿<strong>待定</strong><span class="small"><br>整合页建议：顺路东进、不回维克，住教堂镇</span></td>
         <td class="col-b">兰德曼纳劳卡高地｜A：自驾到集合点参加 11:30 行程；B：改为带交通的团</td>
         <td class="col-c">Hella 上车 → 兰德曼纳劳卡超级吉普（8–10 h）→ 回 Hella｜宿 Hella（连住）</td>
       </tr>
       <tr>
         <td><strong>9.26</strong></td>
-        <td class="col-a">维克｜上午羽毛峡谷（Fjaðrárgljúfur），下午卡特拉冰川徒步 3 h｜宿维克</td>
+        <td class="col-a">维克｜上午羽毛峡谷（Fjaðrárgljúfur），下午 <strong>15:00</strong> 卡特拉冰川徒步 3 h｜宿维克<span class="small"><br>14:20 前到维克集合点；住宿已订不可退</span></td>
         <td class="col-b">南岸瀑布 → Vik｜塞里雅兰、斯科加、Sólheimajökull，15:00 卡特拉冰川徒步｜宿 Vik（已订）</td>
         <td class="col-c">Hella → 瀑布群 → Vik（约 100 km）｜卡特拉冰川徒步｜宿 Vik（已订）</td>
       </tr>
       <tr>
         <td><strong>9.27</strong></td>
-        <td class="col-a">维克 → 海德拉坐巴士上高地 → 北上黄金圈｜宿黄金圈</td>
+        <td class="col-a">维克 <strong>08:00 前出发</strong> → Hella <strong>09:20 前</strong>到上车点（<strong>10:00 发车</strong>）→ 高地团 → 北上黄金圈｜宿黄金圈<span class="small"><br>整合页建议：团后住 Hella / Selfoss / Flúðir，不再赶黄金圈深处</span></td>
         <td class="col-b">Vik → 冰河湖 → 钻石沙滩｜宿 Kirkjubæjarklaustur（教堂镇）</td>
         <td class="col-c">Vik → 羽毛峡谷 → Skaftafell → 冰河湖（约 200 km）｜宿冰河湖旁</td>
       </tr>
       <tr>
         <td><strong>9.28</strong></td>
-        <td class="col-a">黄金圈（未列具体景点）｜宿雷克雅未克</td>
+        <td class="col-a">黄金圈（行程表未列具体景点）→ 雷克雅未克｜宿雷克雅未克<span class="small"><br>整合页建议：白天完成 Gullfoss、Geysir、Þingvellir、Kerið</span></td>
         <td class="col-b">教堂镇 → 南岸补漏 → 雷市</td>
         <td class="col-c">冰河湖 → Vik → 黑沙滩 → 雷市（约 395 km）｜是否当天还车待定</td>
       </tr>
       <tr>
         <td><strong>9.29</strong></td>
-        <td class="col-a">雷市周边或 citywalk｜宿雷克雅未克</td>
+        <td class="col-a">雷市周边或 citywalk｜宿雷克雅未克<span class="small"><br>整合页建议：citywalk + Sky Lagoon，或 Reykjanes + 温泉</span></td>
         <td class="col-b">雷市周边弹性日（雷市 citywalk + Sky Lagoon / 雷克雅内斯半岛一日团 / 斯奈山一日团）</td>
         <td class="col-c">三人分头活动｜统一宿 Keflavík</td>
       </tr>
       <tr>
         <td><strong>9.30</strong></td>
-        <td class="col-a">—</td>
+        <td class="col-a">—<span class="small"><br>9.30 两人转飞法罗群岛</span></td>
         <td class="col-b">—</td>
         <td class="col-c">两人飞法罗群岛；剩一人自由日</td>
       </tr>
@@ -250,7 +258,44 @@
 </section>
 
 <section>
-  <h2>三、关键差异</h2>
+  <h2>三、方案A 整合页新增了什么</h2>
+  <p class="lead">方案A 原先只有一张 6 列的行程表；现在它在 <code>plan-a-full.html</code> 里多了一整页整合内容。新增的部分，正是它从「一份行程」变成「一份可对照的路线评估」的地方。</p>
+  <table>
+    <thead>
+      <tr><th style="width:20%">模块</th><th style="width:40%">内容</th><th>对本对比的意义</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>逐日「原版 / 优化」对照</td>
+        <td>9.23 – 9.29 共 7 天，每天分「原版做法」与「优化后」两栏，末行附里程与住宿变动</td>
+        <td>方案A 第一次给出自己的改进版本：9.24 改住 Skógar、9.25 顺路东进不回维克、9.27 团后不再赶黄金圈、9.28 黄金圈放白天</td>
+      </tr>
+      <tr>
+        <td>住宿决策两个专章</td>
+        <td>「9.24 住维克合适吗」（Skógar 最推荐 / 维克可以 / Hella 偏西）与「9.25 住哪里最顺」（教堂镇首选，Vik、Höfn 不推荐）</td>
+        <td>正面回答行程表里 9.25 住宿空白的问题，并说明 9.24 的维克住宿因未预订、无退订成本而可以直接改</td>
+      </tr>
+      <tr>
+        <td>路线差异地图</td>
+        <td>左右两幅 Leaflet 地图：左为行程表原版路线（红），右为优化后的顺路版本（绿）</td>
+        <td>方案A 因此也进入「带交互地图」的一档（此前只有方案B）；线路为示意，不替代导航</td>
+      </tr>
+      <tr>
+        <td>风险与核查</td>
+        <td>最大风险日 9.27（08:00 前离开维克 / 09:20 到 Hella / 10:00 发车）、高地交通、路况与天气核查清单</td>
+        <td>把「折返 + 夜间驾驶」的隐患写成可执行的时间检查项，是三版里对 9.27 交代得最细的一处</td>
+      </tr>
+      <tr>
+        <td>景观类型推荐度</td>
+        <td>8 类地貌打分：冰河湖 5/5、高地 5/5、卡特拉 4.5/5、南岸瀑布 4.5/5、黑沙滩 4.5/5、羽毛峡谷 4/5、黄金圈 4/5、飞机残骸 2.5/5</td>
+        <td>解释了它为什么建议 9.24 不硬塞飞机残骸——出片看天气，却要花掉 2–2.5 小时和体力</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>四、关键差异</h2>
   <div class="grid two" style="gap:14px">
 
     <div class="diff-card">
@@ -260,7 +305,7 @@
 
     <div class="diff-card">
       <h3>2. 住宿落点：维克为基地 vs 分散住宿</h3>
-      <p>方案A 以维克为大本营（9.24、9.26 住维克，9.25 住宿待定），代价是若 9.25 折返冰河湖约 400 km、9.27 还要折返海德拉。方案C 改为 Hella 连住 2 晚 + 冰河湖旁 1 晚，把长距离拆散。</p>
+      <p>方案A 行程表以维克为大本营（9.24、9.26 住维克，9.25 住宿待定），代价是若 9.25 折返冰河湖约 400 km、9.27 还要折返海德拉；它的整合页给出的改法是 9.24 退到 Skógar、9.25 东进住教堂镇、9.27 团后住 Hella / Selfoss / Flúðir。方案C 则从一开始就是 Hella 连住 2 晚 + 冰河湖旁 1 晚，把长距离拆散。</p>
     </div>
 
     <div class="diff-card">
@@ -270,7 +315,7 @@
 
     <div class="diff-card">
       <h3>4. 冰河湖 / 钻石沙滩放哪天</h3>
-      <p>方案A 放 9.25 并当天往返维克；方案B 放 9.27 后住教堂镇；方案C 放 9.27 后住冰河湖旁。方案C 的落点最靠近景点，第二天返程也最顺。</p>
+      <p>方案A 放 9.25 并当天往返维克（约 400 km），整合页建议改为顺路东进、不回维克并住教堂镇；方案B 放 9.27 后住教堂镇；方案C 放 9.27 后住冰河湖旁。方案C 的落点最靠近景点，第二天返程也最顺。</p>
     </div>
 
     <div class="diff-card">
@@ -280,7 +325,17 @@
 
     <div class="diff-card">
       <h3>6. 信息颗粒度</h3>
-      <p>方案A 只有景点名，方案B 有交互地图和专项对照表，方案C 补齐了集合点、价格、联系方式、补给与安全清单。方案C 是唯一能直接拿去执行的一版。</p>
+      <p>方案A 的行程表本身只有景点名，整合页补上了逐日原版 / 优化对照、里程提示、住宿决策与风险核查；方案B 有交互地图和专项对照表；方案C 补齐了集合点、价格、联系方式、补给与安全清单。要直接拿去执行，仍然是方案C 最完整。</p>
+    </div>
+
+    <div class="diff-card">
+      <h3>7. 两个不可移动的时间锚点</h3>
+      <p>9.26 15:00 卡特拉冰川徒步（14:20 前到维克集合），以及 9.27 高地团 Hella 10:00 发车（09:20 前到上车点）。方案A 的 9.27 因为要从维克折返西行，与这个锚点冲突最直接；方案C 因为就住在 Hella，最从容。</p>
+    </div>
+
+    <div class="diff-card">
+      <h3>8. 方案A 的优化走法与方案C 趋同</h3>
+      <p>方案A 整合页给出的三条改法（9.24 住 Skógar、9.25 东进住教堂镇、9.27 团后住 Hella 一带）与方案C 的住宿安排方向一致。两个独立整理出的方案得出相近结论，可以作为彼此交叉验证。</p>
     </div>
 
   </div>
@@ -291,19 +346,20 @@
       <li><strong>车是 2WD 高尔夫</strong>：开 F 路（F208 / F225）进兰德曼纳劳卡属于违反租车合同，保险不赔，还需要涉水过河。所以三个方案里<strong>高地都只能跟团</strong>。</li>
       <li><strong>Vik 9.26 的住宿已订</strong>，这一个锚点三个方案都不能动。</li>
       <li><strong>9.30 有两人要飞法罗群岛</strong>，所以 9.29 的收尾必须往机场方向收。</li>
+      <li><strong>两个活动是固定时间点</strong>：9.26 15:00 卡特拉冰川徒步（14:20 前到维克集合）、9.27 高地团 Hella 10:00 发车（09:20 前到上车点）。它们决定了前后两天都不能排太满。</li>
     </ul>
   </div>
 </section>
 
 <section>
-  <h2>四、各方案适合什么情况</h2>
+  <h2>五、各方案适合什么情况</h2>
   <table>
     <thead><tr><th style="width:14%">方案</th><th style="width:22%">适合</th><th>主要代价</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>方案A</strong><br><span class="small">以维克为基地</span></td>
-        <td>想先看南岸瀑布群、希望住宿尽量少换，且 9.25 不想赶路</td>
-        <td>9.25 住宿尚未敲定，需先定落点；9.27 折返海德拉；9.28 才走黄金圈，等于把最经典的景点放到最后，容错率低</td>
+        <td><strong>方案A</strong><br><span class="small">以维克为基地 · 整合页已给出优化改法</span></td>
+        <td>想先看南岸瀑布群、住宿尽量少换，并且愿意采用整合页的改法（9.24 住 Skógar、9.25 东进住教堂镇、9.27 团后住 Hella 一带）；也适合想看一份把自己问题也写出来的评估的人</td>
+        <td>不采用整合页的改法时，折返最明显：9.25 冰河湖当天往返约 400 km、9.27 从维克折返海德拉；9.27 还有 08:00 前离开维克的硬约束；9.25 住宿仍未定；9.28 才走黄金圈，把最经典的景点放到最后，容错率低</td>
       </tr>
       <tr>
         <td><strong>方案B</strong><br><span class="small">GPT5.5 推荐版</span></td>
@@ -320,14 +376,14 @@
 
   <div class="callout ok" style="margin-top:16px">
     <h3>建议</h3>
-    <p>以<strong>方案C</strong> 为执行版本。方案A 里值得吸收的是两个点的位置信息：<strong>飞机残骸</strong>（9.24 南岸）和 <strong>黑沙滩</strong>（可并入方案C 的 9.28 返程）。方案B 继续作为带地图的参考底稿保留。详细的 9.27 住宿三选一、9.28 两种走法、9.29 三人怎么分，见方案C 页面的对应章节。</p>
+    <p>执行版本仍然是<strong>方案C</strong>：三版里只有它把集合点、价格、联系方式、补给与安全清单写全。方案A 现在可以当<strong>第二份独立论证</strong>用——它的整合页得出「9.24 住 Skógar、9.25 东进住教堂镇、9.27 团后住 Hella 一带」的结论，与方案C 的方向一致；其中<strong>飞机残骸</strong>（9.24 南岸）与<strong>黑沙滩</strong>（可并入方案C 的 9.28 返程）是值得吸收的两个点位。方案B 继续作为带地图的参考底稿保留，方案A 的双路线差异地图也可以拿来直观对照原版与优化路线。详细的 9.27 住宿三选一、9.28 两种走法、9.29 三人怎么分，见方案C 页面的对应章节。</p>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <p>A / B / C 方案对照 · 冰岛 2026 年 9 月行程 · 内部讨论稿。各方案详细信息请以对应页面为准；里程与耗时均为估算值。</p>
+  <p>A / B / C 方案对照 · 冰岛 2026 年 9 月行程 · 内部讨论稿。三个方案并列，各方案详细信息请以对应页面为准；里程与耗时均为估算值，地图线路为示意，不替代导航。</p>
 </footer>
 
 </body>
