@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案A · 冰岛 9.23–9.29 行程（原始排期）</title>
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#ffffff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  header.hero{
+    min-height:44vh; display:flex; align-items:flex-end; color:#fff;
+    background-image:linear-gradient(180deg, rgba(10,20,30,.24), rgba(10,20,30,.76)), url('images/skogafoss.jpg');
+    background-size:cover; background-position:center;
+  }
+  .hero-inner, main{ width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  .hero-inner{ padding:0 0 40px; }
+  header.hero h1{ font-size:clamp(30px, 4.4vw, 58px); line-height:1.05; margin:0 0 14px; letter-spacing:-.5px; }
+  header.hero p{ font-size:17px; color:rgba(255,255,255,.92); max-width:900px; margin:0; }
+  .hero-kicker{ font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.8); margin:0 0 14px; font-weight:700; }
+  main{ padding:28px 0 64px; }
+  section{ margin:26px 0; }
+  h2{ font-size:24px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); }
+  h3{ font-size:17px; margin:0 0 8px; }
+  h4{ font-size:15px; margin:16px 0 6px; }
+  .lead{ color:var(--muted); max-width:920px; }
+  p{ margin:0 0 10px; }
+  ul{ margin:6px 0 10px; padding-left:20px; }
+  li{ margin:3px 0; }
+  a{ color:var(--blue); }
+  .grid{ display:grid; gap:16px; }
+  .two{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .three{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .card-body{ padding:16px; }
+  .tag{ display:inline-block; margin:0 6px 8px 0; padding:4px 8px; border-radius:999px; background:#edf2f7; color:#334155; font-size:12px; font-weight:700; }
+  .tag.best{ background:#e6f4f1; color:#176c61; }
+  .tag.warn{ background:#fff1d6; color:#8a5200; }
+  .tag.hard{ background:#fde8e5; color:#9d2f20; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px; }
+  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere; word-break:break-word; }
+  th{ background:#26384a; color:#fff; font-weight:700; }
+  tr:nth-child(even) td{ background:#f9fbfc; }
+  .timeline{ display:grid; gap:14px; }
+  .day-card{ background:var(--panel); border:1px solid var(--line); border-left:6px solid var(--blue); border-radius:8px; padding:16px 18px; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .timeline .day-card:nth-child(2){ border-left-color:var(--amber); }
+  .timeline .day-card:nth-child(3){ border-left-color:var(--green); }
+  .timeline .day-card:nth-child(4){ border-left-color:var(--red); }
+  .timeline .day-card:nth-child(5){ border-left-color:var(--violet); }
+  .timeline .day-card:nth-child(6){ border-left-color:var(--slate); }
+  .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; color:var(--muted); font-size:13px; }
+  .meta span{ background:#f1f5f9; border-radius:6px; padding:2px 8px; }
+  .small{ color:var(--muted); font-size:12px; }
+  code{ background:#eef2f6; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:13px; }
+  .callout{ border:1px solid var(--line); border-left:5px solid var(--amber); background:#fffaf0; border-radius:8px; padding:14px 16px; }
+  .callout.hard{ border-left-color:var(--red); background:#fff5f3; }
+  .callout.ok{ border-left-color:var(--green); background:#f2fbf8; }
+  .notice{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; justify-content:space-between;
+    background:#fff; border:1px solid var(--line); border-left:5px solid var(--amber); border-radius:8px;
+    padding:12px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .notice span{ color:var(--muted); }
+  .notice .links{ display:flex; gap:16px; flex-wrap:wrap; }
+  .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
+  .notice a:hover{ text-decoration:underline; }
+  footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  @media (max-width:900px){
+    .two,.three{ grid-template-columns:1fr; }
+    header.hero{ min-height:38vh; }
+    th,td{ padding:9px 10px; font-size:13px; }
+    header.hero h1{ font-size:clamp(28px,6.5vw,40px); }
+  }
+  @media (max-width:560px){
+    th,td{ padding:8px 9px; font-size:12.5px; }
+    .hero-inner, main, footer{ width:calc(100vw - 28px); }
+    h2{ font-size:20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">方案A · Iceland · 2026.09.23 – 09.29</p>
+    <h1>方案A · 冰岛行程（原始排期）</h1>
+    <p>本页为<strong>方案A</strong>：最早成型的一版排期，来自 Excel 行程表里的冰岛部分。走法为<strong>顺时针</strong>——先南下南岸，在维克连住三晚，再折返海德拉上兰德曼纳劳卡高地，最后收在黄金圈与雷克雅未克。</p>
+  </div>
+</header>
+
+<main>
+
+<div class="notice">
+  <span>本页内容<strong>原样取自 Excel 行程表</strong>，未作行程结论修改。方案B、方案C 与三方案对照见：</span>
+  <div class="links">
+    <a href="compare.html">A / B / C 对照表</a>
+    <a href="./">方案B →</a>
+    <a href="plan-c.html">方案C →</a>
+  </div>
+</div>
+
+<section>
+  <h2>一、这版方案怎么走</h2>
+  <p class="lead">来源文件是 <code>冰岛法罗行程.xls</code> 的「方案1」工作表，其中第 2–8 行为冰岛部分（9.23–9.29）。表里只有 6 列：时间、出发地、到达、景点、交通方式、住宿，没有里程、时间和集合点等细节。</p>
+  <div class="grid three">
+    <div class="card"><div class="card-body">
+      <span class="tag">特征一</span>
+      <h3>顺时针，南岸优先</h3>
+      <p>9.24 一取到车就直奔南岸，把塞里雅兰瀑布、斯科加瀑布和飞机残骸全排在第一天，黄金圈反而留到 9.28。</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <span class="tag">特征二</span>
+      <h3>维克连住三晚</h3>
+      <p>9.24 / 9.25 / 9.26 都以维克为基地，9.25 一路东进到冰河湖，9.26 回头玩羽毛一带并参加卡特拉冰川徒步。</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <span class="tag">特征三</span>
+      <h3>高地靠折返 + 跟团</h3>
+      <p>9.27 从维克折返约 100 km 到海德拉（Hella），在那里坐巴士参加兰德曼纳劳卡高地一日团，结束后北上黄金圈住宿。</p>
+    </div></div>
+  </div>
+  <p class="small" style="margin-top:10px">原表在冰岛之后还有法罗群岛的行程（9.30–10.6），本次不在讨论范围内。</p>
+</section>
+
+<section>
+  <h2>二、逐日安排（原表）</h2>
+  <table>
+    <thead><tr><th style="width:9%">时间</th><th style="width:13%">出发地</th><th style="width:20%">到达</th><th>景点</th><th style="width:10%">交通</th><th style="width:14%">住宿</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>9.23</strong></td>
+        <td>北京</td>
+        <td>雷克雅未克<br><span class="small">哥本哈根转机</span></td>
+        <td>—</td>
+        <td>飞机</td>
+        <td><span class="small">原表未填</span></td>
+      </tr>
+      <tr>
+        <td><strong>9.24</strong></td>
+        <td>雷克雅未克</td>
+        <td>维克小镇</td>
+        <td>1. 塞里雅兰瀑布<br>2. 斯科加瀑布<br>3. 飞机残骸</td>
+        <td>自驾</td>
+        <td>维克小镇</td>
+      </tr>
+      <tr>
+        <td><strong>9.25</strong></td>
+        <td>维克小镇</td>
+        <td><span class="small">（同上，以维克为基地）</span></td>
+        <td>1. 黑沙滩<br>2. 钻石沙滩<br>3. 冰河湖</td>
+        <td>自驾</td>
+        <td><span class="small">原表未填</span></td>
+      </tr>
+      <tr>
+        <td><strong>9.26</strong></td>
+        <td>维克小镇</td>
+        <td><span class="small">（同上，以维克为基地）</span></td>
+        <td>1. 上午羽毛瀑布<br>2. 下午卡特拉冰川徒步 3 小时</td>
+        <td>自驾</td>
+        <td>维克小镇</td>
+      </tr>
+      <tr>
+        <td><strong>9.27</strong></td>
+        <td><span class="small">维克（原表未填）</span></td>
+        <td>黄金圈</td>
+        <td>1. 维克自驾到海德拉小镇坐巴士参加兰德曼纳劳卡高地一日团<br>2. 结束后开车前往黄金圈</td>
+        <td>自驾</td>
+        <td>黄金圈</td>
+      </tr>
+      <tr>
+        <td><strong>9.28</strong></td>
+        <td>黄金圈</td>
+        <td><span class="small">（雷克雅未克）</span></td>
+        <td>黄金圈</td>
+        <td>自驾</td>
+        <td>雷克雅未克</td>
+      </tr>
+      <tr>
+        <td><strong>9.29</strong></td>
+        <td><span class="small">雷克雅未克</span></td>
+        <td>—</td>
+        <td>雷市周边或 citywalk</td>
+        <td>自驾</td>
+        <td>雷克雅未克</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:8px">上表为原表内容的忠实转录；「到达」列原表多为空白，此处仅用浅色小字补注上下文，方便阅读。</p>
+</section>
+
+<section>
+  <h2>三、逐日备注与需要确认的点</h2>
+  <div class="timeline">
+
+    <article class="day-card">
+      <h3>9.23 抵达日 · 原表未填住宿</h3>
+      <p>北京经哥本哈根转机飞雷克雅未克，落地当天不计入自驾。原表这一行的住宿是空的，需要确认是当晚就住雷市、还是按航班时间住机场附近（Keflavík）。</p>
+      <div class="meta"><span>交通：飞机</span><span>住宿：待补</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.24 雷市 → 维克（约 190 km）</h3>
+      <p>塞里雅兰瀑布和斯科加瀑布都在 1 号环岛公路旁边，顺路。真正吃时间的是<strong>飞机残骸</strong>（Sólheimasandur 的 DC-3）：沙地上不允许私家车通行，需要步行往返约 8 km（约 2–2.5 小时），另有接驳车季节运营、需现场确认是否开行。</p>
+      <p>所以这一天实际是「约 190 km 车程 + 两个瀑布 + 一次 8 km 步行」，节奏偏紧，取车时间要往前提。</p>
+      <div class="meta"><span>里程约 190 km</span><span>住宿：维克</span><span class="tag warn">节奏偏紧</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.25 维克 ⇄ 冰河湖 · 全天最长的一天</h3>
+      <p>黑沙滩就在维克旁边，但<strong>钻石沙滩和冰河湖在维克以东约 200 km</strong>（参考本系列另一页的里程口径），单程需 2.5–3 小时。当天往返约 400 km、纯驾驶 5–6 小时，再叠加黑沙滩停留，会是比较硬的一天。</p>
+      <p>原表这一行的住宿同样空白。按上下文（9.24 和 9.26 都住维克）推断是<strong>继续住维克</strong>，但需要你确认。</p>
+      <div class="meta"><span>里程约 400 km 往返</span><span>住宿：原表未填（推断为维克）</span><span class="tag hard">强度最高</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.26 维克 · 「羽毛瀑布」+ 卡特拉冰川徒步</h3>
+      <p><strong>需要你确认一处用词：</strong>原表写的是「羽毛瀑布」。按位置和常见叫法，最可能指的是 <strong>Fjaðrárgljúfur 羽毛峡谷</strong>（维克以东约 70 km，从 206 号路进入）；但也可能是 Skaftafell 的 <strong>Svartifoss 玄武岩瀑布</strong>，两处相差约 70 km。请确认到底指哪一个。</p>
+      <p>下午是卡特拉冰川徒步，原表标注 3 小时，宿维克。</p>
+      <div class="meta"><span>住宿：维克</span><span class="tag warn">景点名称待确认</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.27 维克 → 海德拉 → 兰德曼纳劳卡高地 → 黄金圈</h3>
+      <p>「海德拉」即 <strong>Hella</strong>，维克到海德拉约 100 km。也就是说这一天要先往西开约 1.5 小时回到海德拉，再坐巴士进高地，结束后继续北上黄金圈住宿——是一段<strong>折返</strong>路线。</p>
+      <p>值得一提的是：方案A 原表就已经采用「海德拉（Hella）出发」的高地团，这一点和方案C 的结论方向一致。</p>
+      <div class="meta"><span>维克 → Hella 约 100 km</span><span>住宿：黄金圈一带</span><span class="tag">含折返</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.28 黄金圈 · 未列具体景点</h3>
+      <p>原表在这一行只写了「黄金圈」三个字，没有细分辛格维利尔、间歇泉、黄金瀑布、Kerið 火山口等具体停留点。当晚回雷克雅未克住宿。</p>
+      <div class="meta"><span>住宿：雷克雅未克</span><span>内容待细化</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.29 雷市周边或 citywalk</h3>
+      <p>原表写「雷市周边或 citywalk」，比较开放，没有指定具体安排，宿雷克雅未克。这是方案A 的最后一天。</p>
+      <div class="meta"><span>住宿：雷克雅未克</span><span>内容开放</span></div>
+    </article>
+
+  </div>
+
+  <div class="callout hard" style="margin-top:14px">
+    <h3>原表里的一处笔误</h3>
+    <p>冰岛部分之后的那一行，原表写的是「<strong>9.3</strong> 雷克雅未克 → 法罗群岛」。按行程顺序，这里应为 <strong>9.30</strong>。法罗部分本次不在范围内。</p>
+  </div>
+</section>
+
+<section>
+  <h2>四、与方案B、方案C 的关系</h2>
+  <table>
+    <thead><tr><th style="width:16%">对比项</th><th style="width:28%">方案A（本页）</th><th>方案B / 方案C</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>走法方向</strong></td>
+        <td>顺时针：先南下南岸，维克连住 3 晚，最后才上黄金圈</td>
+        <td>逆时针：第一天就走黄金圈，再上高地，然后南下南岸</td>
+      </tr>
+      <tr>
+        <td><strong>高地日期</strong></td>
+        <td>9.27（从维克折返海德拉跟团）</td>
+        <td>9.25（住在海德拉一带，就近上车）</td>
+      </tr>
+      <tr>
+        <td><strong>冰河湖 / 钻石沙滩</strong></td>
+        <td>9.25，从维克当天往返（约 400 km）</td>
+        <td>方案B 放 9.27 并住教堂镇；方案C 放 9.27 并住冰河湖旁</td>
+      </tr>
+      <tr>
+        <td><strong>详细信息</strong></td>
+        <td>原表 6 列，只有景点名</td>
+        <td>方案B 含交互路线地图；方案C 补充里程、集合点、价格、安全与风险清单</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:12px"><a href="compare.html">→ 看完整的 A / B / C 三方案对照表</a></p>
+</section>
+
+</main>
+
+<footer>
+  <p>方案A · 冰岛 9.23–9.29 行程（原始排期） · 内容取自 <code>冰岛法罗行程.xls</code> 的冰岛部分，未作行程结论修改。里程为估算值，实际请以 Google Maps 为准。</p>
+</footer>
+
+</body>
+</html>
