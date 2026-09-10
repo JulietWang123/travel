@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9 月底最值得去的地方 · 推荐清单与方案覆盖对照</title>
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#ffffff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  header.hero{
+    min-height:44vh; display:flex; align-items:flex-end; color:#fff;
+    background-image:linear-gradient(180deg, rgba(10,20,30,.22), rgba(10,20,30,.76)), url('images/jokulsarlon-diamond.jpg');
+    background-size:cover; background-position:center;
+  }
+  .hero-inner, main{ width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  .hero-inner{ padding:0 0 40px; }
+  header.hero h1{ font-size:clamp(30px, 4.4vw, 58px); line-height:1.05; margin:0 0 14px; letter-spacing:-.5px; }
+  header.hero p{ font-size:17px; color:rgba(255,255,255,.92); max-width:940px; margin:0; }
+  .hero-kicker{ font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.8); margin:0 0 14px; font-weight:700; }
+  main{ padding:28px 0 64px; }
+  section{ margin:26px 0; }
+  h2{ font-size:24px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); }
+  h3{ font-size:17px; margin:0 0 8px; }
+  h4{ font-size:15px; margin:16px 0 6px; }
+  .lead{ color:var(--muted); max-width:940px; }
+  p{ margin:0 0 10px; }
+  ul{ margin:6px 0 10px; padding-left:20px; }
+  li{ margin:3px 0; }
+  a{ color:var(--blue); }
+  .grid{ display:grid; gap:16px; }
+  .two{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .three{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .card-body{ padding:16px; }
+  .tag{ display:inline-block; margin:0 6px 8px 0; padding:4px 8px; border-radius:999px; background:#edf2f7; color:#334155; font-size:12px; font-weight:700; }
+  .tag.best{ background:#e6f4f1; color:#176c61; }
+  .tag.warn{ background:#fff1d6; color:#8a5200; }
+  .tag.hard{ background:#fde8e5; color:#9d2f20; }
+  .tag.s{ background:#176c61; color:#fff; }
+  .tag.a{ background:#2364aa; color:#fff; }
+  .tag.b{ background:#425466; color:#fff; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px; }
+  th,td{ padding:11px 12px; border:1px solid var(--line); vertical-align:top; text-align:left; overflow-wrap:anywhere; word-break:break-word; }
+  th{ background:#26384a; color:#fff; font-weight:700; }
+  tr:nth-child(even) td{ background:#f9fbfc; }
+  .col-a{ background:#fff8ef !important; }
+  .col-b{ background:#f4f9ff !important; }
+  .col-c{ background:#f2fbf8 !important; }
+  th.col-a{ background:#8a5200 !important; color:#fff; }
+  th.col-b{ background:#2364aa !important; color:#fff; }
+  th.col-c{ background:#176c61 !important; color:#fff; }
+  .center{ text-align:center; }
+  .yes{ color:#176c61; font-weight:700; }
+  .part{ color:#8a5200; font-weight:700; }
+  .no{ color:#9d2f20; font-weight:700; }
+  .timeline{ display:grid; gap:14px; }
+  .day-card{ background:var(--panel); border:1px solid var(--line); border-left:6px solid var(--blue); border-radius:8px; padding:16px 18px; box-shadow:0 8px 24px rgba(18,31,43,.07); }
+  .timeline .day-card:nth-child(2){ border-left-color:var(--amber); }
+  .timeline .day-card:nth-child(3){ border-left-color:var(--green); }
+  .timeline .day-card:nth-child(4){ border-left-color:var(--red); }
+  .timeline .day-card:nth-child(5){ border-left-color:var(--violet); }
+  .timeline .day-card:nth-child(6){ border-left-color:var(--slate); }
+  .timeline .day-card:nth-child(7){ border-left-color:var(--blue); }
+  .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; color:var(--muted); font-size:13px; }
+  .meta span{ background:#f1f5f9; border-radius:6px; padding:2px 8px; }
+  .small{ color:var(--muted); font-size:12px; }
+  code{ background:#eef2f6; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:13px; }
+  .callout{ border:1px solid var(--line); border-left:5px solid var(--amber); background:#fffaf0; border-radius:8px; padding:14px 16px; }
+  .callout.hard{ border-left-color:var(--red); background:#fff5f3; }
+  .callout.ok{ border-left-color:var(--green); background:#f2fbf8; }
+  .notice{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; justify-content:space-between;
+    background:#fff; border:1px solid var(--line); border-left:5px solid var(--violet); border-radius:8px;
+    padding:12px 16px; margin:0 0 22px; font-size:14px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .notice span{ color:var(--muted); }
+  .notice .links{ display:flex; gap:16px; flex-wrap:wrap; }
+  .notice a{ font-weight:700; text-decoration:none; white-space:nowrap; }
+  .notice a:hover{ text-decoration:underline; }
+  footer{ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:22px 0 40px; width:min(1180px, calc(100vw - 40px)); margin:0 auto; }
+  @media (max-width:900px){
+    .two,.three{ grid-template-columns:1fr; }
+    header.hero{ min-height:38vh; }
+    th,td{ padding:9px 10px; font-size:13px; }
+    header.hero h1{ font-size:clamp(28px,6.5vw,40px); }
+  }
+  @media (max-width:560px){
+    th,td{ padding:8px 9px; font-size:12.5px; }
+    .hero-inner, main, footer{ width:calc(100vw - 28px); }
+    h2{ font-size:20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Iceland · 推荐清单 · 2026 年 9 月底</p>
+    <h1>9 月底最值得去的地方</h1>
+    <p>本页回答两个问题：<strong>如果只看 2026 年 9 月底的风景、不考虑行程长度和时间成本，冰岛最值得去哪些地方</strong>；以及<strong>这些地方在方案A / B / C 里分别包含哪些、不包含哪些</strong>。最后附一版「9.24–9.29 排得更密」的路线。</p>
+  </div>
+</header>
+
+<main>
+
+<div class="notice">
+  <span>本页是分析清单，不是行程方案；三个方案的完整行程在各自的页面：</span>
+  <div class="links">
+    <a href="plan-a.html">方案A</a>
+    <a href="./">方案B</a>
+    <a href="plan-c.html">方案C</a>
+    <a href="compare.html">A/B/C 对照</a>
+  </div>
+</div>
+
+<section>
+  <h2>一、先对齐口径：9 月底这个窗口意味着什么</h2>
+  <p class="lead">下面这些是判断「值不值得去」的前提。<strong>它们都是已核实的事实，不是推测</strong>——如果前提错了，后面的排序就全部失真。</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:31%">事实</th>
+        <th style="width:20%">核实状态</th>
+        <th>对风景的影响</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>2026 年 9 月 26 日是满月，亮度 100%</strong></td>
+        <td><span class="tag hard" style="margin:0">已核实</span></td>
+        <td>9.23–9.30 全程月光 93% → 100% → 97%，<strong>整周没有暗夜窗口</strong>。追极光不是「运气差」，而是被天文条件排除。唯一的小安慰是满月本身可以当题材：月亮从 Vestrahorn 或冰河湖后方升起是很好的画面。</td>
+      </tr>
+      <tr>
+        <td><strong>Vatnajökull 蓝冰洞开放期 10 月中–3 月；Skaftafell 冰洞 11 月–3 月</strong></td>
+        <td><span class="tag hard" style="margin:0">已核实</span></td>
+        <td>9 月底<strong>唯一能进的天然冰洞是 Katla</strong>（Mýrdalsjökull，全年开放）。Langjökull 的「Into the Glacier」和雷市 Perlan 是人工冰隧道，全年可进，但性质不同。</td>
+      </tr>
+      <tr>
+        <td><strong>兰德曼纳劳卡的 F 路常规开放 6 月下旬–9 月初中；停车预约系统 6.20–9.13；山屋 10 月前关闭</strong></td>
+        <td><span class="tag warn" style="margin:0">已核实</span></td>
+        <td>自驾走 F208/F225 已是季节尾巴。但商业超级吉普团排期是 6 月–10 月，<strong>9.25 仍可成行，前提是必须邮件确认当天发团</strong>，不能当成板上钉钉。</td>
+      </tr>
+      <tr>
+        <td><strong>海鹦 8 月底已离岸</strong></td>
+        <td><span class="tag hard" style="margin:0">已核实</span></td>
+        <td>不要为海鹦安排任何行程，Dyrhólaey 崖顶也不必抱着看鸟的期待去。</td>
+      </tr>
+      <tr>
+        <td><strong>Reykjanes / Grindavík 一带仍有喷发与地震；Safetravel 已对 Fimmvörðuháls 步道发布路况警告</strong></td>
+        <td><span class="tag warn" style="margin:0">已核实 · 状态每天变</span></td>
+        <td>前者是「当下限定」的加分项（能看到活的熔岩），后者是排除项。出发前必须查 safetravel.is 与 vedur.is。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout ok" style="margin-top:16px">
+    <h4>季节红利：这才是 9 月底真正值钱的地方</h4>
+    <ul>
+      <li><strong>秋色峰值就在 9 月中到 10 月初。</strong>冰岛变色的主要是白桦、花楸、落叶松。最浓的三块：东部（Hallormsstaðaskógur / Hengifoss 一带）、Skaftafell 的白桦林、兰德曼纳劳卡高地；次之是西部的 Hraunfossar。</li>
+      <li><strong>雪线刚下来。</strong>9 月底山顶开始挂初雪，山体有了层次和明暗对比，比盛夏那种「一片绿」好拍太多。</li>
+      <li><strong>光线角度低，但日照还有约 11 小时。</strong>南岸日落约 19:10，冰河湖的日落光线依然是金色，而且没人。</li>
+      <li><strong>人少。</strong>游客量相对 7–8 月断崖下跌，黄金圈、冰河湖、黑沙滩都不挤——这是本窗口最大的隐性福利。</li>
+      <li><strong>东部驯鹿 9 月是发情季</strong>，在 Vatnajökull 东部看到的概率显著高于夏天。</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>二、S 档 · 9 月底的不可替代项</h2>
+  <p class="lead">判定标准：<strong>换到别的月份就明显变差</strong>的地方。这一档是「哪怕行程只剩 3 天也要优先保住」的名单。</p>
+  <div class="grid three">
+
+    <div class="card"><div class="card-body">
+      <span class="tag s">S 档 · 1</span>
+      <h3>Jökulsárlón 冰河湖 + Diamond Beach 钻石沙滩</h3>
+      <p>冰川舌崩解的浮冰漂在潟湖，黑沙滩上是被浪打磨的「钻石」。9 月底结冰浮冰更多、游客更少、太阳角度更低——比盛夏更「冰」，也正是它最出名的样子。</p>
+      <p class="small">Vatnajökull 冰缘带 · 三版方案都含</p>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <span class="tag s">S 档 · 2</span>
+      <h3>Vestrahorn / Stokksnes 蝙蝠山</h3>
+      <p>454 m 尖峰压着黑色沙丘和镜面浅水，是冰岛被拍得最多、也最难被替代的构图。9 月底有初雪 + 秋色 + 黑沙滩倒影。</p>
+      <p class="small">Höfn 西南约 12 km · 私人道路需现场购票 · 晴天普通车可行</p>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <span class="tag s">S 档 · 3</span>
+      <h3>兰德曼纳劳卡高地 Landmannalaugar</h3>
+      <p>彩色流纹岩 + Laugahraun 熔岩原 + 高地温泉。盛夏是「绿 + 彩色」，9 月底是彩色流纹岩叠上金黄桦树再压一层初雪，<strong>颜色层次是全年最厚的</strong>。</p>
+      <p class="small">本窗口末尾 · 错过要等明年 6 月 · 需确认发团</p>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <span class="tag s">S 档 · 4</span>
+      <h3>Skaftafell / Vatnajökull 冰缘带</h3>
+      <p>Svartifoss 玄武岩柱瀑布配上秋季白桦背景；Skaftafellsjökull 冰川舌步道短、回报高；Fjallsárlón 比 Jökulsárlón 小人少，能拍到冰山与冰川同框。</p>
+      <p class="small">Svartifoss 往返约 1.5 h</p>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <span class="tag s">S 档 · 5</span>
+      <h3>Katla 冰洞（Kötlujökull）</h3>
+      <p>冰里夹着黑火山灰层的「黑冰洞」，形状每年不同。<strong>9 月底唯一能进的天然冰洞</strong>——这一条本身就把它顶到 S 档。</p>
+      <p class="small">从 Vík 出发 · 全年开放 · 需硬底防水登山鞋</p>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <span class="tag hard">S 档 · 6 · 本窗口失效</span>
+      <h3>极光</h3>
+      <p>9 月春分前后本是一年地磁活动最活跃的时段，正常年份这是极光季开局的黄金窗口。但 2026 年 9.26 满月、整周月光 93%+，加上 9 月底云量偏高，<strong>期望值必须压到「看到算捡到」</strong>。</p>
+      <p class="small">不建议为追光牺牲任何其他安排</p>
+    </div></div>
+
+  </div>
+</section>
+
+<section>
+  <h2>三、A 档 · 9 月底依然第一流，但非季节独占</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%">地点</th>
+        <th style="width:38%">9 月底值得去的理由</th>
+        <th>需要注意</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>黄金圈</strong><br><span class="small">Þingvellir 辛格维利尔 · Geysir / Strokkur · Gullfoss 黄金瀑布 · Kerið 火山口湖</span></td>
+        <td>板块裂谷的地貌教育性无可替代；Gullfoss 在秋季低角度光下比盛夏更立体；Kerið 的红土配蓝绿湖水是全年来最稳的一站。</td>
+        <td>停车场普遍收费（Parka App）；9 月底人少，可以按自己节奏走。</td>
+      </tr>
+      <tr>
+        <td><strong>南岸瀑布群</strong><br><span class="small">Seljalandsfoss + Gljúfrabúi · Skógafoss · Kvernufoss · Sólheimajökull</span></td>
+        <td>一天内能拿到 4 条不同形态的瀑布，加上一条可直接走到冰前缘的冰川舌。Seljalandsfoss 背后的步道和 Kvernufoss 的「隐藏感」都是别处没有的体验。</td>
+        <td>Seljalandsfoss 走到瀑布后方会湿透，穿防水外套；Sólheimajökull 冰川前缘有围栏，不要越过。</td>
+      </tr>
+      <tr>
+        <td><strong>Reynisfjara 黑沙滩 · Dyrhólaey · Vík</strong></td>
+        <td>玄武岩柱 + Reynisdrangar 海蚀柱 + 海岬灯塔俯瞰黑沙滩拱门，是南岸的视觉高点。</td>
+        <td><strong>sneaker wave 有致命风险</strong>，务必站在安全区；海鹦 8 月底已走，不必为鸟停留。</td>
+      </tr>
+      <tr>
+        <td><strong>Fjaðrárgljúfur 羽毛峡谷</strong></td>
+        <td>约 100 m 深的曲折峡谷，秋季苔原与水面颜色层次好。属于「顺路一停、回报很高」的一站。</td>
+        <td>从 206 号路进入；干燥天气普通车可走，雨后有坑。</td>
+      </tr>
+      <tr>
+        <td><strong>Stuðlagil 玄武岩柱峡谷</strong><br><span class="small">东部 Jökuldalur</span></td>
+        <td>蓝色柱状玄武岩峡谷，秋季人极少，是近年最出片的新点之一。</td>
+        <td><strong>水色和柱体露出程度随上游 Kárahnjúkar 水库放水变化</strong>，去之前务必查当季实拍。</td>
+      </tr>
+      <tr>
+        <td><strong>东峡湾 + Seyðisfjörður + 东部驯鹿</strong><br><span class="small">含 Hengifoss</span></td>
+        <td>Hengifoss 是红黑相间的层状瀑布，周边山毛榉森林是冰岛秋季最浓的一片；Seyðisfjörður 是峡湾尽头的小镇，秋天的雾与色最配。9 月是驯鹿发情季，看到的概率高于夏天。</td>
+        <td>完全不顺南岸环线，需要单独为它留 2 天以上的路。<strong>东部路况多变，出发当天查 vedur.is。</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Snæfellsnes 斯奈山半岛</strong><br><span class="small">Kirkjufell 草帽山 · Arnarstapi · Búðir 黑教堂 · Djúpalónssandur</span></td>
+        <td>「冰岛缩影」：草帽山、黑教堂、海蚀柱、沉船滩在一天内串完。半岛北侧秋季色彩最好，且可从雷市一日往返。</td>
+        <td>一日往返约 11–12 h，回来很晚。<strong>如果第二天有早班机，不要押在这一天。</strong></td>
+      </tr>
+      <tr>
+        <td><strong>北部米湖区 + Dettifoss + Ásbyrgi + Húsavík</strong></td>
+        <td>Dettifoss 是欧洲最湍急的瀑布，Ásbyrgi 的马蹄形峡谷与周围森林在秋天最有层次。座头鲸 9 月底还在，Húsavík 观鲸成功率仍高。这一带也是全国最适合追光的地带（南岸云雨多、北部常晴）。</td>
+        <td>与南岸环线相隔一整个国家；<strong>米湖周边的地热与火山口点位需要单独排一天。</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Reykjanes 半岛 + 活火山</strong></td>
+        <td>Grindavík / Sundhnúkur 一带近年持续喷发。<strong>运气好能看到正在流出的熔岩——这是「当下限定」的景观</strong>，不是每年都有。</td>
+        <td>开放状态每天变，某些时段该区域禁止进入。出发前必须查 safetravel.is。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>四、B 档 · 加分项与顺路项</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:32%">地点</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>飞机残骸 DC-3</strong><br><span class="small">Sólheimasandur</span></td><td>往返步行约 8 km，路途本身单调，但题材性强。</td></tr>
+      <tr><td><strong>西冰岛</strong><br><span class="small">Hraunfossar + Barnafoss · Deildartunguhver · Glymur</span></td><td>瀑布从熔岩层里渗出的一整片瀑布群，<strong>秋季是它最好看的季节</strong>。Glymur 是冰岛最高瀑布之一，需涉水徒步。</td></tr>
+      <tr><td><strong>西峡湾</strong><br><span class="small">Dynjandi · Látrabjarg · Rauðasandur</span></td><td>Dynjandi 是七级扇形瀑布，Látrabjarg 是欧洲最大鸟崖。<strong>9 月底要密切关注山路是否因初雪封闭。</strong></td></tr>
+      <tr><td><strong>Þórsmörk + Fimmvörðuháls</strong></td><td>9 月底已是季节尾声，且 Safetravel 已对 Fimmvörðuháls 步道发布路况警告。<strong>本窗口不建议押注。</strong></td></tr>
+      <tr><td><strong>Kerlingarfjöll 高地地热</strong><br><span class="small">Kjölur / F35</span></td><td>F35 通常 9 月中前后封闭，<strong>基本赶不上</strong>。</td></tr>
+      <tr><td><strong>全年可用的「洞里」替代品</strong></td><td>Langjökull 冰隧道 Into the Glacier（人工冰隧道）、Raufarhólshellir 熔岩隧道、Silfra 裂缝浮潜（需干衣）。</td></tr>
+      <tr><td><strong>温泉与城市</strong></td><td>Sky Lagoon（比 Blue Lagoon 更近雷市、视野更好）；Blue Lagoon（取决于 Reykjanes 火山活动状态）；雷市 Hallgrímskirkja / Harpa / Sun Voyager / 老港。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>五、A / B / C 覆盖对照：哪些包含、哪些不包含</h2>
+  <p class="lead">先给一个结论性判断：<strong>三版的景点集合几乎相同，差别在顺序、住宿落点和细节颗粒度。</strong>所以这张表要按「景点」来读，而不是按「方案特征」来读。</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">地点</th>
+        <th class="col-a center" style="width:11%">方案A</th>
+        <th class="col-b center" style="width:11%">方案B</th>
+        <th class="col-c center" style="width:11%">方案C</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>黄金圈（Þingvellir / Geysir / Gullfoss）</td>
+        <td class="col-a center part">名义</td>
+        <td class="col-b center yes">✅ 9.24</td>
+        <td class="col-c center yes">✅ 9.24</td>
+        <td>A 的 9.28 只写「黄金圈」三个字，未列具体景点</td>
+      </tr>
+      <tr>
+        <td>Kerið 火山口湖</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center yes">✅</td>
+        <td class="col-c center yes">✅</td>
+        <td>B/C 列在 9.24 黄金圈之后</td>
+      </tr>
+      <tr>
+        <td>Faxi / Friðheimar / Skálholt</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center yes">✅ 可选</td>
+        <td>只有 C 写出来，且标注为可选</td>
+      </tr>
+      <tr>
+        <td>Seljalandsfoss 塞里雅兰瀑布</td>
+        <td class="col-a center yes">✅ 9.24</td>
+        <td class="col-b center yes">✅ 9.26</td>
+        <td class="col-c center yes">✅ 9.26</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Gljúfrabúi</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center yes">✅</td>
+        <td><strong>只有 C 有</strong></td>
+      </tr>
+      <tr>
+        <td>Skógafoss 斯科加瀑布</td>
+        <td class="col-a center yes">✅ 9.24</td>
+        <td class="col-b center yes">✅ 9.26</td>
+        <td class="col-c center yes">✅ 9.26</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Kvernufoss</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center yes">✅</td>
+        <td><strong>只有 C 有</strong></td>
+      </tr>
+      <tr>
+        <td>Sólheimajökull 冰川舌</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center yes">✅ 9.26</td>
+        <td><strong>只有 C 有</strong></td>
+      </tr>
+      <tr>
+        <td>飞机残骸 DC-3</td>
+        <td class="col-a center yes">✅ 9.24</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td><strong>只有 A 有</strong></td>
+      </tr>
+      <tr>
+        <td>Reynisfjara 黑沙滩</td>
+        <td class="col-a center yes">✅ 9.25</td>
+        <td class="col-b center part">⚠️ 9.28</td>
+        <td class="col-c center yes">✅ 9.28</td>
+        <td>B 的 9.28 写「补黑沙滩<strong>或</strong> Dyrhólaey」，二选一</td>
+      </tr>
+      <tr>
+        <td>Dyrhólaey 海岬</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center part">⚠️ 9.28</td>
+        <td class="col-c center yes">✅ 9.28</td>
+        <td>同上；C 明写 218 号路上崖顶灯塔平台</td>
+      </tr>
+      <tr>
+        <td>Fjaðrárgljúfur 羽毛峡谷</td>
+        <td class="col-a center part">⚠️ 待确认</td>
+        <td class="col-b center yes">✅ 9.28</td>
+        <td class="col-c center yes">✅ 9.27</td>
+        <td>A 的 9.26 写的是「羽毛瀑布」，疑似指它，也可能指 Svartifoss</td>
+      </tr>
+      <tr>
+        <td>Skaftafell / Svartifoss</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center part">⚠️ 仅短停</td>
+        <td class="col-c center yes">✅ 明写往返 1.5h</td>
+        <td>B 写「可短停，不建议长徒步」</td>
+      </tr>
+      <tr>
+        <td>Fjallsárlón</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center yes">✅</td>
+        <td><strong>只有 C 有</strong></td>
+      </tr>
+      <tr>
+        <td>Jökulsárlón 冰河湖</td>
+        <td class="col-a center yes">✅ 9.25</td>
+        <td class="col-b center yes">✅ 9.27</td>
+        <td class="col-c center yes">✅ 9.27</td>
+        <td>A 是 9.25 从维克往返约 400 km（且当天住宿在行程表里是空的）；B 宿教堂镇，C 宿冰河湖旁</td>
+      </tr>
+      <tr>
+        <td>Diamond Beach 钻石沙滩</td>
+        <td class="col-a center yes">✅</td>
+        <td class="col-b center yes">✅</td>
+        <td class="col-c center yes">✅</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Vestrahorn / Stokksnes 蝙蝠山</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td><strong>三版全无 —— S 档里最大的缺口</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Stuðlagil 玄武岩柱峡谷</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td><strong>Hengifoss / 东峡湾 / Seyðisfjörður / 东部驯鹿</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td><strong>米湖 / Dettifoss / Ásbyrgi / Húsavík 观鲸</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td><strong>Snæfellsnes 斯奈山</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center part">⚠️ 9.29 备选</td>
+        <td class="col-c center part">⚠️ 9.29 方案③ · 标注不推荐</td>
+        <td>两版都只是把它列为「备选」，C 明确写了不推荐</td>
+      </tr>
+      <tr>
+        <td>兰德曼纳劳卡高地</td>
+        <td class="col-a center yes">✅ 9.27</td>
+        <td class="col-b center yes">✅ 9.25</td>
+        <td class="col-c center yes">✅ 9.25</td>
+        <td>A 是从维克折返 Hella 上车；B 的交通方式当时待定；C 定为 Hella 10:00 超级吉普</td>
+      </tr>
+      <tr>
+        <td>Katla 冰洞 / 冰川徒步</td>
+        <td class="col-a center yes">✅ 9.26 15:00</td>
+        <td class="col-b center yes">✅ 9.26 15:00</td>
+        <td class="col-c center yes">✅ 9.26</td>
+        <td>三版一致，是 S 档里唯一被全部覆盖的「季节限定项」</td>
+      </tr>
+      <tr>
+        <td><strong>Þórsmörk 索斯莫克</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td>Reykjanes 具体点位<br><span class="small">Gunnuhver / 大陆桥 / Brimketill</span></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center part">⚠️ 只提一日团</td>
+        <td class="col-c center yes">✅ 9.29 方案① · 列点</td>
+        <td>B 的 9.29 只写「一日团」没列点；C 列点并标为推荐</td>
+      </tr>
+      <tr>
+        <td>Blue Lagoon / Sky Lagoon</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center yes">✅ 9.29 选项</td>
+        <td class="col-c center yes">✅ 9.29 方案①②</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>雷市 citywalk</td>
+        <td class="col-a center part">⚠️ 笼统</td>
+        <td class="col-b center yes">✅ 9.29 明确列点</td>
+        <td class="col-c center yes">✅ 9.29 方案②</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>专门的追光安排</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无；C 只在「风险与提醒」里做了极光期望管理</td>
+      </tr>
+      <tr>
+        <td><strong>西冰岛 Hraunfossar / Barnafoss / Glymur</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td><strong>西峡湾</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td><strong>Kerlingarfjöll（F35）</strong></td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版全无</td>
+      </tr>
+      <tr>
+        <td>Into the Glacier / Raufarhólshellir / Silfra</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center part">⚠️ 仅 9.30 自由日提到 Silfra</td>
+        <td>都只是脚注级别，没有正式排入</td>
+      </tr>
+      <tr>
+        <td>海鹦</td>
+        <td class="col-a center no">❌</td>
+        <td class="col-b center no">❌</td>
+        <td class="col-c center no">❌</td>
+        <td>三版都没安排 —— 这是对的，9 月底已经看不到</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid two" style="margin-top:16px">
+    <div class="callout">
+      <h4>三版共有的骨架</h4>
+      <p>黄金圈、Seljalandsfoss、Skógafoss、Reynisfjara、Vík、兰德曼纳劳卡、Katla 冰洞、Jökulsárlón、Diamond Beach、雷市 / 温泉收尾。</p>
+    </div>
+    <div class="callout hard">
+      <h4>三版全部不含的 S 档缺口</h4>
+      <p>Vestrahorn 蝙蝠山、东峡湾 / Stuðlagil / Hengifoss、米湖 / Dettifoss、Þórsmörk、西峡湾，以及任何专门的追光编排。</p>
+    </div>
+  </div>
+  <div class="callout ok" style="margin-top:16px">
+    <h4>一句话记住差异</h4>
+    <p><strong>只有方案A 有</strong>飞机残骸；<strong>只有方案C 有</strong> Gljúfrabúi、Kvernufoss、Sólheimajökull、Fjallsárlón、Skaftafell 的明确安排、以及 9.29 Reykjanes 的具体点位；<strong>B / C 有而 A 没有</strong>的是 Kerið 和 9.29 的细化。</p>
+  </div>
+</section>
+
+<section>
+  <h2>六、「9.24–9.29 排得更密」可以怎么走</h2>
+  <p class="lead">先说清约束的几何关系，否则排出来是纸上谈兵。</p>
+  <div class="callout hard">
+    <ul style="margin-bottom:0">
+      <li><strong>9.26 宿 Vík（已订）+ 9.26 15:00 卡特拉</strong>是两个硬锚点，它们锁死 9.25 和 9.26 两天「每天必须回到 Vík」。这两天活动半径的上限就是 Vík 以东约 190 km（正好到 Jökulsárlón）。</li>
+      <li><strong>Vestrahorn 在 Vík 以东约 285 km</strong>，不在任何锚点的半径内 —— 所以它<strong>只能放在 9.27 及以后</strong>。</li>
+      <li>9.30 有两人从 KEF 飞法罗群岛，所以 9.29 必须宿 Keflavík 一带。</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:18px">在这个约束下，唯一可行的紧凑版（只比方案C 多约 85 km 驾驶）</h3>
+  <div class="timeline" style="margin-top:12px">
+
+    <article class="day-card">
+      <h3>9.24（四）雷市取车 → 黄金圈 → 宿 Hella 或 Flúðir</h3>
+      <p>Þingvellir / Geysir / Gullfoss / Kerið 一线串完，落到 Hella 或 Flúðir，为次日 Hella 上车做准备。与方案C 相同。</p>
+      <div class="meta"><span>里程 ~240 km</span><span>宿：Hella / Flúðir</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.25（五）兰德曼纳劳卡超级吉普团（Hella 10:00 出发）</h3>
+      <p>全天跟团，自驾 0 km。<strong>务必提前邮件确认 9.25 发团</strong>；带泳衣，高地温泉要泡。</p>
+      <div class="meta"><span>自驾 0 km</span><span>团 8–10 h</span><span>宿：Hella</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.26（六）Hella → 瀑布群 → Vík（15:00 卡特拉冰洞）</h3>
+      <p>Seljalandsfoss + Gljúfrabúi → Skógafoss + Kvernufoss → Sólheimajökull → Dyrhólaey → Reynisfjara → Vík，傍晚卡特拉冰洞+冰川徒步。Vík 住宿已订，这天锁死。</p>
+      <div class="meta"><span>里程 ~110 km</span><span>宿：Vík（已订）</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.27（日）Vík → 羽毛峡谷 → Skaftafell → Fjallsárlón → 冰河湖 → Vestrahorn 日落 → 宿 Höfn</h3>
+      <p><strong>这是紧凑版的全部价值所在。</strong>在 Jökulsárlón + 钻石沙滩拍完日落前的光线后，继续东推约 92 km 到 Vestrahorn / Stokksnes 拍日落（9 月底日落约 19:10），当晚宿 Höfn。</p>
+      <p class="small">方案C 的 9.27 是宿冰河湖旁；本版把住宿推到 Höfn，换来整个 S 档清单里最容易实现的一项。</p>
+      <div class="meta"><span>里程 ~290 km</span><span>08:00–20:30 硬日</span><span>宿：Höfn</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.28（一）Höfn → 沿 1 号公路西返 → 宿 雷市 或 Selfoss</h3>
+      <p>纯赶路日，顺道补前一天因天气错过的点（Fjallsárlón 二刷、羽毛峡谷二刷、Vík 午餐、黑沙滩）。</p>
+      <div class="meta"><span>里程 ~480 km</span><span>驾驶 ~6 h</span><span>宿：雷市 / Selfoss</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.29（二）雷市 citywalk + Sky Lagoon，或 Reykjanes 半岛 → 宿 Keflavík</h3>
+      <p>与方案C 一致：三人可分头活动，晚上统一宿 Keflavík，为 9.30 早班机留余量。</p>
+      <div class="meta"><span>里程 50–150 km</span><span>宿：Keflavík</span></div>
+    </article>
+
+    <article class="day-card">
+      <h3>9.30（三）送往 KEF，两人飞法罗群岛</h3>
+      <p>—</p>
+      <div class="meta"><span>—</span></div>
+    </article>
+
+  </div>
+
+  <h3 style="margin-top:20px">相比方案C，只改两处</h3>
+  <table>
+    <thead><tr><th style="width:16%">日期</th><th style="width:42%">方案C</th><th>紧凑版</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>9.27</strong></td>
+        <td>Vík → 羽毛峡谷 → Skaftafell → 冰河湖 → <strong>宿冰河湖旁</strong>（Hali / Gerdi / Fosshotel Glacier Lagoon）</td>
+        <td>在冰河湖之后<strong>继续东推 92 km 到 Vestrahorn 拍日落，并宿 Höfn</strong></td>
+      </tr>
+      <tr>
+        <td><strong>9.28</strong></td>
+        <td>冰河湖 → Vík → 黑沙滩 → 雷市（~395 km）</td>
+        <td>起点从冰河湖旁改成 Höfn，<strong>多赶约 85 km，变成纯驾驶日（~480 km）</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>七、这一版的代价，要用明白话讲</h2>
+  <div class="callout hard">
+    <ul>
+      <li><strong>9.27 是全天拉满的硬日（08:00–20:30），容错率低。</strong></li>
+      <li><strong>如果 9.27 天气差，Vestrahorn 就是白跑约 190 km。</strong>建议提前一晚看 vedur.is；天气不行就砍掉蝙蝠山、回宿 Hali。</li>
+      <li><strong>9.27 宿 Höfn 后，放弃了在冰河湖拍日出的机会</strong>，换来的是 Vestrahorn 的日落光线。两个都是金光线，只能选一个。</li>
+      <li><strong>9.28 近乎全天在车上。</strong>如果三人里有两位不擅长长途驾驶，这一天要提前分工。</li>
+      <li><strong>这一版依然不解决极光问题。</strong>满月之下，Höfn、Hali、Vík 这些暗天空点只剩「月亮 + 前景」的构图。</li>
+    </ul>
+  </div>
+  <div class="callout ok" style="margin-top:14px">
+    <p style="margin-bottom:0"><strong>性价比判断：</strong>这版<strong>只加约 85 km 和一段长途，就把整个东南角从「到冰河湖为止」延伸到「蝙蝠山」</strong>，补上了 S 档清单里最容易实现的一项。代价是吃掉了方案C 原本留给 9.28 的容错空间。真正决定要不要做的是两件事：<strong>三个人对「9.28 开 480 km」的接受度</strong>，以及<strong>对 9.27 天气不确定性的容忍度</strong>。</p>
+  </div>
+</section>
+
+<section>
+  <h2>八、6 天里塞不进去的（不要勉强）</h2>
+  <table>
+    <thead><tr><th style="width:36%">目标</th><th style="width:14%">额外需要</th><th>原因</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>东峡湾 + Stuðlagil + Hengifoss + Seyðisfjörður</strong></td>
+        <td class="center">至少 +2 天</td>
+        <td>Höfn 再往北到 Stuðlagil 约 200 km，往返加停留要多一整天；而且这样回 KEF 还要再多跑一整天。</td>
+      </tr>
+      <tr>
+        <td><strong>北部米湖 / Dettifoss / Ásbyrgi / Húsavík</strong></td>
+        <td class="center">至少 +2 天</td>
+        <td>路径是从 Höfn 走东峡湾接 1 号公路上北，不是折返能解决的。</td>
+      </tr>
+      <tr>
+        <td><strong>Snæfellsnes 斯奈山</strong></td>
+        <td class="center">+1 整天</td>
+        <td>雷市往返约 11–12 h。硬塞进 9.29 会到夜里 22:00 才回雷市，第二天早航班太险 —— 方案C 自己已经标了「不推荐」。</td>
+      </tr>
+      <tr>
+        <td><strong>西峡湾</strong></td>
+        <td class="center">+3~4 天</td>
+        <td>路程本身远，且 9 月底山路受初雪影响。</td>
+      </tr>
+      <tr>
+        <td><strong>Þórsmörk 索斯莫克</strong></td>
+        <td class="center">+1 天</td>
+        <td>9 月底路况与步道状态不佳（Safetravel 已发警告），不值得押在这个窗口。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>九、核实来源与待确认事项</h2>
+  <div class="grid two">
+    <div class="card"><div class="card-body">
+      <h4>已核实事实的来源</h4>
+      <ul>
+        <li><strong>月相</strong>：Moongiant — 2026 年 9 月 26 日为满月，亮度 100%，月龄 14.22 天；相邻夜 93%–100%。</li>
+        <li><strong>高地开放期</strong>：parka.is 停车预约窗口 6.20–9.13；山屋 10 月前关闭；超级吉普团排期 6 月–10 月。雷市 187 km / Selfoss 138 km / Hella 100 km / Hvolsvöllur 113 km / Vík 121 km；末段 F224 有两次涉水，最近的加油站在 26 号路 ÓB（35.1 km）。</li>
+        <li><strong>冰洞季节</strong>：Vatnajökull Crystal Ice Cave 10 月中–3 月；Skaftafell 11 月–3 月；Katla 与 Langjökull Into the Glacier 全年。</li>
+        <li><strong>安全提示</strong>：safetravel.is 2026 年 9 月状态 —— Fimmvörðuháls 步道危险警告、2G/3G 退网备用号码 599-0112、Reykjanes 半岛 Grindavík 一带火山活动。</li>
+      </ul>
+      <p class="small" style="margin-bottom:0">核实日期：2026-09-10。</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <h4>仍然需要人去确认的事项</h4>
+      <ul>
+        <li><strong>9.25 兰德曼纳劳卡是否确认发团</strong> —— 9 月底已过常规 F 路开放期，必须邮件问 Southcoast Adventure（<code>info@southadventure.is</code> / +354 867 3535）。</li>
+        <li><strong>方案A 里「羽毛瀑布」到底指哪个</strong> —— Fjaðrárgljúfur 羽毛峡谷，还是 Skaftafell 的 Svartifoss。</li>
+        <li><strong>Stuðlagil 当季水色</strong> —— 取决于上游水库放水，需查当季实拍。</li>
+        <li><strong>Reykjanes 半岛当日是否开放</strong> —— 火山活动状态每天变。</li>
+      </ul>
+      <p class="small" style="margin-bottom:0">以上四项都会改变本页的结论，出发前需复核。</p>
+    </div></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>旅行方案集合 · 内容仅供行程讨论参考</p>
+</footer>
+
+</body>
+</html>
