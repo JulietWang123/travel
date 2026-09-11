@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gpt梳理-按每日住宿｜冰岛 2026 方案汇总</title>
+  <style>
+    :root {
+      --ink: #20282c;
+      --muted: #667279;
+      --line: #d9e1df;
+      --paper: #f6f4ed;
+      --white: #fff;
+      --green: #2d6d58;
+      --cyan: #257b82;
+      --blue: #315e90;
+      --gold: #a56f1c;
+      --red: #a34238;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+    header {
+      padding: 50px 6vw 32px;
+      color: white;
+      background: linear-gradient(120deg, rgba(32,40,44,.9), rgba(37,123,130,.82)), url("images/jokulsarlon-diamond.jpg") center/cover;
+    }
+    .eyebrow { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .9; }
+    h1 { font-size: clamp(30px, 5vw, 56px); line-height: 1.08; margin: 10px 0 12px; letter-spacing: 0; }
+    header p { max-width: 920px; margin: 0; font-size: 18px; }
+    main { width: min(1180px, 92vw); margin: 28px auto 70px; }
+    section { margin: 28px 0; }
+    h2 { font-size: 28px; margin: 0 0 14px; }
+    h3 { font-size: 21px; margin: 0 0 8px; }
+    .lead { color: var(--muted); font-size: 17px; }
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(28, 40, 43, .06);
+    }
+    .metric strong { display: block; font-size: 28px; line-height: 1.1; color: var(--green); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { text-align: left; background: #e8f0ee; }
+    tr:last-child td { border-bottom: 0; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: #f8fbfb;
+      color: var(--cyan);
+      margin: 2px 4px 2px 0;
+      white-space: nowrap;
+    }
+    .best { background: #e9f5ef; color: var(--green); border-color: #bedccc; }
+    .warn { background: #fff5e3; color: var(--gold); border-color: #efd6a7; }
+    .no { background: #faece9; color: var(--red); border-color: #e8c0ba; }
+    .lodging {
+      border-left: 5px solid var(--cyan);
+    }
+    .lodging.bestline { border-left-color: var(--green); }
+    .lodging.warnline { border-left-color: var(--gold); }
+    .lodging.noline { border-left-color: var(--red); }
+    .sleep-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .sleep {
+      background: #f9fbfa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 98px;
+      font-size: 14px;
+    }
+    .sleep b { color: var(--blue); display: block; margin-bottom: 4px; }
+    .rank {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .rank:last-child { border-bottom: 0; }
+    .num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .callout {
+      border-left: 5px solid var(--green);
+      background: #edf7f1;
+      padding: 16px 18px;
+      border-radius: 8px;
+    }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    footer { color: var(--muted); margin-top: 48px; font-size: 14px; }
+    @media (max-width: 880px) {
+      .grid-2, .grid-3, .sleep-grid { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Gpt梳理 · 按每日住宿 · 2026-09-11</div>
+    <h1>冰岛 2026 年 9 月 24-29 日住宿型方案汇总</h1>
+    <p>把所有路线换成“每天晚上住哪里”的视角重新分类。对这次行程来说，住宿落点直接决定驾驶强度、摄影窗口和 9.26 Vik 硬约束是否舒服。</p>
+  </header>
+
+  <main>
+    <section class="grid grid-3">
+      <div class="card metric"><strong>7 类</strong><span>按每日住宿去重后的可比较方案。</span></div>
+      <div class="card metric"><strong>L1</strong><span>默认最推荐：Hella 连住 + Skaftafell/Freysnes。</span></div>
+      <div class="card metric"><strong>Vik</strong><span>9.26 固定住宿，是全程住宿锚点。</span></div>
+    </section>
+
+    <section>
+      <h2>为什么按住宿看</h2>
+      <p class="lead">路线名容易让人分神，但每天住哪里会真实决定第二天能不能从容出发。尤其 9.24、9.25、9.27 三晚，是整个冰岛段的关键决策点。</p>
+    </section>
+
+    <section>
+      <h2>住宿型方案总览</h2>
+      <table>
+        <thead><tr><th>编号</th><th>住宿型方案</th><th>9.24</th><th>9.25</th><th>9.26</th><th>9.27</th><th>9.28</th><th>9.29</th><th>来源</th></tr></thead>
+        <tbody>
+          <tr><td>L1</td><td>Hella 连住 + Skaftafell/Freysnes 均衡版</td><td>Hella/Fludir/Selfoss</td><td>Hella/Fludir/Selfoss</td><td>Vik</td><td>Skaftafell/Freysnes</td><td>Reykjavik</td><td>Reykjavik</td><td>方案B/C、GPT-5.5</td></tr>
+          <tr><td>L2</td><td>Hella 连住 + 冰河湖旁摄影版</td><td>Hella/Fludir/Selfoss</td><td>Hella/Fludir/Selfoss</td><td>Vik</td><td>Hali/Gerdi/冰河湖旁</td><td>Reykjavik</td><td>Reykjavik</td><td>方案C、GPT-5.5</td></tr>
+          <tr><td>L3</td><td>Hella 连住 + 教堂镇保守版</td><td>Hella/Fludir/Selfoss</td><td>Hella/Fludir/Selfoss</td><td>Vik</td><td>Kirkjubaejarklaustur</td><td>Reykjavik</td><td>Reykjavik</td><td>方案B</td></tr>
+          <tr><td>L4</td><td>Skogar 南岸先行 + 高地后置版</td><td>Skogar/Skogafoss</td><td>教堂镇或东南</td><td>Vik</td><td>Hella/Selfoss/Fludir</td><td>Reykjavik</td><td>Reykjavik</td><td>方案A优化版</td></tr>
+          <tr><td>L5</td><td>Vik/南岸先行原始版</td><td>Vik 或南岸</td><td>待定，可能 Vik 东边</td><td>Vik</td><td>黄金圈或 Hella/Selfoss</td><td>Reykjavik</td><td>Reykjavik</td><td>方案A原始版</td></tr>
+          <tr><td>L6</td><td>冰河湖晨昏光 + 高地后置版</td><td>Hella/Fludir</td><td>Hali/Gerdi/冰河湖旁</td><td>Vik</td><td>Hella/Selfoss/Fludir</td><td>Reykjavik</td><td>Reykjavik</td><td>DeepSeek 紧凑版②</td></tr>
+          <tr><td>L7</td><td>Vestrahorn 摄影加强版</td><td>Hella/Fludir</td><td>Hella/Fludir</td><td>Vik</td><td>Hofn</td><td>Reykjavik</td><td>Reykjavik</td><td>DeepSeek / GPT-5.5 / MiniMax 概念</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>住宿型方案详解</h2>
+      <div class="grid">
+        <article class="card lodging bestline">
+          <h3>L1. Hella 连住 + Skaftafell/Freysnes 均衡版 <span class="tag best">默认最推荐</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.25</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Skaftafell / Freysnes</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>高地日最省心，9.26 顺路到 Vik，9.27 住冰川区中段，9.28 回雷市不过度拉长。对一个主驾团队最友好。</p>
+        </article>
+
+        <article class="card lodging">
+          <h3>L2. Hella 连住 + 冰河湖旁摄影版 <span class="tag">摄影优先</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.25</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Hali / Gerdi / 冰河湖旁</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>继承 L1 的顺路结构，并换来冰河湖/钻石沙滩更好的晨昏光。代价是 9.28 回雷克雅未克更长。</p>
+        </article>
+
+        <article class="card lodging">
+          <h3>L3. Hella 连住 + 教堂镇保守版 <span class="tag">驾驶舒适</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.25</b>Hella / Fludir / Selfoss</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Kirkjubaejarklaustur</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>比 L2 回程轻，住宿选择相对多；缺点是冰河湖晨昏光和东南冰川沉浸感略弱。</p>
+        </article>
+
+        <article class="card lodging warnline">
+          <h3>L4. Skogar 南岸先行 + 高地后置版 <span class="tag warn">方案A优化</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Skogar / Skogafoss</div>
+            <div class="sleep"><b>9.25</b>教堂镇 / Skaftafell / 冰河湖旁</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Hella / Selfoss / Fludir</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>保留南岸先行的旅行感，并避免 Vik 往返冰河湖。但 9.27 仍需从 Vik 折返 Hella 上高地团。</p>
+        </article>
+
+        <article class="card lodging noline">
+          <h3>L5. Vik/南岸先行原始版 <span class="tag no">不建议原样执行</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Vik 或南岸</div>
+            <div class="sleep"><b>9.25</b>待定，可能 Vik 东边</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>黄金圈方向 / Hella / Selfoss</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>第一天南岸进入感强，但容易造成 9.25 和 9.27 折返。建议升级为 L4 或转向 L1-L3。</p>
+        </article>
+
+        <article class="card lodging warnline">
+          <h3>L6. 冰河湖晨昏光 + 高地后置版 <span class="tag warn">冰河湖摄影</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Hella / Fludir</div>
+            <div class="sleep"><b>9.25</b>Hali / Gerdi / 冰河湖旁</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Hella / Selfoss / Fludir</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>9.25 日落和 9.26 日出都给冰河湖，但 9.25 很满、9.27 高地后置仍折返。</p>
+        </article>
+
+        <article class="card lodging warnline">
+          <h3>L7. Vestrahorn 摄影加强版 <span class="tag warn">风景上限</span></h3>
+          <div class="sleep-grid">
+            <div class="sleep"><b>9.24</b>Hella / Fludir</div>
+            <div class="sleep"><b>9.25</b>Hella / Fludir</div>
+            <div class="sleep"><b>9.26</b>Vik</div>
+            <div class="sleep"><b>9.27</b>Hofn</div>
+            <div class="sleep"><b>9.28</b>Reykjavik</div>
+            <div class="sleep"><b>9.29</b>Reykjavik</div>
+          </div>
+          <p>唯一明确纳入 Vestrahorn 的住宿结构。景观上限最高，但 9.28 从 Hofn 回雷市非常硬。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>关键住宿落点对比</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>9.24 住哪里</h3>
+          <table>
+            <thead><tr><th>住宿</th><th>判断</th></tr></thead>
+            <tbody>
+              <tr><td>Hella / Fludir / Selfoss</td><td><span class="tag best">默认推荐</span> 最适合 9.25 高地先行。</td></tr>
+              <tr><td>Skogar / Skogafoss</td><td><span class="tag warn">可选</span> 南岸节奏舒服，但高地后置。</td></tr>
+              <tr><td>Vik</td><td><span class="tag no">不优先</span> 容易造成后续折返。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>9.27 住哪里</h3>
+          <table>
+            <thead><tr><th>住宿</th><th>判断</th></tr></thead>
+            <tbody>
+              <tr><td>Skaftafell / Freysnes</td><td><span class="tag best">默认推荐</span> 主驾均衡。</td></tr>
+              <tr><td>冰河湖旁</td><td><span class="tag">摄影优先</span> 晨昏光最好。</td></tr>
+              <tr><td>Kirkjubaejarklaustur</td><td><span class="tag">保守</span> 回程压力小。</td></tr>
+              <tr><td>Hofn</td><td><span class="tag warn">加强版</span> 换 Vestrahorn，回程很硬。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>推荐排序</h2>
+      <div class="card">
+        <div class="rank"><span class="num">1</span><div><strong>L1：Hella 连住 + Skaftafell/Freysnes 均衡版。</strong><br>默认最推荐，开车和景观最平衡。</div></div>
+        <div class="rank"><span class="num">2</span><div><strong>L2：Hella 连住 + 冰河湖旁摄影版。</strong><br>摄影优先时推荐。</div></div>
+        <div class="rank"><span class="num">3</span><div><strong>L3：Hella 连住 + 教堂镇保守版。</strong><br>驾驶舒适优先时推荐。</div></div>
+        <div class="rank"><span class="num">4</span><div><strong>L6：冰河湖晨昏光 + 高地后置版。</strong><br>适合强冰河湖摄影偏好。</div></div>
+        <div class="rank"><span class="num">5</span><div><strong>L4：Skogar 南岸先行 + 高地后置版。</strong><br>适合从方案A最小改动优化。</div></div>
+        <div class="rank"><span class="num">6</span><div><strong>L7：Vestrahorn 摄影加强版。</strong><br>只适合摄影执念强且接受长途。</div></div>
+        <div class="rank"><span class="num">7</span><div><strong>L5：Vik/南岸先行原始版。</strong><br>不建议原样执行。</div></div>
+      </div>
+    </section>
+
+    <section class="callout">
+      <h2>一句话结论</h2>
+      <p>按“每天住哪里”看，最稳的是 9.24-9.25 住 Hella 一带把高地解决，9.26 住 Vik 接 Katla，9.27 住 Skaftafell/Freysnes 或冰河湖旁，9.28-9.29 回到雷克雅未克完成缓冲。</p>
+    </section>
+
+    <footer>本页由 Gpt 梳理 · 2026-09-11 · 已发布至 GitHub Pages ｜ 文件名：Gpt梳理-按每日住宿.html</footer>
+  </main>
+</body>
+</html>

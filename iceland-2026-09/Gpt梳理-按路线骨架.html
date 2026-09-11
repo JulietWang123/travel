@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gpt梳理-按路线骨架｜冰岛 2026 方案库</title>
+  <style>
+    :root {
+      --ink: #1d2528;
+      --muted: #66757c;
+      --line: #d8e1e4;
+      --paper: #f7f6f0;
+      --white: #ffffff;
+      --green: #2f6f62;
+      --teal: #0f7f8a;
+      --gold: #a66f18;
+      --red: #a64238;
+      --blue: #335f8f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+    header {
+      padding: 52px 6vw 34px;
+      background: linear-gradient(115deg, rgba(47,111,98,.95), rgba(15,127,138,.88)), url("images/landmannalaugar.jpg") center/cover;
+      color: #fff;
+    }
+    header .eyebrow { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .9; }
+    h1 { margin: 10px 0 12px; font-size: clamp(30px, 5vw, 58px); line-height: 1.08; letter-spacing: 0; }
+    header p { max-width: 920px; margin: 0; font-size: 18px; }
+    main { width: min(1180px, 92vw); margin: 28px auto 70px; }
+    section { margin: 28px 0; }
+    h2 { font-size: 28px; margin: 0 0 14px; }
+    h3 { font-size: 21px; margin: 0 0 8px; }
+    .lead { color: var(--muted); font-size: 17px; }
+    .grid { display: grid; gap: 16px; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(28, 40, 43, .06);
+    }
+    .metric strong { display: block; font-size: 28px; color: var(--green); line-height: 1.1; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: #f8fbfb;
+      color: var(--teal);
+      margin: 2px 4px 2px 0;
+      white-space: nowrap;
+    }
+    .tag.best { background: #e9f5ef; color: var(--green); border-color: #bedccc; }
+    .tag.warn { background: #fff5e3; color: var(--gold); border-color: #efd6a7; }
+    .tag.no { background: #faece9; color: var(--red); border-color: #e8c0ba; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+    }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { text-align: left; background: #eaf1ef; color: #263334; }
+    tr:last-child td { border-bottom: 0; }
+    .scheme {
+      border-left: 5px solid var(--teal);
+    }
+    .scheme.recommend { border-left-color: var(--green); }
+    .scheme.warn { border-left-color: var(--gold); }
+    .scheme.no { border-left-color: var(--red); }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .day {
+      min-height: 116px;
+      background: #f9fbfa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .day b { color: var(--blue); }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    .callout {
+      border-left: 5px solid var(--green);
+      background: #edf7f1;
+      padding: 16px 18px;
+      border-radius: 8px;
+    }
+    .small { font-size: 13px; color: var(--muted); }
+    footer { color: var(--muted); margin-top: 48px; font-size: 14px; }
+    @media (max-width: 880px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+      header { padding-top: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Gpt梳理 · 按路线骨架 · 2026-09-11</div>
+    <h1>冰岛 2026 年 9 月 24-29 日方案库与决策总览</h1>
+    <p>按真实路线逻辑合并方案A、方案B、方案C、GPT-5.5、DeepSeek、MiniMax 3.3 的建议，避免同一条路线因为来源不同被重复命名。</p>
+  </header>
+
+  <main>
+    <section class="grid grid-3">
+      <div class="card metric"><strong>6 类</strong><span>去重后的路线方案与收尾模块。</span></div>
+      <div class="card metric"><strong>3B</strong><span>默认最推荐：Hella 连住 + 东南冰川主驾均衡版。</span></div>
+      <div class="card metric"><strong>9.26</strong><span>Vik 固定住宿，是所有路线必须围绕的硬锚点。</span></div>
+    </section>
+
+    <section>
+      <h2>合并口径</h2>
+      <p class="lead">本页按“路线骨架”去重：如果核心顺序相同，就合并为同一方案族；住宿落点不同则作为分支；9.29 雷市活动作为收尾模块，不单独算完整路线。</p>
+    </section>
+
+    <section>
+      <h2>方案库总览</h2>
+      <table>
+        <thead><tr><th>编号</th><th>方案名称</th><th>路线骨架</th><th>来源</th><th>建议状态</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>方案A 原始顺时针版</td><td>雷市 → 南岸/Vik → 冰河湖 → Vik/Katla → 折返 Hella 高地 → 黄金圈 → 雷市</td><td>方案A</td><td><span class="tag no">不建议原样执行</span></td></tr>
+          <tr><td>2</td><td>方案A 顺路优化版</td><td>雷市 → Skogar/南岸 → 教堂镇或东南 → Vik/Katla → Hella 高地 → 黄金圈 → 雷市</td><td>方案A 评估优化 / GPT-5.5</td><td><span class="tag warn">可行但仍有折返</span></td></tr>
+          <tr><td>3</td><td>Hella 连住稳妥均衡版</td><td>雷市 → 黄金圈 → Hella 高地 → 南岸/Vik/Katla → 东南冰川 → 雷市</td><td>方案B / 方案C / GPT-5.5 / DeepSeek</td><td><span class="tag best">默认最推荐</span></td></tr>
+          <tr><td>4</td><td>冰河湖日落日出 + 高地后置版</td><td>黄金圈 → 东南冰河湖日落/日出 → 回 Vik/Katla → 折返 Hella 高地 → 雷市</td><td>DeepSeek 紧凑版②</td><td><span class="tag warn">风景强但节奏硬</span></td></tr>
+          <tr><td>5</td><td>Vestrahorn 摄影加强版</td><td>黄金圈 → Hella 高地 → Vik/Katla → 冰河湖 + Vestrahorn/Hofn → 长途回雷市</td><td>DeepSeek 紧凑版① / GPT-5.5 / MiniMax 概念</td><td><span class="tag warn">摄影优先才选</span></td></tr>
+          <tr><td>6</td><td>9.29 雷市收尾模块</td><td>Citywalk / Sky Lagoon / Reykjanes / Snaefellsnes 一日团 / 分头活动</td><td>方案B / 方案C / 三模型建议</td><td><span class="tag">附加模块</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>路线方案详解</h2>
+      <div class="grid">
+        <article class="card scheme no">
+          <h3>1. 方案A 原始顺时针版</h3>
+          <span class="tag no">不建议原样执行</span>
+          <div class="timeline">
+            <div class="day"><b>9.24</b><br>雷市 → 南岸 → Vik</div>
+            <div class="day"><b>9.25</b><br>Vik → 冰河湖/钻石沙滩，住宿待定</div>
+            <div class="day"><b>9.26</b><br>羽毛峡谷 → Vik → Katla → Vik</div>
+            <div class="day"><b>9.27</b><br>Vik → Hella 高地团 → 黄金圈方向</div>
+            <div class="day"><b>9.28</b><br>黄金圈 → 雷市</div>
+            <div class="day"><b>9.29</b><br>雷市收尾</div>
+          </div>
+          <p>覆盖面不错，但 9.25 和 9.27 折返明显。若 9.25 从 Vik 往返冰河湖，单日约 400 km，对当前主驾结构不友好。</p>
+        </article>
+
+        <article class="card scheme warn">
+          <h3>2. 方案A 顺路优化版</h3>
+          <span class="tag warn">南岸先行的可执行改法</span>
+          <div class="timeline">
+            <div class="day"><b>9.24</b><br>雷市 → 南岸瀑布 → Skogar</div>
+            <div class="day"><b>9.25</b><br>Skogar → 黑沙滩/峡谷 → 东南冰川</div>
+            <div class="day"><b>9.26</b><br>东南 → Vik → Katla → Vik</div>
+            <div class="day"><b>9.27</b><br>Vik → Hella 高地团</div>
+            <div class="day"><b>9.28</b><br>黄金圈 → 雷市</div>
+            <div class="day"><b>9.29</b><br>雷市收尾</div>
+          </div>
+          <p>解决了 9.25 往返冰河湖的问题，但高地后置仍带来 Vik 到 Hella 的折返。适合想保留方案A方向的人。</p>
+        </article>
+
+        <article class="card scheme recommend">
+          <h3>3. Hella 连住稳妥均衡版</h3>
+          <span class="tag best">默认最推荐</span>
+          <div class="timeline">
+            <div class="day"><b>9.24</b><br>雷市 → 黄金圈 → Hella/Fludir/Selfoss</div>
+            <div class="day"><b>9.25</b><br>Landmannalaugar 高地团 → Hella 一带</div>
+            <div class="day"><b>9.26</b><br>南岸瀑布 → Vik → Katla → Vik</div>
+            <div class="day"><b>9.27</b><br>Vik → 峡谷/Skaftafell/冰河湖</div>
+            <div class="day"><b>9.28</b><br>东南段 → 南岸补漏 → 雷市</div>
+            <div class="day"><b>9.29</b><br>雷市收尾</div>
+          </div>
+          <p>高地先行、Vik 固定住宿自然满足、东南冰川后置，整体最顺。建议优先用 3B 主驾均衡分支。</p>
+        </article>
+
+        <article class="card scheme warn">
+          <h3>4. 冰河湖日落日出 + 高地后置版</h3>
+          <span class="tag warn">摄影强，但节奏硬</span>
+          <div class="timeline">
+            <div class="day"><b>9.24</b><br>雷市 → 黄金圈 → Hella</div>
+            <div class="day"><b>9.25</b><br>南岸东进 → 冰河湖日落</div>
+            <div class="day"><b>9.26</b><br>冰河湖日出 → Vik → Katla → Vik</div>
+            <div class="day"><b>9.27</b><br>Vik → Hella 高地团</div>
+            <div class="day"><b>9.28</b><br>回雷市</div>
+            <div class="day"><b>9.29</b><br>雷市收尾</div>
+          </div>
+          <p>最大优势是冰河湖晨昏光，但 9.25 强度很高，9.27 仍有折返。适合冰河湖摄影优先但不追 Vestrahorn。</p>
+        </article>
+
+        <article class="card scheme warn">
+          <h3>5. Vestrahorn 摄影加强版</h3>
+          <span class="tag warn">风景上限高</span>
+          <div class="timeline">
+            <div class="day"><b>9.24</b><br>雷市 → 黄金圈 → Hella</div>
+            <div class="day"><b>9.25</b><br>高地团 → Hella</div>
+            <div class="day"><b>9.26</b><br>南岸 → Vik/Katla → Vik</div>
+            <div class="day"><b>9.27</b><br>Vik → 冰河湖 → Vestrahorn → Hofn</div>
+            <div class="day"><b>9.28</b><br>Hofn → 长途回雷市</div>
+            <div class="day"><b>9.29</b><br>雷市收尾</div>
+          </div>
+          <p>补上 Vestrahorn，但 9.28 极长，天气不好时收益不稳定。只有摄影执念强且能接受疲劳时才选。</p>
+        </article>
+
+        <article class="card scheme">
+          <h3>6. 9.29 雷市收尾模块</h3>
+          <span class="tag">模块，不是主路线</span>
+          <p>默认建议 Citywalk + Sky Lagoon，三人晚上同住雷市。也可按兴趣分头活动：有人休息购物，有人 Reykjanes 半日，有人参加 Snaefellsnes 一日团。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>方案3住宿分支</h2>
+      <table>
+        <thead><tr><th>分支</th><th>9.27 住宿</th><th>适合人群</th><th>优点</th><th>代价</th></tr></thead>
+        <tbody>
+          <tr><td>3A 保守回程版</td><td>Kirkjubaejarklaustur 教堂镇</td><td>驾驶舒适优先</td><td>9.28 回雷市较轻</td><td>冰河湖晨昏光较弱</td></tr>
+          <tr><td>3B 主驾均衡版</td><td>Skaftafell / Freysnes</td><td>当前团队默认最适合</td><td>兼顾冰川区体验与回程压力</td><td>比冰河湖旁少一点摄影黄金时间</td></tr>
+          <tr><td>3C 摄影优先版</td><td>Hali / Gerdi / Fosshotel Glacier Lagoon</td><td>冰河湖摄影优先</td><td>最容易拍日落或日出</td><td>9.28 回雷市更长</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>不采用的路线</h2>
+      <div class="grid grid-2">
+        <div class="card"><h3>完整环线 / 米湖 / 东峡湾深度</h3><p>6 天内会明显走马观花，并和 9.26 Vik 固定住宿冲突，不适合当前团队。</p></div>
+        <div class="card"><h3>MiniMax 3.3 部分极限东部原案</h3><p>本地对照里发现里程和顺路判断明显问题，只保留“Vestrahorn 摄影加强”的概念，不采用原路线。</p></div>
+        <div class="card"><h3>普通油车自驾 F 路进高地</h3><p>不符合普通车与租车合同风险控制，Landmannalaugar 应按带交通团处理。</p></div>
+        <div class="card"><h3>9.29 默认自驾 Snaefellsnes</h3><p>景观好但全日太长，更适合作为个人一日团选项，不作为三人默认收尾。</p></div>
+      </div>
+    </section>
+
+    <section class="callout">
+      <h2>最终建议</h2>
+      <p>默认选“方案3：Hella 连住稳妥均衡版”，并优先采用 <strong>3B 主驾均衡分支</strong>。如果更重视冰河湖晨昏光，升级到 3C；如果特别想拍 Vestrahorn，再考虑方案5，但要明确接受长途回雷市和天气不确定性。</p>
+    </section>
+
+    <footer>本页由 Gpt 梳理 · 2026-09-11 · 已发布至 GitHub Pages ｜ 文件名：Gpt梳理-按路线骨架.html</footer>
+  </main>
+</body>
+</html>

@@ -318,6 +318,94 @@
   </div>
 </div>
 
+<!-- ============================================================
+     2026-09-11 新增区块：方案库梳理（去重与决策）
+     · 本页原有内容零改动，本区块为纯新增。
+     · 版本留档：还原基线提交 b552289（原 index.html blob 7799490）
+       本地备份：F:\obsidian\travel\_backups\iceland-2026-09\index-pre-20260911.html
+       还原命令：git checkout b552289 -- iceland-2026-09/index.html
+     ============================================================ -->
+<div class="block">
+  <h2 class="sec">方案库梳理（去重与决策）</h2>
+  <p class="sec-sub">把上面的方案按「路线骨架」与「每日住宿」两种口径各去重一次，GPT 与 DeepSeek 各出一份；用于三模型交叉复核与定稿前对账。</p>
+  <div class="grid">
+
+    <a class="card" href="Gpt梳理-按路线骨架.html">
+      <div class="thumb" style="background-image:url('images/svartifoss.jpg')">
+        <span class="badge">冰岛 · Gpt 梳理</span>
+        <span class="dates">按路线骨架去重 · 6 类方案 + 决策总览</span>
+      </div>
+      <div class="card-body">
+        <h2>方案库与决策总览（Gpt 梳理 · 按路线骨架）</h2>
+        <p class="sub">同一路线逻辑只保留一次 · 默认推荐 3B</p>
+        <p>把方案A / B / C、GPT-5.5、DeepSeek、MiniMax 3.3 的建议按真实路线逻辑合并成 6 类骨架，避免同一条路线因来源不同被重复命名；含已知硬约束与偏好、去重原则、各骨架详解、四个决策自由度与最终建议。</p>
+        <div class="tags">
+          <span class="tag b">去重合并</span>
+          <span class="tag">6 类骨架</span>
+          <span class="tag g">默认 3B</span>
+        </div>
+        <span class="cta">查看梳理 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="Gpt梳理-按每日住宿.html">
+      <div class="thumb" style="background-image:url('images/hengifoss.jpg')">
+        <span class="badge">冰岛 · Gpt 梳理</span>
+        <span class="dates">按每日住宿重新分类 · L1 – L7</span>
+      </div>
+      <div class="card-body">
+        <h2>住宿型方案汇总（Gpt 梳理 · 按每日住宿）</h2>
+        <p class="sub">换成「每天晚上住哪里」的视角 · 默认推荐 L1</p>
+        <p>把所有路线换成「每晚住哪里」的视角重新分类为 L1–L7，逐项看驾驶强度、顺路程度与风险；因为对这次行程来说，住宿落点直接决定驾驶强度、摄影窗口，以及 9.26 Vik 硬约束过得舒不舒服。</p>
+        <div class="tags">
+          <span class="tag b">住宿视角</span>
+          <span class="tag">L1 – L7</span>
+          <span class="tag a">9.26 Vik 锚点</span>
+        </div>
+        <span class="cta">查看汇总 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="DeepSeek梳理-按路线骨架.html">
+      <div class="thumb" style="background-image:url('images/fjadrargljufur.jpg')">
+        <span class="badge">冰岛 · DeepSeek 梳理</span>
+        <span class="dates">按路线骨架 · R1 – R7 · 含 18 条待复核</span>
+      </div>
+      <div class="card-body">
+        <h2>方案库与决策总览（DeepSeek 梳理 · 按路线骨架）</h2>
+        <p class="sub">同一体例的另一视角 · 附完整待复核清单</p>
+        <p>与 Gpt 版同一体例的独立梳理：R1–R7 七类骨架详解与四个真正的决策自由度，并把待复核事项拆成事实层 8 条、里程与时长 4 条、不可验证输入 2 条等共 18 条，供 MiniMax-M3 / GPT-5.5 交叉复核。</p>
+        <div class="tags">
+          <span class="tag v">R1 – R7</span>
+          <span class="tag a">18 条待复核</span>
+          <span class="tag g">交叉复核</span>
+        </div>
+        <span class="cta">查看梳理 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="DeepSeek梳理-按每日住宿.html">
+      <div class="thumb" style="background-image:url('images/vestrahorn.jpg')">
+        <span class="badge">冰岛 · DeepSeek 梳理</span>
+        <span class="dates">按每日住宿 · D1 – D7 · 含推荐排序</span>
+      </div>
+      <div class="card-body">
+        <h2>住宿型方案汇总（DeepSeek 梳理 · 按每日住宿）</h2>
+        <p class="sub">按每晚落点去重 · 给出明确推荐排序</p>
+        <p>按每晚住宿落点把方案去重为 D1–D7，逐项对比住宿序列与驾驶强度，并给出排序 D1 &gt; D4 &gt; D2 &gt; D3 &gt; D5 &gt; D7 &gt; D6，其中 D4 上调、D5 下调的理由单独说明。</p>
+        <div class="tags">
+          <span class="tag v">D1 – D7</span>
+          <span class="tag g">推荐排序</span>
+          <span class="tag">取舍说明</span>
+        </div>
+        <span class="cta">查看汇总 →</span>
+      </div>
+    </a>
+
+  </div>
+  <p class="note">另有 <a href="m3-spots-review-notes.html">m3-spots 交叉评审增补说明</a>：对 MiniMax-M3 推荐版的逐条原文比对、增补记录与待复核事项（原页内容零删除）。</p>
+</div>
+
 </main>
 
 <footer>

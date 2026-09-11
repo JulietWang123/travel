@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeepSeek梳理-按每日住宿｜冰岛 2026 方案汇总</title>
+  <style>
+    :root {
+      --ink: #1d2528;
+      --muted: #66757c;
+      --line: #d8e1e4;
+      --paper: #f7f6f0;
+      --white: #ffffff;
+      --green: #2f6f62;
+      --teal: #0f7f8a;
+      --gold: #a66f18;
+      --red: #a64238;
+      --blue: #335f8f;
+      --purple: #5e4b8b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+    p, li, td, th, div { overflow-wrap: anywhere; }
+    header {
+      padding: 52px 6vw 34px;
+      background: linear-gradient(115deg, rgba(47,111,98,.94), rgba(15,127,138,.86)), url("images/landmannalaugar.jpg") center/cover;
+      color: #fff;
+    }
+    header .eyebrow { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .92; }
+    h1 { margin: 10px 0 12px; font-size: clamp(28px, 4.6vw, 52px); line-height: 1.1; }
+    header p { max-width: 940px; margin: 0; font-size: 17px; }
+    header .meta { margin-top: 14px; font-size: 14px; opacity: .92; }
+    main { width: min(1180px, 92vw); margin: 28px auto 70px; }
+    section { margin: 30px 0; }
+    h2 { font-size: 27px; margin: 0 0 14px; }
+    h3 { font-size: 21px; margin: 22px 0 8px; }
+    .lead { color: var(--muted); font-size: 17px; }
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(28, 40, 43, .06);
+    }
+    .metric strong { display: block; font-size: 26px; color: var(--green); line-height: 1.15; }
+    .metric span { font-size: 14px; color: var(--muted); }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 26px;
+      padding: 2px 9px; border-radius: 999px; font-size: 13px;
+      border: 1px solid var(--line); background: #f8fbfb; color: var(--teal);
+      margin: 2px 4px 2px 0; white-space: nowrap;
+    }
+    .tag.best { background: #e9f5ef; color: var(--green); border-color: #bedccc; }
+    .tag.warn { background: #fff5e3; color: var(--gold); border-color: #efd6a7; }
+    .tag.no { background: #faece9; color: var(--red); border-color: #e8c0ba; }
+    .tag.ds { background: #efeaf8; color: var(--purple); border-color: #d3c6ea; }
+    .tag.lock { background: #e7f1f8; color: var(--blue); border-color: #bed4e6; }
+    .tw { overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse; background: var(--white);
+      border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15px; }
+    th { text-align: left; background: #eaf1ef; color: #263334; }
+    tr:last-child td { border-bottom: 0; }
+    td.locked { background: #eef5fb; font-weight: 600; }
+    .kv { margin: 6px 0; }
+    .kv b { color: var(--blue); }
+    ul, ol { margin: 8px 0 0; padding-left: 22px; }
+    .callout { border-left: 5px solid var(--green); background: #edf7f1; padding: 16px 18px; border-radius: 8px; }
+    .callout.todo { border-left-color: var(--gold); background: #fff9ee; }
+    .callout.ask { border-left-color: var(--purple); background: #f5f1fb; }
+    .callout.info { border-left-color: var(--blue); background: #eef5fb; }
+    .small { font-size: 13px; color: var(--muted); }
+    code { background: #eef3f3; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+    .rank { display: inline-block; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; background: var(--green); color: #fff; font-size: 13px; font-weight: 700; }
+    .rank.g2 { background: var(--teal); }
+    .rank.g3 { background: var(--blue); }
+    .rank.mut { background: #9aa8ae; }
+    footer { color: var(--muted); margin-top: 52px; font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+    footer .pill { display: inline-block; padding: 4px 12px; border-radius: 999px; background: var(--purple); color: #fff; font-size: 13px; }
+    @media (max-width: 980px) {
+      .grid-4, .grid-2 { grid-template-columns: 1fr; }
+      header { padding-top: 38px; }
+    }
+    @media (max-width: 700px) {
+      .tw table { min-width: 720px; }
+      h2 { font-size: 23px; }
+      th, td { font-size: 14px; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">DeepSeek 梳理 · 按每日住宿 · 2026-09-11</div>
+    <h1>冰岛 2026 年 9 月 24–29 日方案汇总</h1>
+    <p>按「每晚睡哪」重新分类全部方案，把自由度与硬约束摊开到同一个平面上对比。</p>
+    <div class="meta">生成时间：2026-09-11 ｜ 状态：已发布至 GitHub Pages ｜ 性质：DeepSeek 视角评估，非任何原页原文</div>
+  </header>
+
+  <main>
+    <section class="grid grid-4">
+      <div class="card metric"><strong>7 类</strong><span>按住宿序列去重后的方案</span></div>
+      <div class="card metric"><strong>5 / 6</strong><span>可自由决定的夜晚数</span></div>
+      <div class="card metric"><strong>9.26</strong><span>唯一锁死的住宿格子</span></div>
+      <div class="card metric"><strong>2 个</strong><span>真正值得二选一的候选</span></div>
+    </section>
+
+    <section>
+      <h2>一、为什么按住宿分类更有用</h2>
+      <p class="lead">按路线骨架分类（<a href="DeepSeek梳理-按路线骨架.html">DeepSeek梳理-按路线骨架</a>）回答的是「这条路线怎么走」；按住宿分类回答的是「<strong>今晚睡哪</strong>」。</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>住宿是唯一需要真正下单的东西</h3>
+          <ul>
+            <li>路线可以边走边调，住宿一旦订下（尤其不可退），当天行程就被<strong>反向锁定</strong>。</li>
+            <li><strong>9.26 晚 Vík 是唯一硬约束</strong>，其余每晚都是自由度；把「每晚睡哪」摊开，自由度立刻可视化。</li>
+            <li>同一条路线骨架可对应多种住宿落点（如 R3 的 9.27 有三分支），按骨架看会糊在一起。</li>
+            <li>住宿落点直接决定第二天的<strong>首段驾驶时长</strong> —— 这比「总里程」更能预测疲劳。</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <p><b>一句话：</b>方案的分歧几乎全部集中在「9.24 住哪、9.25 住哪、9.27 住哪、9.29 住哪」四个格子里。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>二、按每日住宿去重后的住宿型方案</h2>
+      <div class="tw">
+      <table>
+        <thead>
+          <tr><th>编号</th><th>住宿型方案</th><th>9.24</th><th>9.25</th><th>9.26</th><th>9.27</th><th>9.28</th><th>9.29</th><th>对应路线来源</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>D1</b></td><td>Hella 连住 · 均衡版</td>
+            <td>Hella / Flúðir / Selfoss</td><td><b>Hella（连住）</b></td>
+            <td class="locked">Vík（已订）</td>
+            <td>Skaftafell / Freysnes</td><td>雷市</td><td>雷市</td>
+            <td>方案B · 方案C · GPT-5.5 D/C+ → R3-3C</td>
+          </tr>
+          <tr>
+            <td><b>D2</b></td><td>Hella 连住 · 摄影版</td>
+            <td>Hella / Flúðir</td><td><b>Hella（连住）</b></td>
+            <td class="locked">Vík（已订）</td>
+            <td>Hali / Gerdi（冰河湖旁）</td><td>雷市</td><td>雷市</td>
+            <td>方案C → R3-3B</td>
+          </tr>
+          <tr>
+            <td><b>D3</b></td><td>Hella 连住 · 保守版</td>
+            <td>Hella / Flúðir / Selfoss</td><td><b>Hella（连住）</b></td>
+            <td class="locked">Vík（已订）</td>
+            <td>教堂镇</td><td>雷市</td><td>雷市</td>
+            <td>方案B → R3-3A</td>
+          </tr>
+          <tr>
+            <td><b>D4</b></td><td>南岸先行 · 高地后置版</td>
+            <td>Hella / Flúðir</td><td>Hali / Gerdi（冰河湖旁）</td>
+            <td class="locked">Vík（已订）</td>
+            <td>Hella / Hvolsvöllur</td><td>雷市</td><td><b>Keflavík</b></td>
+            <td>DeepSeek 紧凑版②（<code>spots.html</code>） → R4</td>
+          </tr>
+          <tr>
+            <td><b>D5</b></td><td>南岸先行 · 教堂镇版</td>
+            <td><b>Skógar</b></td><td>教堂镇</td>
+            <td class="locked">Vík（已订）</td>
+            <td>Hella / Selfoss / Flúðir</td><td>雷市</td><td>雷市</td>
+            <td>方案A 优化（<code>plan-a-full.html</code>） → R2</td>
+          </tr>
+          <tr>
+            <td><b>D6</b></td><td>Vík 连住原始版</td>
+            <td>待定</td><td>待定</td>
+            <td class="locked">Vík（已订）</td>
+            <td>黄金圈一带</td><td>雷市</td><td>雷市</td>
+            <td>方案A（<code>plan-a.html</code>） → R1</td>
+          </tr>
+          <tr>
+            <td><b>D7</b></td><td>东推 Höfn · Vestrahorn 版</td>
+            <td>雷市／Hella</td><td>Höfn</td>
+            <td class="locked">Vík（已订）</td>
+            <td>Höfn</td><td>雷市</td><td>雷市 / Keflavík</td>
+            <td>DeepSeek 紧凑版① · M3 紧凑版②/③ → R5 / R6</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small" style="margin-top:10px"><b>去重说明：</b>GPT-5.5 版把 9.25 在 Höfn 的「东推型」拆成了两行（冰河湖晨昏光版 / Vestrahorn 摄影加强版），本文合并为 <b>D7</b> —— 因为两者「每日住宿落点序列」完全相同，差异只在 9.25 的拍摄安排，属<strong>同日行程差异</strong>而非<strong>住宿型差异</strong>。这属于 DeepSeek 与 GPT-5.5 在分类粒度上的不同判断，不影响结论。</p>
+    </section>
+
+    <section>
+      <h2>三、各住宿型方案详解</h2>
+
+      <div class="card" style="border-left:5px solid var(--green); margin-bottom:14px">
+        <h3>D1 · Hella 连住 · 均衡版 <span class="tag best">默认首选</span></h3>
+        <p class="kv"><b>每日住宿：</b>9.24 Hella / Flúðir / Selfoss → 9.25 <strong>Hella（连住）</strong> → 9.26 <strong>Vík（已订）</strong> → 9.27 Skaftafell / Freysnes → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>对应路线：</b>R3-3C。9.24 黄金圈；9.25 Hella 10:00 高地团；9.26 南岸瀑布群 → Vík 卡特拉；9.27 羽毛峡谷 → Skaftafell → 冰河湖；9.28 东南 → 雷市（约 395 km）。</p>
+        <p class="kv"><b>优点：</b>9.25 自驾 0 km；9.26 锚点日只跑约 100 km，节奏最松；9.27 落点在 Skaftafell / Freysnes，回程最短；9.29 宿雷市，9.30 去 KEF 只需约 50 km。</p>
+        <p class="kv"><b>风险：</b>9.28（约 395 km / 5 h）是全程最长驾驶日；9.25 连住 Hella 意味着 9.24 必须完成黄金圈（约 240 km）。</p>
+        <p class="kv"><b>结论：</b><strong>默认首选</strong>。均衡度最高，且 9.27 的落点选择最不激进。</p>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--teal); margin-bottom:14px">
+        <h3>D2 · Hella 连住 · 摄影版</h3>
+        <p class="kv"><b>每日住宿：</b>9.24 Hella / Flúðir → 9.25 <strong>Hella（连住）</strong> → 9.26 <strong>Vík（已订）</strong> → 9.27 Hali / Gerdi（冰河湖旁） → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>对应路线：</b>R3-3B。与 D1 唯一差异是 9.27 住冰河湖旁（Hali / Gerdi / Fosshotel Glacier Lagoon），可赶 9.28 日出。</p>
+        <p class="kv"><b>优点：</b>冰河湖日出 / 日落两个机位都能拍到；9.27 不用赶回教堂镇。</p>
+        <p class="kv"><b>风险：</b>9.28 从冰河湖旁直接回雷市，比从 Skaftafell 出发多约 20–30 km；冰河湖旁的住宿选择少、价格高、旺季易满。</p>
+        <p class="kv"><b>结论：</b><strong>摄影优先时选它</strong>；否则 D1 更稳。</p>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--teal); margin-bottom:14px">
+        <h3>D3 · Hella 连住 · 保守版</h3>
+        <p class="kv"><b>每日住宿：</b>9.24 Hella / Flúðir / Selfoss → 9.25 <strong>Hella（连住）</strong> → 9.26 <strong>Vík（已订）</strong> → 9.27 教堂镇 → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>对应路线：</b>R3-3A。与 D1 唯一差异是 9.27 住教堂镇（Kirkjubæjarklaustur）。</p>
+        <p class="kv"><b>优点：</b>教堂镇住宿选择多、补给方便；9.27 若体力不支可提前收工。</p>
+        <p class="kv"><b>风险：</b>往返冰河湖多跑约 80 km；9.28 回雷市比 Skaftafell 出发多约 80 km。</p>
+        <p class="kv"><b>结论：</b><strong>可行但非最优</strong>。它的优势是「住宿好订」，不是「行程更好」。</p>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--blue); margin-bottom:14px">
+        <h3>D4 · 南岸先行 · 高地后置版 <span class="tag best">总里程最短</span></h3>
+        <p class="kv"><b>每日住宿：</b>9.24 Hella / Flúðir → 9.25 Hali / Gerdi（冰河湖旁） → 9.26 <strong>Vík（已订）</strong> → 9.27 Hella / Hvolsvöllur → 9.28 雷市 → 9.29 <strong>Keflavík</strong></p>
+        <p class="kv"><b>对应路线：</b>R4。9.24 黄金圈（约 240 km）；9.25 Hella → 南岸瀑布群 → 羽毛峡谷 → Skaftafell → 冰河湖日落（约 295 km）；9.26 冰河湖日出 → 西返约 190 km → Vík 卡特拉（约 190 km）；9.27 折返 Hvolsvöllur / Hella 上高地团（约 100–120 km）；9.28 雷市（约 95 km）；9.29 Keflavík。</p>
+        <p class="kv"><b>优点：</b><strong>总驾驶约 980 km，是全部方案里最短的</strong>，且没有单日 480 km；9.26 是「日出 + Vík 锚点 + 卡特拉」三合一；9.28 只有约 95 km，最轻松。</p>
+        <p class="kv"><b>风险：</b>9.27 折返约 100 km 回头路；9.29 住 Keflavík 与「三人晚上同住雷市」的偏好冲突（若 9.30 航班不早于 09:00，可改住雷市）；9.25 落冰河湖旁，住宿选择少。</p>
+        <p class="kv"><b>结论：</b><strong>主驾负担最低</strong>。若「疲劳 / 总里程」是第一约束，选它。</p>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--gold); margin-bottom:14px">
+        <h3>D5 · 南岸先行 · 教堂镇版</h3>
+        <p class="kv"><b>每日住宿：</b>9.24 <strong>Skógar</strong> → 9.25 教堂镇 → 9.26 <strong>Vík（已订）</strong> → 9.27 Hella / Selfoss / Flúðir → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>对应路线：</b>R2。9.24 住 Skógar（Gljúfrabúi / Kvernufoss）；9.25 维克黑沙滩 / Dyrhólaey → 羽毛峡谷 → 冰河湖 → 教堂镇（原文「不回维克」）；9.26 回 Vík + 15:00 卡特拉；9.27 08:00 前出发 → Hella 09:20 前到 → 10:00 高地团。</p>
+        <p class="kv"><b>优点：</b>9.26 不用二次东进；冰河湖不折返；9.24 就住到 Skógar，第二天南岸瀑布群顺路。</p>
+        <p class="kv"><b>风险：</b>9.25 单程需 2.5–3 h 且仍要沿 1 号回推到教堂镇；9.27 依然从东南折返 Hella，且原文自标「全程最大风险日」（08:00 出发 + 09:20 到 + 10:00 发车）。</p>
+        <p class="kv"><b>结论：</b><strong>可行，但折返未真正消除</strong>。</p>
+        <span class="src small" style="color:var(--purple)">DeepSeek 视角评估 · 待其他模型复核</span>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--red); margin-bottom:14px">
+        <h3>D6 · Vík 连住原始版 <span class="tag no">不建议原样执行</span></h3>
+        <p class="kv"><b>每日住宿：</b>9.24 待定 → 9.25 待定 → 9.26 <strong>Vík（已订）</strong> → 9.27 黄金圈一带 → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>对应路线：</b>R1。9.25 Vík 东进冰河湖当天往返（约 400 km）；9.27 Vík → Hella 上团 → 黄金圈。</p>
+        <p class="kv"><b>优点：</b>9.28 / 9.29 天然宿雷市，对 9.30 航班无损兼容。</p>
+        <p class="kv"><b>风险：</b>9.24 / 9.25 住宿原页即标「待定」，等于<strong>没有做住宿决策</strong>；9.25 单日折返约 400 km；9.27 还要从 Vík 折返约 100 km。</p>
+        <p class="kv"><b>结论：</b><strong>不建议原样执行</strong>（原页自身的「住宿待定」已说明它未完成）。</p>
+      </div>
+
+      <div class="card" style="border-left:5px solid var(--gold)">
+        <h3>D7 · 东推 Höfn · Vestrahorn 版 <span class="tag warn">摄影优先才选</span></h3>
+        <p class="kv"><b>每日住宿（5a，DeepSeek 紧凑版①）：</b>9.24 黄金圈 → Hella → 9.25 <strong>Hella</strong> → 9.26 Vík → 9.27 <strong>Höfn</strong> → 9.28 雷市 / Selfoss → 9.29 雷市 → Keflavík</p>
+        <p class="kv"><b>每日住宿（5b/5c，M3 紧凑版②/③）：</b>9.24 → Höfn / Egilsstaðir → 9.25 Höfn → 9.26 <strong>Vík（已订）</strong> → 9.27 Höfn → 9.28 雷市 → 9.29 雷市</p>
+        <p class="kv"><b>优点：</b>唯一能保住 Vestrahorn 日落的结构；5c（M3 ③）的 9.27 只有 90 km，是全表最轻松的一天。</p>
+        <p class="kv"><b>风险：</b></p>
+        <ul>
+          <li>5a：9.28 是 <code>~480 km</code> 纯赶路日。</li>
+          <li>5b（M3 ②）：9.25「Höfn ↔ Hella 高地团」往返约 <strong>540 km</strong>（原卡写 295 km，漏算回程），叠加 8–10 h 团后当天约 04:00–21:00；9.28 卡「Höfn → Djúpivogur → Egilsstaðir → 南行 480 km」路径与里程自相矛盾。</li>
+          <li>5c（M3 ③）：9.24 雷市 → Egilsstaðir 实为约 <strong>660 km / 8.5 h</strong>（原卡写 280 km）；9.26 把 8–10 h 团压在已订不可退的 Vík 锚点日。</li>
+        </ul>
+        <p class="kv"><b>结论：</b><strong>只有在「Vestrahorn 必拍」时才值得选</strong>；5b / 5c 在里程重算前不宜定稿。</p>
+        <span class="src small" style="color:var(--purple)">DeepSeek 视角评估 · 待其他模型复核</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>四、住宿落点对比</h2>
+      <div class="tw">
+      <table>
+        <thead><tr><th>日期</th><th>可选落点</th><th>关键取舍</th><th>当前状态</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>9.24</b></td>
+            <td>① Hella / Flúðir / Selfoss（240 km）<br>② 直走 1 号 → Höfn（480 km）<br>③ 绕东部林区 → Egilsstaðir（660 km）<br>④ Skógar</td>
+            <td>① 决定「南岸型」骨架，②③ 决定「东部型」骨架；④ 为南岸先行铺路</td>
+            <td><span class="tag warn">未定</span></td>
+          </tr>
+          <tr>
+            <td><b>9.25</b></td>
+            <td>① Hella（连住）<br>② Höfn（东推型）<br>③ Hali / Gerdi<br>④ 教堂镇</td>
+            <td>① 自驾 0 km、最省；② 换来 Vestrahorn 但 9.28 多一个 480 km 日；③ 为 9.26 日出</td>
+            <td><span class="tag warn">未定</span></td>
+          </tr>
+          <tr>
+            <td><b>9.26</b></td>
+            <td><b>Vík（已订、不可退）</b></td>
+            <td>无自由度</td>
+            <td><span class="tag lock">已锁定</span></td>
+          </tr>
+          <tr>
+            <td><b>9.27</b></td>
+            <td>① Skaftafell / Freysnes<br>② Hali / Gerdi<br>③ 教堂镇<br>④ Höfn<br>⑤ Hella / Hvolsvöllur</td>
+            <td>① 回程最短；② 摄影最好；③ 最好订；④ 东推型；⑤ 高地团后置</td>
+            <td><span class="tag warn">未定（三模型分歧最大的一格）</span></td>
+          </tr>
+          <tr>
+            <td><b>9.28</b></td>
+            <td>① 雷市　② Selfoss</td>
+            <td>取决于 9.29 安排</td>
+            <td><span class="tag">未定</span></td>
+          </tr>
+          <tr>
+            <td><b>9.29</b></td>
+            <td>① 雷市　② Keflavík</td>
+            <td>由 9.30 航班时刻倒推</td>
+            <td><span class="tag warn">未定</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small" style="margin-top:10px">注：9.25 的落点与「是否东推 Höfn」是同一个决策 —— 住 Höfn 就意味着 9.24 或 9.25 已经东进。</p>
+    </section>
+
+    <section>
+      <h2>五、按住宿分类的最终推荐排序（DeepSeek 视角）</h2>
+      <div class="tw">
+      <table>
+        <thead><tr><th>排名</th><th>编号</th><th>理由</th><th>与 GPT-5.5 排序的差异</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="rank">1</span></td><td><b>D1</b></td>
+            <td>Hella 连住 + Skaftafell 落点：均衡度最高，9.26 锚点日最松，9.27 回程最短</td>
+            <td>一致</td>
+          </tr>
+          <tr>
+            <td><span class="rank g2">2</span></td><td><b>D4</b></td>
+            <td>总里程最短（约 980 km）、无单日 480 km、9.28 仅 95 km；代价是 9.27 约 100 km 折返</td>
+            <td><span class="tag ds">DeepSeek 上调</span>GPT-5.5 排在第 5。理由：原文自述总里程最低，且 9.27 折返约 1.5 h 属可接受范围</td>
+          </tr>
+          <tr>
+            <td><span class="rank g3">3</span></td><td><b>D2</b></td>
+            <td>摄影收益最大，9.27 不用赶回教堂镇</td>
+            <td>一致</td>
+          </tr>
+          <tr>
+            <td><span class="rank g3">4</span></td><td><b>D3</b></td>
+            <td>住宿最好订，但多跑约 80 km</td>
+            <td>一致</td>
+          </tr>
+          <tr>
+            <td><span class="rank mut">5</span></td><td><b>D5</b></td>
+            <td>可行，但 9.27 折返 + 原页自标最大风险日</td>
+            <td><span class="tag ds">DeepSeek 下调</span>因 9.27 的风险日判定未被解除</td>
+          </tr>
+          <tr>
+            <td><span class="rank mut">6</span></td><td><b>D7</b></td>
+            <td>仅当 Vestrahorn 必拍时成立；5b/5c 里程需重算</td>
+            <td>一致（末尾）</td>
+          </tr>
+          <tr>
+            <td><span class="rank mut">7</span></td><td><b>D6</b></td>
+            <td>原页住宿「待定」，等于未决策；两个折返叠加</td>
+            <td>一致（末尾）</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout info" style="margin-top:16px">
+        <h3 style="margin-top:0">关于 D4 与 D1 的取舍（本文最重要的一条判断）</h3>
+        <ul>
+          <li>若<strong>「主驾疲劳 / 总里程」优先</strong> → <strong>D4</strong>（约 980 km，无长日）</li>
+          <li>若<strong>「行程均衡 + 9.27 不折返 + 住宿落点最保守」优先</strong> → <strong>D1</strong></li>
+          <li>两者都满足「9.26 晚 Vík」「9.26 卡特拉」「9.25 或 9.27 高地团」三条硬需求。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>六、一句话结论</h2>
+      <div class="callout">
+        <p><strong>住宿只有一格是锁死的（9.26 Vík），其余五格都是自由度；分歧集中在 9.24、9.25、9.27、9.29 四格。</strong></p>
+        <p>按住宿看，真正的候选只有两个：<strong>D1（Hella 连住 · 均衡）</strong> 与 <strong>D4（南岸先行 · 高地后置，总里程最短）</strong>；D3 / D5 是折返未消除的中间态，D6 是未完成的原稿，D7 只有在「Vestrahorn 必拍」时才值得付出 480 km 回程日的代价。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>七、交叉复核与待确认</h2>
+      <div class="callout todo">
+        <p>本文的分类与排序是 <strong>DeepSeek 视角评估</strong>，需要与 <strong>GPT-5.5</strong> 的住宿分类（<code>Gpt梳理-按每日住宿.html</code>）以及 <strong>MiniMax-M3</strong> 的评估交叉复核。</p>
+        <p><b>需复核的分歧点：</b></p>
+        <ul>
+          <li><b>分类粒度：</b>GPT-5.5 的「冰河湖晨昏光版 / Vestrahorn 摄影加强版」是否应合并（本文合并为 D7）。</li>
+          <li><b>D4 的排名：</b>本文上调至第 2（GPT-5.5 排第 5），理由为总里程约 980 km 且无长日。</li>
+          <li><b>D5 的排名：</b>本文下调至第 5，理由为 9.27 风险日判定未解除。</li>
+          <li><b>D7 的里程：</b>M3 紧凑版②/③ 的 9.25（~540 km）与 9.24（~660 km）需重算 —— 详见 <a href="DeepSeek梳理-按路线骨架.html">按路线骨架</a> 第六节 B1–B3。</li>
+        </ul>
+      </div>
+      <div class="callout ask" style="margin-top:14px">
+        <p><b>另有两项</b>涉及修改 <code>m3-spots.html</code> 的待确认事项（① 页脚增补署名/性质说明；② 加入指向 <code>m3-spots-review-notes.html</code> 的链接，连带需决定该页是否推送），完整说明见 <a href="DeepSeek梳理-按路线骨架.html">DeepSeek梳理-按路线骨架</a> 第七节。</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="pill">本文由 DeepSeek 梳理 · 2026-09-11</div>
+      <div style="margin-top:10px">依据文件：<code>plan-a.html</code> · <code>plan-a-full.html</code> · <code>plan-b.html</code> · <code>plan-c.html</code> · <code>spots.html</code> · <code>gpt55-spots.html</code> · <code>m3-spots.html</code></div>
+      <div style="margin-top:6px">关联文件：<a href="DeepSeek梳理-按路线骨架.html">DeepSeek梳理-按路线骨架</a>（含完整待复核清单）· <a href="m3-spots-review-notes.html">m3-spots 交叉评审增补说明</a>（已发布）· <a href="Gpt梳理-按每日住宿.html">Gpt梳理-按每日住宿</a>（同体例，另一视角）</div>
+      <div style="margin-top:6px">性质声明：本文件为 <strong>DeepSeek 视角评估</strong>，非任何原页原文；所有针对原页的引述均标注来源文件。</div>
+      <div style="margin-top:6px">待 MiniMax-M3 / GPT-5.5 复核后定稿 · <strong>已发布至 GitHub Pages</strong></div>
+    </footer>
+  </main>
+</body>
+</html>

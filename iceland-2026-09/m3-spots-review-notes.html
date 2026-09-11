@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>m3-spots 交叉评审增补说明 · DeepSeek 梳理 · 冰岛 2026-09</title>
+<meta name="description" content="对 m3-spots.html（MiniMax-M3 推荐版）的交叉评审增补说明：由 DeepSeek 梳理的事实层错误 8 条、里程与时长问题 4 条、不可验证来源 2 条与不推荐理由。原页内容零删除。">
+<style>
+  :root{
+    --ink:#17202a; --muted:#65717d; --line:#d9e0e7; --bg:#f5f7f8; --panel:#ffffff;
+    --blue:#2364aa; --green:#2a9d8f; --amber:#c77700; --red:#c2412d; --violet:#6d5bd0; --slate:#425466;
+    --soft:#f9fbfc;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.75; -webkit-font-smoothing:antialiased; }
+  .wrap, main{ width:min(1080px, calc(100vw - 40px)); margin:0 auto; }
+
+  header.hero{ background:linear-gradient(160deg,#1b2b3a 0%, #23394d 55%, #2c4a63 100%); color:#fff; padding:44px 0 38px; }
+  .kicker{ font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:800; color:#9fc4e8; margin:0 0 12px; }
+  header.hero h1{ font-size:clamp(26px, 3.6vw, 44px); line-height:1.12; margin:0 0 12px; letter-spacing:-.4px; }
+  header.hero h1 .ver{ display:block; margin-top:10px; font-size:.46em; font-weight:600; letter-spacing:0; color:rgba(255,255,255,.86); }
+  header.hero .sub{ font-size:16px; color:rgba(255,255,255,.9); max-width:900px; margin:0 0 16px; }
+  header.hero .sub strong{ color:#fff; }
+  header.hero code{ background:rgba(255,255,255,.14); padding:1px 6px; border-radius:4px; font-size:.92em; }
+  .meta{ display:flex; flex-wrap:wrap; gap:8px; font-size:13px; color:rgba(255,255,255,.9); }
+  .meta span{ padding:5px 11px; border:1px solid rgba(255,255,255,.34); border-radius:999px; }
+  .meta span.hi{ background:#fff; color:#1b2b3a; border-color:#fff; font-weight:700; }
+
+  main{ padding:30px 0 60px; }
+  section{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px 24px;
+    margin:0 0 20px; box-shadow:0 8px 24px rgba(18,31,43,.05); }
+  h2{ font-size:22px; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); }
+  h2 .n{ color:var(--muted); font-weight:800; margin-right:8px; }
+  h3{ font-size:16px; margin:18px 0 8px; }
+  p{ margin:0 0 10px; }
+  ul,ol{ padding-left:22px; margin:0 0 10px; }
+  li{ margin:0 0 7px; }
+  /* 允许超长无空格串（如 50+480+295+…）换行，避免窄屏横向溢出 */
+  p, li, .lead, .note, .attrib, footer div{ overflow-wrap:anywhere; }
+  a{ color:var(--blue); }
+  code{ background:#eef3f7; padding:1px 5px; border-radius:4px; font-size:.92em; }
+  .lead{ color:var(--muted); }
+
+  .attrib{ background:#fff8ec; border:1px solid #f0d8b0; border-left:6px solid var(--amber);
+    border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14px; }
+  .attrib p{ margin:6px 0; }
+  .attrib .who{ font-weight:800; color:#8a5a10; }
+
+  .note{ background:#f4f9ff; border:1px solid #cfe0f2; border-left:5px solid var(--blue);
+    border-radius:8px; padding:12px 16px; margin:14px 0; font-size:14px; }
+  .note.warn{ background:#fffaf0; border-color:#f2d79a; border-left-color:var(--amber); }
+  .note.ok{ background:#f1f9f7; border-color:#b6dbd0; border-left-color:var(--green); }
+  .note p{ margin:6px 0; }
+
+  .toc{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:0 0 20px; }
+  .toc h3{ margin:0 0 10px; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .toc ol{ columns:2; column-gap:26px; margin:0; padding-left:20px; font-size:14px; }
+  .toc li{ break-inside:avoid; }
+  @media (max-width:720px){ .toc ol{ columns:1; } }
+
+  .tw{ margin:14px 0 6px; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); font-size:14px; }
+  th,td{ padding:10px 12px; border:1px solid var(--line); vertical-align:top; text-align:left;
+    overflow-wrap:anywhere; word-break:break-word; }
+  th{ background:#26384a; color:#fff; font-weight:700; font-size:13px; }
+  tbody tr:nth-child(even) td{ background:var(--soft); }
+  td.k{ font-weight:700; white-space:nowrap; }
+  .c-no{ width:44px; text-align:center; color:var(--muted); font-weight:700; }
+  @media (max-width:700px){
+    .tw{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .tw table{ min-width:620px; }
+    td.k{ white-space:normal; }
+  }
+
+  .badge{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:800;
+    background:#fff3e2; border:1px solid #edcfa4; color:#8a5a10; white-space:nowrap; }
+  .badge.err{ background:#fde8e5; border-color:#f0bdb4; color:#9d2f20; }
+  .badge.ok{ background:#e6f4f1; border-color:#a8d4c6; color:#176c61; }
+  .small{ font-size:13px; color:var(--muted); }
+  .del{ color:#9d2f20; }
+  .add{ color:#176c61; }
+
+  .links{ display:flex; flex-wrap:wrap; gap:14px; }
+  .links a{ font-weight:700; text-decoration:none; }
+  .links a:hover{ text-decoration:underline; }
+
+  footer{ text-align:center; padding:26px 16px 14px; color:var(--muted); font-size:13px; }
+  footer .pill{ display:inline-block; padding:6px 12px; border:1px solid var(--line); border-radius:999px;
+    background:var(--panel); color:var(--ink); font-weight:700; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Cross-review notes · 交叉评审</p>
+    <h1>m3-spots.html 交叉评审增补说明
+      <span class="ver">对象页面：MiniMax-M3 推荐版（冰岛 2026-09-23~30）</span>
+    </h1>
+    <p class="sub">对 <code>m3-spots.html</code> 的事实层、里程与来源做<strong>逐条原文比对</strong>，只在对应位置补充说明或提出不同意见，<strong>原页内容零删除</strong>。</p>
+    <div class="meta">
+      <span class="hi">DeepSeek 梳理</span>
+      <span>日期：2026-09-11</span>
+      <span>状态：待 MiniMax-M3 / GPT-5.5 复核</span>
+      <span>发布：已发布至 GitHub Pages</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <nav class="toc">
+    <h3>目录</h3>
+    <ol>
+      <li><a href="#attrib">增补性质与署名</a></li>
+      <li><a href="#changes">改动清单</a></li>
+      <li><a href="#verify">验证证据</a></li>
+      <li><a href="#facts">事实层错误（8 条）</a></li>
+      <li><a href="#mileage">里程与时长错误（4 条）</a></li>
+      <li><a href="#sources">不可验证的来源（2 条）</a></li>
+      <li><a href="#recommend">不推荐理由与替代方向</a></li>
+      <li><a href="#naming">命名冲突（跨页引用必读）</a></li>
+      <li><a href="#todo">待确认事项</a></li>
+      <li><a href="#conclusion">一句话结论</a></li>
+    </ol>
+  </nav>
+
+  <section id="attrib">
+    <h2><span class="n">1</span>增补性质与署名</h2>
+    <div class="attrib">
+      <p><span class="who">本文内容由 DeepSeek 梳理。</span></p>
+      <p>依据：对 <code>plan-a.html</code>、<code>plan-a-full.html</code>、<code>plan-b.html</code>、<code>plan-c.html</code>、<code>compare.html</code>、<code>spots.html</code> 的<strong>逐条原文比对</strong>。</p>
+      <p>本文是<strong>评审意见</strong>，<strong>不是</strong> <code>m3-spots.html</code> 的原文，也<strong>不是</strong> DeepSeek 推荐版 <code>spots.html</code> 的原文。凡 <code>m3-spots.html</code> 中找不到原文支撑的数字或日期，一律标注为「无来源」。</p>
+      <p>原页的<strong>评分体系、四方案对比矩阵、景点分级与两套紧凑版方案全部原样保留</strong>，增补内容只做观点补充 / 不同意见。</p>
+    </div>
+    <div class="note warn">
+      <p><strong>待复核：</strong>本文的判断（尤其两处里程修正）需要 <strong>MiniMax-M3</strong> 与 <strong>GPT-5.5</strong> 等其他模型复核后再定稿。</p>
+    </div>
+    <p class="small">相关页面：<a href="m3-spots.html">m3-spots.html（M3 推荐版）</a> · <a href="spots.html">spots.html（DeepSeek 推荐版）</a> · <a href="compare.html">compare.html（A/B/C 逐日对照）</a> · <a href="plan-a-full.html">plan-a-full.html</a> · <a href="plan-b.html">plan-b.html</a> · <a href="plan-c.html">plan-c.html</a> · <a href="./">回到本目录</a></p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="n">2</span>改动清单（对 <code>m3-spots.html</code>）</h2>
+    <p class="lead">本次一律为<strong>增补</strong>：在对应位置加旁注 / 末尾加一节 / 表格后加评注块，<strong>不修改任何原有数值、评分、排序与表格结构</strong>。</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>位置</th><th>改动性质</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="k"><code>&lt;style&gt;</code></td><td>新增 CSS</td><td><code>.rev-note</code> / <code>.rev-tag</code> / <code>.rev-flag</code> / <code>.col-e</code>，以及窄屏下 <code>td .rev-tag</code> 的换行规则</td></tr>
+          <tr><td class="k"><code>#summary</code></td><td>追加 1 个旁注块</td><td>「主推状态变更（2026-09-11 增补）」：① / ② / ③ 三套紧凑版<strong>暂均不作主推</strong>，交交叉验证</td></tr>
+          <tr><td class="k"><code>nav.toc</code></td><td>新增第 11 项</td><td>「交叉评审与不推荐原因（增补）」→ <code>#review</code></td></tr>
+          <tr><td class="k"><code>#coverage</code> 表</td><td>3 处行内标记 + 表后 1 个评注块</td><td>疑点格内加 <span class="badge">⚠️ 待核 / 不顺路</span> 短标记；4 条依据放在<strong>表格之后</strong>的评注块（避免撑宽窄屏）</td></tr>
+          <tr><td class="k"><code>#constraint</code> 表</td><td>3 处行内标记 + 表后 1 个评注块</td><td>同上</td></tr>
+          <tr><td class="k"><code>#plan2</code></td><td>4 个旁注</td><td>9.25 / 9.28 / 9.30 三张日卡 + 尾注，逐条给出里程与路径问题</td></tr>
+          <tr><td class="k"><code>#plan3</code></td><td>4 个旁注</td><td>引导语 + 9.24 / 9.26 两张日卡 + 尾注</td></tr>
+          <tr><td class="k"><code>#matrix</code></td><td>原表后追加</td><td>声明「原表原样保留」+ 新子表「交叉评审调整建议（增补）」8 行</td></tr>
+          <tr><td class="k"><code>#checklist</code></td><td>第 3 条追加</td><td><span class="badge">⚠️ 句子残缺</span> 标记 + 评注（<strong>不代为重写</strong>，建议留给 M3）</td></tr>
+          <tr><td class="k"><code>#spots</code></td><td>3 处追加</td><td>Jökulsárlón / Diamond Beach / Höfn 港口 的「9.30」残留日期加 <span class="badge">⚠️ 日期残留</span> + 评注</td></tr>
+          <tr><td class="k"><code>#diff</code></td><td>新增第 7 行</td><td>「紧凑版 ② 命名冲突」（跨页同名不同结构）</td></tr>
+          <tr><td class="k">新 <code>#review</code></td><td>新增整节</td><td>六小节：性质声明 / 事实错误 8 条 / 里程错误 4 条 / 不可验证来源 / 不推荐理由 + 待确认事项 / 命名冲突</td></tr>
+          <tr><td class="k"><code>footer</code></td><td>追加第 4 行</td><td>说明本次增补范围，并声明「原报告与方案内容未作任何删改」</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="verify">
+    <h2><span class="n">3</span>验证证据</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>检查项</th><th>方法</th><th>结果</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="k">原文零删除</td>
+            <td><code>difflib.SequenceMatcher</code> 对「编辑前 innerText」与「编辑后 innerText」做 opcode 分析</td>
+            <td><span class="badge ok">PASS</span> 28 个 hunk <strong>全部为纯插入</strong>，0 个删除；文本 10 306 → 19 695 字符（+9 389）</td>
+          </tr>
+          <tr><td class="k">HTML 错误</td><td>编辑器诊断</td><td><span class="badge ok">No errors found</span></td></tr>
+          <tr><td class="k">板块顺序</td><td>页面脚本读取 <code>main &gt; section</code></td><td><code>summary, env, spots, coverage, constraint, plan2, plan3, matrix, checklist, diff, review</code>，<code>#review</code> 为最后一节 ✅</td></tr>
+          <tr>
+            <td class="k">原矩阵未变</td>
+            <td>逐格读取 <code>#matrix</code> 第一张表</td>
+            <td><strong>12 行 × 5 列逐格与原文一致</strong>：<code>1480 / 1620 / 1380 / 1815</code>、<code>400（9.25） / 700（9.28） / 395（9.28） / 480（9.24 与 9.28 并列）</code>、<code>9.27 早 / 9.26 晚 / 9.27 早 / 9.27 单次</code>、<code>⚠️ 单日 400 km / ❌ 单日 700 km / ⚠️ 9.29 需调整 / 🥇 推荐</code> ✅</td>
+          </tr>
+          <tr><td class="k">横向溢出</td><td>浏览器实测，视口 320 / 360 / 375 / 390 / 414 / 768 / 1024 / 1440</td><td>≥ 360 全部 <strong>0 溢出</strong>；320 极端宽度仍有约 10 px 残留（见「已知遗留」）</td></tr>
+          <tr><td class="k">图片</td><td>图片完整性检查</td><td>无失效图片（原页无 <code>&lt;img&gt;</code>，hero 为 CSS 背景图）</td></tr>
+          <tr><td class="k">站内链接</td><td>9 个相对链接逐一校验存在性</td><td><code>./</code>、<code>plan-a-full.html</code>、<code>plan-b.html</code>、<code>plan-c.html</code>、<code>compare.html</code>、<code>spots.html</code>、<code>gpt55-spots.html</code>、<code>iceland-three-model-spots-comparison.html</code>、<code>../</code> <strong>全部存在</strong> ✅</td></tr>
+          <tr><td class="k">锚点 / id</td><td>页面脚本</td><td>无重复 id；<code>#review</code> 唯一；目录 11 项且 <code>#review</code> href 存在 ✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>已知遗留（本次一并修复，未改动原文结构）</h3>
+    <p>初版增补把长评注直接写在表格单元格里，导致 <code>#coverage</code>（7 列）在窄屏被撑宽、页面出现约 <strong>106 px</strong> 横向滚动。修复方式（<strong>纯新增 CSS，不动原表结构</strong>）：</p>
+    <ul>
+      <li>把长评注从表格单元格中<strong>移出</strong>，改到表格<strong>之后</strong>的旁注块中，单元格内只保留 <span class="badge">⚠️ 待核</span> 之类的短标记；</li>
+      <li>单元格内的短标记改为可换行：<code>td .rev-tag{ display:inline; white-space:normal; overflow-wrap:anywhere; }</code>；</li>
+      <li>≤560 px 时进一步去掉标记的内边距与边框（保留文字与颜色），使窄屏最小宽度回落。</li>
+    </ul>
+    <div class="note warn">
+      <p><strong>320 px 视口下原页仍有约 10 px 溢出。</strong>需注意：<strong>原始版本在同一宽度下也有 9 px 溢出</strong>，属该页既有极限（<code>main</code> 宽度为 <code>calc(100vw - 40px)</code>，7 列覆盖表最小宽度约 274 px）。本次未改原表结构，未强行消除。</p>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2><span class="n">4</span>事实层错误（8 条）</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th class="c-no">#</th><th>位置</th><th>原页值</th><th>原文实况</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="c-no">1</td>
+            <td class="k"><code>#coverage</code> · Katla 冰洞 · <strong>A 列</strong></td>
+            <td><code>9.27 团</code></td>
+            <td>方案 A 的卡特拉冰川徒步在 <strong>9.26 下午 15:00</strong>（<code>plan-a.html</code>：9.26「维克 · 羽毛峡谷 + 卡特拉冰川徒步」；<code>plan-a-full.html</code> 同）。9.27 是 A 的<strong>高地团日</strong>。疑为格位串列</td>
+          </tr>
+          <tr>
+            <td class="c-no">2</td>
+            <td class="k"><code>#coverage</code> · Hengifoss · <strong>C 列</strong></td>
+            <td><code>9.24 上午</code></td>
+            <td><code>plan-c.html</code> 的 9.24 全段为「雷市取车 → 黄金圈（辛格维利尔 / 间歇泉 / 黄金瀑布 / Kerið）→ Hella」+ 宿 Hella，<strong>原文未出现 Hengifoss</strong></td>
+          </tr>
+          <tr>
+            <td class="c-no">3</td>
+            <td class="k"><code>#coverage</code> · Hallormsstaðaskógur · <strong>C 列</strong></td>
+            <td><code>9.24 顺路</code></td>
+            <td>同上，<code>plan-c.html</code> 的 9.24 <strong>无东部林区任何内容</strong></td>
+          </tr>
+          <tr>
+            <td class="c-no">4</td>
+            <td class="k"><code>#coverage</code> · Þingvellir · <strong>② 列</strong> / <code>#plan2</code> 9.30 卡</td>
+            <td><code>9.30 早</code>「顺路」</td>
+            <td>Þingvellir 在雷市<strong>东北</strong>约 45 km，凯夫拉维克机场（KEF）在雷市<strong>西南</strong>约 50 km —— <strong>方向相反</strong>，「顺路」不成立；且 ② 的 9.24 已注明「直走 1 号、不绕黄金圈」</td>
+          </tr>
+          <tr>
+            <td class="c-no">5</td>
+            <td class="k"><code>#constraint</code> · <strong>方案 A 行</strong></td>
+            <td>9.28 宿 <code>Selfoss</code>；9.29 <code>Selfoss → Keflavík</code></td>
+            <td><code>plan-a.html</code> 原文：9.28「当晚回雷克雅未克住宿」、9.29「宿雷克雅未克」—— <strong>两晚均宿雷市</strong>，不经 Keflavík。与 <code>#matrix</code>「方案 A · 9.29 雷市兼容 ✓ 无损」结论一致、依据不同</td>
+          </tr>
+          <tr>
+            <td class="c-no">6</td>
+            <td class="k"><code>#constraint</code> · <strong>方案 B 行</strong></td>
+            <td><code>9.28 自 Höfn 700 km 怪物日</code></td>
+            <td><code>plan-b.html</code>：9.27 宿 Kirkjubæjarklaustur（教堂镇）、9.28「教堂镇 → 南岸补漏 → 雷克雅未克」、9.29 宿雷市 —— <strong>B 全程不经 Höfn</strong></td>
+          </tr>
+          <tr>
+            <td class="c-no">7</td>
+            <td class="k"><code>#constraint</code> · <strong>紧凑版 ① 行</strong></td>
+            <td>原 9.28 住宿 <code>Vík</code></td>
+            <td><code>spots.html</code> 紧凑版 ① 的 9.28 为「自 Höfn 西返，宿雷市或 Selfoss」，<strong>非宿 Vík</strong>；与原页 <code>#plan3</code> 的 9.28「Vík → Skaftafell → Jökulsárlón → 雷市」亦不一致</td>
+          </tr>
+          <tr>
+            <td class="c-no">8</td>
+            <td class="k"><code>#matrix</code> · <strong>冰河湖命中</strong>（三列）</td>
+            <td>A <code>9.27 早</code> / B <code>9.26 晚</code> / C <code>9.27 早</code></td>
+            <td>A 实为 <strong>9.25 日间</strong>（<code>compare.html</code>：9.25 维克 ⇄ 冰河湖，约 400 km 往返）；B 实为 <strong>9.27 日间</strong>（<code>plan-b.html</code>：9.27 Vik → 冰河湖 → 钻石沙滩 → 教堂镇）；C 实为 <strong>9.27 傍晚到日落</strong>（<code>plan-c.html</code>：9.27 宿冰河湖旁）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="mileage">
+    <h2><span class="n">5</span>里程与时长错误（4 条）</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th class="c-no">#</th><th>位置</th><th>原页值</th><th>评估</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="c-no">1</td>
+            <td class="k"><strong>② 9.25 卡</strong> / <code>#summary</code></td>
+            <td>驾驶 <code>295 km</code>、「9.25 高地团穿插实际驾驶 ~2.5 h 算缓冲」</td>
+            <td>Höfn ↔ Hella 单程约 270 km，<strong>往返约 540 km（约 7 h）</strong>。<code>295 km</code> 只有单程量级，<strong>漏算回程</strong>。且高地团为 <strong>8–10 h</strong>（非 5 h），当天约 04:00–21:00 —— <strong>「~2.5 h 算缓冲」不成立</strong></td>
+          </tr>
+          <tr>
+            <td class="c-no">2</td>
+            <td class="k"><strong>② 9.28 卡</strong></td>
+            <td>「Höfn → Djúpivogur → Egilsstaðir 早茶 → 南行，驾驶 <code>~480 km</code>」</td>
+            <td>Djúpivogur 在 Höfn <strong>东北</strong>约 90 km、Egilsstaðir 更北；先北绕再南返实为 <strong>~900 km 量级</strong>，与「~480 km / 6 h」<strong>不能同时成立</strong>。若确实要 ~480 km，应直走南岸 1 号西返（Höfn → 雷市约 455 km）</td>
+          </tr>
+          <tr>
+            <td class="c-no">3</td>
+            <td class="k"><strong>③ 9.24 卡</strong></td>
+            <td>驾驶 <code>280 km</code></td>
+            <td>雷市 → Egilsstaðir 沿 1 号约 <strong>660 km / 8.5 h</strong>；<code>280 km</code> 约为实际量的 42%。该日会成为<strong>全行程最长驾驶日</strong>，「下午到 Egilsstaðir 休整」不成立。（<code>plan-c.html</code> 9.24 原文为「雷市取车 → 黄金圈 → Hella，~240 km」）</td>
+          </tr>
+          <tr>
+            <td class="c-no">4</td>
+            <td class="k"><strong>③ 9.26 卡</strong></td>
+            <td>驾驶 <code>400 km</code></td>
+            <td>里程量级尚可（Höfn→Hella ~270 + Hella→Vík ~100 = ~370 km）。真正的风险是<strong>叠加</strong>：8–10 h 高地团 + 终点是<strong>已订且不可退的 Vík 锚点</strong>，无任何缓冲 —— ③ 最不可行的一天。而 ③ 的 9.27 只有 90 km，<strong>本应是放高地团的位置</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sources">
+    <h2><span class="n">6</span>不可验证的来源（2 条）</h2>
+    <ol>
+      <li><strong><code>#matrix</code>「总驾驶 km」A 1480 / B 1620 / C 1380</strong> —— 在 <code>plan-a.html</code>、<code>plan-b.html</code>、<code>plan-c.html</code>、<code>compare.html</code> 中<strong>均无出处</strong>。（<code>compare.html</code> 全文无「总里程」字样；<code>plan-b.html</code> 通篇无任何 km 数字。）</li>
+      <li><strong>方案 B「单日最长 700 km（9.28）」</strong> —— <code>plan-b.html</code> 无任何 km 数字，且 B 不经 Höfn。按教堂镇 → 雷市直算约 <strong>260 km</strong>。</li>
+    </ol>
+    <div class="note">
+      <p><strong>说明：</strong><code>#matrix</code> 中 ② 的「1815 km」<strong>加法本身自洽</strong>（50+480+295+200+260+480+0+50），但<strong>输入值需修正</strong>（9.25 应为 ~540 km；9.28 路径二选一）。修正后 ② 的总里程会<strong>明显高于 1815 km</strong>，且「单日最长 480 km」可能被 9.25 的 ~540 km 取代。</p>
+    </div>
+  </section>
+
+  <section id="recommend">
+    <h2><span class="n">7</span>不推荐理由与替代方向</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>方案</th><th>不推荐直接主推的原因</th><th>可保留的部分</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="k"><strong>①</strong> DeepSeek 紧凑版</td>
+            <td>9.27 ~480 km 怪物日；且 <code>#constraint</code> 对其「原 9.28 宿 Vík」的描述与 <code>spots.html</code> 原文不符</td>
+            <td>「Höfn 西返、不折返」的思路正确</td>
+          </tr>
+          <tr>
+            <td class="k"><strong>②</strong> M3 紧凑版</td>
+            <td>9.25 往返 ~540 km 且叠 8–10 h 团；9.28 路径与里程自相矛盾；9.30 Þingvellir 不顺路；4 处覆盖表日期需重算 —— <strong>方向对，算术错</strong></td>
+            <td><strong>主驾友好 + 守住 9.26 Vík 锚点 + 不折返</strong> 的骨架是对的</td>
+          </tr>
+          <tr>
+            <td class="k"><strong>③</strong> M3 Vestrahorn 版</td>
+            <td>9.24 里程低估约 380 km（→ ~660 km）；9.26 把高地团压在<strong>已订不可退的 Vík 锚点日</strong>上，是三者中唯一「硬约束 + 极限车程」同日叠加的；且「与 ② 的唯一区别」的描述与 ③ 自己的日卡不符</td>
+            <td>Vestrahorn 日落的取舍判断本身合理</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>替代方向（仅供参考，原页不因此改推荐）</h3>
+    <ul>
+      <li><strong>南线版</strong> ≈ <code>spots.html</code> 紧凑版 ② + 9.29 雷市，总里程约 <strong>980 km</strong> 量级 —— 放弃东部与高地，但主驾负担最低、容错最好。</li>
+      <li><strong>方案 A 收尾无损</strong> —— A 的 9.28 / 9.29 原文已宿雷市，对 9.30 航班天然兼容；代价是 9.25 折返冰河湖约 400 km。</li>
+    </ul>
+    <div class="note warn">
+      <p><strong>但原页不作主推：</strong>② 与 ③ 的骨架仍有价值，只是在里程与时长未重算前不宜定稿。建议<strong>交给三模型交叉验证</strong>后再确定主推方案。</p>
+    </div>
+  </section>
+
+  <section id="naming">
+    <h2><span class="n">8</span>命名冲突（跨页引用必读）</h2>
+    <p>原页与 <a href="spots.html">spots.html（DeepSeek 推荐版）</a> 都使用「紧凑版 ① / ②」这个编号，但<strong>结构不同</strong>：</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>编号</th><th>出处</th><th>高地团日期</th></tr></thead>
+        <tbody>
+          <tr><td class="k"><strong>DeepSeek 紧凑版 ②</strong></td><td><code>spots.html</code></td><td><strong>9.27</strong></td></tr>
+          <tr><td class="k"><strong>M3 紧凑版 ②</strong></td><td><code>m3-spots.html</code></td><td><strong>9.25</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">两者<strong>同名不同结构</strong>。跨页、跨模型引用时务必带前缀：<strong>「M3 紧凑版 ②」</strong> / <strong>「DeepSeek 紧凑版 ②」</strong>。</p>
+  </section>
+
+  <section id="todo">
+    <h2><span class="n">9</span>待确认事项</h2>
+    <ol>
+      <li>请 <strong>MiniMax-M3 与 GPT-5.5 复核本文的 8 条事实层错误与 4 条里程修正</strong>，尤其是 <strong>9.25（Höfn ↔ Hella 往返 ~540 km）</strong> 与 <strong>9.24（雷市 → Egilsstaðir ~660 km）</strong> 两个里程判断。</li>
+      <li>是否需要<strong>转到 <code>spots.html</code> 侧对账</strong>（那里的紧凑版 ① / ② 也可能存在同类问题）？</li>
+      <li><code>#checklist</code> 第 3 条（9.26 高地团兼容）<strong>句子残缺</strong>（原文即为断句乱码），本次<strong>保留原文、仅旁注指出</strong>，建议由 MiniMax-M3 重新表述。</li>
+      <li>原页 <code>#spots</code> 中 3 处「9.30」残留日期是否有意为之？若为早期稿件残留，建议清理（本次<strong>未删</strong>，仅加注）。</li>
+      <li>原页窄屏 320 px 下的约 10 px 溢出是否处理？（<strong>该问题在原版本即已存在约 9 px</strong>，本次未改原表结构。）</li>
+    </ol>
+  </section>
+
+  <section id="conclusion">
+    <h2><span class="n">10</span>一句话结论</h2>
+    <div class="note ok">
+      <p><code>m3-spots.html</code> 的<strong>框架与判断方向</strong>（主驾友好、守住 9.26 Vík 锚点、9.29 雷市约束）是对的；但<strong>覆盖表的 8 处日期、4 处里程时长、以及对比矩阵中总里程的来源</strong>存在需要重算的问题。</p>
+      <p>因此 <strong>① / ② / ③ 三套紧凑版暂均不作主推</strong>，与 <code>plan-a</code> / <code>plan-b</code> / <code>plan-c</code> 一并交给三模型交叉验证后再定稿。</p>
+    </div>
+    <p class="small">返回：<a href="m3-spots.html">m3-spots.html（M3 推荐版）</a> · <a href="./">本目录首页</a> · <a href="../">站点首页</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="pill">本文由 DeepSeek 梳理 · 2026-09-11</div>
+  <div style="margin-top:10px">对象页面：<a href="m3-spots.html">m3-spots.html（MiniMax-M3 推荐版）</a> · 原文零删除，仅作增补</div>
+  <div style="margin-top:6px">依据：plan-a.html · plan-a-full.html · plan-b.html · plan-c.html · compare.html · spots.html 逐条原文比对</div>
+  <div style="margin-top:6px"><strong>待 MiniMax-M3 / GPT-5.5 复核后定稿</strong> · 已发布至 GitHub Pages</div>
+</footer>
+
+</body>
+</html>
