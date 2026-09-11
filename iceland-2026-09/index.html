@@ -116,8 +116,17 @@
   .trow .split{ font-size:12.5px; line-height:1.65; color:#8a5200; background:#fff8ea; border:1px solid #f0dfc0; border-radius:8px; padding:9px 12px; margin-top:11px; }
   .trow .split b{ color:#7a4a00; }
   .trow .meta{ font-size:12.5px; color:var(--muted); margin-top:11px; }
+  /* 议题标题旁的「当前倾向」小标 */
+  .trow h3 .now{ display:inline-block; margin-left:9px; vertical-align:2px; font-size:11.5px; font-weight:800;
+    color:#176c61; background:#e6f4f1; border:1px solid #bfe2da; border-radius:999px; padding:2px 9px; white-space:nowrap; }
+  /* 我们的当前倾向：绿色结论条 */
+  .trow .pick-line{ font-size:13.5px; line-height:1.7; color:#1d4b45; background:#f1f8f6; border:1px solid #bfe2da;
+    border-left:4px solid var(--green); border-radius:8px; padding:11px 14px; margin-bottom:13px; }
+  .trow .pick-line b{ color:#0f5b51; }
+  .trow .pick-line .who{ display:block; margin-top:6px; font-size:12px; font-weight:800; color:#4c7a74; }
   @media (max-width:860px){
     .trow{ grid-template-columns:1fr; gap:12px; }
+    .trow h3 .now{ margin-left:0; margin-top:6px; }
   }
 
   footer{ text-align:center; color:#65717d; font-size:12px; padding:0 20px 48px; }
@@ -212,7 +221,7 @@
 
     <div class="trow">
       <div class="trow-l">
-        <h3>五种住宿方案行程对照</h3>
+        <h3>五种住宿方案行程对照 <span class="now">★ 当前倾向</span></h3>
         <p class="trow-sub">9.26 / 9.27 五种住宿组合的逐日对照</p>
         <p class="trow-links">
           <a href="Gpt梳理-五种住宿方案行程对照-含中文景点名.html">Gpt 梳理 →</a>
@@ -220,6 +229,7 @@
         </p>
       </div>
       <div class="trow-r">
+        <p class="pick-line"><b>★ 我和同行人目前倾向：方案一 —— 9.26 宿赫本（Höfn）· 9.27 宿维克（Vík）</b>，即五种组合里「风景覆盖最全 · 不走回头路」的那一版：五方案中唯一含韦斯特拉角山（Vestrahorn / Stokksnes）的方案，风景类型 10/10 满格，真回头路段也最少。全程 ≈ 1096 km、最长单日 ≈ 385 km（9.26 是 9–10 小时满负荷日，停靠需砍到 5 个以内），换来 9.28 仅 186 km、全程最好的抗天气安全垫。<span class="who">备注：两家梳理的默认首选项都不是它（Gpt 与 DeepSeek 均排第 3），此处按我们「宁可多跑、不愿漏景」的偏好单列。</span></p>
         <p class="q">「如果只选一个默认方案，我建议：9.24 黄金圈后住 Hella/Flúðir/Selfoss，9.25 高地，9.26 住 Kirkjubæjarklaustur（教堂镇），9.27 东南冰川/冰河湖后住 Vik（维克），9.28 回 Reykjavík（雷克雅未克），9.29 雷市周边轻收尾。」<span class="who">出自 Gpt 梳理 · 五种住宿方案行程对照（排序：方案2 &gt; 方案3 &gt; 方案1 &gt; 方案4 &gt; 方案5）</span></p>
         <p class="q ds">「求「不赶路 + 想要冰川徒步」→ 方案三；求「南岸慢慢玩 + 9.26 最轻松」→ 方案二；求「韦斯特拉角山那张封面照」→ 方案一（代价 +185 km）；方案四 / 五不推荐：一个丢掉安全垫，一个制造 400 km 重复路。」<span class="who">出自 DeepSeek 梳理 · 五种住宿方案行程对照（排序：方案三 &gt; 方案二 &gt; 方案一 &gt; 方案五 &gt; 方案四）</span></p>
         <p class="split"><b>分歧点：</b>前两名是同一组方案，但次序对调 —— Gpt 把「方案 2 教堂镇」列为综合最优，DeepSeek 把「方案三 Skaftafell/Freysnes」排第 1、方案二排第 2；两家一致把「方案四 / 方案五」排在末位。</p>
