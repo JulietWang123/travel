@@ -89,6 +89,37 @@
   .note{ font-size:12.5px; color:var(--muted); margin-top:14px; }
   .note code{ background:#eef2f6; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:12px; }
 
+  /* 顶部锚点跳转条 */
+  .jump{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 34px; }
+  .jump a{ flex:1 1 230px; text-decoration:none; color:var(--ink); background:#fff; border:1px solid var(--line);
+    border-radius:10px; padding:11px 16px; font-size:14px; font-weight:700; box-shadow:0 4px 14px rgba(18,31,43,.05);
+    transition:border-color .16s ease, transform .16s ease; }
+  .jump a:hover{ border-color:#b9c6d2; transform:translateY(-2px); }
+  .jump a b{ color:var(--blue); font-weight:900; margin-right:7px; }
+
+  /* 第①层：议题 × 结论原话 */
+  .themes{ background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgba(18,31,43,.07); }
+  .trow{ display:grid; grid-template-columns:246px minmax(0,1fr); gap:4px 26px; padding:18px 20px; border-top:1px solid var(--line); }
+  .trow:first-child{ border-top:0; }
+  .trow h3{ font-size:16px; line-height:1.4; margin-bottom:5px; }
+  .trow .trow-sub{ font-size:12.5px; color:var(--muted); margin-bottom:11px; }
+  .trow .trow-links{ display:flex; flex-wrap:wrap; gap:8px; }
+  .trow .trow-links a{ font-size:12.5px; font-weight:800; color:var(--blue); text-decoration:none;
+    background:#eef4fa; border:1px solid #d5e3f2; border-radius:999px; padding:3px 11px; }
+  .trow .trow-links a:hover{ background:#e2ecf7; }
+  .trow .trow-links a.only{ background:#f2f5f7; border-color:var(--line); color:var(--slate); }
+  .q{ font-size:14px; color:var(--slate); padding-left:12px; border-left:3px solid #cddae6; margin-bottom:11px; }
+  .q:hover{ color:var(--ink); }
+  .q.ds{ border-left-color:#cbbffa; }
+  .q:last-child{ margin-bottom:0; }
+  .q .who{ display:block; margin-top:6px; font-size:12px; font-weight:800; color:var(--muted); letter-spacing:.01em; }
+  .trow .split{ font-size:12.5px; line-height:1.65; color:#8a5200; background:#fff8ea; border:1px solid #f0dfc0; border-radius:8px; padding:9px 12px; margin-top:11px; }
+  .trow .split b{ color:#7a4a00; }
+  .trow .meta{ font-size:12.5px; color:var(--muted); margin-top:11px; }
+  @media (max-width:860px){
+    .trow{ grid-template-columns:1fr; gap:12px; }
+  }
+
   footer{ text-align:center; color:#65717d; font-size:12px; padding:0 20px 48px; }
   footer a{ color:var(--blue); font-weight:700; text-decoration:none; }
   footer a:hover{ text-decoration:underline; }
@@ -111,19 +142,191 @@
 <div class="hero">
   <p class="kicker">Iceland · 2026.09.23 – 09.30 · 6 天</p>
   <h1>冰岛 · 9 月底 6 天自驾行程</h1>
-  <p>同一批人、同一段时间、同一台车（已订 2WD 高尔夫，可免费取消），三个并列版本的行程，加上三方案对照表、三份「9 月底最值得去的地方」推荐清单、一份三方对比，以及把方案库按「路线骨架」与「每日住宿」两种口径去重梳理的汇总。差别不在去哪些地方，而在<strong>顺序、住宿落点与收尾方式</strong>。</p>
+  <p>同一批人、同一段时间、同一台车（已订 2WD 高尔夫，可免费取消）。本页按「先结论 · 再景点 · 后方案」排列：先看方案库按五个议题去重的推荐结论原话，再看三份「9 月底最值得去的地方」清单与三方对比，最后回到三个并列的初始方案 A / B / C 及其对照。差别不在去哪些地方，而在<strong>顺序、住宿落点与收尾方式</strong>。</p>
 </div>
 
 <main>
 
 <div class="notice">
-  <span>本页是冰岛行程的入口：先看三个方案，再看对照与推荐清单，最后看方案库梳理与交叉复核。</span>
-  <a href="#planlib">方案库梳理 ↓</a>
+  <span>本页是冰岛行程的入口，按「先结论 · 再景点 · 后方案」排列：① 方案库推荐与结论原话 → ② 9 月底最值得去的地方 → ③ 三个初始方案 A / B / C 与对照。</span>
   <a href="../">← 返回首页</a>
 </div>
 
-<h2 class="sec">三方案速览</h2>
-<p class="sec-sub">先按「走法方向 / 住宿落点 / 高地日期 / 收尾方式」快速分辨，再决定进哪一页细看。</p>
+<nav class="jump">
+  <a href="#reco"><b>①</b>方案库推荐（结论先行）</a>
+  <a href="#spots"><b>②</b>9 月底最值得去的地方</a>
+  <a href="#plans"><b>③</b>三个初始方案 A / B / C</a>
+</nav>
+
+<div class="block" id="reco">
+  <h2 class="sec">① 方案库推荐（结论先行）</h2>
+  <p class="sec-sub">把方案库按五个议题去重梳理，GPT 与 DeepSeek 各出一份。每行给出该议题的<b>页内结论原话</b>；两家口径不一致的议题并排列出两方原话，不合并成单一结论。</p>
+  <div class="themes">
+
+    <div class="trow">
+      <div class="trow-l">
+        <h3>按路线骨架</h3>
+        <p class="trow-sub">同一条真实路线逻辑只保留一次</p>
+        <p class="trow-links">
+          <a href="Gpt梳理-按路线骨架.html">Gpt 梳理 →</a>
+          <a href="DeepSeek梳理-按路线骨架.html">DeepSeek 梳理 →</a>
+        </p>
+      </div>
+      <div class="trow-r">
+        <p class="q">「默认选“方案3：Hella 连住稳妥均衡版”，并优先采用 3B 主驾均衡分支。如果更重视冰河湖晨昏光，升级到 3C；如果特别想拍 Vestrahorn，再考虑方案5，但要明确接受长途回雷市和天气不确定性。」<span class="who">出自 Gpt 梳理 · 按路线骨架</span></p>
+        <p class="q ds">「9.26 晚 Vík 是唯一硬约束，其余全是自由度；在「不东推 Höfn」的前提下，R3（Hella 连住 + 高地团 9.25）与 R4（南岸先行 + 高地团 9.27）是两条真正可执行的主线 —— 前者更均衡，后者主驾负担最低。」<span class="who">出自 DeepSeek 梳理 · 按路线骨架</span></p>
+      </div>
+    </div>
+
+    <div class="trow">
+      <div class="trow-l">
+        <h3>按每日住宿</h3>
+        <p class="trow-sub">换成「每天晚上住哪里」的口径重排</p>
+        <p class="trow-links">
+          <a href="Gpt梳理-按每日住宿.html">Gpt 梳理 →</a>
+          <a href="DeepSeek梳理-按每日住宿.html">DeepSeek 梳理 →</a>
+        </p>
+      </div>
+      <div class="trow-r">
+        <p class="q">「按“每天住哪里”看，最稳的是 9.24-9.25 住 Hella 一带把高地解决，9.26 住 Vik 接 Katla，9.27 住 Skaftafell/Freysnes 或冰河湖旁，9.28-9.29 回到雷克雅未克完成缓冲。」<span class="who">出自 Gpt 梳理 · 按每日住宿</span></p>
+        <p class="q ds">「住宿只有一格是锁死的（9.26 Vík），其余五格都是自由度；分歧集中在 9.24、9.25、9.27、9.29 四格。按住宿看，真正的候选只有两个：D1（Hella 连住 · 均衡）与 D4（南岸先行 · 高地后置，总里程最短）。」<span class="who">出自 DeepSeek 梳理 · 按每日住宿</span></p>
+        <p class="split"><b>分歧点：</b>两家都把 D1 / L1（Hella 连住 · 均衡版）列为默认首选；差别在第二名 —— DeepSeek 把「D4 南岸先行、总里程最短（约 980 km）」上调到第 2，Gpt 则把「L2 冰河湖旁摄影版」排第 2。</p>
+      </div>
+    </div>
+
+    <div class="trow">
+      <div class="trow-l">
+        <h3>Vik 住宿可调与冰川体验决策</h3>
+        <p class="trow-sub">只动「9.26 / 9.27 住哪里」这一个变量</p>
+        <p class="trow-links">
+          <a href="Gpt梳理-Vik住宿可调与冰川体验决策.html">Gpt 梳理 →</a>
+          <a href="DeepSeek梳理-Vik住宿可调与冰川体验决策.html">DeepSeek 梳理 →</a>
+        </p>
+      </div>
+      <div class="trow-r">
+        <p class="q">「最推荐：9.24 黄金圈住 Hella 一带；9.25 高地；9.26 南岸东进住教堂镇；9.27 东南冰川/冰河湖后回 Vik 住宿；9.28 南岸补漏回雷市；9.29 雷市轻收尾。」「Katla 值得，但不再是必须项。」<span class="who">出自 Gpt 梳理 · Vik 住宿可调与冰川体验决策</span></p>
+        <p class="q ds">「1 II-a（最短总里程 + 最低最长单日 + 冰河湖双光）。唯一成本是 9.26 要做减法。」「本文的前提变了（Vik 可挪），因此默认首选也随之更新为 II-a。」<span class="who">出自 DeepSeek 梳理 · Vik 住宿可调与冰川体验决策</span></p>
+        <p class="split"><b>分歧点：</b>两家都明确不推荐「9.27 从 Vik 往返冰河湖」（Gpt：往返接近 380 km；DeepSeek：不推荐 II-e）；但首选落点不同 —— Gpt 首选 9.26 宿教堂镇，DeepSeek 首选 II-a（主打冰河湖双光与最短总里程）。Katla 的取舍口径也不同：Gpt 认为「值得但不再是必须项」，DeepSeek 主张「保留 Katla，因为它是整趟唯一能进的冰洞」。</p>
+      </div>
+    </div>
+
+    <div class="trow">
+      <div class="trow-l">
+        <h3>五种住宿方案行程对照</h3>
+        <p class="trow-sub">9.26 / 9.27 五种住宿组合的逐日对照</p>
+        <p class="trow-links">
+          <a href="Gpt梳理-五种住宿方案行程对照-含中文景点名.html">Gpt 梳理 →</a>
+          <a href="DeepSeek梳理-五种住宿方案行程对照.html">DeepSeek 梳理 →</a>
+        </p>
+      </div>
+      <div class="trow-r">
+        <p class="q">「如果只选一个默认方案，我建议：9.24 黄金圈后住 Hella/Flúðir/Selfoss，9.25 高地，9.26 住 Kirkjubæjarklaustur（教堂镇），9.27 东南冰川/冰河湖后住 Vik（维克），9.28 回 Reykjavík（雷克雅未克），9.29 雷市周边轻收尾。」<span class="who">出自 Gpt 梳理 · 五种住宿方案行程对照（排序：方案2 &gt; 方案3 &gt; 方案1 &gt; 方案4 &gt; 方案5）</span></p>
+        <p class="q ds">「求「不赶路 + 想要冰川徒步」→ 方案三；求「南岸慢慢玩 + 9.26 最轻松」→ 方案二；求「韦斯特拉角山那张封面照」→ 方案一（代价 +185 km）；方案四 / 五不推荐：一个丢掉安全垫，一个制造 400 km 重复路。」<span class="who">出自 DeepSeek 梳理 · 五种住宿方案行程对照（排序：方案三 &gt; 方案二 &gt; 方案一 &gt; 方案五 &gt; 方案四）</span></p>
+        <p class="split"><b>分歧点：</b>前两名是同一组方案，但次序对调 —— Gpt 把「方案 2 教堂镇」列为综合最优，DeepSeek 把「方案三 Skaftafell/Freysnes」排第 1、方案二排第 2；两家一致把「方案四 / 方案五」排在末位。</p>
+      </div>
+    </div>
+
+    <div class="trow">
+      <div class="trow-l">
+        <h3>9.23–9.29 行程合理性与最优性评估</h3>
+        <p class="trow-sub">对既定逐日行程的完整审计</p>
+        <p class="trow-links">
+          <a class="only" href="DeepSeek梳理-9.23-9.29行程合理性与最优性评估.html">DeepSeek 梳理 →</a>
+        </p>
+      </div>
+      <div class="trow-r">
+        <p class="q ds">「结构是对的，而且比本仓库既有方案库里那条「东推型」骨架更好。」「但还不是最优解，只有一格需要动刀：9.26 住霍芬而不是住冰河湖旁。这一格让你全程多跑约 185 km。」（总里程 1096 km vs 911 km，多 185 km，+20%）<span class="who">出自 DeepSeek 梳理 · 9.23–9.29 行程合理性与最优性评估</span></p>
+        <p class="meta">本议题目前只有 DeepSeek 一份梳理，暂无 Gpt 并行版可并排对照。</p>
+      </div>
+    </div>
+
+  </div>
+  <p class="note">五个议题共覆盖 9 份梳理页（Gpt 4 份、DeepSeek 5 份）。</p>
+</div>
+
+<div class="block" id="spots">
+  <h2 class="sec">② 9 月底最值得去的地方</h2>
+  <p class="sec-sub">三份独立的「9 月底这个窗口值不值得去」点位清单，加上把三份清单并排比的三方对比；每份都各自标注了对方案 A / B / C 的覆盖情况。</p>
+  <div class="grid">
+<a class="card" href="spots.html">
+      <div class="thumb" style="background-image:url('images/landmannalaugar.jpg')">
+        <span class="badge">冰岛 · DeepSeek 推荐版</span>
+        <span class="dates">9 月底风景优先级 · 含 A/B/C 覆盖对照</span>
+      </div>
+      <div class="card-body">
+        <h2>9 月底最值得去的地方（DeepSeek 推荐版）</h2>
+        <p class="sub">S / A / B 三档清单 + 三方案覆盖对照</p>
+        <p>按「9 月底这个窗口值不值得去」排序的点位清单，逐项标注方案A / B / C 是否包含、排在哪一天，并给出把 9.24–9.29 排得更密的可行走法与要付的代价。</p>
+        <div class="tags">
+          <span class="tag g">S 档清单</span>
+          <span class="tag a">季节失效项</span>
+          <span class="tag">覆盖对照</span>
+        </div>
+        <span class="cta">查看清单 →</span>
+      </div>
+    </a>
+
+<a class="card" href="m3-spots.html">
+      <div class="thumb" style="background-image:url('images/landmannalaugar.jpg')">
+        <span class="badge">冰岛 · MiniMax-M3 推荐版</span>
+        <span class="dates">9 月底风景优先级 · 含紧凑版② / ③ 推荐路线</span>
+      </div>
+      <div class="card-body">
+        <h2>9 月底最值得去的地方（MiniMax-M3 推荐版）</h2>
+        <p class="sub">S / A / B 档清单 + 紧凑版② / ③ 推荐路线 + 雷市修正</p>
+        <p>与 DeepSeek 版同样的 9 月底风景优先级，但按 9.29 雷市硬约束给出紧凑版②（7 天含雷市晚回）与紧凑版③（Vestrahorn 替代）两条路线，含四方案对比矩阵与出发前邮件确认清单。</p>
+        <div class="tags">
+          <span class="tag v">紧凑版②</span>
+          <span class="tag a">雷市修正</span>
+          <span class="tag">四方案对比</span>
+        </div>
+        <span class="cta">查看清单 →</span>
+      </div>
+    </a>
+
+<a class="card" href="gpt55-spots.html">
+      <div class="thumb" style="background-image:url('images/jokulsarlon-diamond.jpg')">
+        <span class="badge">冰岛 · GPT-5.5 推荐版</span>
+        <span class="dates">9 月底风景优先级 · 含可行加强路线</span>
+      </div>
+      <div class="card-body">
+        <h2>9 月底最值得去的地方（GPT-5.5 推荐版）</h2>
+        <p class="sub">景观价值排序 + 可行加强路线 + 最终建议</p>
+        <p>从「一名主驾为主、9.26 必须住 Vik、9.29 优先回雷市」的约束出发，给出景点的价值分级、方案 A/B/C 逐项覆盖情况，以及把 9.24–9.29 走得更丰富的加强路线与要付的代价。</p>
+        <div class="tags">
+          <span class="tag b">价值分级</span>
+          <span class="tag a">加强路线</span>
+          <span class="tag g">覆盖对照</span>
+        </div>
+        <span class="cta">查看清单 →</span>
+      </div>
+    </a>
+
+<a class="card" href="iceland-three-model-spots-comparison.html">
+      <div class="thumb" style="background-image:url('images/vestrahorn.jpg')">
+        <span class="badge">冰岛 · 三方对比</span>
+        <span class="dates">GPT-5.5 / DeepSeek / MiniMax 3.3 · 8 张代表照片</span>
+      </div>
+      <div class="card-body">
+        <h2>9 月底风景清单三方对比</h2>
+        <p class="sub">共同推荐 / 重大分歧 / 三方风格 / 最终建议</p>
+        <p>把三份清单并排比：哪些景点三方都推荐，哪些地方信息存在重大差异（Vestrahorn、Skaftafell、东部秋色、米湖、斯奈山），并回到「普通油车、一名主驾为主、9.26 必须住 Vik、9.29 优先回雷市」的真实约束给出最终建议。</p>
+        <div class="tags">
+          <span class="tag g">共同推荐</span>
+          <span class="tag a">重大分歧</span>
+          <span class="tag">代表照片</span>
+        </div>
+        <span class="cta">查看对比 →</span>
+      </div>
+    </a>
+
+  </div>
+  <p class="note">附属页：<a href="m3-spots-review-notes.html">m3-spots 交叉评审增补说明</a> —— 对 MiniMax-M3 推荐版的逐条原文比对、增补记录与待复核事项（原页内容零删除）。</p>
+</div>
+
+<div class="block" id="plans">
+  <h2 class="sec">③ 三个初始方案 A / B / C 与对照</h2>
+  <p class="sec-sub">三个并列版本的完整行程：先按「走法方向 / 住宿落点 / 高地日期 / 收尾方式」分辨，再进对应页面细看，最后用对照表横向比较。</p>
 
 <div class="pick">
   <div class="item p-a">
@@ -155,9 +358,6 @@
   </div>
 </div>
 
-<div class="block">
-  <h2 class="sec">三个方案</h2>
-  <p class="sec-sub">三份完整行程，口径一致、并列取舍。</p>
   <div class="grid">
 
     <a class="card" href="plan-a-full.html">
@@ -217,15 +417,6 @@
       </div>
     </a>
 
-  </div>
-  <p class="note">方案A 的行程表与路线评估报告已并入整合版，页内可从分区导航进入；此处不再单独列出。</p>
-</div>
-
-<div class="block">
-  <h2 class="sec">方案对照与推荐清单</h2>
-  <p class="sec-sub">把三个方案放在一起比，按「9 月底这个窗口值不值得去」排序的点位清单，以及把三份清单并排对比的分歧梳理。</p>
-  <div class="grid">
-
     <a class="card" href="compare.html">
       <div class="thumb" style="background-image:url('images/reynisfjara.jpg')">
         <span class="badge">冰岛 · 对照</span>
@@ -244,260 +435,18 @@
       </div>
     </a>
 
-    <a class="card" href="spots.html">
-      <div class="thumb" style="background-image:url('images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · DeepSeek 推荐版</span>
-        <span class="dates">9 月底风景优先级 · 含 A/B/C 覆盖对照</span>
-      </div>
-      <div class="card-body">
-        <h2>9 月底最值得去的地方（DeepSeek 推荐版）</h2>
-        <p class="sub">S / A / B 三档清单 + 三方案覆盖对照</p>
-        <p>按「9 月底这个窗口值不值得去」排序的点位清单，逐项标注方案A / B / C 是否包含、排在哪一天，并给出把 9.24–9.29 排得更密的可行走法与要付的代价。</p>
-        <div class="tags">
-          <span class="tag g">S 档清单</span>
-          <span class="tag a">季节失效项</span>
-          <span class="tag">覆盖对照</span>
-        </div>
-        <span class="cta">查看清单 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="m3-spots.html">
-      <div class="thumb" style="background-image:url('images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · MiniMax-M3 推荐版</span>
-        <span class="dates">9 月底风景优先级 · 含紧凑版② / ③ 推荐路线</span>
-      </div>
-      <div class="card-body">
-        <h2>9 月底最值得去的地方（MiniMax-M3 推荐版）</h2>
-        <p class="sub">S / A / B 档清单 + 紧凑版② / ③ 推荐路线 + 雷市修正</p>
-        <p>与 DeepSeek 版同样的 9 月底风景优先级，但按 9.29 雷市硬约束给出紧凑版②（7 天含雷市晚回）与紧凑版③（Vestrahorn 替代）两条路线，含四方案对比矩阵与出发前邮件确认清单。</p>
-        <div class="tags">
-          <span class="tag v">紧凑版②</span>
-          <span class="tag a">雷市修正</span>
-          <span class="tag">四方案对比</span>
-        </div>
-        <span class="cta">查看清单 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="gpt55-spots.html">
-      <div class="thumb" style="background-image:url('images/jokulsarlon-diamond.jpg')">
-        <span class="badge">冰岛 · GPT-5.5 推荐版</span>
-        <span class="dates">9 月底风景优先级 · 含可行加强路线</span>
-      </div>
-      <div class="card-body">
-        <h2>9 月底最值得去的地方（GPT-5.5 推荐版）</h2>
-        <p class="sub">景观价值排序 + 可行加强路线 + 最终建议</p>
-        <p>从「一名主驾为主、9.26 必须住 Vik、9.29 优先回雷市」的约束出发，给出景点的价值分级、方案 A/B/C 逐项覆盖情况，以及把 9.24–9.29 走得更丰富的加强路线与要付的代价。</p>
-        <div class="tags">
-          <span class="tag b">价值分级</span>
-          <span class="tag a">加强路线</span>
-          <span class="tag g">覆盖对照</span>
-        </div>
-        <span class="cta">查看清单 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="iceland-three-model-spots-comparison.html">
-      <div class="thumb" style="background-image:url('images/vestrahorn.jpg')">
-        <span class="badge">冰岛 · 三方对比</span>
-        <span class="dates">GPT-5.5 / DeepSeek / MiniMax 3.3 · 8 张代表照片</span>
-      </div>
-      <div class="card-body">
-        <h2>9 月底风景清单三方对比</h2>
-        <p class="sub">共同推荐 / 重大分歧 / 三方风格 / 最终建议</p>
-        <p>把三份清单并排比：哪些景点三方都推荐，哪些地方信息存在重大差异（Vestrahorn、Skaftafell、东部秋色、米湖、斯奈山），并回到「普通油车、一名主驾为主、9.26 必须住 Vik、9.29 优先回雷市」的真实约束给出最终建议。</p>
-        <div class="tags">
-          <span class="tag g">共同推荐</span>
-          <span class="tag a">重大分歧</span>
-          <span class="tag">代表照片</span>
-        </div>
-        <span class="cta">查看对比 →</span>
-      </div>
-    </a>
 
   </div>
+  <p class="note">方案A 的附属页：<a href="plan-a.html">方案A · 冰岛行程（行程表）</a> 与 <a href="plan-a-assessment.html">方案A 路线评估报告</a> —— 两者已并入整合版，页内可从分区导航进入，此处保留直达入口。</p>
 </div>
 
-<!-- ============================================================
-     2026-09-11 新增区块：方案库梳理（去重与决策）
-     · 本页原有内容零改动，本区块为纯新增。
-     · 版本留档：还原基线提交 b552289（原 index.html blob 7799490）
+<!-- 版本留档
+     · 还原基线提交：b552289（原 index.html blob 7799490）
        本地备份：F:\obsidian\travel\_backups\iceland-2026-09\index-pre-20260911.html
        还原命令：git checkout b552289 -- iceland-2026-09/index.html
-     ============================================================ -->
-<div class="block" id="planlib">
-  <h2 class="sec">方案库梳理（去重与决策）</h2>
-  <p class="sec-sub">把上面的方案按「路线骨架」与「每日住宿」两种口径各去重一次，GPT 与 DeepSeek 各出一份；用于三模型交叉复核与定稿前对账。</p>
-  <div class="grid">
-
-    <a class="card" href="Gpt梳理-按路线骨架.html">
-      <div class="thumb" style="background-image:url('images/svartifoss.jpg')">
-        <span class="badge">冰岛 · Gpt 梳理</span>
-        <span class="dates">按路线骨架去重 · 6 类方案 + 决策总览</span>
-      </div>
-      <div class="card-body">
-        <h2>方案库与决策总览（Gpt 梳理 · 按路线骨架）</h2>
-        <p class="sub">同一路线逻辑只保留一次 · 默认推荐 3B</p>
-        <p>把方案A / B / C、GPT-5.5、DeepSeek、MiniMax 3.3 的建议按真实路线逻辑合并成 6 类骨架，避免同一条路线因来源不同被重复命名；含已知硬约束与偏好、去重原则、各骨架详解、四个决策自由度与最终建议。</p>
-        <div class="tags">
-          <span class="tag b">去重合并</span>
-          <span class="tag">6 类骨架</span>
-          <span class="tag g">默认 3B</span>
-        </div>
-        <span class="cta">查看梳理 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="Gpt梳理-按每日住宿.html">
-      <div class="thumb" style="background-image:url('images/hengifoss.jpg')">
-        <span class="badge">冰岛 · Gpt 梳理</span>
-        <span class="dates">按每日住宿重新分类 · L1 – L7</span>
-      </div>
-      <div class="card-body">
-        <h2>住宿型方案汇总（Gpt 梳理 · 按每日住宿）</h2>
-        <p class="sub">换成「每天晚上住哪里」的视角 · 默认推荐 L1</p>
-        <p>把所有路线换成「每晚住哪里」的视角重新分类为 L1–L7，逐项看驾驶强度、顺路程度与风险；因为对这次行程来说，住宿落点直接决定驾驶强度、摄影窗口，以及 9.26 Vik 硬约束过得舒不舒服。</p>
-        <div class="tags">
-          <span class="tag b">住宿视角</span>
-          <span class="tag">L1 – L7</span>
-          <span class="tag a">9.26 Vik 锚点</span>
-        </div>
-        <span class="cta">查看汇总 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="DeepSeek梳理-按路线骨架.html">
-      <div class="thumb" style="background-image:url('images/fjadrargljufur.jpg')">
-        <span class="badge">冰岛 · DeepSeek 梳理</span>
-        <span class="dates">按路线骨架 · R1 – R7 · 含 18 条待复核</span>
-      </div>
-      <div class="card-body">
-        <h2>方案库与决策总览（DeepSeek 梳理 · 按路线骨架）</h2>
-        <p class="sub">同一体例的另一视角 · 附完整待复核清单</p>
-        <p>与 Gpt 版同一体例的独立梳理：R1–R7 七类骨架详解与四个真正的决策自由度，并把待复核事项拆成事实层 8 条、里程与时长 4 条、不可验证输入 2 条等共 18 条，供 MiniMax-M3 / GPT-5.5 交叉复核。</p>
-        <div class="tags">
-          <span class="tag v">R1 – R7</span>
-          <span class="tag a">18 条待复核</span>
-          <span class="tag g">交叉复核</span>
-        </div>
-        <span class="cta">查看梳理 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="DeepSeek梳理-按每日住宿.html">
-      <div class="thumb" style="background-image:url('images/vestrahorn.jpg')">
-        <span class="badge">冰岛 · DeepSeek 梳理</span>
-        <span class="dates">按每日住宿 · D1 – D7 · 含推荐排序</span>
-      </div>
-      <div class="card-body">
-        <h2>住宿型方案汇总（DeepSeek 梳理 · 按每日住宿）</h2>
-        <p class="sub">按每晚落点去重 · 给出明确推荐排序</p>
-        <p>按每晚住宿落点把方案去重为 D1–D7，逐项对比住宿序列与驾驶强度，并给出排序 D1 &gt; D4 &gt; D2 &gt; D3 &gt; D5 &gt; D7 &gt; D6，其中 D4 上调、D5 下调的理由单独说明。</p>
-        <div class="tags">
-          <span class="tag v">D1 – D7</span>
-          <span class="tag g">推荐排序</span>
-          <span class="tag">取舍说明</span>
-        </div>
-        <span class="cta">查看汇总 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="DeepSeek梳理-Vik住宿可调与冰川体验决策.html">
-      <div class="thumb" style="background-image:url('images/skogafoss.jpg')">
-        <span class="badge">冰岛 · DeepSeek 梳理</span>
-        <span class="dates">Vik 住宿可调性 · 冰川体验决策 · 单一变量</span>
-      </div>
-      <div class="card-body">
-        <h2>Vik 住宿可调与冰川体验决策（DeepSeek 梳理）</h2>
-        <p class="sub">只动「Vik 住宿落点」这一个变量 · 附 9 月底蓝冰洞开放窗口</p>
-        <p>回答三个问题：9 月底蓝冰洞是否开放、没有蓝冰洞时瓦特纳冰川徒步是否仍然值得、以及只调整 Vik 住宿一个变量时的最优落点。结论：9 月底无天然蓝冰洞（全岛唯一可进的是 Katla 黑冰洞）；无蓝冰洞时瓦特纳冰川徒步依然值得但属另一种体验；Vik 可挪动时最优解为 9.26 宿冰河湖旁 + 9.27 西返 Vik，总里程约 911 km、最长单日约 295 km。</p>
-        <div class="tags">
-          <span class="tag v">单一变量</span>
-          <span class="tag b">蓝冰洞窗口</span>
-          <span class="tag g">911 km / 295 km</span>
-        </div>
-        <span class="cta">查看决策 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="DeepSeek梳理-9.23-9.29行程合理性与最优性评估.html">
-      <div class="thumb" style="background-image:url('images/hengifoss.jpg')">
-        <span class="badge">冰岛 · DeepSeek 梳理</span>
-        <span class="dates">9.23 – 9.29 全行程审计 · 合理性 + 最优性</span>
-      </div>
-      <div class="card-body">
-        <h2>9.23–9.29 行程合理性与最优性评估（DeepSeek 梳理）</h2>
-        <p class="sub">逐日复核 + 免费优化项 + 三级风险清单</p>
-        <p>对既定 9.23–9.29 逐日行程做完整审计：结构判定为合理（全程只有一次真回头），并指出唯一值得质疑的一处选择 —— 9.26 宿霍芬而非冰河湖旁，代价约 +185 km；同时给出两项不花钱的优化（迪尔霍拉伊海蚀岬与雷尼斯黑沙滩后移到 9.27 黄金光、9.24 / 9.25 锁死在海拉一带）与三级风险清单。</p>
-        <div class="tags">
-          <span class="tag v">逐日复核</span>
-          <span class="tag a">+185 km 质疑点</span>
-          <span class="tag g">免费优化</span>
-        </div>
-        <span class="cta">查看评估 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="DeepSeek梳理-五种住宿方案行程对照.html">
-      <div class="thumb" style="background-image:url('images/landmannalaugar.jpg')">
-        <span class="badge">冰岛 · DeepSeek 梳理</span>
-        <span class="dates">五种住宿组合对照 · 含景点中文名对照表</span>
-      </div>
-      <div class="card-body">
-        <h2>五种住宿落点 × 9.23–9.29 逐日行程规划（DeepSeek 梳理）</h2>
-        <p class="sub">同一硬约束下五种 9.26 / 9.27 住宿组合 · 附 44 条景点中文名</p>
-        <p>在同一组硬约束下横向对比 9.26 / 9.27 五种住宿组合的完整逐日安排：总里程 920–1096 km、最长单日 257–400 km、重复路段与 9.28 抗天气弹性；并列明五种方案在风景类型覆盖上几乎打平（10/10），真正差异在「怎么走」。附 44 条景点中文名对照表，推荐排序为方案三 &gt; 方案二 &gt; 方案一 &gt; 方案五 &gt; 方案四。</p>
-        <div class="tags">
-          <span class="tag v">五方案对照</span>
-          <span class="tag b">中文名对照表</span>
-          <span class="tag g">方案三 最优</span>
-        </div>
-        <span class="cta">查看对照 →</span>
-      </div>
-    </a>
-
-    <!-- ===== Gpt 梳理（内容原样保留，未改动方案内容） ===== -->
-
-    <a class="card" href="Gpt梳理-Vik住宿可调与冰川体验决策.html">
-      <div class="thumb" style="background-image:url('images/reynisfjara.jpg')">
-        <span class="badge">冰岛 · Gpt 梳理</span>
-        <span class="dates">Vik 住宿可调 · 冰川体验决策 · 五方案 + 不推荐项</span>
-      </div>
-      <div class="card-body">
-        <h2>Vik住宿可调与冰川体验决策（Gpt 梳理）</h2>
-        <p class="sub">9.24–9.29 路线重排 · 最推荐「Vik 改住 9.27 + 9.26 宿教堂镇」</p>
-        <p>同日议题的 Gpt 并行版本：先给直接结论，再逐项判断 9 月底瓦特纳蓝冰洞、瓦特纳冰川徒步与 Katla 火山冰川洞的开门情况与二选一取舍，随后列出五个可执行住宿方案（含房源理想版、保 Katla 稳妥版、瓦特纳徒步替代版、霍芬风景加强备选）以及一个明确不推荐的住法。内容原样保留，未作任何改写。</p>
-        <div class="tags">
-          <span class="tag b">单一变量</span>
-          <span class="tag a">蓝冰洞判断</span>
-          <span class="tag g">5 方案 + 1 不推荐</span>
-        </div>
-        <span class="cta">查看决策 →</span>
-      </div>
-    </a>
-
-    <a class="card" href="Gpt梳理-五种住宿方案行程对照-含中文景点名.html">
-      <div class="thumb" style="background-image:url('images/jokulsarlon-diamond.jpg')">
-        <span class="badge">冰岛 · Gpt 梳理</span>
-        <span class="dates">五种住宿骨架对应行程 · 含景点中文名速查</span>
-      </div>
-      <div class="card-body">
-        <h2>冰岛 9.23–9.29 五种住宿骨架对应行程（Gpt 梳理）</h2>
-        <p class="sub">同题对照的另一模型版本 · 结论为「方案 2 教堂镇」综合最优</p>
-        <p>与 DeepSeek 五种住宿方案同题的 Gpt 版本：先确认硬约束与弹性需求，给出景点中文名速查表，再逐条展开五套骨架（霍芬 / 教堂镇 / 斯卡夫塔山·弗雷斯内斯 / 维克 / 维克）并各自标注定位，如方案 1 风景上限最高但 9.26 驾驶最硬、方案 3 冰川体验最好但房源依赖最高。内容原样保留，未作任何改写。</p>
-        <div class="tags">
-          <span class="tag v">五方案对照</span>
-          <span class="tag b">中文名速查</span>
-          <span class="tag g">方案 2 最优</span>
-        </div>
-        <span class="cta">查看对照 →</span>
-      </div>
-    </a>
-
-  </div>
-  <p class="note">另有 <a href="m3-spots-review-notes.html">m3-spots 交叉评审增补说明</a>：对 MiniMax-M3 推荐版的逐条原文比对、增补记录与待复核事项（原页内容零删除）。</p>
-</div>
+     · 2026-09-11 入口页重排：① 推荐结论 -> ② 景点清单 -> ③ 初始方案
+       方案内容、行程数据与各子页零改动，仅重组本页信息层级与阅读顺序。
+-->
 
 </main>
 
