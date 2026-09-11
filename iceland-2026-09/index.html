@@ -124,6 +124,21 @@
     border-left:4px solid var(--green); border-radius:8px; padding:11px 14px; margin-bottom:13px; }
   .trow .pick-line b{ color:#0f5b51; }
   .trow .pick-line .who{ display:block; margin-top:6px; font-size:12px; font-weight:800; color:#4c7a74; }
+  /* 议题行内的交叉引用（指向议题 4 的当前倾向） */
+  .trow .xref{ font-size:12.5px; line-height:1.65; color:#1d4b45; background:#f7fbfa;
+    border:1px dashed #bfe2da; border-radius:8px; padding:9px 12px; margin-top:11px; }
+  .trow .xref b{ color:#0f5b51; }
+  .trow .xref a{ color:#17766a; font-weight:800; }
+  /* 顶部：当前倾向条 */
+  .tendency{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; justify-content:space-between;
+    background:#f1f8f6; border:1px solid #bfe2da; border-left:5px solid var(--green); border-radius:8px;
+    padding:13px 16px; margin:0 0 30px; box-shadow:0 4px 14px rgba(18,31,43,.05); }
+  .tendency .lb{ flex:0 0 auto; font-size:11.5px; font-weight:800; color:#176c61; background:#e6f4f1;
+    border:1px solid #bfe2da; border-radius:999px; padding:2px 10px; white-space:nowrap; }
+  .tendency .tx{ flex:1 1 420px; font-size:14px; line-height:1.6; color:#1d4b45; }
+  .tendency .tx b{ color:#0f5b51; }
+  .tendency a{ font-size:13px; font-weight:800; color:#17766a; text-decoration:none; white-space:nowrap; }
+  .tendency a:hover{ text-decoration:underline; }
   @media (max-width:860px){
     .trow{ grid-template-columns:1fr; gap:12px; }
     .trow h3 .now{ margin-left:0; margin-top:6px; }
@@ -159,6 +174,12 @@
 <div class="notice">
   <span>本页是冰岛行程的入口，按「先结论 · 再景点 · 后方案」排列：① 方案库推荐与结论原话 → ② 9 月底最值得去的地方 → ③ 三个初始方案 A / B / C 与对照。</span>
   <a href="../">← 返回首页</a>
+</div>
+
+<div class="tendency">
+  <span class="lb">★ 当前倾向</span>
+  <span class="tx">住宿组合：<b>9.26 宿赫本（Höfn）· 9.27 宿维克（Vík）</b> —— 在第①层「五种住宿方案行程对照」里对应 <b>方案一</b>（风景覆盖最全 · 不走回头路，五种组合中唯一含韦斯特拉角山 <b>Vestrahorn</b>）。两家梳理的默认首选都不是它，此处按我们「宁可多跑、不愿漏景」的偏好单列。</span>
+  <a href="#pick">详见议题 4 →</a>
 </div>
 
 <nav class="jump">
@@ -216,10 +237,11 @@
         <p class="q">「最推荐：9.24 黄金圈住 Hella 一带；9.25 高地；9.26 南岸东进住教堂镇；9.27 东南冰川/冰河湖后回 Vik 住宿；9.28 南岸补漏回雷市；9.29 雷市轻收尾。」「Katla 值得，但不再是必须项。」<span class="who">出自 Gpt 梳理 · Vik 住宿可调与冰川体验决策</span></p>
         <p class="q ds">「1 II-a（最短总里程 + 最低最长单日 + 冰河湖双光）。唯一成本是 9.26 要做减法。」「本文的前提变了（Vik 可挪），因此默认首选也随之更新为 II-a。」<span class="who">出自 DeepSeek 梳理 · Vik 住宿可调与冰川体验决策</span></p>
         <p class="split"><b>分歧点：</b>两家都明确不推荐「9.27 从 Vik 往返冰河湖」（Gpt：往返接近 380 km；DeepSeek：不推荐 II-e）；但首选落点不同 —— Gpt 首选 9.26 宿教堂镇，DeepSeek 首选 II-a（主打冰河湖双光与最短总里程）。Katla 的取舍口径也不同：Gpt 认为「值得但不再是必须项」，DeepSeek 主张「保留 Katla，因为它是整趟唯一能进的冰洞」。</p>
+        <p class="xref"><b>我们的当前倾向：</b>看得到更丰富的风景，同行人倾向 <b>方案一（9.26 宿赫本 Höfn · 9.27 宿维克 Vík）</b>，与下面议题 4 单列的倾向一致（详见<a href="#pick">议题 4</a>）。</p>
       </div>
     </div>
 
-    <div class="trow">
+    <div class="trow" id="pick">
       <div class="trow-l">
         <h3>五种住宿方案行程对照 <span class="now">★ 当前倾向</span></h3>
         <p class="trow-sub">9.26 / 9.27 五种住宿组合的逐日对照</p>
@@ -247,6 +269,7 @@
       <div class="trow-r">
         <p class="q ds">「结构是对的，而且比本仓库既有方案库里那条「东推型」骨架更好。」「但还不是最优解，只有一格需要动刀：9.26 住霍芬而不是住冰河湖旁。这一格让你全程多跑约 185 km。」（总里程 1096 km vs 911 km，多 185 km，+20%）<span class="who">出自 DeepSeek 梳理 · 9.23–9.29 行程合理性与最优性评估</span></p>
         <p class="meta">本议题目前只有 DeepSeek 一份梳理，暂无 Gpt 并行版可并排对照。</p>
+        <p class="xref"><b>我们的当前倾向：</b>这里指出「9.26 宿霍芬会比宿冰河湖旁多跑约 185 km」，我们接受这一代价 —— 同行人倾向 <b>方案一（9.26 宿赫本 Höfn · 9.27 宿维克 Vík）</b>，以换取更丰富的风景（详见<a href="#pick">议题 4</a>）。</p>
       </div>
     </div>
 
