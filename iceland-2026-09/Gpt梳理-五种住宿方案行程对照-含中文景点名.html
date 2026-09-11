@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gpt梳理｜五种住宿方案行程对照｜冰岛 2026-09</title>
+  <style>
+    :root {
+      --ink: #1f292d;
+      --muted: #65747b;
+      --line: #d8e1e2;
+      --paper: #f6f4ed;
+      --white: #fff;
+      --green: #2d6d58;
+      --teal: #147d85;
+      --blue: #315f92;
+      --gold: #a36d18;
+      --red: #a43e35;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+    body, table { overflow-wrap: anywhere; }
+    header {
+      padding: 52px 6vw 34px;
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(31,41,45,.92), rgba(20,125,133,.82)),
+        url("images/landmannalaugar.jpg") center/cover;
+    }
+    .eyebrow { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .92; }
+    h1 { margin: 10px 0 12px; font-size: clamp(30px, 5vw, 58px); line-height: 1.08; letter-spacing: 0; }
+    header p { margin: 0; max-width: 1040px; font-size: 18px; }
+    header .meta { margin-top: 14px; font-size: 14px; opacity: .92; }
+    main { width: min(1220px, 92vw); margin: 28px auto 72px; }
+    section { margin: 30px 0; }
+    h2 { margin: 0 0 14px; font-size: 28px; }
+    h3 { margin: 0 0 8px; font-size: 21px; }
+    p { margin: 8px 0; }
+    .lead { color: var(--muted); font-size: 17px; }
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(28, 40, 43, .06);
+    }
+    .metric strong { display: block; color: var(--green); font-size: 30px; line-height: 1.1; }
+    .metric span { color: var(--muted); font-size: 14px; }
+    .callout {
+      background: #ecf6f1;
+      border-left: 5px solid var(--green);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .warnbox {
+      background: #fff6e6;
+      border-left: 5px solid var(--gold);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .dangerbox {
+      background: #faece9;
+      border-left: 5px solid var(--red);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: #f8fbfb;
+      color: var(--teal);
+      margin: 2px 4px 2px 0;
+      white-space: nowrap;
+    }
+    .tag.best { background: #e9f5ef; color: var(--green); border-color: #bedccc; }
+    .tag.warn { background: #fff5e3; color: var(--gold); border-color: #efd6a7; }
+    .tag.no { background: #faece9; color: var(--red); border-color: #e8c0ba; }
+    .tag.blue { background: #edf5fb; color: var(--blue); border-color: #c7dceb; }
+    .toc a {
+      display: inline-block;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(49,95,146,.25);
+      margin: 0 12px 6px 0;
+    }
+    .table-wrap { overflow-x: auto; border-radius: 8px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15px; }
+    th { text-align: left; background: #e8f0ef; color: #263334; }
+    tr:last-child td { border-bottom: 0; }
+    td.day { width: 78px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+    td.sleep { width: 170px; font-weight: 700; background: #f5faf8; }
+    .scheme { border-left: 5px solid var(--teal); }
+    .scheme.best { border-left-color: var(--green); }
+    .scheme.warn { border-left-color: var(--gold); }
+    .scheme.no { border-left-color: var(--red); }
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      display: block;
+      margin: 14px 0;
+    }
+    .rank {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .rank:last-child { border-bottom: 0; }
+    .num {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+    }
+    ul, ol { margin: 8px 0 0; padding-left: 22px; }
+    .small { color: var(--muted); font-size: 13px; }
+    footer { margin-top: 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+    footer a { color: var(--blue); }
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .grid-5 { grid-template-columns: 1fr; }
+      header { padding-top: 40px; }
+      .table-wrap table { min-width: 820px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Gpt梳理 · 五种住宿方案行程对照 · 2026-09-11</div>
+    <h1>冰岛 9.23-9.29 五种住宿骨架对应行程</h1>
+    <p>按同一组硬约束，对比 9.26 / 9.27 五种住宿组合：Höfn（霍芬）+ Vik（维克）、Kirkjubæjarklaustur（教堂镇）+ Vik、Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）+ Vik、Vik + Skaftafell/Freysnes、Vik + Vik。所有景点均补充中文名，方便对照。</p>
+    <div class="meta">本地存档版；未推送 GitHub Pages。核心目标：不走马观花，在合理驾驶强度内尽可能覆盖 9 月底最值得看的冰岛风景类型。</div>
+  </header>
+
+  <main>
+    <section class="grid grid-5">
+      <div class="card metric"><strong>5 套</strong><span>按 9.26/9.27 住宿点拆分。</span></div>
+      <div class="card metric"><strong>1 晚</strong><span>9.26/9.27 必须至少一晚住 Vik（维克）。</span></div>
+      <div class="card metric"><strong>9.29</strong><span>最晚当晚必须回 Reykjavík（雷克雅未克）。</span></div>
+      <div class="card metric"><strong>高地</strong><span>Landmannalaugar（兰德曼纳劳卡）优先，建议带交通团。</span></div>
+      <div class="card metric"><strong>首选</strong><span>9.26 教堂镇，9.27 Vik，综合最稳。</span></div>
+    </section>
+
+    <section class="toc card">
+      <h2>快速跳转</h2>
+      <a href="#constraints">硬约束确认</a>
+      <a href="#names">景点中文名</a>
+      <a href="#plan1">方案 1：Höfn + Vik</a>
+      <a href="#plan2">方案 2：教堂镇 + Vik</a>
+      <a href="#plan3">方案 3：Skaftafell/Freysnes + Vik</a>
+      <a href="#plan4">方案 4：Vik + Skaftafell/Freysnes</a>
+      <a href="#plan5">方案 5：Vik + Vik</a>
+      <a href="#compare">横向对比</a>
+      <a href="#ranking">推荐排序</a>
+    </section>
+
+    <section id="constraints">
+      <h2>一、硬约束与弹性需求确认</h2>
+      <div class="callout">
+        <p><strong>我按以下硬约束规划：</strong></p>
+        <ul>
+          <li>9.23 下午/晚上陆续抵达 Reykjavík（雷克雅未克），当晚住雷市。</li>
+          <li>9.24 三个人一起从 Reykjavík（雷克雅未克）租车出发，自驾冰岛。</li>
+          <li>9.26 / 9.27 两晚中，需要有一晚住在 Vík（维克）。</li>
+          <li>最晚 9.29 晚上必须回到 Reykjavík（雷克雅未克）住宿。</li>
+        </ul>
+      </div>
+      <div class="warnbox">
+        <p><strong>我按以下弹性需求优化：</strong></p>
+        <ul>
+          <li>希望能去 Landmannalaugar（兰德曼纳劳卡）高地一日游，但普通油车不建议自驾 F-road，优先带交通/专业车辆团。</li>
+          <li>Katla（卡特拉冰川/冰洞）不是必须项；如果它挤压东南冰川、冰河湖和驾驶休息，就降级或取消。</li>
+          <li>希望兼顾风景美丽程度和类型丰富度：高地彩色山、黄金圈地热和裂谷、南岸瀑布黑沙滩、峡谷、冰川、冰河湖、钻石沙滩。</li>
+          <li>驾驶结构是一位主驾、一位普通替补、一位不开车，所以默认不安排连续两天高强度驾驶。</li>
+        </ul>
+      </div>
+      <p class="small">客观风险提示：9 月底冰岛已经进入秋季风雨和天气快速变化阶段；高地道路、F-road、风力和道路状态需要每日查 SafeTravel、Road.is/Umferdin 和 Vedur。报告中的“顺/不顺”都是按正常天气估算，临近日期应根据实时路况调整。</p>
+    </section>
+
+    <section id="names">
+      <h2>二、景点中文名速查</h2>
+      <p class="lead">下表覆盖后文五套方案中反复出现的地点。后续行程表会采用“英文/冰岛文名（中文名）”的写法。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>原名</th><th>中文名</th><th>类型 / 备注</th></tr></thead>
+          <tbody>
+            <tr><td>Reykjavík</td><td>雷克雅未克</td><td>首都，9.23 和 9.28/9.29 住宿核心</td></tr>
+            <tr><td>KEF / Keflavík Airport</td><td>凯夫拉维克机场</td><td>国际机场，距雷市约 50 km</td></tr>
+            <tr><td>Þingvellir / Thingvellir</td><td>辛格维利尔国家公园</td><td>黄金圈；板块裂谷、历史议会遗址</td></tr>
+            <tr><td>Geysir / Strokkur</td><td>盖歇尔地热区 / 斯特罗柯间歇泉</td><td>黄金圈；地热喷泉</td></tr>
+            <tr><td>Gullfoss</td><td>黄金瀑布</td><td>黄金圈；大体量双层瀑布</td></tr>
+            <tr><td>Kerið</td><td>凯瑞斯火山口湖</td><td>火山口湖，黄金圈顺路加点</td></tr>
+            <tr><td>Hella</td><td>海拉</td><td>南部基地，高地团和南岸衔接较顺</td></tr>
+            <tr><td>Flúðir</td><td>弗鲁迪尔</td><td>黄金圈东南侧住宿/温泉小镇</td></tr>
+            <tr><td>Selfoss</td><td>塞尔福斯</td><td>南部较大补给镇，住宿选择多</td></tr>
+            <tr><td>Landmannalaugar</td><td>兰德曼纳劳卡</td><td>高地；彩色流纹岩山、熔岩原、温泉</td></tr>
+            <tr><td>Seljalandsfoss</td><td>塞里雅兰瀑布</td><td>南岸瀑布，可走到瀑布后方</td></tr>
+            <tr><td>Gljúfrabúi</td><td>隐秘瀑布 / 格柳弗拉布伊瀑布</td><td>塞里雅兰旁边的峡谷瀑布</td></tr>
+            <tr><td>Skógafoss</td><td>斯科加瀑布</td><td>南岸经典大瀑布</td></tr>
+            <tr><td>Kvernufoss</td><td>克维努瀑布</td><td>斯科加附近，相对安静，也可走近瀑幕后</td></tr>
+            <tr><td>Dyrhólaey</td><td>迪霍拉里海岬</td><td>Vik 附近海岬、拱门、黑沙滩俯瞰</td></tr>
+            <tr><td>Reynisfjara</td><td>雷尼斯黑沙滩</td><td>Vik 附近黑沙滩、玄武岩柱；注意疯狗浪</td></tr>
+            <tr><td>Vík / Vik</td><td>维克</td><td>南岸关键住宿点，Katla 团常见集合地</td></tr>
+            <tr><td>Katla Ice Cave / Katla Glacier</td><td>卡特拉冰洞 / 卡特拉冰川</td><td>Vik 出发的火山冰川/冰洞体验，非必需</td></tr>
+            <tr><td>Fjaðrárgljúfur</td><td>羽毛峡谷</td><td>教堂镇附近峡谷，秋季层次感好</td></tr>
+            <tr><td>Kirkjubæjarklaustur</td><td>教堂镇</td><td>南岸东段住宿点，衔接冰川区很实用</td></tr>
+            <tr><td>Skaftafell</td><td>斯卡夫塔山</td><td>瓦特纳冰川国家公园区域，短步道/冰川徒步出发点</td></tr>
+            <tr><td>Svartifoss</td><td>黑瀑布</td><td>Skaftafell 经典短步道终点，玄武岩柱瀑布</td></tr>
+            <tr><td>Freysnes</td><td>弗雷斯内斯</td><td>Skaftafell 附近住宿点，位置优于教堂镇但房源少</td></tr>
+            <tr><td>Fjallsárlón</td><td>小冰河湖 / 菲亚德拉冰河湖</td><td>比 Jokulsarlon 小，更安静，靠近冰川</td></tr>
+            <tr><td>Jökulsárlón</td><td>杰古沙龙冰河湖 / 大冰河湖</td><td>东南冰岛核心景观，冰山漂浮</td></tr>
+            <tr><td>Diamond Beach</td><td>钻石沙滩</td><td>冰块冲上海边黑沙滩，和冰河湖相邻</td></tr>
+            <tr><td>Höfn</td><td>霍芬</td><td>东南小镇，适合接 Vestrahorn</td></tr>
+            <tr><td>Vestrahorn / Stokksnes</td><td>蝙蝠山 / 斯托克斯内斯半岛</td><td>山海沙洲摄影点，风景上限高但更远</td></tr>
+            <tr><td>Sky Lagoon</td><td>天空温泉</td><td>雷市近郊收尾型温泉</td></tr>
+            <tr><td>Reykjanes Peninsula</td><td>雷克雅内斯半岛</td><td>雷市周边一日游，地热、海岸、火山地貌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="plan1">
+      <h2>三、方案 1：9.26 Höfn（霍芬），9.27 Vik（维克）</h2>
+      <img class="hero-img" src="images/vestrahorn.jpg" alt="Vestrahorn 蝙蝠山">
+      <article class="card scheme warn">
+        <h3>定位：风景上限最高，但 9.26 驾驶最硬</h3>
+        <p><span class="tag warn">风景加强</span><span class="tag warn">驾驶偏累</span><span class="tag blue">增加 Vestrahorn</span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>建议行程</th><th>建议住宿</th><th>取舍与提醒</th></tr></thead>
+            <tbody>
+              <tr><td class="day">9.23</td><td>陆续抵达 Reykjavík（雷克雅未克），晚餐、采购、休息。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>不要安排强活动。</td></tr>
+              <tr><td class="day">9.24</td><td>Reykjavík（雷克雅未克）取车 → Þingvellir（辛格维利尔）→ Geysir/Strokkur（盖歇尔/斯特罗柯）→ Gullfoss（黄金瀑布）→ Kerið（凯瑞斯火山口湖）可选。</td><td class="sleep">Hella（海拉）/ Flúðir（弗鲁迪尔）/ Selfoss（塞尔福斯），优先 Hella</td><td>黄金圈别排太满，为高地和 9.26 长开车留体力。</td></tr>
+              <tr><td class="day">9.25</td><td>Landmannalaugar（兰德曼纳劳卡）高地一日游，建议带交通团；晚上回南部基地。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>确认 9 月底团期和接送点；普通油车不建议进 F-road。</td></tr>
+              <tr><td class="day">9.26</td><td>南岸东进：Seljalandsfoss（塞里雅兰瀑布）/ Gljúfrabúi（隐秘瀑布）二选一或短停 → Skógafoss（斯科加瀑布）或 Kvernufoss（克维努瀑布）→ Vík（维克）短停 → Fjaðrárgljúfur（羽毛峡谷）可选 → Jökulsárlón（大冰河湖）/ Diamond Beach（钻石沙滩）短停或留到次日 → Höfn（霍芬）。</td><td class="sleep">Höfn（霍芬）</td><td>当天核心是安全抵达 Höfn，不适合每个点都深玩。</td></tr>
+              <tr><td class="day">9.27</td><td>Höfn（霍芬）→ Vestrahorn/Stokksnes（蝙蝠山/斯托克斯内斯）→ Jökulsárlón（大冰河湖）/ Diamond Beach（钻石沙滩）补拍 → Fjallsárlón（小冰河湖）或 Skaftafell（斯卡夫塔山）二选一 → Vík（维克）。</td><td class="sleep">Vík（维克）</td><td>不建议再硬塞 Katla（卡特拉），除非删掉 Vestrahorn 或冰川区停留。</td></tr>
+              <tr><td class="day">9.28</td><td>Vík（维克）→ Dyrhólaey（迪霍拉里海岬）/ Reynisfjara（雷尼斯黑沙滩）补漏 → 南岸轻停 → Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>这天应作为缓冲，不再加长线。</td></tr>
+              <tr><td class="day">9.29</td><td>Reykjavík（雷克雅未克）Citywalk、Sky Lagoon（天空温泉）、Reykjanes Peninsula（雷克雅内斯半岛）或三人分头活动。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>满足最晚回雷市约束。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>适合：</strong>非常想拍 Vestrahorn（蝙蝠山）/ Stokksnes（斯托克斯内斯），愿意用 9.26 的长距离驾驶换更高风景上限。</p>
+        <p><strong>风险：</strong>9.25 高地后，9.26 再一路推进到 Höfn（霍芬），对主驾压力偏高；9 月底遇到风雨会明显变累。</p>
+      </article>
+    </section>
+
+    <section id="plan2">
+      <h2>四、方案 2：9.26 Kirkjubæjarklaustur（教堂镇），9.27 Vik（维克）</h2>
+      <img class="hero-img" src="images/fjadrargljufur.jpg" alt="Fjaðrárgljúfur 羽毛峡谷">
+      <article class="card scheme best">
+        <h3>定位：综合最优，驾驶与风景最平衡</h3>
+        <p><span class="tag best">首推</span><span class="tag best">不走马观花</span><span class="tag blue">冰河湖更顺</span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>建议行程</th><th>建议住宿</th><th>取舍与提醒</th></tr></thead>
+            <tbody>
+              <tr><td class="day">9.23</td><td>抵达 Reykjavík（雷克雅未克），休息与补给。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>为第二天取车出发做准备。</td></tr>
+              <tr><td class="day">9.24</td><td>Reykjavík（雷克雅未克）→ Þingvellir（辛格维利尔）→ Geysir/Strokkur（盖歇尔/斯特罗柯）→ Gullfoss（黄金瀑布）→ Kerið（凯瑞斯火山口湖）或温泉小镇。</td><td class="sleep">Hella（海拉）/ Flúðir（弗鲁迪尔）/ Selfoss（塞尔福斯）</td><td>Hella 更利于 9.25 高地和 9.26 南岸东进。</td></tr>
+              <tr><td class="day">9.25</td><td>Landmannalaugar（兰德曼纳劳卡）高地一日游，返回南部基地。</td><td class="sleep">Hella / Flúðir / Selfoss，优先 Hella 或 Flúðir</td><td>高地是本方案核心差异点，需预留天气备选。</td></tr>
+              <tr><td class="day">9.26</td><td>Hella 一带 → Seljalandsfoss（塞里雅兰瀑布）/ Gljúfrabúi（隐秘瀑布）→ Skógafoss（斯科加瀑布）/ Kvernufoss（克维努瀑布）→ Dyrhólaey（迪霍拉里海岬）/ Reynisfjara（雷尼斯黑沙滩）短停 → Fjaðrárgljúfur（羽毛峡谷）→ Kirkjubæjarklaustur（教堂镇）。</td><td class="sleep">Kirkjubæjarklaustur（教堂镇）</td><td>这天不用赶到冰河湖，南岸可以从容一些。</td></tr>
+              <tr><td class="day">9.27</td><td>教堂镇 → Skaftafell（斯卡夫塔山）短步道或 Fjallsárlón（小冰河湖）→ Jökulsárlón（大冰河湖）→ Diamond Beach（钻石沙滩）→ Vík（维克）。</td><td class="sleep">Vík（维克）</td><td>Katla（卡特拉）可选，但如果保 Katla，当天冰川区要做减法。</td></tr>
+              <tr><td class="day">9.28</td><td>Vík（维克）周边补漏：Reynisfjara（雷尼斯黑沙滩）、Dyrhólaey（迪霍拉里海岬）、Skógafoss（斯科加瀑布）等按天气选择 → Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>回程较稳，是舒服的缓冲日。</td></tr>
+              <tr><td class="day">9.29</td><td>雷市 Citywalk / Sky Lagoon（天空温泉）/ Reykjanes（雷克雅内斯）轻一日。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>三人可一起也可分头。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>适合：</strong>最符合“不要走马观花、但也不要一直待一个地方”的需求；兼顾高地、南岸、峡谷、冰川、冰河湖和 Vik 周边。</p>
+        <p><strong>风险：</strong>如果 9.27 同时想做 Skaftafell（斯卡夫塔山）长冰川徒步和 Katla（卡特拉），会过满；二者建议择一。</p>
+      </article>
+    </section>
+
+    <section id="plan3">
+      <h2>五、方案 3：9.26 Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯），9.27 Vik（维克）</h2>
+      <img class="hero-img" src="images/svartifoss.jpg" alt="Skaftafell Svartifoss 黑瀑布">
+      <article class="card scheme">
+        <h3>定位：冰川体验最好，但房源依赖最高</h3>
+        <p><span class="tag best">冰川最顺</span><span class="tag">房源难</span><span class="tag blue">适合瓦特纳徒步</span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>建议行程</th><th>建议住宿</th><th>取舍与提醒</th></tr></thead>
+            <tbody>
+              <tr><td class="day">9.23</td><td>抵达 Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>轻松入住。</td></tr>
+              <tr><td class="day">9.24</td><td>黄金圈：Þingvellir（辛格维利尔）→ Geysir/Strokkur（盖歇尔/斯特罗柯）→ Gullfoss（黄金瀑布）→ Kerið（凯瑞斯火山口湖）可选。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>不要住回雷市。</td></tr>
+              <tr><td class="day">9.25</td><td>Landmannalaugar（兰德曼纳劳卡）高地一日游。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>团后尽量早休息。</td></tr>
+              <tr><td class="day">9.26</td><td>南岸精选：Seljalandsfoss（塞里雅兰）→ Skógafoss（斯科加）→ Vík（维克）/ Reynisfjara（黑沙滩）短停 → Fjaðrárgljúfur（羽毛峡谷）→ Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）。</td><td class="sleep">Skaftafell / Freysnes（斯卡夫塔山/弗雷斯内斯）</td><td>比教堂镇多开一段，但 9.27 更从容。</td></tr>
+              <tr><td class="day">9.27</td><td>Skaftafell（斯卡夫塔山）冰川徒步或 Svartifoss（黑瀑布）短步道 → Fjallsárlón（小冰河湖）→ Jökulsárlón（大冰河湖）→ Diamond Beach（钻石沙滩）→ Vík（维克）。</td><td class="sleep">Vík（维克）</td><td>若做 3-5 小时冰川徒步，就不要再安排 Katla。</td></tr>
+              <tr><td class="day">9.28</td><td>Vík（维克）→ Dyrhólaey（迪霍拉里）/ Reynisfjara（雷尼斯黑沙滩）/ 南岸补漏 → Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>回程轻松。</td></tr>
+              <tr><td class="day">9.29</td><td>Reykjavík（雷克雅未克）周边轻安排。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>可一起或分头。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>适合：</strong>想认真体验 Vatnajökull（瓦特纳）/ Skaftafell（斯卡夫塔山）冰川徒步的人。</p>
+        <p><strong>风险：</strong>Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）住宿少、价格可能高；9.26 仍需控制南岸停留。</p>
+      </article>
+    </section>
+
+    <section id="plan4">
+      <h2>六、方案 4：9.26 Vik（维克），9.27 Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）</h2>
+      <img class="hero-img" src="images/reynisfjara.jpg" alt="Reynisfjara 雷尼斯黑沙滩">
+      <article class="card scheme warn">
+        <h3>定位：保 Katla 最顺，但 9.28 回程变长</h3>
+        <p><span class="tag warn">保 Katla</span><span class="tag warn">9.28 偏长</span><span class="tag blue">东南继续推进</span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>建议行程</th><th>建议住宿</th><th>取舍与提醒</th></tr></thead>
+            <tbody>
+              <tr><td class="day">9.23</td><td>抵达 Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>休息。</td></tr>
+              <tr><td class="day">9.24</td><td>Reykjavík（雷克雅未克）→ 黄金圈三件套：Þingvellir（辛格维利尔）、Geysir/Strokkur（盖歇尔/斯特罗柯）、Gullfoss（黄金瀑布）→ Hella/Flúðir/Selfoss。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>高地前夜住南部基地。</td></tr>
+              <tr><td class="day">9.25</td><td>Landmannalaugar（兰德曼纳劳卡）高地一日游。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>团后休息，别赶夜路。</td></tr>
+              <tr><td class="day">9.26</td><td>Hella 一带 → Seljalandsfoss（塞里雅兰瀑布）→ Skógafoss（斯科加瀑布）→ Vík（维克）；下午/傍晚可做 Katla Ice Cave / Glacier（卡特拉冰洞/冰川）跟团。</td><td class="sleep">Vík（维克）</td><td>这是五套里保 Katla 最顺的一套。</td></tr>
+              <tr><td class="day">9.27</td><td>Vík（维克）→ Fjaðrárgljúfur（羽毛峡谷）→ Skaftafell（斯卡夫塔山）短步道或冰川徒步 → Fjallsárlón（小冰河湖）/ Jökulsárlón（大冰河湖）/ Diamond Beach（钻石沙滩）。</td><td class="sleep">Skaftafell / Freysnes（斯卡夫塔山/弗雷斯内斯）</td><td>当天可深玩东南，但 9.28 回雷市距离会变长。</td></tr>
+              <tr><td class="day">9.28</td><td>Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）→ 南岸回程；按天气轻停 1-2 个点 → Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>建议直接回雷市；若天气差可早出发、少停靠。</td></tr>
+              <tr><td class="day">9.29</td><td>雷市 citywalk / 温泉 / 三人分头活动。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>作为恢复日。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>适合：</strong>Katla（卡特拉）明确想保留，同时 9.27 能订到 Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）住宿的人。</p>
+        <p><strong>风险：</strong>9.28 从东南段回 Reykjavík（雷克雅未克）较长，遇到坏天气会影响舒适度；不如 9.27 住 Vik 的方案有缓冲。</p>
+      </article>
+    </section>
+
+    <section id="plan5">
+      <h2>七、方案 5：9.26 Vik（维克），9.27 Vik（维克）</h2>
+      <img class="hero-img" src="images/skogafoss.jpg" alt="Skógafoss 斯科加瀑布">
+      <article class="card scheme no">
+        <h3>定位：住宿最省事，但路线效率最低</h3>
+        <p><span class="tag no">不优先</span><span class="tag warn">冰河湖大往返</span><span class="tag blue">最省住宿沟通</span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>建议行程</th><th>建议住宿</th><th>取舍与提醒</th></tr></thead>
+            <tbody>
+              <tr><td class="day">9.23</td><td>抵达 Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>休息补给。</td></tr>
+              <tr><td class="day">9.24</td><td>黄金圈：Þingvellir（辛格维利尔）→ Geysir/Strokkur（盖歇尔/斯特罗柯）→ Gullfoss（黄金瀑布）→ Kerið（凯瑞斯火山口湖）可选。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>为 9.25 高地留前置位置。</td></tr>
+              <tr><td class="day">9.25</td><td>Landmannalaugar（兰德曼纳劳卡）高地一日游。</td><td class="sleep">Hella / Flúðir / Selfoss</td><td>晚上不建议继续往 Vik 赶太晚。</td></tr>
+              <tr><td class="day">9.26</td><td>Hella 一带 → Seljalandsfoss（塞里雅兰瀑布）→ Skógafoss（斯科加瀑布）→ Dyrhólaey（迪霍拉里）或 Reynisfjara（雷尼斯黑沙滩）→ Vik（维克）；可安排 Katla（卡特拉）团。</td><td class="sleep">Vík（维克）</td><td>保 Katla 最轻松。</td></tr>
+              <tr><td class="day">9.27</td><td>两种选法：A. Vik（维克）往返 Jökulsárlón（大冰河湖）/ Diamond Beach（钻石沙滩），中途只加 Fjaðrárgljúfur（羽毛峡谷）或 Fjallsárlón（小冰河湖）一个点；B. 放弃冰河湖，深玩 Vik 周边和南岸。</td><td class="sleep">Vík（维克）</td><td>如果选择 A，就是当天长往返；不建议再加 Skaftafell 长徒步。</td></tr>
+              <tr><td class="day">9.28</td><td>Vik（维克）→ 南岸补漏 → Reykjavík（雷克雅未克）。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>回程轻松。</td></tr>
+              <tr><td class="day">9.29</td><td>Reykjavík（雷克雅未克）周边轻安排。</td><td class="sleep">Reykjavík（雷克雅未克）</td><td>结束前恢复体力。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>适合：</strong>住宿无法调整、Katla（卡特拉）想保留、愿意牺牲东南冰川深度的人。</p>
+        <p><strong>风险：</strong>如果 9.27 从 Vik（维克）往返 Jökulsárlón（大冰河湖），当天会以开车为主，最不符合“不走马观花”。</p>
+      </article>
+    </section>
+
+    <section id="compare">
+      <h2>八、五套方案异同对比</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>方案</th>
+              <th>9.26 / 9.27 住宿</th>
+              <th>最大亮点</th>
+              <th>最大风险</th>
+              <th>Katla（卡特拉）适配</th>
+              <th>瓦特纳/Skaftafell 冰川适配</th>
+              <th>综合建议</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>方案 1</td>
+              <td>Höfn（霍芬） / Vik（维克）</td>
+              <td>增加 Vestrahorn（蝙蝠山），风景上限最高。</td>
+              <td>9.26 长距离推进，对主驾偏累。</td>
+              <td>不建议硬塞。</td>
+              <td>可短停，不适合再做长徒步。</td>
+              <td>摄影加强备选。</td>
+            </tr>
+            <tr>
+              <td>方案 2</td>
+              <td>Kirkjubæjarklaustur（教堂镇） / Vik（维克）</td>
+              <td>南岸、峡谷、冰川、冰河湖衔接最均衡。</td>
+              <td>若 9.27 既做 Katla 又做冰川区，会变满。</td>
+              <td>可选，需压缩东南段。</td>
+              <td>适合短步道/轻冰川区；长徒步需谨慎。</td>
+              <td>综合首推。</td>
+            </tr>
+            <tr>
+              <td>方案 3</td>
+              <td>Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯） / Vik（维克）</td>
+              <td>最适合瓦特纳冰川徒步和冰河湖。</td>
+              <td>住宿难、9.26 比教堂镇多开。</td>
+              <td>不建议同日叠加。</td>
+              <td>五套里最好。</td>
+              <td>冰川体验首选。</td>
+            </tr>
+            <tr>
+              <td>方案 4</td>
+              <td>Vik（维克） / Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）</td>
+              <td>9.26 保 Katla 最顺，9.27 继续东南。</td>
+              <td>9.28 从东南回雷市较长。</td>
+              <td>五套里最顺。</td>
+              <td>较好。</td>
+              <td>保 Katla 的折中解。</td>
+            </tr>
+            <tr>
+              <td>方案 5</td>
+              <td>Vik（维克） / Vik（维克）</td>
+              <td>住宿最简单，9.28 回雷市轻松。</td>
+              <td>9.27 若去冰河湖就是大往返。</td>
+              <td>很顺。</td>
+              <td>最弱，不建议长徒步。</td>
+              <td>只作为住宿现实妥协。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:16px;">
+        <div class="card">
+          <h3>共同点</h3>
+          <ul>
+            <li>9.23 都住 Reykjavík（雷克雅未克）。</li>
+            <li>9.24 都建议走黄金圈，并住 Hella（海拉）/ Flúðir（弗鲁迪尔）/ Selfoss（塞尔福斯）一带。</li>
+            <li>9.25 都把 Landmannalaugar（兰德曼纳劳卡）作为优先高地体验。</li>
+            <li>9.28 或 9.29 都能回到 Reykjavík（雷克雅未克），满足硬约束。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>本质差异</h3>
+          <ul>
+            <li>住得越东，越利于冰川和冰河湖，但驾驶强度越高。</li>
+            <li>住 Vik（维克）越多，Katla（卡特拉）越顺，但东南冰川越容易大往返。</li>
+            <li>Höfn（霍芬）版增加 Vestrahorn（蝙蝠山），是摄影加分，不是舒适加分。</li>
+            <li>教堂镇版是最像“旅行”而不是“赶路”的平衡解。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ranking">
+      <h2>九、推荐排序与最终建议</h2>
+      <div class="card">
+        <div class="rank"><span class="num">1</span><div><strong>方案 2：9.26 Kirkjubæjarklaustur（教堂镇），9.27 Vik（维克）。</strong><br>综合最稳，驾驶、风景和住宿现实性最平衡。最符合你们“不走马观花，但也不一直待一个地方”的目标。</div></div>
+        <div class="rank"><span class="num">2</span><div><strong>方案 3：9.26 Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯），9.27 Vik（维克）。</strong><br>如果订得到合适住宿，且想认真做瓦特纳冰川/Skaftafell 冰川徒步，这是体验上限更高的冰川版。</div></div>
+        <div class="rank"><span class="num">3</span><div><strong>方案 1：9.26 Höfn（霍芬），9.27 Vik（维克）。</strong><br>适合把 Vestrahorn（蝙蝠山）放进强愿望清单的人；风景更丰富，但 9.26 对主驾更辛苦。</div></div>
+        <div class="rank"><span class="num">4</span><div><strong>方案 4：9.26 Vik（维克），9.27 Skaftafell/Freysnes（斯卡夫塔山/弗雷斯内斯）。</strong><br>保 Katla（卡特拉）最顺的版本，但 9.28 回雷市压力比前三套更高。</div></div>
+        <div class="rank"><span class="num">5</span><div><strong>方案 5：9.26 Vik（维克），9.27 Vik（维克）。</strong><br>住宿最省事，但路线效率最低。如果要去 Jökulsárlón（大冰河湖），当天最容易变成开车为主。</div></div>
+      </div>
+      <div class="callout" style="margin-top:16px;">
+        <h3>一句话结论</h3>
+        <p>如果只选一个默认方案，我建议：<strong>9.24 黄金圈后住 Hella/Flúðir/Selfoss，9.25 高地，9.26 住 Kirkjubæjarklaustur（教堂镇），9.27 东南冰川/冰河湖后住 Vik（维克），9.28 回 Reykjavík（雷克雅未克），9.29 雷市周边轻收尾。</strong></p>
+      </div>
+      <div class="dangerbox" style="margin-top:16px;">
+        <h3>执行时最重要的减法</h3>
+        <p>不要在同一天把 Skaftafell（斯卡夫塔山）长冰川徒步、Jökulsárlón（大冰河湖）、Diamond Beach（钻石沙滩）、Fjallsárlón（小冰河湖）、Katla（卡特拉）、Vestrahorn（蝙蝠山）全部塞进去。9 月底的冰岛，真正影响体验的不是“少看一个点”，而是风雨、低云、天黑和驾驶疲劳叠加后，所有点都变成匆匆打卡。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>十、资料与实时检查入口</h2>
+      <p class="lead">这些页面不是为了替代临近出发前确认，而是提醒哪些信息必须每日复核。</p>
+      <ul>
+        <li>SafeTravel Iceland：高地驾驶、F-road 和旅行安全建议。</li>
+        <li>Road.is / Umferdin：实时道路状态、封路、山路开放情况。</li>
+        <li>Vedur：天气预报、风力和天气警报。</li>
+        <li>高地团/冰川团运营商：9 月底是否发团、集合点、取消政策和天气改期规则。</li>
+      </ul>
+    </section>
+
+    <footer>
+      文件名：Gpt梳理-五种住宿方案行程对照-含中文景点名.html。生成时间：2026-09-11。本报告为本地行程规划存档，未推送 GitHub Pages。
+    </footer>
+  </main>
+</body>
+</html>
