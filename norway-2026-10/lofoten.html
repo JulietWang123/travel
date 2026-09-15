@@ -344,6 +344,77 @@
       font-size: 18px;
     }
 
+    .fallback-map {
+      min-height: 680px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 78% 12%, rgba(28,93,119,.14), transparent 28%),
+        linear-gradient(135deg, #e6eef0, #dfe9e5 52%, #f3ead9);
+      color: var(--ink);
+    }
+
+    .fallback-map header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .fallback-map h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .fallback-map p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .fallback-map svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 430px;
+      margin: 12px 0;
+    }
+
+    .fallback-route { display: none; }
+    .fallback-route.active { display: block; }
+    .fallback-point { cursor: pointer; }
+    .fallback-point circle {
+      stroke: white;
+      stroke-width: 5;
+      filter: drop-shadow(0 3px 7px rgba(0,0,0,.24));
+    }
+    .fallback-point text {
+      font: 800 13px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      fill: var(--ink);
+      paint-order: stroke;
+      stroke: rgba(255,250,240,.92);
+      stroke-width: 5px;
+      stroke-linejoin: round;
+    }
+
+    .fallback-info {
+      min-height: 76px;
+      padding: 14px;
+      border: 1px solid rgba(24,32,36,.14);
+      border-radius: 8px;
+      background: rgba(255,250,240,.82);
+      box-shadow: 0 10px 24px rgba(24,32,36,.08);
+    }
+
+    .fallback-info b {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
     .map-panel {
       display: grid;
       gap: 14px;
@@ -1529,9 +1600,82 @@
       mapElement.innerHTML = `<div class="map-notice"><div><b>${title}</b><span>${detail}</span></div></div>`;
     }
 
+    function renderFallbackMap(reason) {
+      if (!mapElement) return;
+      mapElement.innerHTML = `
+        <div class="fallback-map">
+          <header>
+            <div>
+              <h3>罗弗敦路线示意地图</h3>
+              <p>${reason} 这里使用内置交互示意图：可切换 A/B/C 路线，也可点击住宿点、景点、极光点查看说明。</p>
+            </div>
+          </header>
+          <svg viewBox="0 0 1120 560" role="img" aria-label="罗弗敦自驾交互示意地图">
+            <rect x="0" y="0" width="1120" height="560" rx="18" fill="#edf2ef" />
+            <path d="M50 405 C165 346, 226 357, 323 306 S514 269, 646 224 S838 140, 1060 116" fill="none" stroke="#9bb7bd" stroke-width="46" stroke-linecap="round" opacity=".42" />
+            <path d="M66 393 C178 338, 239 349, 333 300 S520 268, 651 220 S841 145, 1034 121" fill="none" stroke="#647079" stroke-width="8" stroke-linecap="round" opacity=".75" />
+
+            <g class="fallback-route active" data-fallback-route="return">
+              <path d="M1034 121 L820 168 L690 211 L610 248" fill="none" stroke="#1c5d77" stroke-width="8" stroke-linecap="round" />
+              <path d="M610 248 L548 136 L470 102 L398 130 L358 188 L510 232 L610 248" fill="none" stroke="#426b54" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M610 248 L524 287 L430 322 L340 340 L262 370 L185 398 L103 438 L185 398 L340 340 L610 248" fill="none" stroke="#b65b36" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M610 248 L690 211 L820 168 L1034 121" fill="none" stroke="#647079" stroke-width="7" stroke-linecap="round" stroke-dasharray="12 10" />
+            </g>
+            <g class="fallback-route" data-fallback-route="partial">
+              <path d="M1034 121 L820 168 L690 211" fill="none" stroke="#1c5d77" stroke-width="8" stroke-linecap="round" />
+              <path d="M690 211 L705 94 L548 136 L470 102 L398 130 L358 188 L510 232 L610 248" fill="none" stroke="#426b54" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M610 248 L524 287 L430 322 L340 340 L262 370 L185 398 L103 438 L185 398 L340 340" fill="none" stroke="#b65b36" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M340 340 L610 248 L690 211 L820 168 L1034 121" fill="none" stroke="#647079" stroke-width="7" stroke-linecap="round" stroke-dasharray="12 10" />
+            </g>
+            <g class="fallback-route" data-fallback-route="bodo">
+              <path d="M1034 121 L820 168 L690 211" fill="none" stroke="#1c5d77" stroke-width="8" stroke-linecap="round" />
+              <path d="M690 211 L705 94 L548 136 L470 102 L398 130 L358 188 L510 232 L610 248" fill="none" stroke="#426b54" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M610 248 L524 287 L430 322 L340 340 L262 370 L185 398 L103 438" fill="none" stroke="#b65b36" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M103 438 L82 478 L315 520" fill="none" stroke="#647079" stroke-width="7" stroke-linecap="round" stroke-dasharray="12 10" />
+            </g>
+
+            <g class="fallback-point" data-title="EVE Evenes 机场" data-note="10/2 进岛取车，A/B 方案 10/5 回这里还车。雨雪强风时，E10 返程要留足缓冲。"><circle cx="1034" cy="121" r="13" fill="#1c5d77" /><text x="950" y="92">EVE Evenes</text></g>
+            <g class="fallback-point" data-title="Svolvær / Kabelvåg" data-note="东部过渡与补给区，适合第一晚轻松落脚；便利但离西线较远。"><circle cx="820" cy="168" r="12" fill="#426b54" /><text x="790" y="145">Svolvær</text></g>
+            <g class="fallback-point" data-title="Henningsvær 足球场与港口" data-note="★★★★★ 经典打卡点。适合 1-2 小时慢逛，晴天/多云最适合，强风时缩短停留。"><circle cx="690" cy="211" r="13" fill="#b02f3a" /><text x="650" y="190">Henningsvær</text></g>
+            <g class="fallback-point" data-title="Gimsøy / Hov Beach" data-note="★★★★☆ 北向开阔极光候选点。晴朗夜晚适合追光，白天可海岸短走。"><circle cx="705" cy="94" r="12" fill="#5a4b92" /><text x="670" y="74">Gimsøy</text></g>
+            <g class="fallback-point" data-title="Unstad / Eggum" data-note="★★★★☆ 北海岸支线，Unstad 看北极冲浪，Eggum 适合北向极光视野。"><circle cx="470" cy="102" r="12" fill="#5a4b92" /><text x="415" y="74">Unstad / Eggum</text></g>
+            <g class="fallback-point" data-title="Haukland / Uttakleiv" data-note="★★★★★ 白沙滩 + 夜间极光候选。晴天看水色，少云夜晚追光；强风时车边观测。"><circle cx="398" cy="130" r="13" fill="#5a4b92" /><text x="335" y="112">Haukland</text></g>
+            <g class="fallback-point" data-title="Leknes" data-note="★★★★☆ 最实用中部基地：超市、加油、餐厅更多，天气差时调整方便。"><circle cx="610" cy="248" r="14" fill="#b65b36" /><text x="622" y="252">Leknes</text></g>
+            <g class="fallback-point" data-title="Ballstad / Napp" data-note="★★★★★ 首选住宿基地。比 Leknes 更有渔村度假感，又比 Reine/Hamnøy 更不压返程。"><circle cx="524" cy="287" r="14" fill="#b65b36" /><text x="500" y="315">Ballstad / Napp</text></g>
+            <g class="fallback-point" data-title="Nusfjord" data-note="★★★★☆ 历史渔村，适合 1.5-2.5 小时慢逛；阴天小雨也有氛围。"><circle cx="430" cy="322" r="12" fill="#426b54" /><text x="388" y="306">Nusfjord</text></g>
+            <g class="fallback-point" data-title="Skagsanden / Ramberg" data-note="★★★★☆ 海滩、日落和极光候选点。强风浪大时注意潮水和安全边界。"><circle cx="340" cy="340" r="13" fill="#5a4b92" /><text x="284" y="318">Skagsanden</text></g>
+            <g class="fallback-point" data-title="Hamnøy / Sakrisøy" data-note="★★★★★ 明信片渔村组合，红黄渔屋、海湾与尖峰最有罗弗敦辨识度。"><circle cx="185" cy="398" r="13" fill="#b02f3a" /><text x="160" y="374">Hamnøy</text></g>
+            <g class="fallback-point" data-title="Reine" data-note="★★★★★ 经典村庄。建议短步行和停车观景，不建议把 Reinebringen 当作本次必做。"><circle cx="103" cy="438" r="13" fill="#b02f3a" /><text x="112" y="424">Reine / Å</text></g>
+            <g class="fallback-point" data-title="Moskenes-Bodø 出口" data-note="C 方案真正不走回头路的关键：Moskenes 车渡轮到 Bodø，再从 BOO 飞 Oslo；10 月需重点确认船班和海况。"><circle cx="315" cy="520" r="13" fill="#1c5d77" /><text x="330" y="524">Bodø / BOO</text></g>
+          </svg>
+          <div class="fallback-info" id="fallback-map-info"><b>先看 A EVE 往返稳妥版</b><span>这版每天驾驶和返程风险最可控。点击地图上的圆点，可以查看对应住宿地、景点、极光点和天气建议。</span></div>
+        </div>`;
+
+      const updateFallbackRoutes = (mode) => {
+        const modes = mode === "all" ? ["return", "partial", "bodo"] : [mode];
+        mapElement.querySelectorAll("[data-fallback-route]").forEach((route) => {
+          route.classList.toggle("active", modes.includes(route.dataset.fallbackRoute));
+        });
+        document.querySelectorAll("[data-route-mode]").forEach((button) => {
+          button.classList.toggle("active", button.dataset.routeMode === mode);
+        });
+      };
+
+      document.querySelectorAll("[data-route-mode]").forEach((button) => {
+        button.addEventListener("click", () => updateFallbackRoutes(button.dataset.routeMode));
+      });
+      mapElement.querySelectorAll("[data-title]").forEach((point) => {
+        point.addEventListener("click", () => {
+          const info = mapElement.querySelector("#fallback-map-info");
+          info.innerHTML = `<b>${point.dataset.title}</b><span>${point.dataset.note}</span>`;
+        });
+      });
+      updateFallbackRoutes("return");
+    }
+
     if (!mapElement) return;
     if (!window.L) {
-      showMapNotice("交互地图暂时没有加载出来", "本地 Leaflet 文件没有成功载入。请确认 vendor/leaflet/leaflet.js 与本 HTML 文件在同一目录结构下。");
+      renderFallbackMap("本地 Leaflet 文件没有成功载入。");
       return;
     }
 
@@ -1554,6 +1698,11 @@
         attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
       }).addTo(map);
     }, 3600);
+
+    setTimeout(() => {
+      if (mapElement.querySelector(".leaflet-tile-loaded")) return;
+      renderFallbackMap("在线地图底图没有加载成功。");
+    }, 7600);
 
     const colors = {
       airport: "#1c5d77",
@@ -1743,7 +1892,7 @@
 
     } catch (error) {
       console.error("Lofoten map failed to initialize", error);
-      showMapNotice("交互地图初始化失败", error && error.message ? error.message : "请刷新页面，或先查看下方离线线路示意图。");
+      renderFallbackMap("交互地图初始化失败，已自动切换为内置示意图。");
     }
     })();
   </script>
