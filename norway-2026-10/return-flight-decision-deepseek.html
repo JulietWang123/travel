@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>罗弗敦 2026 年 10 月 · 返程航班决策与首日抵达专项（DeepSeek 生成）</title>
+<meta name="description" content="只回答两个问题：10/6 06:30 与 10/5 20:05 哪个该当主方案，以及 10/1 抵达怎么排、奥斯陆值不值得待一天。含 12 个住地的夜路出发时刻表与逐夜极光窗口。本分析由 DeepSeek 生成。">
+<style>
+
+:root{--ink:#172026;--muted:#647079;--paper:#f4f1e8;--white:#fffaf0;--line:#d8ded9;--blue:#1c5d77;--green:#426b54;--rust:#b65b36;--gold:#c8963e;--violet:#5a4b92;--dark:#102028;--iconic:#b02f3a;--hike:#7f4f24}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.62 Inter,"Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1180px,calc(100% - 34px));margin:0 auto}
+a{color:var(--blue)}
+a:hover{color:var(--rust)}
+h1,h2,h3,h4{line-height:1.3;margin:0}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px;padding-left:22px}
+li{margin:5px 0}
+strong{color:#0e1a20}
+code{background:rgba(28,93,119,.08);border-radius:5px;padding:1px 5px;font-size:.92em}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;color:var(--white);
+background:linear-gradient(180deg,rgba(16,32,40,.10) 0%,rgba(16,32,40,.55) 46%,rgba(16,32,40,.88) 84%),url("norway-images/lofoten-aurora.jpg") center/cover no-repeat}
+.hero-inner{padding:0 0 54px}
+.kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.46);border-radius:999px;padding:8px 13px;font-size:13px;letter-spacing:.4px;background:rgba(16,32,40,.22);margin:0 8px 14px 0;backdrop-filter:blur(2px)}
+.hero h1{font-size:clamp(30px,4.6vw,54px);letter-spacing:-.5px;max-width:22ch;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.hero p.lede{max-width:74ch;color:rgba(255,250,240,.9);margin:16px 0 0;font-size:17px}
+.hero .meta{margin-top:20px;font-size:13.5px;color:rgba(255,250,240,.72)}
+
+/* ---------- nav ---------- */
+.chips{position:sticky;top:0;z-index:900;background:rgba(244,241,232,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.chips-inner{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:thin}
+.chips a{flex:0 0 auto;font-size:13px;text-decoration:none;border:1px solid var(--line);background:var(--white);border-radius:999px;padding:6px 12px;color:var(--ink)}
+.chips a:hover{border-color:var(--rust);color:var(--rust)}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+section:nth-of-type(even){background:linear-gradient(180deg,rgba(255,250,240,.75),rgba(244,241,232,.2))}
+.sec-head{margin-bottom:26px}
+.sec-head .num{font-size:13px;letter-spacing:2.4px;color:var(--rust);text-transform:uppercase;font-weight:600}
+.sec-head h2{font-size:clamp(23px,3.1vw,34px);margin:6px 0 10px}
+.sec-head .sub{color:var(--muted);max-width:80ch}
+.note{font-size:13.5px;color:var(--muted)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card h4{font-size:15px;margin:14px 0 6px;color:var(--blue)}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.tile{border-left:4px solid var(--blue)}
+.tile.warn{border-left-color:var(--rust)}
+.tile.good{border-left-color:var(--green)}
+.tile.aurora{border-left-color:var(--violet)}
+.tile.gold{border-left-color:var(--gold)}
+.tag{display:inline-block;font-size:11.5px;letter-spacing:.4px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted);background:var(--paper);margin:0 5px 6px 0}
+.tag.b{color:var(--blue);border-color:rgba(28,93,119,.35);background:rgba(28,93,119,.07)}
+.tag.r{color:var(--rust);border-color:rgba(182,91,54,.35);background:rgba(182,91,54,.08)}
+.tag.g{color:var(--green);border-color:rgba(66,107,84,.35);background:rgba(66,107,84,.08)}
+.tag.v{color:var(--violet);border-color:rgba(90,75,146,.3);background:rgba(90,75,146,.08)}
+.big{font-size:26px;font-weight:700;color:var(--blue);display:block;line-height:1.2}
+.cap{font-size:12.5px;color:var(--muted);margin-top:8px}
+
+/* ---------- tables ---------- */
+.tblwrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+thead th{background:rgba(28,93,119,.08);color:#0e1a20;font-weight:600;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(200,150,62,.07)}
+td.c,th.c{text-align:center;white-space:nowrap}
+td.win{background:rgba(66,107,84,.12);font-weight:600}
+td.lose{background:rgba(182,91,54,.13)}
+.small{font-size:13px}
+
+/* ---------- verdict ---------- */
+.verdict{background:var(--dark);color:var(--white);border-radius:16px;padding:24px 26px;margin:0 0 20px}
+.verdict h3{color:#fff;margin-bottom:10px}
+.verdict strong{color:var(--gold)}
+.verdict p:last-child{margin-bottom:0}
+.callout{border-left:4px solid var(--gold);background:rgba(200,150,62,.1);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 18px}
+.callout p:last-child{margin:0}
+.danger{border-left-color:var(--rust);background:rgba(182,91,54,.1)}
+.plusminus{display:grid;gap:8px;margin:0}
+.plusminus div{border-radius:10px;padding:10px 13px;font-size:14.5px}
+.pm-good{background:rgba(66,107,84,.1);border-left:3px solid var(--green)}
+.pm-bad{background:rgba(182,91,54,.1);border-left:3px solid var(--rust)}
+
+/* ---------- timeline ---------- */
+.day{display:grid;grid-template-columns:104px 1fr;gap:18px;border-bottom:1px dashed var(--line);padding:18px 0}
+.day:last-child{border-bottom:none}
+.day .d{font-weight:700;color:var(--blue)}
+.day .d span{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:3px}
+.day .b h3{font-size:17px;margin-bottom:6px}
+.day .b p{margin-bottom:8px;font-size:15px}
+
+/* ---------- map ---------- */
+.map-block{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px}
+#lofoten-map{height:640px;border-radius:12px;background:#dbe4e2;overflow:hidden}
+.map-controls{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.map-controls button{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 13px;transition:.15s}
+.map-controls button:hover{border-color:var(--rust);color:var(--rust)}
+.map-controls button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.map-controls .sep{width:1px;background:var(--line);margin:2px 4px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 0;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);margin-right:6px;vertical-align:-1px}
+.map-notice{display:none;margin:12px 0 0;border-left:4px solid var(--rust);background:rgba(182,91,54,.1);padding:11px 14px;border-radius:0 10px 10px 0;font-size:14px}
+.fallback-map{display:none;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--dark);color:var(--white);padding:18px}
+.fallback-map img{width:100%;border-radius:10px;display:block;margin:12px 0 0;opacity:.9}
+.leaflet-popup-content{font:14px/1.55 Inter,"Noto Sans SC","Microsoft YaHei",sans-serif;margin:12px 14px;width:274px!important}
+.popup-title{font-weight:700;font-size:15px;margin-bottom:6px;color:var(--ink)}
+.popup-note{color:#3d4750;margin-bottom:8px}
+.popup-meta{display:grid;gap:3px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:7px}
+.popup-link{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--blue)}
+.map-tooltip{border:none;box-shadow:0 2px 8px rgba(0,0,0,.22);border-radius:7px;font:600 11.5px Inter,"Noto Sans SC",sans-serif;padding:2px 7px;background:#fff;color:#172026}
+.map-tooltip.base{color:#8a3f22}.map-tooltip.stay{color:#8a6218}.map-tooltip.iconic{color:#8c2129}
+.map-tooltip.hike{color:#5d3a1a}.map-tooltip.aurora{color:#3f3570}.map-tooltip.view{color:#31543f}
+
+/* ---------- gallery ---------- */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px}
+figure{margin:0;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+figure img{width:100%;height:212px;object-fit:cover;display:block}
+figcaption{padding:12px 14px}
+figcaption b{display:block;margin-bottom:4px}
+figcaption span{font-size:13px;color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{background:var(--dark);color:rgba(255,250,240,.82);padding:40px 0 46px;font-size:14px}
+footer h3{color:#fff;margin-bottom:12px;font-size:16px}
+footer ul{padding-left:20px}
+@media(max-width:720px){
+ .hero{min-height:70vh}.hero-inner{padding-bottom:38px}
+ #lofoten-map{height:460px}
+ section{padding:44px 0}
+ .day{grid-template-columns:1fr;gap:6px}
+ table{font-size:13.5px}
+}
+
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap hero-inner">
+<span class="kicker">🤖 本分析由 DeepSeek 生成</span>
+<span class="kicker">📅 2026-09-17 生成</span>
+<h1>罗弗敦 · 返程航班选哪班，以及 10/1 抵达怎么排</h1>
+<p class="lede">这份报告只回答两个问题：<strong>① 10/6 06:30 和 10/5 20:05，哪个更该当主方案</strong>（以及被两个选项都漏掉的第三条：10/6 10:50 / 11:05）；<strong>② 10/1 抵达当晚该不该住奥斯陆、奥斯陆值不值得待一天</strong>。所有数字都能在 <code>_s_return.txt</code>（日照/蒙影/暗夜 + OSRM 车程）与 <code>_lodging12_astro.txt</code>（12 个住地逐夜暗夜窗口）里复核。</p>
+<p class="meta">行程窗口 2026-10-01 → 10-06 · 进出港 EVE（Evenes, ENEV）· 国际段 10/6 17:00 OSL→DOH · 全文标注「可引用事实 / 分析推断 / 待核实」</p>
+</div>
+</header>
+<nav class="chips"><div class="wrap chips-inner">
+<a href="#s0">结论速览</a>
+<a href="#s1">四个分支对照</a>
+<a href="#s2">10/1 抵达衔接</a>
+<a href="#s3">夜路与睡眠</a>
+<a href="#s4">极光账</a>
+<a href="#s5">奥斯陆值不值</a>
+<a href="#s6">天气与决策时间线</a>
+<a href="#s7">风险与行动</a>
+<a href="#s8">来源与不确定性</a>
+</div></nav>
+<section id="s0"><div class="wrap">
+<div class="sec-head"><div class="num">Section 0</div><h2>结论速览</h2><p class="sub">先给答案，再给账。</p></div>
+<div class="verdict">
+<p><strong>一句话：</strong>如果「不想在 10 月的北极夜里赶一次不能中途停车的飞机」是你的底线，主方案应该是 <strong>10/5 20:05 飞 OSL</strong>；如果你更想多睡、并接受 OSL 只剩约 1.5 小时缓冲，就选 <strong>10/6 10:50</strong>。<strong>10/6 06:15 / 06:30 不该当主方案。</strong></p>
+</div>
+<div class="grid g3">
+  <div class="card tile good">
+    <span class="tag g">主推</span>
+    <h3>10/5 20:05 飞 OSL</h3>
+    <p>全程唯一「<strong>零夜路 + 零衔接风险 + 回程奥斯陆一整天</strong>」的方案。10/5 的驾驶完全在白天
+（12 个住地出发时刻 13:53–15:29，EVE 10/5 民用暗夜 19:00 才开始）。到 OSL 是 21:50，
+10/6 一整天空着，正好用来逛奥斯陆。</p>
+    <p class="small">代价：10/5 白天在罗弗敦只剩到午后；10/5 那一晚不在罗弗敦。</p>
+  </div>
+  <div class="card tile aurora">
+    <span class="tag v">多睡 + 保住极光夜</span>
+    <h3>10/6 10:50 / 11:05</h3>
+    <p>被原有两个选项漏掉的第三条。10/5 晚<strong>照旧睡在罗弗敦自己的住地</strong>
+（黄金追光窗 20:16–05:32 几乎全在），10/6 出发时刻 <strong>04:38–06:14</strong>（住地越西越早），
+其中只有 <strong>16 分钟到 1 小时 52 分</strong>落在民用暗夜里（EVE 10/6 民用暗夜 06:31 结束），其余全程天亮。</p>
+    <p class="small">代价：10/6 几乎没有奥斯陆白天（约 0.5–1 h）；OSL 余量 1h10–1h30（自设）／约 3h30（航司 16:00 口径，分析推断）。</p>
+  </div>
+  <div class="card tile warn">
+    <span class="tag r">不建议当主方案</span>
+    <h3>10/6 06:15 / 06:30</h3>
+    <p>它的收益是「OSL 余量最大 5h45 + 10/6 上午约 3–3.5 h 奥斯陆」，但如果 10/5 晚仍住罗弗敦西部，
+    出发时刻是 <strong>00:18–01:54</strong>，<strong>3.1–4.7 小时连续黑夜驾驶</strong>；
+    若改宿 Sandtorgholmen，夜路只剩 31–45 min，但代价是 10/5 那一晚整晚不在罗弗敦。</p>
+    <p class="small">它是「把风险压到最低」的一档，但它的真正风险不是航班延误，而是<strong>凌晨 E10 封路时零恢复余量</strong>。</p>
+  </div>
+</div>
+
+<h3>按「你的第一优先级」选</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:26%">你的第一优先级</th><th style="width:30%">推荐分支</th><th>到 10/6 17:00 的 OSL 余量</th><th>10/5–10/6 黑暗段驾驶</th><th>10/5 晚睡眠</th></tr></thead><tbody>
+<tr><td>零风险 + 回程奥斯陆一整天</td><td><strong>E · 10/5 20:05 飞 OSL</strong></td><td class="c">前一晚已落地，衔接风险 0</td><td class="c">0 min（全部白天）</td><td class="c">OSL 机场酒店</td></tr>
+<tr><td><strong>想多睡，又要保住 10/5 的极光夜</strong></td><td><strong>C · 10/6 10:50 / 11:05</strong>（10/5 晚仍宿罗弗敦）</td><td class="c">+1h10~1h30（自设）</td><td class="c">16 min–1h52（占 9%–40%）</td><td class="c">≈5–7 h + 完整极光夜</td></tr>
+<tr><td>最大缓冲 + 奥斯陆半天</td><td>M · 10/6 06:30（10/5 晚宿 Sandtorgholmen）</td><td class="c">+5h45</td><td class="c">31–45 min（黑夜）</td><td class="c">≈6 h</td></tr>
+<tr><td>必须把 10/5 整天留在罗弗敦西部</td><td>M · 10/6 06:30（10/5 晚仍住西段）</td><td class="c">+5h45</td><td class="c"><strong>3.1–4.7 h（100% 黑夜）</strong></td><td class="c">0–2 h</td></tr>
+</tbody></table></div>
+<p class="cap">「OSL 余量」＝ 从 10/6 落地 OSL 到国际段 17:00 起飞之间，扣掉往返市区所需后可用于等待/补错的时间。「自设口径」＝ 以 14:00–14:30 到场托运为准（你自己的计划）；「航司口径」＝ 以托运 16:00 关闭为准（<em>分析推断</em>，待核实）。</p>
+<div class="callout"><strong>最关键的一句：</strong>这道题真正的分水岭不是「哪一班航班」，而是<strong>「10/5 那一晚到底在哪儿」</strong>。选 10/5 20:05 → 那一晚在 OSL；选 10/6 06:30 且改宿 Sandtorgholmen → 那一晚在 Sandtorgholmen；选 10/6 06:30 且仍住西段 → 那一晚基本在车上（00:18–01:54 上车）；只有当 10/5 晚<strong>仍睡在罗弗敦、10/6 坐 10:50 / 11:05</strong> 时，那一晚才真的属于罗弗敦。你要付的代价，本质是<strong>拿「4–5 小时 OSL 缓冲 + 半天奥斯陆」去换 10/5 的夜晚</strong>。</div>
+</div></section>
+<section id="s1"><div class="wrap">
+<div class="sec-head"><div class="num">Section 1</div><h2>四个分支逐项对照</h2><p class="sub">把「10/6 06:30」拆成两种做法（10/5 晚仍住罗弗敦 / 移师 Sandtorgholmen），再加上被两个原选项漏掉的第三条（10/6 10:50 / 11:05），一共四个分支。同一行横向比较，一眼看出代价落在哪。</p></div>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:20%">指标</th><th>E · 10/5 20:05</th><th>M · 10/6 06:30<br>宿罗弗敦西段</th><th>C · 10/6 10:50<br>宿罗弗敦西段</th><th>M′ · 10/6 06:30<br>宿 Sandtorgholmen</th></tr></thead><tbody>
+<tr><td><strong>航班时刻</strong></td><td>20:05 → 21:50（挪威）<br><span class="small">当天最后一班，之后无航班</span></td><td>06:30 → 08:15（挪威）<br>06:15 → 08:00（SAS）</td><td>10:50 → 12:30（SAS）<br>11:05 → 12:50（挪威）</td><td>同左（06:15 / 06:30）</td></tr>
+<tr><td><strong>必须到 EVE</strong></td><td>18:35</td><td>05:00</td><td>09:20</td><td>05:00</td></tr>
+<tr><td><strong>从罗弗敦西段住地出发</strong><br><span class="small">12 个候选逐个算</span></td><td>13:53–15:29</td><td><strong>00:18–01:54</strong></td><td><strong>04:38–06:14</strong></td><td>—</td></tr>
+<tr><td><strong>从 Sandtorgholmen 出发</strong><br><span class="small">E10 顺路，≈30 min</span></td><td>—</td><td>—</td><td>—</td><td>≈04:15</td></tr>
+<tr><td><strong>黑暗段驾驶</strong></td><td><strong>0 min</strong>（全部白天）</td><td><strong>3.1–4.7 h</strong>（占全程 100%）</td><td><strong>16 min – 1h52</strong>（占全程 9%–40%）</td><td>31–45 min（占全程 100%）</td></tr>
+<tr><td><strong>10/5 白天在罗弗敦</strong></td><td>只剩到 13:53–15:29</td><td><strong>完整一天</strong></td><td><strong>完整一天</strong></td><td>只剩到午后（需先开 287 km / ≈4h05）</td></tr>
+<tr><td><strong>10/5 过夜地点</strong></td><td>OSL 机场酒店</td><td><strong>罗弗敦自己的住地</strong></td><td><strong>罗弗敦自己的住地</strong></td><td>Sandtorgholmen</td></tr>
+<tr><td><strong>10/5 夜可用于追光 / 休息</strong></td><td>0（在 OSL）</td><td>≈3.7 h（20:16–00:00）<br>睡眠 0–2 h</td><td>≈8 h（20:16–04:38）<br>可睡 3–4 h</td><td>0（在 Sandtorgholmen 睡 ≈6 h）</td></tr>
+<tr><td><strong>OSL 落地</strong></td><td>10/5 21:50</td><td>10/6 08:15</td><td>10/6 12:30–12:50</td><td>10/6 08:15</td></tr>
+<tr><td><strong>到 10/6 17:00 的余量</strong></td><td>已落地，衔接风险 0</td><td>+5h45</td><td>+1h10–1h30</td><td>+5h45</td></tr>
+<tr><td><strong>10/6 奥斯陆可用时间</strong></td><td><strong>≈7–8 h（一整天）</strong></td><td>≈3–3.5 h</td><td>≈0.5–1 h</td><td>≈3–3.5 h</td></tr>
+</tbody></table></div>
+<p class="cap">「必须到 EVE」统一取「起飞前 90 分钟」（含还车与托运）；「从住地出发」＝ 该时刻减去 OSRM 车程 + 15 min 缓冲，按 12 个候选住地逐个算出（见 Section 3）。「黑暗段」＝ 出发时刻到 EVE 10/6 民用暗夜结束 06:31 之间的分钟数。「Sandtorgholmen 出发」按 EVE→Sandtorgholmen 29.9 km / 30.8 min 反推，属<em>分析推断</em>。C 若也改宿 Sandtorgholmen，则出发 ≈08:15、黑暗段 0，其余同 C。</p>
+<div class="callout danger"><strong>被两个原选项同时漏掉的一点：</strong>「10/6 06:30」和「10/5 20:05」都不是「保住最后一晚」的方案 —— 只有 <strong>10/6 10:50 / 11:05 且 10/5 晚仍睡在罗弗敦</strong>，才能既保住 10/5 的完整白天与大半追光夜，又把黑暗段驾驶压到 2 小时以内。<strong>它唯一的短板是 10/6 几乎没有奥斯陆白天。</strong></div>
+</div></section>
+<section id="s2"><div class="wrap">
+<div class="sec-head"><div class="num">Section 2</div><h2>10/1 抵达：OSL→EVE 到底该买哪一班</h2><p class="sub">你 15:55 从 KEF 落地 OSL，同伴 14:30 从 DOH 落地 OSL。两张票是分开的，必须出到陆侧再重新过一次国内安检 —— 这个环节决定了 17:55 那一班能不能赶上。</p></div>
+<h3>2.1 两班的余量账</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:16%">OSL→EVE</th><th style="width:20%">陆侧现实时刻</th><th>国内托运截止</th><th style="width:14%">可用余量</th><th>判定</th></tr></thead><tbody>
+<tr><td><strong>17:55 → 19:35</strong></td><td>B787 落地 15:55 → 陆侧现实 16:20–16:40</td><td>≈17:25（分析推断）</td><td><strong>≈45–65 min</strong></td><td><span class="tag r">临界</span> 任何一段进港延误都被零吸收；同伴的 DOH 航班（非申根，需过护照 + 提行李）更紧</td></tr>
+<tr><td><strong>21:00 → 22:40</strong></td><td>同上</td><td>同上</td><td><strong>≈4 h</strong></td><td><span class="tag g">稳</span> 可吸收 2–3 h 进港延误；是当天最后一班</td></tr>
+</tbody></table></div>
+<p class="cap">OSL 只有一个航站楼，但分票 = 必须重新过行李与安检。你的航班从冰岛来（申根内），理论上只需提行李；同伴从多哈来（非申根），需要过护照检查。<em>陆侧时刻为分析推断</em>。</p>
+<h3>2.2 早到 1.5 小时买到了什么？答案是几乎没有</h3>
+<div class="grid g2">
+  <div class="card tile warn">
+    <span class="tag r">17:55 的唯一收益</span>
+    <h3>早到 EVE 约 1h25</h3>
+    <p>但 10/1 当晚的极光收益本来≈0：民用暗夜窗口 19:27–06:23，然而<strong>月光 76%（接近满月）</strong>，
+    黄金追光窗口虽然是 20:33–05:17，但你在 19:35 才落地、取车后走 E10 两小时四十五分，
+    <strong>现实到店时间约 01:20–01:40</strong>（分析推断）。当晚能用的干净时间不足 2 小时，且被强月光干扰。</p>
+    <p>换句话说：早到的那 1 小时 25 分<strong>换不到什么</strong>，却要拿「整条国际+国内衔接」去赌。</p>
+  </div>
+  <div class="card tile good">
+    <span class="tag g">21:00 的收益</span>
+    <h3>用 1h25 换 4 小时缓冲</h3>
+    <p>21:00 那班落地 22:40，到店时间推迟到约 02:50–03:10（分析推断）—— 但 10/1 这一晚本来就是
+<strong>全程代价最小的一晚</strong>（月光 76%、你还没到），拿它去换「不会在 OSL 过夜」这件事非常划算。</p>
+    <p>而且它是当天最后一班：<strong>如果 21:00 也没赶上，你只能睡奥斯陆，10/2 改早班</strong>——
+那个早班（08:40 SAS / 08:55 挪威，<em>待核实</em>）会把 10/2 进 Henningsvær 的时间从 11:20 推到 ≈14:15–14:45，
+直接损失约 3 小时白昼。</p>
+  </div>
+</div>
+
+<div class="callout"><strong>建议：买 21:00。</strong>除非你能在出发前就确认两班进港都准点且你的冰岛段有 ≥90 min 的前置余量，否则 17:55 属于「省不到东西、亏得起很多」的那种选择。</div>
+<h3>2.3 10/2 进岛的两种走法</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:26%">走法</th><th style="width:22%">到 Henningsvær 的时间</th><th style="width:20%">代价</th><th style="width:20%">收益</th><th style="width:12%">判定</th></tr></thead><tbody>
+<tr><td>① 10/1 当晚飞 EVE（21:00）</td><td>≈01:20–01:40 到 Henningsvær</td><td>10/2 约 11:20 就可以出发</td><td>10/1 极光收益≈0</td><td><span class="tag g">推荐</span></td></tr>
+<tr><td>② 10/1 住奥斯陆 + 10/2 早班（08:40 / 08:55）</td><td>10/2 ≈14:15–14:45 到 Henningsvær</td><td>10/2 白昼少约 3 小时</td><td>换到 10/1 傍晚约 4.5 h + 7.5 h 睡眠</td><td><span class="tag r">不划算</span></td></tr>
+<tr><td>③ 10/1 + 10/2 都住奥斯陆</td><td>10/3 才进岛</td><td>直接损失 10/2 一整天</td><td>—</td><td><span class="tag r">否决</span></td></tr>
+</tbody></table></div>
+<p class="cap">走法 ② 的关键是把「10/1 收益低」用反了：10/1 收益低<strong>不代表 10/2 的白昼便宜</strong>。10/2 是你的第一个完整白天，它的边际价值远高于 10/1 那个强月光的深夜。</p>
+</div></section>
+<section id="s3"><div class="wrap">
+<div class="sec-head"><div class="num">Section 3</div><h2>夜路与睡眠：12 个住地逐个算出发时刻</h2><p class="sub">这是本节最有用的一张表。任何「10/5 晚还住在罗弗敦、10/6 一早飞」的方案，出发时刻都在凌晨 0–2 点之间。数字 = OSRM 实测车程 + 15 min 缓冲，反推自「必须到 EVE 的时刻」。</p></div>
+<h3>3.1 逐住地出发时刻表</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:5%"></th><th style="width:24%">住地</th><th style="width:8%">到 EVE<br>总时长</th><th style="width:10%">M 出发<br>(10/6 06:30)</th><th style="width:11%">M 黑暗段<br>(夜间驾驶)</th><th style="width:10%">C 出发<br>(10/6 10:50)</th><th style="width:11%">C 黑暗段<br>(夜间驾驶)</th><th style="width:10%">E 出发<br>(10/5 20:05)</th><th style="width:9%">E 黑暗段</th></tr></thead><tbody>
+<tr><td class="c">H01</td><td>Banhammaren 39（Henningsvær）</td><td class="c">3.18 h</td><td class="c"><strong>1:49</strong></td><td class="c"><strong>191 min<br>100%</strong></td><td class="c"><strong>6:09</strong></td><td class="c">22 min<br>12%</td><td class="c">15:24</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H02</td><td>Misværveien 2 码头公寓（Henningsvær）</td><td class="c">3.15 h</td><td class="c"><strong>1:51</strong></td><td class="c"><strong>189 min<br>100%</strong></td><td class="c"><strong>6:11</strong></td><td class="c">20 min<br>11%</td><td class="c">15:26</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H03</td><td>Henningsvær Bryggehotell</td><td class="c">3.15 h</td><td class="c"><strong>1:51</strong></td><td class="c"><strong>189 min<br>100%</strong></td><td class="c"><strong>6:11</strong></td><td class="c">20 min<br>11%</td><td class="c">15:26</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H04</td><td>Hattvika Hillside（Ballstad）</td><td class="c">4.08 h</td><td class="c"><strong>0:55</strong></td><td class="c"><strong>245 min<br>100%</strong></td><td class="c"><strong>5:15</strong></td><td class="c">76 min<br>31%</td><td class="c">14:30</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H05</td><td>Fishermans Villa Ballstad</td><td class="c">4.05 h</td><td class="c"><strong>0:57</strong></td><td class="c"><strong>243 min<br>100%</strong></td><td class="c"><strong>5:17</strong></td><td class="c">74 min<br>30%</td><td class="c">14:32</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H06</td><td>Jusnesveien 55（Flakstad / Ramberg）</td><td class="c">4.33 h</td><td class="c"><strong>0:40</strong></td><td class="c"><strong>260 min<br>100%</strong></td><td class="c"><strong>5:00</strong></td><td class="c">91 min<br>35%</td><td class="c">14:15</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H07</td><td>Oceanview Mini-House（Andopveien 35, Ramberg）</td><td class="c">4.35 h</td><td class="c"><strong>0:39</strong></td><td class="c"><strong>261 min<br>100%</strong></td><td class="c"><strong>4:59</strong></td><td class="c">92 min<br>35%</td><td class="c">14:14</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H08</td><td>Varanes / Elvis Presleys vei 25（Flakstad）</td><td class="c">4.33 h</td><td class="c"><strong>0:40</strong></td><td class="c"><strong>260 min<br>100%</strong></td><td class="c"><strong>5:00</strong></td><td class="c">91 min<br>35%</td><td class="c">14:15</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H09</td><td>Vei 2803 22 全景公寓（Gimsøystraumen）</td><td class="c">3.10 h</td><td class="c"><strong>1:54</strong></td><td class="c"><strong>186 min<br>100%</strong></td><td class="c"><strong>6:14</strong></td><td class="c">17 min<br>9%</td><td class="c">15:29</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H10</td><td>Unstad Arctic Resort</td><td class="c">3.87 h</td><td class="c"><strong>1:08</strong></td><td class="c"><strong>232 min<br>100%</strong></td><td class="c"><strong>5:28</strong></td><td class="c">63 min<br>27%</td><td class="c">14:43</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H11</td><td>Eliassen Rorbuer（Hamnøy）</td><td class="c">4.70 h</td><td class="c"><strong>0:18</strong></td><td class="c"><strong>282 min<br>100%</strong></td><td class="c"><strong>4:38</strong></td><td class="c">113 min<br>40%</td><td class="c">13:53</td><td class="c">0 min<br>0%</td></tr>
+<tr><td class="c">H12</td><td>Nusfjord Village & Resort</td><td class="c">4.30 h</td><td class="c"><strong>0:42</strong></td><td class="c"><strong>258 min<br>100%</strong></td><td class="c"><strong>5:02</strong></td><td class="c">89 min<br>34%</td><td class="c">14:17</td><td class="c">0 min<br>0%</td></tr>
+</tbody></table></div>
+<p class="cap">「出发时刻」＝ 到达 EVE 的时刻（06:30／10:50 班次取起飞前 90 min，即 05:00／09:20；20:05 班次取 18:35）减去该住地到 EVE 的总时长。「黑暗段」＝ 出发时刻到 EVE 10/6 民用暗夜结束 <strong>06:31</strong> 之间的分钟数，也就是这段驾驶真正落在黑夜里的部分。EVE 10/5 日落 18:03、民用暗夜 19:00 才开始，所以分支 E 的出发（13:53–15:29）与抵达（≈18:35）<strong>全程在天光里</strong>。</p>
+<div class="grid g3">
+  <div class="card tile good">
+    <span class="tag g">结论 1</span>
+    <h3>分支 E 的夜路是 0，而且是「对全部 12 个住地都成立」的 0</h3>
+    <p>不是因为某个住地特别近，而是因为出发时刻（13:53–15:29）与抵达时刻（≈18:35）都落在这条路线的白天段里。
+    这是本报告里唯一一个<strong>完全不需要看住址</strong>的结论。</p>
+  </div>
+  <div class="card tile warn">
+    <span class="tag r">结论 2</span>
+    <h3>分支 M 的夜路是 100%，对全部 12 个住地</h3>
+    <p>从 Eliassen（Hamnøy）出发最极端：<strong>00:18 上车、4 小时 42 分全程黑夜驾驶</strong>。
+    从 Henningsvær 出发是 01:49–01:51 上车、约 3 小时 10 分。没有例外。</p>
+    <p>而且这段驾驶的性质与白天不同：<strong>它有一个不可推迟的截止时刻</strong>，中途没有替代方案。</p>
+  </div>
+  <div class="card tile aurora">
+    <span class="tag v">结论 3</span>
+    <h3>同样睡在罗弗敦，改坐 10:50 就把黑夜段从 100% 压到 9%–40%</h3>
+    <p>10/6 10:50 那班反推出发时刻是 <strong>04:38–06:14</strong>，
+    落在民用暗夜里的只有 <strong>16 分钟到 1 小时 52 分</strong>（住地越西越多，最西的 Hamnøy 是 1h52）。
+    其余全程天亮 —— 这是「多睡」和「少夜路」同时成立的那一档。</p>
+  </div>
+</div>
+
+</div></section>
+<section id="s4"><div class="wrap">
+<div class="sec-head"><div class="num">Section 4</div><h2>极光账：10/5 是全程最好的一晚，而你正在考虑放弃它</h2><p class="sub">下面这张表按 Henningsvær 口径计算（Ballstad 晚 2–3 min、Ramberg 晚 3–4 min，差异不影响结论）。「黄金窗口」＝ 航海蒙影结束 → 次日航海蒙影开始。</p></div>
+<div class="tblwrap"><table><thead><tr><th>夜</th><th>民用暗夜窗口</th><th>时长</th><th>黄金追光窗口</th><th>黄金时长</th><th>月光干扰</th></tr></thead><tbody>
+<tr><td class="c"><strong>10/1</strong></td><td class="c">19:27 – 06:23</td><td class="c">10.9 h</td><td class="c">20:33 – 05:17</td><td class="c"><strong>8.7 h</strong></td><td class="c">强干扰 76%</td></tr>
+<tr><td class="c"><strong>10/2</strong></td><td class="c">19:22 – 06:27</td><td class="c">11.1 h</td><td class="c">20:29 – 05:20</td><td class="c"><strong>8.9 h</strong></td><td class="c">强干扰 67%</td></tr>
+<tr><td class="c"><strong>10/3</strong></td><td class="c">19:18 – 06:30</td><td class="c">11.2 h</td><td class="c">20:24 – 05:24</td><td class="c"><strong>9.0 h</strong></td><td class="c">较弱 56%</td></tr>
+<tr><td class="c"><strong>10/4</strong></td><td class="c">19:14 – 06:34</td><td class="c">11.3 h</td><td class="c">20:20 – 05:28</td><td class="c"><strong>9.1 h</strong></td><td class="c">较弱 46%</td></tr>
+<tr style="background:#fdf6e3"><td class="c"><strong>10/5</strong></td><td class="c">19:10 – 06:37</td><td class="c">11.5 h</td><td class="c">20:16 – 05:32</td><td class="c"><strong>9.3 h</strong></td><td class="c"><strong>最弱</strong> 35%</td></tr>
+<tr><td class="c"><strong>10/6</strong></td><td class="c">19:06 – 06:41</td><td class="c">11.6 h</td><td class="c">20:12 – 05:36</td><td class="c"><strong>9.4 h</strong></td><td class="c"><strong>最弱</strong> 25%</td></tr>
+</tbody></table></div>
+<div class="grid g2">
+  <div class="card tile aurora">
+    <span class="tag v">事实</span>
+    <h3>10/5 是全程窗口最长、月光最少的一晚</h3>
+    <p>民用暗夜 11.5 h（比 10/1 长 0.6 h）、黄金窗口 9.3 h（比 10/1 长 0.6 h）、月光只有 <strong>35%</strong>
+（10/1 是 76%）。10/6 的月光更少（25%），意思是<strong>越晚走，天空越干净</strong>。</p>
+  </div>
+  <div class="card tile warn">
+    <span class="tag r">代价</span>
+    <h3>但这个「越好」的趋势，正好撞上你必须离开的时刻</h3>
+    <p>选 20:05 → 你 13:53–15:29 就得从住地出发，10/5 的夜晚根本不在这条路上。<br>
+    选 06:30 仍住西段 → 你 00:18–01:54 上车，只能吃到黄金窗的前半段（20:16–00:00，约 3.7 h）。<br>
+    选 06:30 改宿 Sandtorgholmen → 10/5 夜晚在岛外（西向海平线仍可追光，属折中档）。<br>
+    选 10:50 仍住西段 → 20:16–04:38 都能安排（可睡 3–4 h），<strong>是唯一把 10/5 整夜留在罗弗敦的做法</strong>。</p>
+  </div>
+</div>
+
+<div class="callout"><strong>反直觉但重要：</strong>如果你注定要牺牲某一晚，从纯天文条件看，应该牺牲 <strong>10/1</strong>（月光 76%、你 01:20 才到店）而不是 10/5。这也正是「10/1 买 21:00」这个建议成立的底层原因。</div>
+<p class="note">月相交叉参照（设计稿估算口径，<em>仅供参考</em>）：10/1 78% · 10/2 68% · 10/3 57% · 10/4 42% · 10/5 32% · 10/6 23%。本报告采用的天文计算值为 76 / 67 / 56 / 46 / 35 / 25%，两者相差 ≤4 个百分点，排序与结论完全一致。</p>
+</div></section>
+<section id="s5"><div class="wrap">
+<div class="sec-head"><div class="num">Section 5</div><h2>奥斯陆值不值得待一天</h2><p class="sub">值得 —— 但请放在<strong>回程</strong>，而且最划算的形式恰好就是「10/5 20:05 飞 OSL + 住机场酒店」。下面是量化理由，不是感觉。</p></div>
+<div class="verdict"><p><strong>结论：值，且应当用回程的「死时间」去换，而不是用去程的「活白天」去换。</strong></p></div>
+<h3>5.1 为什么「回程」几乎是免费的</h3>
+<p>10/6 那一天，无论你选哪班回 OSL，本体都是<strong>在机场等 17:00 的国际航班</strong>。把它的一部分变成市区时间，边际成本极低：</p>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:20%">分支</th><th style="width:28%">时间结构</th><th style="width:20%">可用的奥斯陆时间</th><th>占用的罗弗敦时间</th><th style="width:12%">判定</th></tr></thead><tbody>
+<tr><td>10/5 20:05 分支</td><td>10/5 21:50 落地，10/6 全天自由</td><td><strong>≈7–8 h</strong></td><td>0（10/5 本来就要移动）</td><td><span class="tag g">最优</span></td></tr>
+<tr><td>10/6 06:30 分支</td><td>10/6 08:15 落地，17:00 起飞</td><td>≈3–3.5 h</td><td>0</td><td><span class="tag">次优</span></td></tr>
+<tr><td>10/6 10:50 分支</td><td>10/6 12:30 落地，17:00 起飞</td><td>≈0.5–1 h</td><td>0</td><td><span class="tag r">几乎没有</span></td></tr>
+<tr><td>10/1 住奥斯陆（去程）</td><td>10/2 早班进岛</td><td>10/1 傍晚 ≈4.5 h</td><td><strong>10/2 白昼 ≈3 h</strong></td><td><span class="tag r">不划算</span></td></tr>
+</tbody></table></div>
+<p class="cap">「可用的奥斯陆时间」已扣除 Flytoget 往返（单程约 20 min）与机场安检缓冲，属<em>分析推断</em>。</p>
+<h3>5.2 可以去什么（均以官网为准）</h3>
+<ul>
+<li><strong>Flytoget 机场 ↔ Oslo S</strong>：约 20 分钟（可引用事实）。</li>
+<li><strong>Vigelandsparken 维格兰雕塑公园</strong>：免费、全天开放（可引用事实）。是「只有半天」时最不容易踩坑的一站。</li>
+<li><strong>Oslo Opera House 歌剧院</strong>：可走上倾斜屋顶，免费（可引用事实）。</li>
+<li><strong>维京船博物馆</strong>：据公开信息处于闭馆/重建状态，<strong>出发前必须核实</strong>（待核实）。</li>
+<li><strong>OSL 行李寄存</strong>：约 100–150 NOK / 件（<em>待核实</em>）。有寄存才能轻装进城。</li>
+</ul>
+<div class="callout"><strong>一句话给用户：</strong>如果你问「奥斯陆值不值得待一天」，答案是「值」，但正确的做法是 <strong>10/5 20:05 飞过去，把 10/6 一整天给奥斯陆</strong>——这样你既不花任何罗弗敦白天，也不需要凌晨开车。反过来，把奥斯陆塞进去程 10/1，代价是 10/2 的 3 小时白昼，而那正是你整趟行程里第一次、也是唯一一次「罗弗敦的第一个完整白天」。</div>
+</div></section>
+<section id="s6"><div class="wrap">
+<div class="sec-head"><div class="num">Section 6</div><h2>天气触发规则与决策时间线</h2><p class="sub">返程这道题真正的风险不是「航班延误」，而是「凌晨 E10 因为桥面风或封路而走不了」。所以需要的不是预测，而是一条<strong>什么时候切换的规则</strong>。</p></div>
+<h3>6.1 决策时间线</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:18%">时间</th><th style="width:14%">性质</th><th>动作</th><th style="width:12%">标记</th></tr></thead><tbody>
+<tr><td><strong>D-10 ~ D-6</strong><br>10/1 前后</td><td>无决策价值</td><td>长周期预报在罗弗敦几乎无参考性，不要据此改行程</td><td><span class="tag">忽略</span></td></tr>
+<tr><td><strong>D-5 ~ D-3</strong><br>9/26–9/28</td><td>锁结构与可退票</td><td>把住宿（可免费取消）、机票（可改签）都锁在「两种分支都成立」的形态；确认租车还车日期与轮胎</td><td><span class="tag b">准备</span></td></tr>
+<tr><td><strong>D-2</strong><br>9/29</td><td>主判断</td><td>看趋势：极地低压是否生成、E10 是否进入预警区间</td><td><span class="tag b">观察</span></td></tr>
+<tr><td><strong>D-1</strong><br>10/4 晚 – 10/5 12:00</td><td>主决策点</td><td>决定 10/5 白天怎么用、10/5 晚住哪、以及是否直接执行 10/5 20:05</td><td><span class="tag g">决策</span></td></tr>
+<tr><td><strong>D-0</strong><br>10/5 17:00</td><td><strong>最后切换点</strong></td><td>17:45 前必须决定是否上 20:05 那班 —— 它是当天最后一班，错过即不可补救</td><td><span class="tag r">硬截止</span></td></tr>
+</tbody></table></div>
+<h3>6.2 阈值（分析推断）</h3>
+<div class="grid g4">
+  <div class="card tile good"><span class="tag g">🟢 绿</span>
+    <p>阵风 &lt; 15 m/s<br>能见度 &gt; 5 km<br>云底 &gt; 800 ft<br>E10 无封路</p>
+    <p class="small">按原计划执行。</p></div>
+  <div class="card tile gold"><span class="tag">🟡 黄</span>
+    <p>阵风 15–22 m/s</p>
+    <p class="small">提前把「10/5 20:05」这班作为主方案；减少 10/5 傍晚的户外安排。</p></div>
+  <div class="card tile warn"><span class="tag r">🔴 红</span>
+    <p>阵风 ≥ 22–25 m/s<br>或极地低压 / 暴风预警<br>或 Gimsøystraumen / Raftsundet 桥面风 + E10 封路预警<br>或云底 &lt; 300 ft / LVP</p>
+    <p class="small">执行切换：改 10/5 20:05 飞 OSL，或至少把 10/5 晚的基地移到 Sandtorgholmen 一线。</p></div>
+  <div class="card tile aurora"><span class="tag v">⚪ 极地低压</span>
+    <p>不可预报</p>
+    <p class="small">近地面风可达 ≥17 m/s，预报提前量通常不到 24 小时。<strong>看到就走，不要等它「变好」。</strong></p></div>
+</div>
+
+<p class="cap">可引用事实：极地低压（polar low）近地面风速常达 17 m/s 以上，北欧冬季平均约出现 15 次，预报提前量普遍小于 24 小时。阈值数字为<em>分析推断</em>，不构成安全标准。</p>
+<h3>6.3 查阅清单</h3>
+<ul>
+<li><strong>yr.no</strong> 逐小时预报，加看 <code>E10 Gimsøystraumen bru</code> 风站。</li>
+<li><strong>MET</strong>（挪威气象局）预警页面。</li>
+<li><strong>Avinor</strong> 航班状态 + 航司 App 推送。</li>
+<li><strong>Statens vegvesen</strong> 175.no 路况 + veikamera 摄像头。</li>
+<li><strong>NOAA SWPC</strong> Kp 指数（判断极光，不判断能不能飞）。</li>
+<li><strong>ENEV METAR / TAF</strong>（EVE 只有 CAT I ILS，周边地形限制，低云低能见度时更容易备降或取消）。</li>
+</ul>
+<div class="callout danger"><strong>最重要的一条规则：</strong>只要 <strong>10/5 17:00</strong> 判断「10/6 凌晨 E10 有封路或桥面风风险」，就立刻执行「10/5 20:05 飞 OSL」。它把「凌晨在 E10 上」这个唯一的高危环节整个删掉，代价只是 10/5 少半天 —— 而这半天本来也要用来赶路。</div>
+</div></section>
+<section id="s7"><div class="wrap">
+<div class="sec-head"><div class="num">Section 7</div><h2>风险清单与行动项</h2><p class="sub">按「会不会真的毁掉行程」排序，不按概率排序。</p></div>
+<h3>7.1 风险清单</h3>
+<div class="tblwrap"><table>
+<thead><tr><th style="width:8%">等级</th><th style="width:22%">风险</th><th style="width:40%">说明</th><th>对策</th></tr></thead><tbody>
+<tr><td><span class="tag r">高</span></td><td>10/6 06:30 + 10/5 晚住西段：04:00 前后 E10 封路</td><td>零恢复余量。若同时没有 10/6 10:50 之后的座位，当天就走不了。</td><td>必须同时持有 10/6 10:50 / 11:05 作为后手（改签或另订）。</td></tr>
+<tr><td><span class="tag r">高</span></td><td>Gimsøystraumen 桥 / Raftsundet 桥</td><td>暴露段，本地有阵风约 27 m/s 直接作用在桥面上的记录（可引用事实，本地媒体口径）。</td><td>把「桥面风」当成独立指标看，不看陆地上的均风。</td></tr>
+<tr><td><span class="tag b">中</span></td><td>10 月初路面结霜 / 薄冰，且租车多为夏季胎</td><td>Nordland 通常 10/16 起才允许钉胎（可引用事实），现实是 10 月初的租车几乎都是夏季胎。Skrova 10 月均温 6.5 °C、日均最低 4.9 °C、记录最低 −4.5 °C（可引用事实）。</td><td>确认轮胎类型与是否有 4WD；凌晨驾驶降速；宁晚不险。</td></tr>
+<tr><td><span class="tag b">中</span></td><td>EVE 只有 CAT I ILS，周边地形受限</td><td>低云 / 低能见度时更容易备降或取消。</td><td>晚班机取消的影响比早班机大 —— 这是 10/5 20:05 分支的主要软肋。</td></tr>
+<tr><td><span class="tag v">隐形</span></td><td>汽车还车日期随分支不同</td><td>选 10/5 20:05 的话，还车日期比 10/6 分支早一天，可能触发不同的租车条款或费用。</td><td><strong>下单机票之前</strong>先确认租车条款与异地/跨日还车规则。</td></tr>
+<tr><td><span class="tag">说明</span></td><td>航司托运截止的口径差异</td><td>若按 14:00–14:30 到场（自设），10/6 10:50 的余量是 1h10–1h30；若按航司通常提前 3h 关闭托运（≈16:00，分析推断），余量变成约 3h30。</td><td>以航司官网与购票确认单为准（待核实）。</td></tr>
+</tbody></table></div>
+<h3>7.2 行动清单</h3>
+<ol class="action">
+<li>先锁 <strong>10/5 20:05 EVE→OSL</strong> 作为主方案（当天最后一班，座位相对紧张）。</li>
+<li>同时下单 <strong>可免费取消</strong>的 OSL 机场酒店（10/5 晚）。</li>
+<li>保留 <strong>10/6 10:50 / 11:05</strong> 作为后手座位，或至少确认可改签至该班。</li>
+<li>把 Sandtorgholmen（或同类 E10 顺路住宿）也订成<strong>可退</strong>，作为「必须保住 10/5 白天在罗弗敦」时的备选。</li>
+<li>10/1 买 <strong>21:00</strong> 的 OSL→EVE，不要买 17:55。</li>
+<li>租车：确认还车日期、异地还车、轮胎类型与是否 4WD。</li>
+<li>出发前 48 h 起每天查 <strong>E10 Gimsøystraumen 桥风 + MET 预警</strong>；10/5 17:00 做最后一次切换判断。</li>
+</ol>
+<div class="callout"><strong>日程补丁：</strong>10/4 是<strong>星期日</strong>，罗弗敦多数商店与超市关门。如果要把 Leknes 采买安排进固定行程，请放在 <strong>10/3（星期六）</strong>。（10/1 四 · 10/2 五 · 10/3 六 · 10/4 日 · 10/5 一 · 10/6 二）</div>
+</div></section>
+<section id="s8"><div class="wrap">
+<div class="sec-head"><div class="num">Section 8</div><h2>来源与不确定性</h2><p class="sub">把「事实」「推断」「待核实」分开写，方便你核对与推翻。</p></div>
+<div class="grid g3">
+  <div class="card tile good"><span class="tag g">可引用事实</span>
+    <ul>
+      <li>各点的日出/日落/民用/航海/天文蒙影时刻与月相为天文计算结果，误差 ≤ ±3 min。</li>
+      <li>OSRM 车程为道路网络估算，误差约 ±10–15%。</li>
+      <li>极地低压近地面风 ≥17 m/s、冬季约 15 次、预报提前量常 &lt;24 h。</li>
+      <li>Nordland 通常 10/16 起允许钉胎。</li>
+      <li>Skrova 10 月均温 6.5 °C / 日均最低 4.9 °C / 记录最低 −4.5 °C。</li>
+      <li>EVE 仅 CAT I ILS；OSL 为单航站楼。</li>
+    </ul></div>
+  <div class="card tile gold"><span class="tag">分析推断</span>
+    <ul>
+      <li>OSL 陆侧现实时刻（同伴 15:45–16:15 / 你 16:20–16:40）。</li>
+      <li>国内托运截止 ≈ 起飞前 30 min。</li>
+      <li>Sandtorgholmen 出发时刻（按 29.9 km / 30.8 min 反推）。</li>
+      <li>10/1 到店时刻 ≈ 01:20–01:40。</li>
+      <li>天气阈值（15 / 22–25 m/s、800 ft、5 km）。</li>
+      <li>10/6 国际段托运截止 ≈ 16:00。</li>
+    </ul></div>
+  <div class="card tile warn"><span class="tag r">待核实</span>
+    <ul>
+      <li>10/2 早班时刻（08:40 SAS / 08:55 挪威）。</li>
+      <li>维京船博物馆是否仍闭馆。</li>
+      <li>OSL 行李寄存价格。</li>
+      <li>10/6 国际航班托运截止的准确时刻。</li>
+      <li>租车条款：还车日期、异地还车、轮胎与 4WD。</li>
+    </ul></div>
+</div>
+
+<div class="callout danger"><strong>关于机票截图：</strong>本报告<strong>未读取任何机票截图</strong>（图像文件在当前环境下无法解析）。所有航班时刻均来自文本来源整理，因此<strong>请一律以航司官网与购票确认单为准</strong>。</div>
+<h3>数据文件</h3>
+<ul class="small">
+<li><code>_s_return.txt</code> —— 日照/蒙影/暗夜窗口、逐夜暗夜时长、OSRM 逐段车程、逐住地出发时刻、OSL 缓冲账、10/1 衔接可行性。</li>
+<li><code>_lodging12_astro.txt</code> —— 12 个候选住地逐夜「极光可用暗夜窗口」与黄金窗口。</li>
+<li><code>_lodging12.txt</code> / <code>_lodging12.json</code> —— OSRM 车程矩阵原始结果。</li>
+</ul>
+</div></section>
+<footer><div class="wrap">
+<h3>关于这份文件</h3>
+<p><strong>本分析由 DeepSeek 生成</strong>（2026-09-17）。所有时刻表均可用 <code>_s_return.txt</code> 与 <code>_lodging12_astro.txt</code> 复核；未采用任何图像形式的机票截图，航班时刻请以航司官网为准。</p>
+<p class="note" style="color:rgba(255,250,240,.6)">本报告不包含地图或照片，可在任何位置离线打开。</p>
+<p class="note" style="color:rgba(255,250,240,.55);margin-bottom:0">© 2026 · DeepSeek 生成 · 仅作旅行规划参考，不构成预订决策</p>
+</div></footer>
+</body>
+</html>
