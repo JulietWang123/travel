@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>挪威 2026 年 10 月行程住宿路线总汇（GPT 生成）</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <style>
+    :root {
+      --paper:#f5f1e8;
+      --ink:#172126;
+      --muted:#66737a;
+      --line:#d8d2c5;
+      --card:#fffaf0;
+      --blue:#1b6178;
+      --green:#416b55;
+      --rust:#b65b36;
+      --gold:#c79538;
+      --violet:#5f568d;
+      --dark:#10242c;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      color:var(--ink);
+      background:var(--paper);
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      line-height:1.65;
+    }
+    img { max-width:100%; display:block; }
+    a { color:var(--blue); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .hero {
+      min-height:82vh;
+      color:white;
+      display:grid;
+      align-items:end;
+      background:
+        linear-gradient(180deg, rgba(13,28,34,.12), rgba(13,28,34,.86)),
+        url("norway-images/lofoten-aurora.jpg") center / cover;
+    }
+    .wrap { width:min(1180px, calc(100% - 34px)); margin:0 auto; }
+    .hero .wrap { padding:46px 0 58px; }
+    .eyebrow {
+      display:inline-flex;
+      padding:7px 12px;
+      border:1px solid rgba(255,255,255,.48);
+      border-radius:999px;
+      font-size:13px;
+      letter-spacing:.03em;
+      background:rgba(0,0,0,.16);
+      backdrop-filter:blur(8px);
+    }
+    h1 {
+      max-width:1050px;
+      margin:18px 0 18px;
+      font-size:clamp(40px, 7.4vw, 92px);
+      line-height:.98;
+      letter-spacing:0;
+    }
+    .hero p {
+      max-width:780px;
+      margin:0;
+      color:#edf3ef;
+      font-size:clamp(17px, 2vw, 22px);
+    }
+    h1 .ver {
+      display:block;
+      margin-top:8px;
+      font-size:.4em;
+      font-weight:600;
+      letter-spacing:0;
+      color:rgba(255,255,255,.86);
+    }
+    .site-nav {
+      background:var(--card);
+      border-bottom:1px solid var(--line);
+    }
+    .site-nav .wrap {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      padding:11px 0;
+    }
+    .site-nav .lbl { color:var(--muted); font-size:13px; font-weight:700; margin-right:2px; }
+    .site-nav a {
+      padding:6px 11px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--paper);
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    nav {
+      position:sticky;
+      top:0;
+      z-index:800;
+      background:rgba(245,241,232,.94);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(14px);
+    }
+    .nav-inner {
+      min-height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:10px 0;
+    }
+    .nav-inner strong { color:var(--ink); }
+    .nav-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .nav-links a {
+      color:var(--ink);
+      padding:7px 11px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--card);
+      font-size:13px;
+      font-weight:760;
+    }
+    section { padding:54px 0; border-top:1px solid var(--line); }
+    h2 {
+      margin:0 0 10px;
+      font-size:clamp(27px, 4vw, 48px);
+      line-height:1.08;
+      letter-spacing:0;
+    }
+    .lead { max-width:880px; margin:0 0 24px; color:var(--muted); font-size:17px; }
+    .grid { display:grid; gap:14px; }
+    .cols-2 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .cols-3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .cols-4 { grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .card {
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:20px;
+    }
+    .card.dark { background:var(--dark); color:white; border-color:var(--dark); }
+    .card.dark p, .card.dark li { color:#d7e0dd; }
+    .card h3 { margin:0 0 8px; font-size:21px; line-height:1.25; }
+    .card p { margin:0; color:var(--muted); }
+    .tagrow { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .tag {
+      display:inline-flex;
+      align-items:center;
+      min-height:28px;
+      border:1px solid rgba(23,33,38,.16);
+      border-radius:999px;
+      padding:4px 10px;
+      color:var(--muted);
+      background:rgba(255,255,255,.46);
+      font-size:13px;
+      font-weight:650;
+    }
+    .pill {
+      display:inline-block;
+      min-width:52px;
+      text-align:center;
+      padding:4px 10px;
+      border-radius:999px;
+      color:white;
+      background:var(--green);
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .pill.mid { background:var(--gold); color:#241b0b; }
+    .pill.low { background:#8f493a; }
+    .warning { border-color:rgba(182,91,54,.45); box-shadow:inset 0 0 0 2px rgba(182,91,54,.08); }
+    .best { border-color:rgba(65,107,85,.5); box-shadow:inset 0 0 0 2px rgba(65,107,85,.1); }
+    .timeline { display:grid; gap:12px; }
+    .day {
+      display:grid;
+      grid-template-columns:94px 1fr;
+      gap:14px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--card);
+    }
+    .date { color:var(--rust); font-weight:900; }
+    .day b { display:block; margin-bottom:3px; }
+    .day span { color:var(--muted); }
+    .map-layout { display:grid; grid-template-columns:1.55fr .85fr; gap:16px; align-items:stretch; }
+    #map { min-height:680px; width:100%; border:1px solid var(--line); border-radius:8px; background:#dce7e3; overflow:hidden; }
+    .map-side { display:grid; gap:12px; align-content:start; }
+    .map-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    button {
+      appearance:none;
+      border:1px solid rgba(23,33,38,.22);
+      background:var(--card);
+      color:var(--ink);
+      border-radius:999px;
+      padding:8px 12px;
+      font:750 13px Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      cursor:pointer;
+    }
+    button:hover, button.active { color:white; background:var(--blue); border-color:var(--blue); }
+    .legend { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:12px; color:var(--muted); font-size:13px; }
+    .dot { width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:7px; border:2px solid white; box-shadow:0 0 0 1px rgba(0,0,0,.16); vertical-align:-1px; }
+    .airport{background:var(--blue)} .stay{background:var(--gold)} .view{background:var(--green)} .aurora{background:var(--violet)} .hike{background:#7d4d25} .food{background:#b02f3a}
+    table { width:100%; border-collapse:collapse; min-width:920px; font-size:14px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--card); }
+    th, td { padding:13px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#e8e0d1; color:var(--ink); font-size:13px; }
+    tr:last-child td { border-bottom:0; }
+    .photo-card { overflow:hidden; padding:0; }
+    .photo-card img { width:100%; height:210px; object-fit:cover; background:#dce7e3; }
+    .photo-card .body { padding:16px; }
+    .region-block { margin-top:26px; }
+    .region-block h4 { margin:0 0 10px; font-size:18px; color:var(--rust); }
+    .photo-card .meta { margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55; }
+    .photo-card .meta b { color:var(--ink); }
+    .small { color:var(--muted); font-size:13px; }
+    .checklist { margin:0; padding-left:20px; color:var(--muted); }
+    .checklist li { margin:7px 0; }
+    .popup-title { font-weight:900; color:var(--ink); margin-bottom:4px; }
+    .popup-note { color:var(--muted); font-size:13px; line-height:1.5; }
+    .leaflet-popup-content-wrapper { border-radius:8px; font-family:Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+    footer { padding:32px 0 46px; color:var(--muted); border-top:1px solid var(--line); }
+    @media (max-width:900px) {
+      .cols-2,.cols-3,.cols-4,.map-layout { grid-template-columns:1fr; }
+      #map { min-height:560px; }
+      .day { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">GPT 生成 · 独立分析 · 挪威 / 奥斯陆 / 罗弗敦 · 2026.10.1-10.6</span>
+      <h1>挪威 10 月行程、住宿与追光总汇<span class="ver">（GPT 生成）</span></h1>
+      <p>把前面所有关于住宿选择、罗弗敦自驾路线、景点、极光、航班衔接、补给和注意事项的结论集中到一个页面。用于决策，不替代预订平台、航司和天气实况。</p>
+    </div>
+  </header>
+
+  <div class="site-nav">
+    <div class="wrap">
+      <span class="lbl">挪威同组页面</span>
+      <a href="index.html">总览入口</a>
+      <a href="lofoten.html">罗弗敦独立方案</a>
+      <a href="lofoten-deepseek.html">深度分析（DeepSeek）</a>
+      <a href="lofoten-lodging-deepseek.html">住宿 12 选 1（DeepSeek）</a>
+      <a href="return-flight-decision-deepseek.html">返程航班决策（DeepSeek）</a>
+      <a href="alternatives.html">其他方案推荐</a>
+      <a href="../">旅行方案首页</a>
+    </div>
+  </div>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <strong>罗弗敦总览（GPT 生成）</strong>
+      <div class="nav-links">
+        <a href="#verdict">最终判断</a>
+        <a href="#toc">目录</a>
+        <a href="#route">推荐路线</a>
+        <a href="#map-section">地图</a>
+        <a href="#lodging">住宿</a>
+        <a href="#decision">取舍逻辑</a>
+        <a href="#combos">组合</a>
+        <a href="#latest-lodging">最新住宿判断</a>
+        <a href="#spots">风景点</a>
+        <a href="#aurora">极光</a>
+        <a href="#flights">航班</a>
+        <a href="#oslo-alt">奥斯陆/备选</a>
+        <a href="#risks">注意事项</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="toc">
+      <div class="wrap">
+        <h2>目录</h2>
+        <p class="lead">这份文件是“挪威相关 GPT 分析”的总汇页：先看最终判断和推荐路线，再用地图理解空间关系，最后进入住宿组合、极光、航班和注意事项。</p>
+        <div class="grid cols-4">
+          <article class="card"><h3><a href="#verdict">1. 最终判断</a></h3><p>确认主线：罗弗敦优先，Henningsvær 以白天游为主，核心住宿夜留给 Ballstad、西部渔村和海滩追光。</p></article>
+          <article class="card"><h3><a href="#route">2. 推荐路线</a></h3><p>按 10/1-10/6 拆分每日安排，覆盖 EVE/OSL 航班、罗弗敦自驾、回撤和返程缓冲。</p></article>
+          <article class="card"><h3><a href="#map-section">3. 交互地图</a></h3><p>包含机场、住宿、景点、极光点、徒步点和补给点；底图使用本地离线瓦片。</p></article>
+          <article class="card"><h3><a href="#lodging">4. 住宿汇总</a></h3><p>逐项整理 Sandtorgholmen、Henningsvær、Hattvika、Ramberg、Nusfjord、Eliassen 等候选住宿。</p></article>
+          <article class="card"><h3><a href="#decision">5. 取舍逻辑</a></h3><p>解释为什么不必执着住 Henningsvær，什么时候可以 10/2 直接西移，以及如何减少夜路。</p></article>
+          <article class="card"><h3><a href="#combos">6. 住宿组合</a></h3><p>按路线顺畅度、极光、渔村特色、落地窗海景和换宿成本排列组合。</p></article>
+          <article class="card"><h3><a href="#latest-lodging">7. 最新住宿判断</a></h3><p>补充 Oceanview → Eliassen/Nusfjord → Hattvika、Jusnes 连住、Eliassen 视觉冲击等近期讨论结论。</p></article>
+          <article class="card"><h3><a href="#spots">8. 风景点</a></h3><p>按推荐程度、适合天气、游玩时长整理沿途渔村、海滩、极光点和短徒步点。</p></article>
+          <article class="card"><h3><a href="#aurora">9. 极光</a></h3><p>说明 10 月初可追光时段、预测方法、住宿选址逻辑和晴窗行动法。</p></article>
+          <article class="card"><h3><a href="#flights">10. 航班</a></h3><p>整理 10/1、10/2 前往 EVE 与 10/5、10/6 返回 OSL 的取舍。</p></article>
+          <article class="card"><h3><a href="#oslo-alt">11. 奥斯陆/备选</a></h3><p>给出奥斯陆轻量玩法，以及卑尔根弗洛姆、特罗姆瑟、哈当厄尔等非罗弗敦备选。</p></article>
+          <article class="card"><h3><a href="#risks">12. 注意事项</a></h3><p>覆盖周日闭店、退改政策、补给、租车、晚到入住、房型视野和国际返程缓冲。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="verdict">
+      <div class="wrap">
+        <h2>最终判断</h2>
+        <p class="lead">你的核心偏好是：少夜路、不走马观花、至少一晚开阔海滩等极光、至少一晚渔村/rorbu 特色住宿、可以换宿但不要牺牲体验。基于这个偏好，Henningsvær 是重要白天景点，但不是必须住宿锚点。</p>
+        <div class="grid cols-3">
+          <article class="card dark">
+            <h3>最推荐骨架</h3>
+            <p><b>10/1 晚到 EVE 附近</b> → <b>10/2 白天 Henningsvær，晚上 Ballstad / Nusfjord / Ramberg</b> → <b>10/3 特色渔村或 rorbu</b> → <b>10/4 海滩追光夜</b> → <b>10/5 EVE 附近</b> → <b>10/6 早班回 OSL</b>。</p>
+            <div class="tagrow"><span class="tag">路线顺</span><span class="tag">住宿类型丰富</span><span class="tag">少夜路</span></div>
+          </article>
+          <article class="card best">
+            <h3>Henningsvær 的定位</h3>
+            <p>适合白天或黄昏游 2-3 小时：港口、足球场、咖啡馆、小店、桥和岛礁。早期建议住 Henningsvær，是为了保护第一天体力；在你明确“不介意换宿、想少回头路、想住处附近看极光”后，结论应更新为：游完 Henningsvær 后继续西移更合理。</p>
+            <div class="tagrow"><span class="tag">好景点</span><span class="tag">非最佳追光住宿</span></div>
+          </article>
+          <article class="card warning">
+            <h3>最硬风险</h3>
+            <p>10/4 是周日，餐饮和补给不能赌；10/6 国际返程日，不建议用 10:50/11:05 EVE→OSL 去卡 17:00 国际航班，除非你能接受更高风险。更稳是 10/6 06:15/06:30 早班，前一晚住 EVE 附近。</p>
+            <div class="tagrow"><span class="tag">周日闭店</span><span class="tag">返程缓冲</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="route">
+      <div class="wrap">
+        <h2>10 月初适合你的路线规划</h2>
+        <p class="lead">以下是我认为最适合你们的“稳健而不无聊”版本。它把 Henningsvær 作为白天重点，住宿夜留给中部基地、西部渔村和开阔海滩，最后回到 EVE 附近保护国际返程。</p>
+        <div class="timeline">
+          <div class="day">
+            <div class="date">10/1</div>
+            <div><b>奥斯陆汇合 → 优先 21:00 飞 EVE → 住 EVE 附近</b><span>17:55 对你 15:55 抵达 OSL 来说偏紧。若不严重延误，21:00 飞 EVE 最利于 10/2 完整进岛；对象太累或航班异常时，OSL 机场住一晚、10/2早飞是舒适备选。</span></div>
+          </div>
+          <div class="day">
+            <div class="date">10/2</div>
+            <div><b>EVE / Sandtorgholmen → Svolvær / Kabelvåg → Henningsvær → 晚上推进到 Ballstad / Nusfjord / Ramberg</b><span>Henningsvær 白天 2-3 小时即可抓住核心。若 10/2 上午已出发顺利，不必住 Henningsvær，可继续西移，把第一晚放在 Ballstad（最稳）、Nusfjord（历史渔村）、Ramberg/Flakstad（海景追光）。</span></div>
+          </div>
+          <div class="day">
+            <div class="date">10/3</div>
+            <div><b>中部北海岸与渔村体验日</b><span>可安排 Haukland / Uttakleiv / Eggum / Unstad / Leknes 补给。住宿建议在 Ballstad、Nusfjord、Hamnøy/Reine 或 Flakstad/Ramberg 中选一个主题：真实渔港、历史渔村、经典 rorbu、海滩追光。</span></div>
+          </div>
+          <div class="day">
+            <div class="date">10/4</div>
+            <div><b>西线经典：Nusfjord / Skagsanden / Ramberg / Hamnøy / Reine / Sakrisøy / Å</b><span>周日要提前补给。若只押一晚极光，我更倾向把 10/4 放在 Ramberg / Flakstad / Skagsanden 海滩带；若更重视经典住宿，可住 Eliassen Rorbuer，但追光效率不如海滩带。</span></div>
+          </div>
+          <div class="day">
+            <div class="date">10/5</div>
+            <div><b>回撤日：补齐 Haukland / Uttakleiv / Gimsøy / Hov / Eggum 中没去的点 → 住 EVE 附近或 20:05 回 OSL</b><span>若 10/6 早班回 OSL，10/5 晚必须住 EVE 附近。Sandtorgholmen 有海峡和老建筑体验，Aiden 最效率，Tjeldsundbrua 是桥和海峡折中。</span></div>
+          </div>
+          <div class="day">
+            <div class="date">10/6</div>
+            <div><b>早班 EVE → OSL，接 17:00 国际返程</b><span>推荐 06:15/06:30 这种早班，能给 OSL 国际段留足缓冲。10:50/11:05 理论可接，但不作为首选。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="map-section">
+      <div class="wrap">
+        <h2>交互地图</h2>
+        <p class="lead">地图使用本地 Leaflet 与本地离线瓦片，打开 HTML 时不依赖海外底图。点位分为机场/过渡住宿、候选住宿、风景点、极光点、徒步点和补给点。</p>
+        <div class="map-layout">
+          <div id="map"></div>
+          <aside class="map-side">
+            <div class="card">
+              <h3>地图层</h3>
+              <p>点击按钮聚焦路线或住宿区域，点击地图标记可查看推荐程度、适合天气和停留时长。</p>
+              <div class="map-btns">
+                <button data-route="main" class="active">推荐路线</button>
+                <button data-route="aurora">极光优先</button>
+                <button data-route="west">西线重点</button>
+                <button data-fit="all">显示全部</button>
+              </div>
+              <div class="legend">
+                <span><i class="dot airport"></i>机场/交通</span>
+                <span><i class="dot stay"></i>住宿</span>
+                <span><i class="dot view"></i>风景</span>
+                <span><i class="dot aurora"></i>极光点</span>
+                <span><i class="dot hike"></i>徒步</span>
+                <span><i class="dot food"></i>补给</span>
+              </div>
+            </div>
+            <div class="card warning">
+              <h3>地图阅读提醒</h3>
+              <p>部分 Airbnb 只掌握街区级地址，点位用于理解路线，不作为门牌导航。实际导航请以预订平台、Google Maps / Apple Maps / 本地导航为准。</p>
+            </div>
+            <div class="card best">
+              <h3>海滩追光首选</h3>
+              <p><b>Ramberg / Flakstad / Skagsanden</b> 是最符合“住处附近就能等极光、减少夜路”的区域；Unstad、Uttakleiv、Haukland、Hov/Gimsøy 也可作为天气晴窗时的机动点。</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="decision">
+      <div class="wrap">
+        <h2>关键取舍逻辑</h2>
+        <p class="lead">这部分专门汇总前面反复讨论过、最容易影响预订的判断。核心不是“哪个地方绝对最好”，而是把每一晚放在最匹配的体验上。</p>
+        <div class="grid cols-3">
+          <article class="card best">
+            <h3>为什么不再硬推 10/2 住 Henningsvær</h3>
+            <p>Henningsvær 的独特性主要在白天和黄昏：海上足球场、桥、码头、咖啡馆和小店。晚上住下确实舒服，但它不是最开阔的极光住宿点。如果 10/2 中午前后已开始进岛，白天游 2-3 小时后继续到 Ballstad / Nusfjord / Ramberg，更符合你“少回头路 + 多体验 + 住处附近看极光”的偏好。</p>
+          </article>
+          <article class="card">
+            <h3>10/2 直接西移可不可行</h3>
+            <p>可行，但要分条件：若 10/1 已住 EVE 附近、10/2 早取车，10/2 推到 Ballstad 最稳，推到 Nusfjord 或 Ramberg 是进取但成立。若 10/2 上午才从 Oslo 飞 EVE，再一路玩 Henningsvær 后去 Nusfjord / Ramberg，会明显偏满。</p>
+          </article>
+          <article class="card warning">
+            <h3>别把极光押在夜路上</h3>
+            <p>Henningsvær 到 Gimsøy / Hov 通常约 40-55 分钟，到 Eggum 通常 1 小时以上。支线弯道多、照明有限，雨风夜路压力会上升。既然你不想夜里多开，就应把关键追光夜直接放在 Ramberg / Flakstad / Skagsanden 或 Unstad 这类开阔海滩带。</p>
+          </article>
+        </div>
+
+        <div class="table-wrap" style="margin-top:18px">
+          <table>
+            <thead><tr><th>住宿区域</th><th>白天是否足够</th><th>住下才有的价值</th><th>更适合你的用法</th></tr></thead>
+            <tbody>
+              <tr><td><b>Kabelvåg</b></td><td>基本足够</td><td>安静、补给方便、比 Svolvær 更有老镇感</td><td>10/2 疲劳或预算友好过渡，不作为主惊艳点。</td></tr>
+              <tr><td><b>Henningsvær</b></td><td>2-3小时可覆盖核心</td><td>港口晚餐、夜色、小镇步行氛围</td><td>若第一天累就住；若状态好，白天游完西移。</td></tr>
+              <tr><td><b>Ballstad</b></td><td>不适合只打卡</td><td>真实渔港基地、厨房/餐饮/补给、去西部和海滩都方便</td><td>10/2 首选稳健住宿。</td></tr>
+              <tr><td><b>Nusfjord</b></td><td>白天可参观</td><td>游客散去后的黄昏、清晨、历史渔村沉浸感</td><td>10/3 最合适；10/2 只有在出发很顺时选。</td></tr>
+              <tr><td><b>Reine / Hamnøy</b></td><td>途经也能看经典画面</td><td>晨昏等光、住进 rorbu 的记忆点</td><td>适合 10/3 或 10/4 体验一晚，但别放最后回 EVE 前的高压夜。</td></tr>
+              <tr><td><b>Ramberg / Flakstad / Skagsanden</b></td><td>白天很美</td><td>少夜路守极光、风浪海滩、落地窗海景</td><td>至少放一晚，最好放 10/4 关键追光夜。</td></tr>
+              <tr><td><b>Unstad / Hov / Eggum</b></td><td>白天差异化强</td><td>北向海岸追光逻辑好，但偏野</td><td>更适合作为机动追光点；若住 Unstad，要接受补给弱和支线进出。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="lodging">
+      <div class="wrap">
+        <h2>住宿选择汇总</h2>
+        <p class="lead">以下把你前面提到的酒店和民宿按区域汇总。价格和可订限制来自你提供的信息或前序文件，最终仍以预订页为准。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>区域/住宿</th><th>适合放哪晚</th><th>亮点</th><th>问题</th><th>综合推荐</th></tr></thead>
+            <tbody>
+              <tr><td><b>Sandtorgholmen Hotel</b><br>Sandtorg / EVE附近</td><td>10/1 或 10/5</td><td>过渡夜也有海峡、老建筑和北挪乡野感；比纯机场酒店更有体验。</td><td>不是经典罗弗敦尖峰景观，10/1深夜入住需要确认自助/晚到流程。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Aiden by Best Western Harstad Narvik Airport</b></td><td>10/1 或 10/5</td><td>最省心的机场效率型住宿，适合晚到早飞。</td><td>体验感弱，主要服务航班衔接。</td><td><span class="pill mid">★★★☆☆</span></td></tr>
+              <tr><td><b>Tjeldsundbrua Hotel</b></td><td>10/1 或 10/5</td><td>桥、海峡和机场距离的折中。</td><td>仍是过渡住宿，不是罗弗敦核心体验。</td><td><span class="pill mid">★★★☆</span></td></tr>
+              <tr><td><b>Henningsvær Bryggehotell</b></td><td>10/2 可选</td><td>酒店服务、早餐、港口小镇夜色、餐饮便利。</td><td>极光视野一般；房型海景需下单前确认。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Banhammaren 39</b></td><td>10/2 可选</td><td>Henningsvær 海边公寓，厨房、大床、空间更宽松；可退窗口相对有用。</td><td>价格较高、不含早餐；追光逻辑不如海滩带。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Misværveien 2 码头公寓</b></td><td>受限：10/3-10/5 连住</td><td>价格好，Henningsvær 港口生活感强。</td><td>会把核心两晚锁在东部，削弱西部和海滩追光体验。</td><td><span class="pill low">★★★☆☆</span></td></tr>
+              <tr><td><b>Astra Village Kabelvåg</b></td><td>10/2 可选</td><td>传统 rorbu 形态、价格相对低、靠近 Svolvær 补给。</td><td>公开评价少；“24小时内可退”通常是下单后24小时内，不是入住前24小时。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Hattvika Lodge / Ballstad</b></td><td>10/2 或 10/3</td><td>中部最稳基地，真实渔港、舒适、机动性强，坏天气也不尴尬。</td><td>不是最开阔的被动追光海滩，热门房型可能需连住。</td><td><span class="pill">★★★★★</span></td></tr>
+              <tr><td><b>Fishermans Villa Ballstad</b></td><td>10/2-10/4 连住候选</td><td>整栋民宿、自炊方便、少搬家。</td><td>连住会减少不同住宿体验，西部/海滩可能变成日间往返。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Jusnesveien 55 / Flakstad-Ramberg</b></td><td>10/3-10/5 或 10/4关键追光夜</td><td>最符合“住处附近等极光、少夜路”的逻辑，靠近 Ramberg / Flakstad / Skagsanden。</td><td>补给弱，需提前采购；若连住两晚会少一晚渔村换宿。</td><td><span class="pill">★★★★★</span></td></tr>
+              <tr><td><b>Oceanview Mini-House / Ramberg</b></td><td>只能 10/2 晚</td><td>第一晚就实现海景房和海滩追光逻辑。</td><td>从 EVE 推进较深，若 10/2 才从 OSL 飞 EVE 不建议。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Varanes / Elvis Presleys Vei 25</b></td><td>受限：10/2-10/4 连住</td><td>Flakstad 海边小木屋、私密、自炊、等待晴窗很好。</td><td>价格高；10/2第一天直接推进到 Flakstad 会偏满。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Unstad Arctic Resort</b></td><td>10/3 或 10/4</td><td>北极冲浪海滩，小众差异化，北向追光逻辑好。</td><td>偏离 E10，夜间进出不适合频繁；餐饮需确认。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Nusfjord Village & Resort</b></td><td>10/3 最合适；10/2可但进取</td><td>历史渔村，夜晚和清晨游客少时最有氛围；阴雨也有味道。</td><td>峡湾内天空受限，追光效率不如开阔海滩；周日餐厅要确认。</td><td><span class="pill">★★★★☆</span></td></tr>
+              <tr><td><b>Eliassen Rorbuer / Hamnøy</b></td><td>10/3 或 10/4体验夜</td><td>经典红色 rorbu、山海桥景，是最“住进明信片”的挪威特色住宅。</td><td>离 EVE 最远；天气低云会影响山景；追光效率不如海滩带。</td><td><span class="pill">★★★★★</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 style="margin:24px 0 12px;font-size:24px">候选酒店/民宿代表图</h3>
+        <p class="small" style="margin:0 0 12px">GPT独立分析说明：下列图片为公开代表图或你前面补充链接后本地化保存的代表图，用于辅助判断住宿气质；不代表最终可订房型、无遮挡窗景或入住当天实景。</p>
+        <div class="region-block">
+          <h4>EVE 机场 / Harstad-Narvik 过渡住宿</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/sandtorgholmen-hotel.webp" alt="Sandtorgholmen Hotel"><div class="body"><h3>Sandtorgholmen Hotel</h3><p>EVE 过渡夜里最有体验感，海峡与老建筑气质。</p><p class="meta"><b>推荐日期：</b>10/1 晚或 10/5 晚。<br><b>限制/注意：</b>当天 16:00 前可退；晚到需确认自助入住。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/aiden-harstad.jpg" alt="Aiden Harstad Narvik Airport"><div class="body"><h3>Aiden Harstad Narvik Airport</h3><p>晚到早飞最省心，体验感让位给效率。</p><p class="meta"><b>推荐日期：</b>10/1 深夜到达或 10/5 早班前。<br><b>限制/注意：</b>机场效率型，景观和住宿记忆点较弱。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/tjeldsundbrua-hotel-booking.jpg" alt="Tjeldsundbrua Hotel"><div class="body"><h3>Tjeldsundbrua Hotel</h3><p>桥与海峡景观，机场附近折中方案。</p><p class="meta"><b>推荐日期：</b>10/1 或 10/5。<br><b>限制/注意：</b>需确认交通/停车与晚到入住。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Kabelvåg / Henningsvær / Vågan 东部住宿</h4>
+          <div class="grid cols-4">
+            <article class="card photo-card"><img src="norway-images/lodgings/henningsvaer-bryggehotell.jpg" alt="Henningsvær Bryggehotell"><div class="body"><h3>Henningsvær Bryggehotell</h3><p>第一晚港口小镇酒店式省心方案。</p><p class="meta"><b>推荐日期：</b>10/2，适合第一天疲劳时。<br><b>限制/注意：</b>房型是否面海需下单前确认。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/banhammaren-39.jpg" alt="Banhammaren 39"><div class="body"><h3>Banhammaren 39</h3><p>Henningsvær 私密公寓，适合想住进小镇生活感。</p><p class="meta"><b>推荐日期：</b>10/2。<br><b>限制/注意：</b>价格偏高；9/27 前可退。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/misvaerveien-2.jpg" alt="Misværveien 2"><div class="body"><h3>Misværveien 2 码头公寓</h3><p>价格好但连住限制会把核心夜锁在东部。</p><p class="meta"><b>推荐日期：</b>不作为主推。<br><b>限制/注意：</b>必须 10/3-10/5 连住两晚。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/arctic-panoramautsikten.jpg" alt="Arctic Panoramautsikten"><div class="body"><h3>Arctic Panoramautsikten</h3><p>浪漫景观房属性强，但位置偏东、价格高。</p><p class="meta"><b>推荐日期：</b>特殊想体验房源时放 10/2 或回撤夜。<br><b>限制/注意：</b>价格高；会削弱西部住宿夜。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Ballstad 中部渔港基地</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/hattvika-lodge.jpg" alt="Hattvika Lodge"><div class="body"><h3>Hattvika Lodge</h3><p>中部最稳住宿锚点：真实渔港 + 舒适基地。</p><p class="meta"><b>推荐日期：</b>10/2 或 10/4。<br><b>限制/注意：</b>Myklebustbua #2 需连住两晚；Hillside 可作为单晚高质感选择。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/fishermans-villa-ballstad.png" alt="Fishermans Villa Ballstad"><div class="body"><h3>Fishermans Villa Ballstad</h3><p>整栋自炊、少搬家，适合连住但减少住宿变化。</p><p class="meta"><b>推荐日期：</b>10/2-10/4 连住候选。<br><b>限制/注意：</b>必须连住两晚。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Ramberg / Flakstad / Skagsanden 海滩追光带</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/jusnesveien-55.jpg" alt="Jusnesveien 55"><div class="body"><h3>Jusnesveien 55</h3><p>Flakstad / Ramberg 海滩带，少夜路等极光。</p><p class="meta"><b>推荐日期：</b>10/3-10/5 或关键追光夜。<br><b>限制/注意：</b>必须连住两晚；房东住隔壁、两屋可联通，需确认私密性。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/oceanview-mini-house-room.jpg" alt="Oceanview Mini-House"><div class="body"><h3>Oceanview Mini-House</h3><p>落地窗海景最直接，适合把第一晚变成海滩追光夜。</p><p class="meta"><b>推荐日期：</b>只能 10/2 晚。<br><b>限制/注意：</b>10/2 从 EVE 推进较深，适合 10/1 已住 EVE 且体力好。</p></div></article>
+            <article class="card photo-card"><img src="norway-images/lodgings/varanes-cabin.jpg" alt="Varanes Cabin"><div class="body"><h3>Varanes 小木屋</h3><p>海边小木屋、自炊和守晴窗强，价格较高。</p><p class="meta"><b>推荐日期：</b>10/2-10/4 海滩连住候选。<br><b>限制/注意：</b>必须 10/2-10/4 连住两晚；单价高。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Unstad 北岸特色海滩</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/unstad-arctic-resort-booking.jpg" alt="Unstad Arctic Resort"><div class="body"><h3>Unstad Arctic Resort</h3><p>北极冲浪海滩，小众且北向追光逻辑好。</p><p class="meta"><b>推荐日期：</b>10/3 或 10/4。<br><b>限制/注意：</b>偏离 E10；餐饮和夜间进出要保守规划。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Nusfjord 历史渔村</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/nusfjord-resort.jpg" alt="Nusfjord Resort"><div class="body"><h3>Nusfjord Village & Resort</h3><p>历史渔村夜晚和清晨更有价值。</p><p class="meta"><b>推荐日期：</b>10/3 最合适；10/2 可但偏进取。<br><b>限制/注意：</b>追光视野不如开阔海滩；10 月餐厅和住客政策需确认。</p></div></article>
+          </div>
+        </div>
+
+        <div class="region-block">
+          <h4>Hamnøy / Reine 西部经典 rorbu</h4>
+          <div class="grid cols-3">
+            <article class="card photo-card"><img src="norway-images/lodgings/eliassen-rorbuer.jpg" alt="Eliassen Rorbuer"><div class="body"><h3>Eliassen Rorbuer</h3><p>最典型的 rorbu 住宿记忆点，视觉上限很高。</p><p class="meta"><b>推荐日期：</b>10/3 或 10/4 体验夜。<br><b>限制/注意：</b>10/4 房源选择较多；10/2、10/3 选择少且可能溢价。视觉冲击取决于具体房型窗景和天气。</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="combos">
+      <div class="wrap">
+        <h2>可选住宿组合</h2>
+        <div class="grid cols-3">
+          <article class="card best">
+            <h3>A. 最均衡：Ballstad + 特色西部 + 海滩</h3>
+            <p><b>10/2 Ballstad</b> → <b>10/3 Nusfjord 或 Eliassen</b> → <b>10/4 Ramberg/Flakstad/Skagsanden</b> → <b>10/5 EVE附近</b>。路线顺、体验丰富、极光夜位置好。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.8/5</span><span class="tag">首选</span></div>
+          </article>
+          <article class="card">
+            <h3>B. 体验叙事：Henningsvær + Nusfjord + Eliassen</h3>
+            <p>港口小镇、历史渔村、经典 rorbu 都有，浪漫感强。但 10/4 若住 Hamnøy，追光效率不如海滩，10/5 回 EVE 较长。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.4/5</span><span class="tag">住宿记忆强</span></div>
+          </article>
+          <article class="card">
+            <h3>C. 极光优先：Ballstad + 海滩连住</h3>
+            <p><b>10/2 Ballstad</b> → <b>10/3-10/4 Flakstad/Ramberg 连住</b>。两晚押在开阔海滩带，行动成本最低；代价是住宿变化少。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.7/5</span><span class="tag">少夜路</span></div>
+          </article>
+          <article class="card">
+            <h3>D. 10/2 直接 Nusfjord</h3>
+            <p>成立，但偏进取。前提是 10/1 已在 EVE 附近睡好、10/2 早取车、Henningsvær 不拖太久。适合想更早进入西部氛围。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.2/5</span><span class="tag">第一天偏满</span></div>
+          </article>
+          <article class="card">
+            <h3>E. 10/2 Oceanview Mini-House 开局</h3>
+            <p>落地窗海景和海滩追光最直接，但 10/2 从 EVE 推进到 Ramberg 较深，只有在 10/1 已住 EVE 且状态好时考虑。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.3/5</span><span class="tag">海景强</span></div>
+          </article>
+          <article class="card warning">
+            <h3>不优先：Henningsvær 东部连住</h3>
+            <p>Misværveien 2 价格好，但 10/3-10/5 连住会把核心夜锁在东部，西线和海滩都变成往返，不符合你“少回头路 + 极光 + 丰富体验”。</p>
+            <div class="tagrow"><span class="tag">推荐值 3.4/5</span></div>
+          </article>
+          <article class="card">
+            <h3>F. 体验丰富：Reine/Hamnøy → Nusfjord 回撤</h3>
+            <p><b>10/2 Ballstad 或 Ramberg</b> → <b>10/3 Eliassen / Reine-Hamnøy</b> → <b>10/4 Nusfjord</b> → <b>10/5 EVE附近</b>。先冲最西端，再往东回撤，比 10/4 住 Reine 更顺。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.5/5</span><span class="tag">浪漫记忆强</span></div>
+          </article>
+          <article class="card">
+            <h3>G. Varanes 海边小木屋连住</h3>
+            <p><b>10/2-10/4 Varanes / Elvis Presleys Vei 25</b> 连住两晚，再 10/4 或 10/5 接特色渔村/返程。适合自炊、少搬家和住处附近等晴窗。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.1/5</span><span class="tag">价格偏高</span></div>
+          </article>
+          <article class="card">
+            <h3>H. Unstad 特色海滩替代</h3>
+            <p><b>10/2 Ballstad / Henningsvær</b> → <b>10/3 Unstad Arctic Resort</b> → <b>10/4 Eliassen 或 Ramberg/Flakstad</b>。北极冲浪海滩差异化很强，但支线夜路和餐饮弱。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.0/5</span><span class="tag">小众</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="latest-lodging">
+      <div class="wrap">
+        <h2>最新住宿判断</h2>
+        <p class="lead">这一节汇总后续对话里的最新取舍：你倾向 10/1 与 10/5 在机场附近做缓冲，10/2-10/4 三晚希望覆盖 Hattvika、开阔海滩极光房、挪威特色渔村/rorbu，且不介意换宿。</p>
+        <div class="grid cols-3">
+          <article class="card best">
+            <h3>当前最推荐组合</h3>
+            <p><b>10/2 Oceanview Mini-House / Ramberg</b> → <b>10/3 Eliassen Rorbuer / Hamnøy</b> → <b>10/4 Hattvika Lodge / Ballstad</b>。它不是极光概率绝对最高，但能同时满足海滩落地窗、经典 rorbu 和舒适渔港 lodge，且坏天气也有住宿体验保底。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.6/5</span><span class="tag">体验最完整</span></div>
+          </article>
+          <article class="card">
+            <h3>Nusfjord 替代 Eliassen</h3>
+            <p><b>10/2 Oceanview</b> → <b>10/3 Nusfjord Village & Resort</b> → <b>10/4 Hattvika</b>。历史渔村沉浸感强，阴天小雨也有氛围；但视觉“明信片冲击”和极光开阔度通常不如 Hamnøy/Eliassen 与 Ramberg/Flakstad。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.3/5</span><span class="tag">渔村沉浸</span></div>
+          </article>
+          <article class="card">
+            <h3>极光更优组合</h3>
+            <p><b>10/2 Hattvika / Ballstad</b> → <b>10/3 Eliassen 或 Nusfjord</b> → <b>10/4 Ramberg / Flakstad / Skagsanden 海滩房</b>。如果能找到 10/4 的好海滩房，这是我从“少夜路等极光”角度更喜欢的结构。</p>
+            <div class="tagrow"><span class="tag">推荐值 4.8/5</span><span class="tag">追光更顺</span></div>
+          </article>
+        </div>
+
+        <div class="table-wrap" style="margin-top:18px">
+          <table>
+            <thead><tr><th>具体疑问</th><th>结论</th><th>理由</th><th>执行建议</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>10/2 住 Oceanview Mini-House 是否合适</b></td>
+                <td>合适，但要求 10/1 已到 EVE 附近休息好。</td>
+                <td>它能第一晚就完成“落地窗海景 + 海滩追光”的目标，Ramberg / Skagsanden 一带比 Henningsvær 更适合少夜路守极光。</td>
+                <td>10/2 不要把 Henningsvær 玩太满；午后或傍晚前到 Ramberg，留时间入住、吃饭和看云况。</td>
+              </tr>
+              <tr>
+                <td><b>10/3 选 Eliassen 还是 Nusfjord</b></td>
+                <td>若要“第一次罗弗敦的标志性冲击”，优先 Eliassen；若要安静古老渔村沉浸，选 Nusfjord。</td>
+                <td>Eliassen / Hamnøy 的上限来自红色 rorbu、桥、尖峰和海湾；Nusfjord 的优势是村落封存感和黄昏清晨氛围。</td>
+                <td>Eliassen 必须看具体房型：滨水/海景/高级一卧室更值得；普通房型不等于一定有强窗景。</td>
+              </tr>
+              <tr>
+                <td><b>Eliassen 是否确定更有视觉冲击</b></td>
+                <td>不确定，只能说上限很高。</td>
+                <td>Hamnøy 位置本身经典，但房型、窗景、低云和雨雾会决定“住进去”的冲击感。订到非海景普通房时，它更像“住在经典地点附近”。</td>
+                <td>如果只能订普通房型，可白天/黄昏途经 Hamnøy 拍经典机位，把住宿留给 Nusfjord、Hattvika 或海滩房。</td>
+              </tr>
+              <tr>
+                <td><b>10/4 回 Hattvika 是否削弱极光</b></td>
+                <td>会比海滩房弱一点，但体验保底更强。</td>
+                <td>Ballstad 是真实渔港和舒适基地，坏天气不尴尬；但它不是最开阔的北向海滩。</td>
+                <td>如果 10/4 云况好，可傍晚前入住 Hattvika，晚饭后短途去 Haukland / Uttakleiv / Skagsanden / Ramberg 看晴窗。</td>
+              </tr>
+              <tr>
+                <td><b>Jusnesveien 55 值不值得连住</b></td>
+                <td>适合作为“极光优先 + 大窗海景”备选，不是默认首选。</td>
+                <td>它靠近 Flakstad / Ramberg，房子大、窗景强、适合自炊和守晴窗；但房东在隔壁、两屋可联通、必须连住两晚，会牺牲三晚不同体验。</td>
+                <td>若考虑预订，先问清独立入口、联通门是否上锁、露台/窗前是否共享、房东是否会经过主要视野、入住期间是否会进入。</td>
+              </tr>
+              <tr>
+                <td><b>10/2 直接住 Nusfjord</b></td>
+                <td>可行但偏进取。</td>
+                <td>如果 10/1 已到 EVE，10/2 早取车，白天游 Henningsvær 后到 Nusfjord，路线可以成立；但第一天会比 Ballstad 更满。</td>
+                <td>适合你特别想要历史渔村夜晚；若对象疲劳或天气差，改住 Ballstad 更稳。</td>
+              </tr>
+              <tr>
+                <td><b>换宿会不会很麻烦</b></td>
+                <td>在你们自驾且不介意打包的前提下，换宿成本可控。</td>
+                <td>挪威酒店/民宿多为自助或半自助流程，退房 11/12 点、入住 15 点之间，正好用于吃饭、补给和白天自驾游览。</td>
+                <td>行李尽量分成“大箱不动 + 当晚小包”，每天确认钥匙、清洁、垃圾和停车规则。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid cols-3" style="margin-top:18px">
+          <article class="card photo-card"><img src="norway-images/lodgings/oceanview-mini-house-room.jpg" alt="Oceanview Mini-House"><div class="body"><h3>10/2 Oceanview / Ramberg</h3><p>优点是落地窗海景和海滩追光；代价是第一天推进较深。</p></div></article>
+          <article class="card photo-card"><img src="norway-images/lodgings/eliassen-rorbuer.jpg" alt="Eliassen Rorbuer"><div class="body"><h3>10/3 Eliassen / Hamnøy</h3><p>经典 rorbu 上限最高，但必须看具体房型和天气。</p></div></article>
+          <article class="card photo-card"><img src="norway-images/lodgings/hattvika-lodge.jpg" alt="Hattvika Lodge"><div class="body"><h3>10/4 Hattvika / Ballstad</h3><p>舒适收尾、补给和餐饮更稳，坏天气体验保底强。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="spots">
+      <div class="wrap">
+        <h2>沿途风景点、极光点与徒步点</h2>
+        <p class="lead">10月初罗弗敦的美不是雪景，而是暗色海水、黄色草坡、低云、红色渔屋、海滩风浪、黄昏灯光。天气好时看山海层次，阴雨时优先渔村、咖啡馆、短停和住宿体验。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>地点</th><th>类型</th><th>推荐程度</th><th>建议时长</th><th>适合天气与玩法</th></tr></thead>
+            <tbody>
+              <tr><td><b>Henningsvær 足球场 / 港口</b></td><td>渔村小镇</td><td>★★★★★</td><td>2-3小时</td><td>晴天、阴天都可；适合午餐、咖啡、足球场、港口慢逛。晚上氛围好，但不是最佳极光点。</td></tr>
+              <tr><td><b>Kabelvåg / Svolvær</b></td><td>补给与东部过渡</td><td>★★★☆</td><td>30-90分钟</td><td>天气差时适合补给、餐饮、短逛；不是这趟最核心景观。</td></tr>
+              <tr><td><b>Haukland Beach</b></td><td>海滩 / 极光候选</td><td>★★★★★</td><td>1-2小时；夜间1-3小时</td><td>晴天看白沙和水色，少云夜晚可守极光；强风只在车边或安全区域活动。</td></tr>
+              <tr><td><b>Uttakleiv Beach</b></td><td>海岸 / 极光候选</td><td>★★★★★</td><td>1-2小时；夜间1-3小时</td><td>海岸和山体戏剧性强，适合极光前景；湿滑礁石和风浪要保守。</td></tr>
+              <tr><td><b>Eggum</b></td><td>北向极光点</td><td>★★★★☆</td><td>45-90分钟；夜间1-3小时</td><td>北面晴朗时优先，夜路要谨慎；适合从 Ballstad/Leknes 区域机动。</td></tr>
+              <tr><td><b>Unstad</b></td><td>冲浪海滩 / 极光</td><td>★★★★☆</td><td>45-90分钟；可住一晚</td><td>小众差异化，晴天和多云看海浪；偏离 E10，不适合疲劳状态夜间频繁进出。</td></tr>
+              <tr><td><b>Skagsanden / Flakstad</b></td><td>海滩 / 极光首选</td><td>★★★★★</td><td>45-90分钟；夜间1-3小时</td><td>适合把极光夜放在门口，少夜路；餐饮弱，需提前采购。</td></tr>
+              <tr><td><b>Ramberg Beach</b></td><td>海滩 / 住宿区</td><td>★★★★★</td><td>30-90分钟；可住1-2晚</td><td>晴天、日落、极光都适合；住处具体视野很关键。</td></tr>
+              <tr><td><b>Nusfjord</b></td><td>历史渔村</td><td>★★★★☆</td><td>1.5-2.5小时；可住一晚</td><td>阴天小雨反而有氛围；住下价值是黄昏和清晨。极光视野不是最开阔。</td></tr>
+              <tr><td><b>Hamnøy Bridge / Eliassen</b></td><td>经典 rorbu</td><td>★★★★★</td><td>30-60分钟；可住一晚</td><td>晴天很惊艳，低云也有戏剧感；天气影响山体可见度。离 EVE 远，别放最后一晚。</td></tr>
+              <tr><td><b>Sakrisøy / Reine / Å</b></td><td>西线经典</td><td>★★★★★</td><td>半天到一天</td><td>晴天最美，阴天也有世界尽头感；低云雨大时不要安排 Reinebringen。</td></tr>
+              <tr><td><b>Hoven / Gimsøy</b></td><td>短徒步 / 极光海岸</td><td>★★★★☆</td><td>1-1.5小时徒步</td><td>最适合作为唯一短徒步，视野好、膝盖压力相对低；风大雨天取消。</td></tr>
+              <tr><td><b>Reinebringen / Ryten</b></td><td>知名徒步</td><td>★★☆☆☆</td><td>2-5小时</td><td>名气高，但对膝盖和天气要求高。本次不作为必做，尤其不适合雨后、低云和强风。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid cols-4" style="margin-top:18px">
+          <article class="card photo-card"><img src="norway-images/lofoten-towns/henningsvaer.jpg" alt="Henningsvær"><div class="body"><h3>Henningsvær</h3><p>白天/黄昏体验最划算。</p></div></article>
+          <article class="card photo-card"><img src="norway-images/lofoten-towns/skagsanden.jpg" alt="Skagsanden"><div class="body"><h3>Skagsanden</h3><p>海滩与极光夜的核心候选。</p></div></article>
+          <article class="card photo-card"><img src="norway-images/lofoten-towns/hamnoy.jpg" alt="Hamnøy"><div class="body"><h3>Hamnøy</h3><p>经典 rorbu 与山海桥景。</p></div></article>
+          <article class="card photo-card"><img src="norway-images/lofoten-towns/uttakleiv.jpg" alt="Uttakleiv"><div class="body"><h3>Uttakleiv</h3><p>北向海岸，适合晴窗追光。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="aurora">
+      <div class="wrap">
+        <h2>10 月初极光与风景预期</h2>
+        <p class="lead">10 月初罗弗敦已经具备追光条件，但它不是“到点必出”的景观。你能提高概率的方式，是把住宿放到开阔北向海岸、减少夜间长距离驾驶，并在临近日期用云图和空间天气预报做动态选择。</p>
+        <div class="grid cols-3">
+          <article class="card best">
+            <h3>追光概率怎么理解</h3>
+            <p>10月初已进入北挪极光季，但能否看到主要看云量。5晚里只要有1-2晚云层打开，就有值得期待的机会；如果连续低云雨，KP再好也可能看不到。</p>
+          </article>
+          <article class="card">
+            <h3>住宿对极光的影响</h3>
+            <p>“更远”不等于更容易看到。最重要是北向/西北向视野、光污染少、能否不夜驾就到开阔处。Ramberg / Flakstad / Skagsanden 比 Henningsvær、Nusfjord 更适合作为被动守光住宿。</p>
+          </article>
+          <article class="card warning">
+            <h3>不要把行程变成干等极光</h3>
+            <p>白天安排必须足够好：海滩、渔村、rorbu、秋季山海和短徒步。极光是锦上添花，不应让它吞掉白天体验和睡眠。</p>
+          </article>
+        </div>
+        <div class="grid cols-2" style="margin-top:14px">
+          <article class="card">
+            <h3>10月初罗弗敦是什么风景</h3>
+            <p>不是稳定雪景季。更常见的是黄草坡、暗蓝海、黑色山体、风雨、低云、渔村灯光和红色/黄色 rorbu。晴天有层次，阴雨也有北方电影感，但要接受天气每天重排计划。</p>
+          </article>
+          <article class="card">
+            <h3>夜路策略</h3>
+            <p>Henningsvær 到 Gimsøy/Hov 约 40-55 分钟，到 Eggum 约 1小时以上。罗弗敦支线弯道多、路灯有限、雨风影响大。若不想夜路，直接把关键追光夜住在海滩带。</p>
+          </article>
+        </div>
+        <div class="table-wrap" style="margin-top:18px">
+          <table>
+            <thead><tr><th>问题</th><th>实用判断</th><th>你的行程里怎么用</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>10月通常几点到几点可以追光</b></td>
+                <td>10月初理论窗口约 20:30-04:00，最值得守的是 21:30-01:00。20:30 后天色通常已足够暗，强极光可更早看到；弱极光更依赖天文暮光后、云少和低光污染。</td>
+                <td>不要饭后立刻疲劳夜驾。20:00 看云图，21:00 决定是否出门；若住海滩带，可先在住处附近观察，不行再睡。</td>
+              </tr>
+              <tr>
+                <td><b>它是不是完全随机</b></td>
+                <td>不是完全随机，但也不能提前一年精确预测。太阳活动、地磁条件、云量、月光、地形遮挡和光污染共同决定结果；其中你最能利用的是云量和位置。</td>
+                <td>把 10/2-10/4 至少一晚放在 Ramberg / Flakstad / Skagsanden，等于把“发现晴窗后立刻行动”的成本降到最低。</td>
+              </tr>
+              <tr>
+                <td><b>临近日期怎么判断</b></td>
+                <td>提前 7-10 天看 Yr / met.no / Windy 的大趋势；提前 3 天看 NOAA SWPC 或 NorwayLights 类应用的地磁预报；当天傍晚重点看云层缝隙、风向和实时 Kp / Bz。</td>
+                <td>如果西部海滩晴，优先 Ramberg / Skagsanden / Flakstad；如果中部晴，选 Haukland / Uttakleiv / Eggum；如果东部晴，再考虑 Gimsøy / Hov。</td>
+              </tr>
+              <tr>
+                <td><b>月光是否影响</b></td>
+                <td>月光会让天空和地面更亮，但不是决定性障碍。中等月光反而能照亮海滩、山和红屋前景；真正致命的是厚云和降水。</td>
+                <td>不要因为有月亮就取消追光；只要北方天空有云洞，仍值得在住处附近观察 20-40 分钟。</td>
+              </tr>
+              <tr>
+                <td><b>最适合等极光的海滩住宿</b></td>
+                <td>综合开阔度、安全性、路线便利和白天体验，我最推荐 Ramberg / Flakstad / Skagsanden；其次是 Haukland / Uttakleiv / Unstad；Hov / Gimsøy适合作为东部机动点。</td>
+                <td>如果 10/4 能找到好海滩房，把 10/4 放在海滩带；如果订不到，10/2 Oceanview + 10/4 Hattvika 的组合也成立。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="flights">
+      <div class="wrap">
+        <h2>航班衔接与首尾住宿</h2>
+        <p class="lead">这部分按你最新同步的航班信息整理。结论：10/1 若能飞 EVE，21:00 比 17:55 稳；返程若想多留罗弗敦，10/6 06:15/06:30 早班可行，但前一晚必须住 EVE 附近。10/6 中午前后从 EVE 回 Oslo 接 17:00 国际段不建议作为主方案。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>节点</th><th>选择</th><th>体验收益</th><th>风险/代价</th><th>判断</th></tr></thead>
+            <tbody>
+              <tr><td><b>10/1 OSL → EVE</b></td><td>17:55-19:35 挪威航空</td><td>最早到 EVE，理论上晚间休息时间更多。</td><td>你 15:55 才从冰岛抵达 OSL，若要取行李/重新托运/排队，衔接偏紧。</td><td><span class="pill mid">进取备选</span></td></tr>
+              <tr><td><b>10/1 OSL → EVE</b></td><td>21:00-22:40 挪威航空</td><td>对象 14:30 到、你 15:55 到后有更从容的会合、吃饭和重整行李时间；保住 10/2 完整罗弗敦。</td><td>落地晚，只适合住 EVE / Sandtorgholmen / Harstad 附近，不要夜驾进岛。</td><td><span class="pill">首选</span></td></tr>
+              <tr><td><b>10/2 OSL → EVE</b></td><td>8:40-10:20 SAS 或 8:55-10:35 挪威航空</td><td>对体力最友好，10/1 在 OSL 机场踏实休息。</td><td>少半天罗弗敦；10/2 不建议再推进太深到 Ramberg / Reine。</td><td><span class="pill">舒适备选</span></td></tr>
+              <tr><td><b>10/5 EVE → OSL</b></td><td>20:05-21:50 挪威航空</td><td>保留 10/5 白天罗弗敦补漏，同时 10/6 不被北挪天气和国内段延误绑住。</td><td>10/5 晚到 Oslo，城市体验少。</td><td><span class="pill">稳妥首选</span></td></tr>
+              <tr><td><b>10/6 EVE → OSL</b></td><td>6:15-8:00 SAS 或 6:30-8:15 挪威航空</td><td>多留 10/5 一个北挪夜晚，适合天气/极光前景好时。</td><td>必须 10/5 住 EVE 附近，清晨还车和值机很早，体力差。</td><td><span class="pill mid">可行但累</span></td></tr>
+              <tr><td><b>10/6 EVE → OSL</b></td><td>10:50-12:30 SAS 或 11:05-12:50 挪威航空</td><td>早上不那么痛苦。</td><td>你 17:00 国际返程，14:00-14:30 要到机场值机托运，缓冲偏薄；任何延误都会紧张。</td><td><span class="pill low">不主推</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid cols-3" style="margin-top:18px">
+          <article class="card best">
+            <h3>10/1 当晚飞 EVE 的落点</h3>
+            <p>住 Sandtorgholmen Hotel 最有体验感；住 Aiden 最省心；住 Tjeldsundbrua 是桥和海峡景观折中。EVE 周边通常是海峡、低山、农地、树林和港湾景观，不是罗弗敦尖峰密集区，但比机场纯过夜更有北挪感。</p>
+          </article>
+          <article class="card">
+            <h3>10/5 晚留 EVE 的意义</h3>
+            <p>如果 10/6 早班回 Oslo，10/5 晚住 EVE 附近能把返程风险降到可控。它牺牲的是 10/5 晚在核心罗弗敦海滩或渔村慢下来的机会。</p>
+          </article>
+          <article class="card warning">
+            <h3>航班取消/延误的处理</h3>
+            <p>历史取消率很难用公开免费数据精确推到你这几班。实际执行上，用“可取消住宿 + 10/1/10/5 两端保守 + 国际返程日不押中午国内段”来对冲，比相信平均概率更可靠。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="oslo-alt">
+      <div class="wrap">
+        <h2>奥斯陆与其他挪威方案</h2>
+        <p class="lead">你已经选定罗弗敦作为主线，所以奥斯陆只承担“汇合、缓冲、轻量城市体验”和“国际返程前休息”的角色；其他挪威方案保留为天气、航班或租车异常时的备选。</p>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>10/1 住 Oslo 机场时</h3>
+            <p>不建议再进市区硬逛。对象长途抵达，优先洗澡、吃饭、睡眠。机场酒店如 Radisson / Radisson RED 一类最大的价值是减少第二天早班压力。</p>
+          </article>
+          <article class="card">
+            <h3>10/5 晚回 Oslo 时</h3>
+            <p>若 20:05 EVE-OSL，晚上到 Oslo 后适合机场附近或市区酒店休息。10/6 上午可做低强度城市行程：歌剧院/Bjørvika 海湾步行、Munch 外观或短参观、Aker Brygge 午餐，再 14:00-14:30 到机场。</p>
+          </article>
+          <article class="card">
+            <h3>10/6 早回 Oslo 时</h3>
+            <p>如果 06:15/06:30 从 EVE 回 Oslo，10/6 上午可多一点城市时间，但你们会很早起。适合选歌剧院、维格兰公园、国家美术馆/Munch 中的 1-2 个，不要塞满。</p>
+          </article>
+        </div>
+        <div class="table-wrap" style="margin-top:18px">
+          <table>
+            <thead><tr><th>非罗弗敦备选</th><th>适合什么情况</th><th>优势</th><th>为什么不是主推</th></tr></thead>
+            <tbody>
+              <tr><td><b>卑尔根 + 弗洛姆</b></td><td>罗弗敦天气/航班/租车出问题时</td><td>铁路、游船、峡湾，膝盖友好，执行稳定。</td><td>和冰岛之后的差异化与极光机会不如罗弗敦。</td></tr>
+              <tr><td><b>特罗姆瑟 + 海岛</b></td><td>把极光作为绝对第一目标时</td><td>追光服务成熟，城市备胎强。</td><td>10月初白天风景不如冬季雪景，也不如罗弗敦山海渔村密度高。</td></tr>
+              <tr><td><b>哈当厄尔 + 弗洛姆</b></td><td>想要秋色、瀑布、情侣慢游</td><td>舒适浪漫，驾驶和徒步压力小。</td><td>视觉冲击和“北极圈海上山峰”特色弱于罗弗敦。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="wrap">
+        <h2>注意事项清单</h2>
+        <div class="grid cols-3">
+          <article class="card warning">
+            <h3>预订前</h3>
+            <ul class="checklist">
+              <li>确认每家住宿取消政策：“24小时内可退”通常是下单后24小时，不是入住前24小时。</li>
+              <li>确认晚到自助入住、停车、钥匙、清洁要求和是否有厨房。</li>
+              <li>海景/落地窗/面海房必须看房型，不要只看酒店总图。</li>
+              <li>10月餐厅营业、Nusfjord 门票/住客政策、周日晚餐需书面确认。</li>
+            </ul>
+          </article>
+          <article class="card warning">
+            <h3>行程执行</h3>
+            <ul class="checklist">
+              <li>10/4 是周日，10/3 在 Leknes 或 Svolvær 补齐10/3晚餐、10/4全天和10/5早餐。</li>
+              <li>长距离驾驶尽量放在 9:00-17:30，18点后只做短距离入住或住处附近追光。</li>
+              <li>租车确认冬季/秋季轮胎、保险、异地/自助还车、夜间取车流程。</li>
+              <li>不要把 Moskenes-Bodø 渡轮作为未核实的关键连接，10月海况可能打乱计划。</li>
+            </ul>
+          </article>
+          <article class="card warning">
+            <h3>航班衔接</h3>
+            <ul class="checklist">
+              <li>10/1 17:55 OSL→EVE 对你偏紧，21:00 更稳。</li>
+              <li>若 10/6 从 EVE 回 OSL，前一晚住 EVE 附近，优先 06:15/06:30 早班。</li>
+              <li>10/6 17:00 OSL 国际返程，14:00-14:30 到机场值机托运较稳。</li>
+              <li>保留可退 OSL / EVE 过渡住宿，用临近天气和航班状态做最终决策。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="wrap">
+        <h2>本页依据与边界</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3>整合来源</h3>
+            <p>本页整合了本目录内的《罗弗敦10月住宿选择完整汇总GPT分析存档.md》《罗弗敦10月行程方案-深度分析-deepseek.md》《lofoten.html》《alternatives.html》以及你在对话中补充的航班、住宿、偏好和限制。</p>
+          </article>
+          <article class="card">
+            <h3>不确定性</h3>
+            <p>价格、可订状态、航班执行、天气、极光、餐厅营业和路况都会变化。本文是 GPT 独立分析与决策辅助，最终下单前请以航司、酒店/民宿、预订平台、yr.no / met.no / Windy 和现场道路信息为准。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><b>版本说明：本页为 GPT 版。</b> 由 GPT 独立生成，与站内 DeepSeek 生成的三份分析页（深度分析 / 住宿 12 选 1 / 返程航班决策）来源不同，方法论与结论可能不一致，建议对照参考。原始生成文件：挪威10月行程住宿路线总汇GPT分析.html（站内文件名 norway-trip-summary-gpt.html）。更新时间：2026-09-17。建议作为总览页使用，详细原始分析仍保留在对应存档文件中。</p>
+    </div>
+  </footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script>
+    (function () {
+      const mapEl = document.getElementById("map");
+      if (!mapEl || !window.L) {
+        mapEl.innerHTML = "<div style='padding:24px'>交互地图未能加载。请确认 vendor/leaflet 与 vendor/tiles/lofoten 存在。</div>";
+        return;
+      }
+      const map = L.map("map", { scrollWheelZoom: true, preferCanvas: true }).setView([68.18, 13.78], 8);
+      L.tileLayer("vendor/tiles/lofoten/{z}/{x}/{y}.png", {
+        minZoom: 6,
+        maxZoom: 11,
+        attribution: "Local offline tiles",
+        errorTileUrl: "vendor/tiles/lofoten/6/34/14.png"
+      }).addTo(map);
+
+      const colors = { airport:"#1b6178", stay:"#c79538", view:"#416b55", aurora:"#5f568d", hike:"#7d4d25", food:"#b02f3a" };
+      const points = [
+        {n:"OSL 奥斯陆机场", t:"airport", lat:60.1939, lng:11.1004, note:"10/1汇合与10/6国际返程机场。"},
+        {n:"EVE Evenes机场", t:"airport", lat:68.4913, lng:16.6781, note:"罗弗敦自驾取还车机场。10/1晚到或10/6早回的关键点。"},
+        {n:"Sandtorgholmen Hotel", t:"stay", lat:68.6467, lng:16.5616, note:"EVE附近体验型过渡住宿，适合10/1或10/5。"},
+        {n:"Tjeldsundbrua Hotel", t:"stay", lat:68.5485, lng:16.5757, note:"桥和海峡折中型过渡住宿。"},
+        {n:"Aiden Harstad Narvik Airport", t:"stay", lat:68.4890, lng:16.6720, note:"最效率的机场附近住宿。"},
+        {n:"Svolvær", t:"food", lat:68.2342, lng:14.5683, note:"东部补给和餐饮中心。"},
+        {n:"Kabelvåg / Astra Village", t:"stay", lat:68.2100, lng:14.4780, note:"安静老镇、rorbu候选、靠近Svolvær补给。"},
+        {n:"Henningsvær", t:"view", lat:68.1537, lng:14.2018, note:"港口小镇、海上足球场、咖啡馆。白天/黄昏2-3小时很合适。"},
+        {n:"Henningsvær Bryggehotell / Banhammaren", t:"stay", lat:68.1529, lng:14.2010, note:"适合10/2轻松住，但不是最佳追光住宿。"},
+        {n:"Gimsøy / Hov", t:"aurora", lat:68.3065, lng:14.1890, note:"北向开阔海岸，适合晴夜追光；从Henningsvær夜驾约40-55分钟。"},
+        {n:"Hoven 徒步", t:"hike", lat:68.3100, lng:14.1800, note:"本次最适合的短徒步候选，晴天风小时考虑。"},
+        {n:"Eggum", t:"aurora", lat:68.3020, lng:13.6490, note:"北向开阔极光点，夜路需谨慎。"},
+        {n:"Unstad Arctic Resort", t:"stay", lat:68.2697, lng:13.5840, note:"北极冲浪海滩住宿，差异化强，偏离E10。"},
+        {n:"Haukland Beach", t:"aurora", lat:68.1983, lng:13.5297, note:"白沙滩与极光候选点。"},
+        {n:"Uttakleiv Beach", t:"aurora", lat:68.2092, lng:13.5037, note:"戏剧性海岸，晴窗夜晚很适合追光。"},
+        {n:"Leknes", t:"food", lat:68.1475, lng:13.6112, note:"中西部关键补给点。10/3务必在这里补齐10/4周日食物。"},
+        {n:"Ballstad / Hattvika Lodge", t:"stay", lat:68.0678, lng:13.5404, note:"中部最稳住宿基地，真实渔港，机动性强。"},
+        {n:"Nusfjord Village & Resort", t:"stay", lat:68.0350, lng:13.3480, note:"历史渔村，适合住一晚体验黄昏和清晨。"},
+        {n:"Skagsanden / Flakstad", t:"aurora", lat:68.1020, lng:13.2970, note:"海滩追光核心区域，适合10/4关键夜。"},
+        {n:"Ramberg / Oceanview", t:"stay", lat:68.0906, lng:13.2300, note:"海滩住宿区，落地窗海景和追光逻辑强。"},
+        {n:"Jusnesveien 55 / Varanes", t:"stay", lat:68.0850, lng:13.3100, note:"Flakstad-Ramberg海边民宿候选，适合少夜路等极光。"},
+        {n:"Fredvang Bridges", t:"view", lat:68.0753, lng:13.1857, note:"西线桥景短停点。"},
+        {n:"Hamnøy / Eliassen Rorbuer", t:"stay", lat:67.9450, lng:13.1346, note:"经典红色rorbu，住宿体验强，但离EVE远。"},
+        {n:"Sakrisøy", t:"view", lat:67.9410, lng:13.1110, note:"黄色渔屋和海湾，适合慢停。"},
+        {n:"Reine", t:"view", lat:67.9326, lng:13.0895, note:"罗弗敦经典村庄。建议逛村，不把Reinebringen设为必做。"},
+        {n:"Å", t:"view", lat:67.8795, lng:12.9815, note:"E10西端，世界尽头感。天气差时可降级。"}
+      ];
+      function icon(type) {
+        return L.divIcon({
+          className:"",
+          html:`<span style="display:block;width:17px;height:17px;border-radius:50%;background:${colors[type]};border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,.32)"></span>`,
+          iconSize:[17,17],
+          iconAnchor:[8,8],
+          popupAnchor:[0,-8]
+        });
+      }
+      const markers = [];
+      const byName = Object.fromEntries(points.map(p => [p.n, p]));
+      points.forEach(p => {
+        const m = L.marker([p.lat,p.lng], {icon:icon(p.t)})
+          .bindPopup(`<div class="popup-title">${p.n}</div><div class="popup-note">${p.note}</div>`)
+          .addTo(map);
+        markers.push(m);
+      });
+
+      const routeDefs = {
+        main: {
+          color:"#1b6178",
+          names:["EVE Evenes机场","Sandtorgholmen Hotel","Svolvær","Kabelvåg / Astra Village","Henningsvær","Leknes","Ballstad / Hattvika Lodge","Nusfjord Village & Resort","Skagsanden / Flakstad","Ramberg / Oceanview","Hamnøy / Eliassen Rorbuer","Sakrisøy","Reine","Å","Reine","Ramberg / Oceanview","Leknes","Svolvær","EVE Evenes机场"]
+        },
+        aurora: {
+          color:"#5f568d",
+          names:["Ballstad / Hattvika Lodge","Haukland Beach","Uttakleiv Beach","Eggum","Unstad Arctic Resort","Leknes","Skagsanden / Flakstad","Ramberg / Oceanview","Jusnesveien 55 / Varanes"]
+        },
+        west: {
+          color:"#b65b36",
+          names:["Nusfjord Village & Resort","Skagsanden / Flakstad","Ramberg / Oceanview","Fredvang Bridges","Hamnøy / Eliassen Rorbuer","Sakrisøy","Reine","Å"]
+        }
+      };
+      let routeLayer = null;
+      function showRoute(key) {
+        if (routeLayer) map.removeLayer(routeLayer);
+        const def = routeDefs[key];
+        const latlngs = def.names.map(n => [byName[n].lat, byName[n].lng]);
+        routeLayer = L.polyline(latlngs, {color:def.color, weight:4, opacity:.88}).addTo(map);
+        map.fitBounds(L.latLngBounds(latlngs), {padding:[28,28]});
+        document.querySelectorAll("[data-route]").forEach(b => b.classList.toggle("active", b.dataset.route === key));
+      }
+      document.querySelectorAll("[data-route]").forEach(btn => btn.addEventListener("click", () => showRoute(btn.dataset.route)));
+      document.querySelector("[data-fit='all']").addEventListener("click", () => {
+        const latlngs = points.map(p => [p.lat,p.lng]);
+        map.fitBounds(L.latLngBounds(latlngs), {padding:[28,28]});
+        document.querySelectorAll("[data-route]").forEach(b => b.classList.remove("active"));
+      });
+      showRoute("main");
+      setTimeout(() => map.invalidateSize(), 120);
+      window.addEventListener("load", () => map.invalidateSize());
+    })();
+  </script>
+</body>
+</html>
