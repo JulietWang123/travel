@@ -1,404 +1,365 @@
-# 罗弗敦 2026 年 10 月初：12 个候选住宿专项分析
+# 罗弗敦 10 月候选住宿 · 独立分析（v3 · 去极光版）
 
-> **🤖 本分析由 DeepSeek 生成** · 生成日期 2026-09-17
->
-> 独立分析（未参考任何其他来源的住宿结论）。数据链：用户提供的候选清单快照 + OSRM 实测车程 + 当地天文数据 + 本地图片库。
+> 🤖 本分析由 DeepSeek 生成 ｜ 修订：2026-09-17 ｜ 本版**取代**此前的「极光权重 0.30」版本
 
 ---
 
-## 0. 结论速览
+## 0 · 这一版改了什么
 
-1. **Unstad Arctic Resort 是 12 个候选里的结构性异类**：唯一「无连住约束 + 天区 9.5 + 守光 1 min + 2,061 元/晚」。综合前 25 名里有 16 名把 Unstad 排在 10/4。
-2. **10/2 默认住 Henningsvær，理由应是「落脚方便」而不是「极光好」**。Henningsvær 三家（H01/H02/H03）住地天区都只有 4.5/10 —— 北向被 Vågakallen（942 m）山墙挡死，必须开 8–12 min 到 Rørvikstranda 才开阔。
-3. **硬性约束会直接删掉组合**：H02 必须连住 10/3+10/4 两晚；H08 必须连住 10/2+10/3 两晚；H05 与 H06 各需连住两晚（10/2+10/3 或 10/3+10/4）；H07 只能订 10/2 一晚。
-4. **「10/4 住西端」与「10/5 轻松返程」不能兼得**。走廊总账：住 Eliassen 300 min ＜ 住 Jusnesveien 322 min ＜ 住 Unstad 388 min。
-5. **rorbu（红房子渔屋）与「落地窗海景」在 12 个候选里不重合**，所以至少换一次宿。
-6. **「24 小时内可退」= 灵活性最低**（下单后 24h 内可退、之后不可退），不是最灵活。
-7. **10/4 是月面最暗的一晚（46%）**（10/2 ≈ 67%、10/3 ≈ 56%、10/4 ≈ 46%，下弦走向逐夜变暗）。模型里的月相修正系数 0.767 / 0.803 / 0.840 由它换算，数字越大＝月光干扰越小，所以 10/4 权重最高 —— 这个天然最暗的夜晚不该被搬家消耗掉。
+1. **彻底删除极光维度。** 删掉「极光可见性 0.30」与「守光点车程 0.20」两个维度，以及从属于它们的人工「天区」判定分（0–10 定性打分）和自造的月相修正系数（0.767 / 0.803 / 0.840）。
+2. **剩余 4 个维度按原比例归一化。** 原 4 维权重合计 0.50 → 各自除以 0.50。
+3. **新增严格硬约束。** 只禁 **Hamnøy（H11）/ Nusfjord（H12）连住**；其他地方「优先不连住」，但若同地区确实没有别的选择、或房源强制连住，列入**备选池**，不作首选。
+4. **住宿总价退出打分**，只作参考量（按你的口径：价格无所谓，除非价差特别大）。
+5. **返程只保留 10/5 20:05 EVE→OSL 一班**（17:15 那班已按你的要求剔除）。
 
-**打分权重**：极光 0.30 / 夜间驾驶 0.20 / 白天景区可达 0.16 / 10-5 返程 0.12 / 住宿体验 0.12 / 补给与搬家 0.10。
+> 关于极光，全文只保留这一句客观提示：**Lofoten 全域位于极光带内，能否看到取决于当晚云量，住宿位置不构成差异。**
 
 ---
 
-## 1. 12 个候选一览
+## 1 · 打分模型 v3
 
-| 编号 | 住地 | 类型 | 单价(元/晚) | 可订/连住约束 | 天区 | 守光(min) | →EVE | →Svolvær | →Leknes | →Reine |
-|---|---|---|---|---|---|---|---|---|---|---|
-| H01 | Banhammaren 39 H0304 | Airbnb 公寓 | 2,408 | 无连住约束 | 4.5 | 12 | 3:11 | 0:31 | 1:07 | 2:03 |
-| H02 | Misværveien 2 码头公寓 | Airbnb 码头公寓 | 1,345 | 必须 10/3–10/5 连住两晚 | 4.5 | 8 | 3:09 | 0:27 | 1:04 | 2:00 |
-| H03 | Henningsvær Bryggehotell | 精品酒店（海景阁楼 3186 元 / 豪华双人 2298 元） | 2,298 | 无连住约束 | 4.5 | 9 | 3:09 | 0:27 | 1:03 | 1:59 |
-| H04 | Hattvika Lodge – Hattvika Hillside | 罗弗敦传统渔屋旅馆 | 2,664 | Hillside 无约束；Myklebustbua#2（1878 元）须连住 2 晚 | 6.5 | 18 | 4:05 | 1:27 | 0:15 | 1:08 |
-| H05 | Fishermans Villa Ballstad | 罗弗敦渔屋民宿 | 1,918 | 必须连住两晚（10/2+10/3 或 10/3+10/4） | 6.5 | 17 | 4:03 | 1:24 | 0:12 | 1:05 |
-| H06 | Jusnesveien 55 | Airbnb 大独栋（面积大 · 两屋可联通 · 大落地窗 · 山景+海景） | 2,242 | 必须连住两晚（10/2+10/3 或 10/3+10/4） | 8.0 | 3 | 4:20 | 1:41 | 0:32 | 0:31 |
-| H07 | Oceanview Mini-House – Stunning Views | Airbnb 迷你独栋 | 2,243 | 只能订到 10/2 一晚 | 8.5 | 0 | 4:21 | 1:42 | 0:31 | 0:28 |
-| H08 | Varanes – Elvis Presleys vei 25 | Airbnb 全新乡村小木屋 | 3,220 | 必须连住 10/2+10/3 两晚 | 8.0 | 3 | 4:20 | 1:41 | 0:32 | 0:31 |
-| H09 | Arctic Panoramautsikten（Vei 2803 22） | Airbnb 全景公寓（带按摩浴缸） | 3,783 | 无连住约束 | 7.5 | 6 | 3:06 | 0:24 | 0:53 | 1:49 |
-| H10 | Unstad Arctic Resort（山景公寓） | 北极冲浪度假村公寓 | 2,061 | 无连住约束 | 9.5 | 1 | 3:52 | 1:06 | 0:23 | 1:18 |
-| H11 | Eliassen Rorbuer | 罗弗敦最经典的红房子渔屋 | 1,959 | 10/4 房型多（一室 1959 元）；10/2 一室 2576 元；10/3 仅传统两卧 2963 元 | 8.0 | 2 | 4:42 | 2:02 | 0:55 | 0:09 |
-| H12 | Nusfjord Village & Resort | 历史渔村度假村 | 2,300 | 无连住约束 | 4.0 | 13 | 4:18 | 1:38 | 0:28 | 0:44 |
+| 维度 | 权重 | 含义 | 计算口径 |
+|---|---|---|---|
+| **白天景区可达** | 0.32 | 三晚住地分别去斯沃尔韦尔 / 莱克内斯 / 雷讷方不方便 | `2×→斯沃尔韦尔(10/2) ＋ 2×→莱克内斯(10/3) ＋ 2×→雷讷(10/4)`，取均值后线性映射到 0–10 |
+| **10/5 返程车程** | 0.24 | 末夜住地 → EVE 机场 | 按 `→EVE` 分钟数线性映射（190 min ＝ 满分 10） |
+| **住宿体验** | 0.24 | 地区多样性 ＋ rorbu 特色 ＋ 面海 ＋ 能自炊 ＋ 三晚不重样 | `多样性(0–3.5) ＋ rorbu 3.0 ＋ 面海 2.5 ＋ 三晚全部可自炊 1.0 ＋ 三晚不重样 1.0` |
+| **补给 / 搬家 / 首日** | 0.20 | 超市距离、两次搬家车程、10/1 落地当日车程 | `0.35×补给 ＋ 0.30×搬家 ＋ 0.35×首日` |
 
-### 逐个点评
+**总分 ＝ 0.32×白天可达 ＋ 0.24×返程 ＋ 0.24×体验 ＋ 0.20×便利**
 
-**H01 · Banhammaren 39 H0304**（Henningsvær）
+### 硬约束（不满足直接排除）
 
-- ＋ Henningsvær 岛西侧，步行 3 min 到港湾与 Trevarefabrikken；自炊方便
-- − 北向被 Vågakallen（942 m）/ Festvågtind 山墙遮挡，守光要开 12 min
-- 备注：住地面南/西南对 Vestfjorden；北向被 Austvågøya 山墙（Vågakallen 942 m、Festvågtind）挡，要开 8.6 km / 12 min 到 Rørvikstranda 才开阔
-
-**H02 · Misværveien 2 码头公寓**（Henningsvær）
-
-- ＋ 12 个候选中单价最低（1345 元/晚），就在码头边；自炊方便
-- − 被连住约束锁死在 10/3–10/4 槽位；且 10/2 无法使用（结构上很别扭）
-- 备注：同一片 Henningsvær 港湾，北向被同一道山墙挡；到 Rørvikstranda 7.1 km / 8 min。注意必须 10/3–10/5 连住两晚
-
-**H03 · Henningsvær Bryggehotell**（Henningsvær）
-
-- ＋ 码头第一排，自有餐厅+早餐，省掉做饭洗碗；渔村氛围最正统；10/2 落脚最省事
-- − 天区条件与 H01/H02 完全相同（4.5/10），酒店无厨房
-- 备注：码头第一排酒店、有自有餐厅与早餐，省掉做饭和洗碗；但天区条件跟 H01/H02 完全一样（北向山墙）
-
-**H04 · Hattvika Lodge – Hattvika Hillside**（Ballstad）
-
-- ＋ Ballstad 半岛西端、西/西南向开阔水面；体验挪威渔屋氛围强
-- − 北向被 Vestvågøy 内陆丘陵遮挡，守光要开 18 min 到 Nappstraumen
-- 备注：Ballstad 西南半岛港湾，西/西南向开阔水面；北向被 Vestvågøy 内陆丘陵部分遮挡，要开 11.8 km / 18 min 到 Nappstraumen 才纯开阔
-
-**H05 · Fishermans Villa Ballstad**（Ballstad）
-
-- ＋ 离 Leknes 仅 9.5 km / 12 min，是 12 个候选中补给最方便的；传统渔屋
-- − 必须连住；天区同 H04（6.5/10）
-- 备注：与 H04 同一片海岸，天区条件相同；离 Leknes 只有 9.5 km / 12 min，是 12 个候选里补给最方便的。但必须连住两晚
-
-**H06 · Jusnesveien 55**（Flakstad / Ramberg）
-
-- ＋ 天区 8.0；房子大、两间可联通、落地窗同时看山与海；到 Ramberg 白沙滩 1.8 km / 3 min；到 Leknes 32 min；西段 Reine 仅 31 min
-- − 房东住隔壁（两屋相邻、可联通）；必须连住两晚、不可只住一晚；24h 内可退＝下单后 24h 内可退、之后不可退（灵活性最低档）
-- 备注：Flakstadøya 西岸外海侧，西/西北向大片开阔水面（Ramberg 白沙滩方向）；到 Ramberg 1.8 km / 3 min。房东住隔壁、房子大、大落地窗海景（你原话）
-
-**H07 · Oceanview Mini-House – Stunning Views**（Ramberg）
-
-- ＋ Ramberg 白沙滩第一排，正西向开阔海面，守光零开车（天区 8.5，全场第 2）
-- − 只能 10/2 一晚，无法承担任意一个两晚槽位；10/2 落地即长途（4.8 h）
-- 备注：就在 Ramberg 白沙滩第一排，正西向开阔海面，守极光零开车。但只能订到 10/2 一晚——这是它最大的结构性麻烦
-
-**H08 · Varanes – Elvis Presleys vei 25**（Flakstad / Ramberg）
-
-- ＋ 与 H06 同区，天区条件完全相同（8.0）；全新木屋、设计感强
-- − 3220 元/晚，是全场最贵单笔；两晚 6440 元；且被锁死在 10/2 起点
-- 备注：与 H06 同一区域，天区条件相同；但 3220 元/晚是三晚方案里最贵的单笔，两晚就是 6440 元。必须 10/2–10/4 连住
-
-**H09 · Arctic Panoramautsikten（Vei 2803 22）**（Gimsøystraumen）
-
-- ＋ Gimsøystraumen 海峡南岸，西北向遮挡远小于 Henningsvær（天区 7.5）；到 EVE 仅 3:07（全场最短）
-- − 3783 元/晚，是全场最贵之一；西北向是 Gimsøya 低地（368 m），并非完全无遮挡
-- 备注：Gimsøystraumen 海峡南岸，西北向是 Gimsøya 低地（368 m）与海峡水面，遮挡远小于 Henningsvær；到 Rørvikstranda 5.0 km / 6 min、Hov 15.2 km / 18 min。价格最高（3783 元/晚）
-
-**H10 · Unstad Arctic Resort（山景公寓）**（Unstad）
-
-- ＋ 外海西/西北岸、海滩第一排，天区 9.5（全场第 1），走 0.3 km 就到沙滩守光；自炊方便
-- − 到西段 Reine 单程 1:18，白天进出西段要白跑一趟；到 EVE 3:55
-- 备注：外海西/西北岸、海滩第一排、正对开阔海面、北向无遮挡——12 个候选里住地自身守光条件最好的一个，走 0.3 km 就到沙滩。代价：到西段 Reine 单程 1:18，白天进出西段要白跑一趟
-
-**H11 · Eliassen Rorbuer**（Hamnøy）
-
-- ＋ Hamnøy 桥（公认顶级极光机位）离家 2 min；到 Reine 9 min、Å 20 min；正宗 rorbu 体验
-- − 10/5 返 EVE 需 4:47（全场最远）；10/3 只有高价两卧房型
-- 备注：Hamnøy 桥是公认的顶级极光机位（朝北/西北），离门口只有 0.5 km / 2 min；面北/西北对 Reinefjord 出海口与 Vestfjorden，西侧 3 km 外才有 Olstinden 群峰。到 Reine 9 min、到 Å 20 min。代价：10/5 返程 4:47
-
-**H12 · Nusfjord Village & Resort**（Nusfjord）
-
-- ＋ 挪威保存最完整的历史渔村之一，挪威特色住宅体验全场最强
-- − 被全岛最高山环绕，天区只有 4.0（全场最低），守光要开 13 min 出村
-- 备注：挪威保存最完整的历史渔村之一，体验分极高；但被全岛最高山环绕，天空只有「一道缝」，守光要开 12.7 km / 13 min 到 Skagsanden，且要先出村闸口
-
----
-
-## 2. 交互地图使用说明
-
-HTML 版 Section 2 是离线可用的 Leaflet 交互地图（本地瓦片），共 24 个点：
-
-- **蓝色 = 机场**；**绿色 = 观景/城镇锚点**；**紫色 = 极光守光点**；**彩色 = 12 个候选住宿（颜色＝天区分档）**
-- 图例在右下方，可逐层开关；点击任意点弹出详情（车程、天区、守光车程、优缺点）
-- 路线按结构着色，10 条候选结构的走廊一目了然
-
----
-
-## 3. 打分模型
-
-**总分 = 0.30×极光 + 0.20×夜路 + 0.16×白天 + 0.12×返程 + 0.12×体验 + 0.10×便利**
-
-| 维度 | 权重 | 怎么算 |
-|---|---|---|
-| 极光 | 0.30 | 三晚住地天区分的月相加权平均 × 0.55 ＋ 最后一晚天区 × 0.45；最后一晚天区 ≥8.0 加 0.8，守光 ≤5 min 加 0.5 |
-| 夜路 | 0.20 | 三晚住地到最近守光点车程均值 |
-| 白天 | 0.16 | 2×到 Svolvær ＋ 2×到 Leknes ＋ 2×到 Reine 的均值 |
-| 返程 | 0.12 | 10 − (最后一晚到 EVE 分钟 − 190) / 10 |
-| 体验 | 0.12 | 区域多样性 ＋ rorbu ＋ 海景 ＋ 厨房 ＋ 三晚三处 |
-| 便利 | 0.10 | 0.35×补给 ＋ 0.30×搬家 ＋ 0.35×10/2 落地日 |
-
-月相修正系数（月光干扰，越大干扰越小）：10/2 = 0.767、10/3 = 0.803、10/4 = 0.840；对应月面照亮比例约 67% / 56% / 46%。
-
----
-
-## 4. 排名（综合前 25，共 430 种合法组合）
-
-| # | 10/2 → 10/3 → 10/4 | 总分 | 极光 | 夜路 | 白天 | 返程 | 体验 | 便利 | 3晚元 |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Unstad Arctic Resort | **7.95** | 9.49 | 9.11 | 6.42 | 5.80 | 6.00 | 8.34 | 7,905 |
-| 2 | Henningsvær Bryggehotell → Unstad Arctic Resort → Unstad Arctic Resort | **7.94** | 9.07 | 8.78 | 6.29 | 5.80 | 8.00 | 7.98 | 6,420 |
-| 3 | Vei 2803 22 全景公寓 → Hattvika Hillside → Unstad Arctic Resort | **7.88** | 9.05 | 7.22 | 6.75 | 5.80 | 10.00 | 7.43 | 8,508 |
-| 4 | Vei 2803 22 全景公寓 → Eliassen Rorbuer → Unstad Arctic Resort | **7.86** | 9.27 | 9.00 | 5.08 | 5.80 | 10.00 | 5.72 | 7,803 |
-| 5 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Eliassen Rorbuer | **7.79** | 8.59 | 9.00 | 9.29 | 0.80 | 10.00 | 6.32 | 7,803 |
-| 6 | Henningsvær Bryggehotell → Vei 2803 22 全景公寓 → Unstad Arctic Resort | **7.78** | 8.77 | 8.22 | 5.04 | 5.80 | 10.00 | 8.00 | 8,142 |
-| 7 | Vei 2803 22 全景公寓 → Nusfjord Village → Unstad Arctic Resort | **7.74** | 8.68 | 7.78 | 6.21 | 5.80 | 10.00 | 6.94 | 8,144 |
-| 8 | Vei 2803 22 全景公寓 → Henningsvær Bryggehotell → Unstad Arctic Resort | **7.70** | 8.76 | 8.22 | 4.75 | 5.80 | 10.00 | 7.70 | 8,142 |
-| 9 | Henningsvær Bryggehotell → Eliassen Rorbuer → Unstad Arctic Resort | **7.64** | 8.85 | 8.67 | 4.96 | 5.80 | 10.00 | 5.66 | 6,318 |
-| 10 | Henningsvær Bryggehotell → Hattvika Hillside → Unstad Arctic Resort | **7.63** | 8.63 | 6.89 | 6.62 | 5.80 | 10.00 | 7.12 | 7,023 |
-| 11 | Banhammaren 39 → Unstad Arctic Resort → Unstad Arctic Resort | **7.59** | 9.07 | 8.44 | 6.12 | 5.80 | 6.00 | 7.86 | 6,530 |
-| 12 | Unstad Arctic Resort → Hattvika Hillside → Unstad Arctic Resort | **7.57** | 9.33 | 7.78 | 5.00 | 5.80 | 9.00 | 6.40 | 6,786 |
-| 13 | Vei 2803 22 全景公寓 → Vei 2803 22 全景公寓 → Unstad Arctic Resort | **7.54** | 9.20 | 8.56 | 5.17 | 5.80 | 6.00 | 8.32 | 9,628 |
-| 14 | Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer | **7.54** | 8.16 | 8.67 | 9.17 | 0.80 | 10.00 | 5.96 | 6,318 |
-| 15 | Banhammaren 39 → Eliassen Rorbuer → Unstad Arctic Resort | **7.54** | 8.85 | 8.33 | 4.79 | 5.80 | 10.00 | 5.54 | 6,428 |
-| 16 | Banhammaren 39 → Hattvika Hillside → Unstad Arctic Resort | **7.52** | 8.63 | 6.56 | 6.46 | 5.80 | 10.00 | 6.96 | 7,133 |
-| 17 | Unstad Arctic Resort → Unstad Arctic Resort → Eliassen Rorbuer | **7.52** | 8.87 | 9.56 | 7.54 | 0.80 | 9.00 | 5.70 | 6,081 |
-| 18 | Unstad Arctic Resort → Eliassen Rorbuer → Unstad Arctic Resort | **7.52** | 9.55 | 9.56 | 3.33 | 5.80 | 9.00 | 4.30 | 6,081 |
-| 19 | Henningsvær Bryggehotell → Unstad Arctic Resort → Vei 2803 22 全景公寓 | **7.51** | 6.56 | 8.22 | 5.00 | 10.00 | 10.00 | 6.96 | 8,142 |
-| 20 | Henningsvær Bryggehotell → Nusfjord Village → Unstad Arctic Resort | **7.48** | 8.26 | 7.44 | 6.08 | 5.80 | 10.00 | 6.46 | 6,659 |
-| 21 | Banhammaren 39 → Unstad Arctic Resort → Eliassen Rorbuer | **7.44** | 8.16 | 8.33 | 9.00 | 0.80 | 10.00 | 5.84 | 6,428 |
-| 22 | Banhammaren 39 → Vei 2803 22 全景公寓 → Unstad Arctic Resort | **7.43** | 8.77 | 7.89 | 4.88 | 5.80 | 8.00 | 7.80 | 8,252 |
-| 23 | Hattvika Hillside → Unstad Arctic Resort → Unstad Arctic Resort | **7.41** | 9.35 | 7.78 | 3.79 | 5.80 | 9.00 | 6.63 | 6,786 |
-| 24 | Banhammaren 39 → Nusfjord Village → Unstad Arctic Resort | **7.38** | 8.26 | 7.11 | 5.92 | 5.80 | 10.00 | 6.33 | 6,769 |
-| 25 | Vei 2803 22 全景公寓 → Banhammaren 39 → Unstad Arctic Resort | **7.35** | 8.76 | 7.89 | 4.58 | 5.80 | 8.00 | 7.54 | 8,252 |
-
-### 推荐结构（9 个）
-
-| 结构 | 名称 | 10/2 → 10/3 → 10/4 | 总分 | 排名 | 3晚元 |
-|---|---|---|---|---|---|
-| A | 极光优先 · 最省夜路 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Unstad Arctic Resort | **7.95** | 1 | 7,905 |
-| B | 均衡首选 · 渔村氛围 + 最强天区 | Henningsvær Bryggehotell → Unstad Arctic Resort → Unstad Arctic Resort | **7.94** | 2 | 6,420 |
-| C | 省走廊 · 西端红房子收尾 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Eliassen Rorbuer | **7.79** | 5 | 7,803 |
-| D | 预算友好 · 三晚 6081 元 | Unstad Arctic Resort → Unstad Arctic Resort → Eliassen Rorbuer | **7.52** | 17 | 6,081 |
-| E | 两晚连住 · 酒店 + 渔屋 + 红房子 | Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer | **7.54** | 14 | 6,318 |
-| F | Jusnesveien 55 连住版 | Henningsvær Bryggehotell → Jusnesveien 55 → Jusnesveien 55 | **7.33** | 31 | 6,783 |
-| G | 10/2 单晚最优（零开车守光） | Andopveien 35 Oceanview → Unstad Arctic Resort → Unstad Arctic Resort | **7.33** | 29 | 6,365 |
-| I | 保留 Henningsvær + 西端 | Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer | **7.09** | 53 | 6,921 |
-| J | 把 Nusfjord 当住处 | Henningsvær Bryggehotell → Nusfjord Village → Nusfjord Village | **5.59** | 341 | 6,898 |
-
-> 原本还留了第 10 条候选结构 H「Henningsvær → Jusnesveien 55 → Eliassen」，但它在约束筛选阶段就被剔除：Jusnesveien 55（H06）必须连住两晚，只住 10/3 一晚不成立。所以上表是 9 条，全部通过硬约束校验。
-
----
-
-## 5. 专项评估：Jusnesveien 55
-
-### 5.1 硬事实
-
-| 项目 | 数值 |
+| 编号 | 约束 |
 |---|---|
-| 位置 | Flakstadøya 西岸（68.103°N, 13.244°E） |
-| 房型 | Airbnb **大独栋**：房子面积大，**两间屋可联通**（可拆成两个独立空间）、大落地窗山水景、带厨房 |
-| 单价 / 连带成本 | 2,242.50 元/晚；连住两晚 **4,485 元** |
-| 可订约束 | **必须连住两晚** |
-| 退订政策 | **24 小时内可退** |
-| 到 Ramberg 白沙滩 | 1.8 km / 3 min |
-| 到 Skagsanden | 3.1 km / 4 min |
-| 到 Flakstad 教堂 | 3.3 km / 4 min |
-| 到 Nusfjord | 14.8 km / 15 min |
-| 到 Reine / Hamnøy | 27.3 km / 31 min ｜ 22.0 km / 23 min |
-| 到 Leknes | 30.2 km / 32 min |
-| 到 Svolvær | 94.5 km / 1:41 |
-| 到 Henningsvær | 86.4 km / 1:32 |
-| 到 Ballstad | 34.8 km / 39 min |
-| 到 EVE 机场 | **260.0 km / 4:25** |
-| 住地天区 | 8.0 / 10（人工判定） |
-| 守光车程 | 3 min |
+| H02 | 只能连住 **10/3–10/4** |
+| H08 | 只能连住 **10/2–10/3** |
+| H07 | 只能订到 **10/2** 一晚 |
+| H05 / H06 | 只能**连续两晚** |
+| H11 / H12 | **禁止连住**（Hamnøy / Nusfjord） |
 
-### 5.2 含 Jusnesveien 55 的 8 种排法
-
-| # | 10/2 → 10/3 → 10/4 | 综合排名 | 总分 | 极光 | 夜路 | 白天 | 返程 | 体验 | 便利 | 3晚元 | 10/4走廊往返(min) | 10/5返EVE(min) | 合计 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Vei 2803 22 全景公寓 → Jusnesveien 55 → Jusnesveien 55 | 28 | **7.34** | 8.36 | 8.67 | 8.00 | 3.00 | 6.00 | 7.39 | 8,268 | 62 | 260 | **322** |
-| 2 | Henningsvær Bryggehotell → Jusnesveien 55 → Jusnesveien 55 | 31 | **7.33** | 7.94 | 8.33 | 7.88 | 3.00 | 8.00 | 6.97 | 6,783 | 62 | 260 | **322** |
-| 3 | Unstad Arctic Resort → Jusnesveien 55 → Jusnesveien 55 | 47 | **7.16** | 8.65 | 9.22 | 6.25 | 3.00 | 6.00 | 6.39 | 6,546 | 62 | 260 | **322** |
-| 4 | Jusnesveien 55 → Jusnesveien 55 → Unstad Arctic Resort | 62 | **7.05** | 9.34 | 9.22 | 2.83 | 5.80 | 6.00 | 5.31 | 6,546 | 156 | 232 | **388** |
-| 5 | Banhammaren 39 → Jusnesveien 55 → Jusnesveien 55 | 68 | **6.99** | 7.94 | 8.00 | 7.71 | 3.00 | 6.00 | 6.91 | 6,893 | 62 | 260 | **322** |
-| 6 | Jusnesveien 55 → Jusnesveien 55 → Eliassen Rorbuer | 79 | **6.96** | 8.43 | 9.11 | 5.71 | 0.80 | 9.00 | 5.16 | 6,444 | 18 | 282 | **300** |
-| 7 | Andopveien 35 Oceanview → Jusnesveien 55 → Jusnesveien 55 | 97 | **6.86** | 8.50 | 9.33 | 4.75 | 3.00 | 6.00 | 6.01 | 6,728 | 62 | 260 | **322** |
-| 8 | Jusnesveien 55 → Jusnesveien 55 → Nusfjord Village | 333 | **5.61** | 4.72 | 7.89 | 4.25 | 3.20 | 8.00 | 5.89 | 6,785 | 88 | 258 | **346** |
-
-### 5.3 四个优点
-
-1. **唯一「中段位置 + 高天区」的组合**：天区 8.0 的住地只有三个（Jusnesveien 55、Elvis Presleys 25、Oceanview），能连住两晚当中段基地的只有它。守光只要 3 min。
-2. **空间条件全场最好**：房子面积大，**两间屋可联通**（可拆成两个独立空间），大落地窗**同时看山与海**，带厨房。房东就住在隔壁屋。12 个候选里唯一「宅在屋里也值」的尺度。
-3. **白天可达性非常均衡**：Reine 31 min、Nusfjord 15 min、Leknes 32 min、Ballstad 39 min，四项都不超过 40 min，全 12 个候选里没有第二个能做到。
-4. **「只换一次宿」方案里唯一的解**：10/2 睡 Henningsvær 收尾东段 + 10/3–10/4 连住它，是唯一兼顾「西段可当天往返」与「东段已覆盖」的排法。
-
-### 5.4 三个缺点
-
-1. **10/5 返程 4:25，且它不是「最后一晚」问题的解**：位置让它两头都不省 —— 10/4 去西段 62 min 往返，10/5 回 EVE 260 min。
-2. **连住两晚 + 24h 退订 + 不能只住一晚 = 三重锁死**：下单后 24h 内可退、之后不可退（）且必须连住两晚、不能只待一天，没有酒店那种「住一晚就走」的灵活性。天气转向时没有任何腾挪空间 —— 这是把它当「首选」而非「唯一选」的头号理由。
-3. **它不是 rorbu，体验分只有 8.0**：你最想要的「挪威特色住宅」这条它给不了，要靠 10/2 的 Henningsvær 或 10/4 的 Eliassen 补。
-
-### 5.5 走廊总账（最后一晚住哪的真实代价）
-
-| 最后一晚住地 | 10/4 去西段往返(min) | 10/5 返 EVE(min) | 合计(min) |
-|---|---|---|---|
-| Eliassen Rorbuer（Hamnøy） | 18 | 282 | **300** |
-| Oceanview（Ramberg） | 56 | 261 | **317** |
-| Jusnesveien 55（Flakstad） | 62 | 260 | **322** |
-| Nusfjord Village | 88 | 258 | **346** |
-| Hattvika（Ballstad） | 136 | 245 | **381** |
-| Unstad Arctic Resort | 156 | 232 | **388** |
-| Vei 2803 22（Gimsøystraumen） | 218 | 186 | **404** |
-| Henningsvær Bryggehotell | 238 | 189 | **427** |
-
-**结论：**
-
-- 住 Eliassen（西端）的走廊总里程最短（300 min），因为「10/4 去西段」变成 18 min。这与模型给出的结论正好相反 —— 模型给它的返程分只有 0.80，却没算它省掉了 2 小时走廊。
-- 住 Unstad 的走廊总里程最长（388 min），但模型给它的返程分是 5.80，比 Eliassen 高 5 分。这是模型的已知盲区。
-- Jusnesveien 55 的 322 min 处在中间：比 Unstad 省 66 min，比 Eliassen 多 22 min。「它返程太远」的直觉是对的，但它不是最差的。
-
-### 5.6 结论
-
-**选它**（满足任意 2 条）：① 想只换一次宿；② 10/4 不冲西段而是走北海岸或 Nusfjord；③ 接受 10/5 是完整白天；④ 明确要「落地窗海景 + 大房子 + 自己做饭」。
-
-**别选它**（满足任意 2 条）：① 第一顺位是极光且愿为天区 9.5 牺牲白天 → 选 Unstad；② 要把 10/4 西段走扎实 → 10/4 住西端 Eliassen；③ 非常在意挪威特色住宅 → 它不是 rorbu；④ 需要保留改期灵活性。
-
-> **一句话：** 它不是坏房源，而是被放在错误问题上的好房源。它的优势是「当基地」，但你的核心诉求是「每晚都能看到极光 + 少开夜路」，这两条它都排不到第一。
+**可行组合（已剔硬约束 ＋ Hamnøy/Nusfjord 连住）共 404 个**：其中**无连住 294 个**、**含连住 110 个**。
+3 晚住宿小计区间：**4,752 – 10,530 元**。
 
 ---
 
-## 6. 逐日时刻表
+## 2 · 12 个候选一览
 
-### 6.1 结构 B：Henningsvær Bryggehotell → Unstad ×2（最推荐）
+车程均为 OSRM 真实路网（分钟）。「单价」为元/晚，来自你的预订页截图。
 
-| 日期 | 驾驶 | 白天安排 | 夜间 |
-|---|---|---|---|
-| 10/1 (四) | OSL 15:55 抵达两人会合 → 21:00 OSL→EVE → 22:40 落地 | 夜宿 EVE 机场旁（Sandtorgholmen / Evenes 一带，约 30 min） | 当晚不可能进岛，也不该进岛 |
-| 10/2 (五) | EVE → Henningsvær 189.0 km / **3:10** | 途经 Svolvær（补给 + 加油，E10 沿线）；15:00 前后抵达；下午逛 Henningsvær 港湾、Trevarefabrikken | 黄昏后若天晴：开 8.6 km / 12 min 到 Rørvikstranda 守光 |
-| 10/3 (六) | Henningsvær → Unstad 58.0 km / **1:02**；或绕 Leknes 补给（60.2 km / 1:03） | 中午前出发；下午 Unstad 海滩散步、Lofotr 维京博物馆（11.1 km / 13 min） | 夜：出门 0.3 km 就是沙滩，守光零压力；备选 Eggum 21.2 km / 23 min |
-| 10/4 (日) | Unstad → Reine 72.9 km / **1:18**（单程）；返程再 1:18 | **二选一：**(a) 走西段 Reine / Hamnøy / Å / Reinebringen，合计 2:36 纯驾驶；(b) 走北海岸 Uttakleiv 23.3 km / 29 min + Haukland 20.9 km / 24 min + Eggum | 夜：回 Unstad 守光；⚠️ 周日 Leknes 超市多数关门，10/3 就要把菜买足 |
-| 10/5 (一) | Unstad → EVE 231.6 km / **3:55** | 若赶 17:15 航班须 15:45 到 EVE → **11:50 前必须出发**；若赶 20:05 航班须 18:35 到 → **14:40 前出发** | 夜宿 OSL 机场附近 |
-| 10/6 (二) | OSL 出发 17:00（经 Doha） | 行李托运 14:00–14:30 必须完成；上午可在 Oslo 市区或机场休息 | 抵达杭州 10/7 18:05 |
+| 编号 | 住处 | 地区 | 单价<br>(元/晚) | →EVE | →斯沃尔韦尔 | →莱克内斯 | →雷讷 | 可订 / 连住约束 |
+|---|---|---|---|---|---|---|---|---|
+| H01 | Banhammaren 39 | Henningsvær | 2,408 | 191 | 31 | 67 | 123 | 无连住约束 |
+| H02 | Misværveien 2 码头公寓 | Henningsvær | 1,345 | 189 | 27 | 64 | 120 | 只能连住 10/3–10/4 |
+| H03 | Henningsvær Bryggehotell | Henningsvær | 2,298 | 189 | 27 | 63 | 119 | 无连住约束（酒店） |
+| H04 | Hattvika Lodge – Hillside | Ballstad | 2,664 | 245 | 87 | 15 | 68 | 无连住约束 |
+| H05 | Fishermans Villa Ballstad | Ballstad | 1,918 | 243 | 84 | 12 | 65 | 只能连续两晚 |
+| H06 | Jusnesveien 55 | Flakstad / Ramberg | 2,243 | 260 | 101 | 32 | 31 | 只能连续两晚 |
+| H07 | Andopveien 35 Oceanview | Ramberg | 2,243 | 261 | 102 | 31 | 28 | 只能订 10/2 一晚 |
+| H08 | Elvis Presleys vei 25（Varanes） | Flakstad / Ramberg | 3,220 | 260 | 101 | 32 | 31 | 只能连住 10/2–10/3 |
+| H09 | Vei 2803 22 全景公寓 | Gimsøystraumen | 3,783 | 186 | 24 | 53 | 109 | 无连住约束 |
+| H10 | Unstad Arctic Resort | Unstad | 2,061 | 232 | 66 | 23 | 78 | 无连住约束 |
+| H11 | Eliassen Rorbuer | Hamnøy | 1,959 | 282 | 122 | 55 | 9 | 无连住约束，但**禁连住** |
+| H12 | Nusfjord Village & Resort | Nusfjord | 2,300 | 258 | 98 | 28 | 44 | 无连住约束，但**禁连住** |
 
-### 6.2 结构 C：Vei 2803 → Unstad → Eliassen（西端收尾）
-
-| 日期 | 驾驶 | 白天安排 | 夜间 |
-|---|---|---|---|
-| 10/1、10/2 | 与结构 B 基本一致（10/2 落脚点换成 Gimsøystraumen 南岸，186.0 km / 3:07） | 少 3 min 车程，但少了餐厅与渔村氛围 | — |
-| 10/3 (六) | Vei 2803 → Unstad 46.7 km / **0:50** | 上午可先在北侧 Rørvikstranda（5.0 km / 6 min）、Hov（15.2 km / 18 min）走一圈 | Unstad 守光 |
-| 10/4 (日) | Unstad → Hamnøy 67.7 km / **1:10**（单程） | 把西段（Reine 5.4 km / 9 min、Å 13.5 km / 20 min、Reinebringen 5.1 km / 9 min）走扎实，晚上直接入住 Eliassen，**不用再开回来** | Hamnøy 桥（顶级极光机位）离家 0.5 km / 2 min |
-| 10/5 (一) | Hamnøy → EVE 281.7 km / **4:47** ⚠️ | 若赶 17:15 航班须 15:45 到 EVE → **10:58 前必须出发**（几乎等于放弃 10/5 白天）；若赶 20:05 航班须 18:35 到 → **13:48 前出发** | 夜宿 OSL 机场附近 |
-
-结构 C 的本质是「用 10/5 的 1 小时换 10/4 的 2 小时」。
-
-### 6.3 结构 F：Henningsvær → Jusnesveien 55 ×2
-
-| 日期 | 驾驶 | 白天安排 | 夜间 |
-|---|---|---|---|
-| 10/2 (五) | EVE → Henningsvær 189.0 km / **3:10** | 同结构 B：Svolvær 补给 → Henningsvær 港湾 | Rørvikstranda 8.6 km / 12 min |
-| 10/3 (六) | Henningsvær → Jusnesveien 55 86.4 km / **1:32**（横穿一次岛） | 途经 Leknes（60.2 km / 1:03）把菜买足 —— ⚠️ 周日不开门；下午 Flakstad 教堂 3.3 km / 4 min | Ramberg 白沙滩 1.8 km / 3 min，守光零压力 |
-| 10/4 (日) | 住处 → Reine 27.3 km / **0:31**（单程） | **西段是当天最划算的一站**：Reine 31 min、Hamnøy 23 min、Nusfjord 15 min 都在半小时圈内；也可以反过来走 Nusfjord（15 min）+ Ramberg + Skagsanden | 回住处；备选 Skagsanden 3.1 km / 4 min |
-| 10/5 (一) | 住处 → EVE 260.0 km / **4:25** ⚠️ | 若赶 17:15 航班须 15:45 到 EVE → **11:20 前必须出发**；若赶 20:05 航班须 18:35 到 → **14:10 前出发** | 夜宿 OSL 机场附近 |
-
-结构 F 的 10/4 是三个结构里最舒服的一天（单程 31 min 到西段核心，结构 B 要 78 min、结构 C 要 70 min）。代价在 10/3（横穿 1:32）与 10/5（4:25 返程）。
-
-### 6.4 返程方案分叉（关键决策点）
-
-10/6 的 OSL 出发时间是 17:00，行李托运须在 14:00–14:30 完成。因此必须在前一晚（10/5）或当天上午（10/6）从 EVE 飞到 OSL。
-
-| 方案 | 怎么走 | 10/5 白天 | 风险 |
-|---|---|---|---|
-| **甲 · 10/5 晚飞（推荐）** | 10/5 乘 17:15→19:00 或 20:05→21:50 EVE→OSL，夜宿 OSL 机场酒店，10/6 白天休息 | 要用来开车去机场。住 Unstad 须 11:50 前出发（赶 17:15）或 14:40 前（赶 20:05） | 低。但 10/5 晚上看不到极光 |
-| **乙 · 10/6 早飞** | 10/5 仍住罗弗敦，10/6 乘 11:05→12:50 到 OSL，14:00 托运 | 是完整一天，可守最后一晚极光 | 中。11:05 那班到 OSL 12:50，距 14:00 只有 70 min，任何延误都会误机 |
-
-**这个分叉直接改变「最后一晚住哪儿」的答案：**
-
-- 选方案乙（10/5 完整白天）→ 返程维度权重应从 0.12 降到 0.05 以下，**结构 C（西端 Eliassen 收尾）会反超**，因为它的走廊总里程最短（300 min vs 结构 B 的 388 min）。
-- 选方案甲（10/5 晚飞）→ 10/5 白天被压缩，**建议住得离机场近一点**。
-
-> **这就是为什么 OSL↔EVE 的机票必须先定。** 它不只是交通，它决定了整套住宿排程的最优解。
+[[img:norway-images/lodgings/banhammaren-39.jpg|H01 · Banhammaren 39（Henningsvær）]]
+[[img:norway-images/lodgings/henningsvaer-bryggehotell.jpg|H03 · Henningsvær Bryggehotell（Henningsvær 码头第一排）]]
+[[img:norway-images/lodgings/hattvika-lodge.jpg|H04 · Hattvika Lodge – Hillside（Ballstad 半岛西端）]]
+[[img:norway-images/lodgings/arctic-panoramautsikten.jpg|H09 · Vei 2803 22 全景公寓（Gimsøystraumen）]]
+[[img:norway-images/lodgings/eliassen-rorbuer.jpg|H11 · Eliassen Rorbuer（Hamnøy 正宗 rorbu）]]
+[[img:norway-images/lodgings/nusfjord-resort.jpg|H12 · Nusfjord Village & Resort（历史渔村）]]
 
 ---
 
-## 7. 风险与行动
+## 3 · 【首选池】完全不连住 · TOP 25
 
-### 7.1 风险清单
+> 这一池满足「三晚三个不同住处」，是默认推荐池。
 
-| 风险 | 性质 | 具体表现 | 缓解办法 |
+| # | 10/2 → 10/3 → 10/4 | 总分 | 白天可达 | 返程 | 体验 | 便利 | 3晚元 | 走廊 min |
+|---|---|---|---|---|---|---|---|---|
+| 01 | Henningsvær Bryggehotell → Hattvika Hillside → Vei 2803 22 全景公寓 | **7.810** | 5.33 | 10.00 | 10.00 | 6.52 | 8,745 | 550 |
+| 02 | Henningsvær Bryggehotell → Unstad Arctic Resort → Vei 2803 22 全景公寓 | 7.792 | 5.00 | 10.00 | 10.00 | 6.96 | 8,142 | 520 |
+| 03 | Banhammaren 39 → Hattvika Hillside → Vei 2803 22 全景公寓 | 7.725 | 5.17 | 10.00 | 10.00 | 6.36 | 8,855 | 554 |
+| 04 | Vei 2803 22 全景公寓 → Hattvika Hillside → Henningsvær Bryggehotell | 7.717 | 5.04 | 10.00 | 10.00 | 6.52 | 8,745 | 550 |
+| 05 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Henningsvær Bryggehotell | 7.699 | 4.71 | 10.00 | 10.00 | 6.96 | 8,142 | 520 |
+| 06 | Vei 2803 22 全景公寓 → Hattvika Hillside → Vei 2803 22 全景公寓 | 7.674 | 5.46 | 10.00 | 9.00 | 6.83 | 10,231 | 534 |
+| 07 | Vei 2803 22 全景公寓 → Hattvika Hillside → Banhammaren 39 | 7.616 | 4.88 | 9.90 | 10.00 | 6.40 | 8,855 | 554 |
+| 08 | Henningsvær Bryggehotell → Nusfjord Village → Vei 2803 22 全景公寓 | 7.566 | 4.79 | 10.00 | 10.00 | 6.16 | 8,381 | 564 |
+| 09 | Banhammaren 39 → Nusfjord Village → Vei 2803 22 全景公寓 | 7.489 | 4.62 | 10.00 | 10.00 | 6.05 | 8,491 | 567 |
+| 10 | Vei 2803 22 全景公寓 → Nusfjord Village → Henningsvær Bryggehotell | 7.473 | 4.50 | 10.00 | 10.00 | 6.16 | 8,381 | 564 |
+| 11 | Vei 2803 22 全景公寓 → Hattvika Hillside → Unstad Arctic Resort | 7.439 | 6.75 | 5.80 | 10.00 | 7.43 | 8,508 | 551 |
+| 12 | Vei 2803 22 全景公寓 → Nusfjord Village → Banhammaren 39 | 7.380 | 4.33 | 9.90 | 10.00 | 6.09 | 8,491 | 567 |
+| 13 | Henningsvær Bryggehotell → Hattvika Hillside → Unstad Arctic Resort | 7.335 | 6.62 | 5.80 | 10.00 | 7.12 | 7,023 | 567 |
+| 14 | Banhammaren 39 → Hattvika Hillside → Henningsvær Bryggehotell | 7.328 | 4.75 | 10.00 | 9.00 | 6.24 | 7,370 | 570 |
+| 15 | Banhammaren 39 → Henningsvær Bryggehotell → Vei 2803 22 全景公寓 | 7.327 | 3.17 | 10.00 | 9.00 | 8.77 | 8,489 | 422 |
+| 16 | Henningsvær Bryggehotell → Banhammaren 39 → Vei 2803 22 全景公寓 | 7.318 | 3.17 | 10.00 | 9.00 | 8.73 | 8,489 | 424 |
+| 17 | Henningsvær Bryggehotell → Hattvika Hillside → Banhammaren 39 | 7.312 | 4.75 | 9.90 | 9.00 | 6.28 | 7,370 | 570 |
+| 18 | Banhammaren 39 → Unstad Arctic Resort → Henningsvær Bryggehotell | 7.271 | 4.42 | 10.00 | 9.00 | 6.49 | 6,767 | 540 |
+| 19 | Banhammaren 39 → Vei 2803 22 全景公寓 → Henningsvær Bryggehotell | 7.267 | 3.17 | 10.00 | 9.00 | 8.47 | 8,489 | 440 |
+| 20 | Henningsvær Bryggehotell → Unstad Arctic Resort → Banhammaren 39 | 7.254 | 4.42 | 9.90 | 9.00 | 6.53 | 6,767 | 540 |
+| 21 | Vei 2803 22 全景公寓 → Hattvika Hillside → Nusfjord Village | 7.253 | 8.17 | 3.20 | 10.00 | 7.36 | 8,747 | 576 |
+| 22 | Banhammaren 39 → Hattvika Hillside → Unstad Arctic Resort | 7.251 | 6.46 | 5.80 | 10.00 | 6.96 | 7,133 | 571 |
+| 23 | Henningsvær Bryggehotell → Vei 2803 22 全景公寓 → Banhammaren 39 | 7.250 | 3.17 | 9.90 | 9.00 | 8.51 | 8,489 | 440 |
+| 24 | Banhammaren 39 → Unstad Arctic Resort → Vei 2803 22 全景公寓 | 7.236 | 4.83 | 10.00 | 8.00 | 6.84 | 8,252 | 522 |
+| 25 | Banhammaren 39 → Hattvika Hillside → Banhammaren 39 | 7.235 | 4.58 | 9.90 | 9.00 | 6.16 | 7,480 | 574 |
+
+**这一池的结构性特征**：前 10 名里，末夜（10/4）全部落在 **Vei 2803 22 全景公寓（H09，Gimsøystraumen）或 Henningsvær** —— 也就是**东侧**。原因是 10/4 决定 10/5 的返程车程，而 EVE 在东北角。
+
+---
+
+## 4 · 单维度榜首（每个维度各自的前 5）
+
+### 4.1 白天景区可达最高
+| # | 组合 | 白天可达 | 总分 | 3晚元 | 走廊 min |
+|---|---|---|---|---|---|
+| 1 | Vei 2803 22 全景公寓 → Hattvika Hillside → Eliassen Rorbuer | **9.62** | 6.930 | 8,406 | 627 |
+| 2 | Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer | 9.50 | 6.827 | 6,921 | 643 |
+| 3 | Banhammaren 39 → Hattvika Hillside → Eliassen Rorbuer | 9.33 | 6.742 | 7,031 | 647 |
+| 4 | Vei 2803 22 全景公寓 → Unstad Arctic Resort → Eliassen Rorbuer | 9.29 | 6.829 | 7,803 | 618 |
+| 5 | Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer | 9.17 | 6.717 | 6,318 | 636 |
+
+### 4.2 返程车程最轻
+与「住宿体验」同榜：**首选池 #01–#05**（返程 10.00，末夜都在 H09 东侧）。
+
+### 4.3 住宿体验分最高
+同 4.2 —— **首选池 #01–#05**。
+
+### 4.4 补给 / 搬家 / 首日最省心
+| # | 组合 | 便利 | 总分 | 3晚元 | 走廊 min |
+|---|---|---|---|---|---|
+| 1 | Henningsvær Bryggehotell → Banhammaren 39 → Henningsvær Bryggehotell | **8.97** | 6.393 | 7,004 | **412** |
+| 2 | Banhammaren 39 → Henningsvær Bryggehotell → Banhammaren 39 | 8.85 | 6.293 | 7,114 | 416 |
+| 3 | Vei 2803 22 全景公寓 → Henningsvær Bryggehotell → Banhammaren 39 | 8.81 | 7.217 | 8,489 | 422 |
+| 4 | Banhammaren 39 → Henningsvær Bryggehotell → Vei 2803 22 全景公寓 | 8.77 | 7.327 | 8,489 | 422 |
+| 5 | Henningsvær Bryggehotell → Banhammaren 39 → Vei 2803 22 全景公寓 | 8.73 | 7.318 | 8,489 | 424 |
+
+> 注意 4.4 与 4.2/4.3 是**对立**的：最省心的一族（前 2 名）白天可达只有 2.58–2.75，等于把白天全耗在补货和搬家上。
+
+### 4.5 3 晚总价最低
+| # | 组合 | 3晚元 | 总分 |
 |---|---|---|---|
-| **云量（最大的单一风险）** | 待核实 | 10 月初罗弗敦的常年云量偏高，晴夜概率是「看得到极光」的决定因素，比 Kp 指数重要得多 | 订房保留灵活性（避开连住两晚 + 24h 退订的组合）；落地后每天用 yr.no / Yr 的逐时云量预报决定当晚住地 |
-| **月面亮度 67% / 56% / 46%** | 可引用事实 | 10/2 最亮、10/4 最暗。月亮在天空时会压暗暗弱极光，但不会让强极光消失 | 优先把「守光夜」安排在 10/4（月面最低）；月相已计入模型权重（MOON = 0.767 / 0.803 / 0.840… 修正项） |
-| **周日 Leknes 超市关门** | 待核实 | 10/4 是周日。挪威多数超市周日不营业，Leknes 是岛上唯一大型超市 | **10/3（周六）就把两天的菜与燃料买足**；加油站自助泵通常仍可用 |
-| **夜间加油与充电** | 分析推断 | 罗弗敦夜间加油站多数无人值守，部分站点夜间仅支持特定银行卡；电车充电桩在西段稀疏 | 每天傍晚前把油箱加到 3/4 以上；若租电车，务必在 Leknes 或 Svolvær 补满 |
-| **E10 / Rv82 路段与天气** | 分析推断 | 岛上桥梁与山口在强风与雨夹雪时会临时限速或短时封闭；10 月已可能出现夜间路面结冰 | 出发前查 175.no（挪威公路实时路况）；避免深夜在无路灯的桥上停车拍照 |
-| **10/5 返程压线** | 分析推断 | 住 Unstad 赶 17:15 航班须 11:50 前出发；住 Eliassen 更早（10:58）。任何延误都会错过航班 | **优先买 20:05（EVE→OSL）**那一班；或干脆改成 10/6 早班机（返程方案乙） |
-| **连住与退订双锁** | 可引用事实 | H02 必须连住 10/3+10/4 两晚；H08 必须连住 10/2+10/3 两晚；H05 与 H06 各需连住两晚（10/2+10/3 或 10/3+10/4）；H07 只能订 10/2 一晚；H06 等为「24h 内可退」 | 把这类房源视为**不可撤销承诺**，只在确定行程后下单；优先用「免费取消」档房源当备胎 |
-| **10/6 OSL 托运截止** | 可引用事实 | 17:00 出发的国际航班，行李托运须在 14:00–14:30 完成 | 如果选 10/6 11:05 EVE→OSL，到达 12:50，缓冲只有 70 min，**建议改 06:15 / 06:30 早班机** |
-| **EVE 租车点营业时间** | 待核实 | Evenes 机场的租车柜台夜间（22:40 落地那班）多数已关门，需提前约「钥匙箱自助取车」 | 订车时明确备注 22:40 后取车，并要求自助取车流程说明 |
-| **10/1 落地当晚进岛** | 分析推断 | 22:40 落地 EVE，若当晚再开 3 小时进岛，将变成凌晨 2 点的夜间长途 | **当晚就住 EVE 机场附近**，10/2 白天再进岛（本报告所有结构都按这个前提排） |
+| 1 | Andopveien 35 Oceanview → Unstad Arctic Resort → Eliassen Rorbuer | **6,263** | 5.249 |
+| 2 | Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer | 6,318 | 6.717 |
+| 3 | Unstad Arctic Resort → Henningsvær Bryggehotell → Eliassen Rorbuer | 6,318 | 5.277 |
+| 4 | Unstad Arctic Resort → Nusfjord Village → Eliassen Rorbuer | 6,320 | 6.004 |
+| 5 | Nusfjord Village → Unstad Arctic Resort → Eliassen Rorbuer | 6,320 | 5.314 |
 
-### 7.2 行动顺序
+### 4.6 走廊总时长最短（＝总驾驶量最少）
+同 4.4 前 5（走廊 412 / 416 / 422 / 422 / 424 min）。
 
-| 顺序 | 行动 | 为什么现在做 |
+---
+
+## 5 · 末夜固定在西线 Eliassen Rorbuer（Hamnøy H11）· 首选池 TOP 15
+
+> 如果你想让最后一晚睡在「正宗 rorbu ＋ 雷讷 / Å 就在门口」的西线，10/5 返程要 **4:42（282 min）**，20:05 那班最晚 **13:53** 出发；10/5 白昼可支配只剩约 **4:53**。
+
+| # | 10/2 → 10/3 | 白天可达 | 体验 | 便利 | 总分 | 3晚元 | 走廊 min |
+|---|---|---|---|---|---|---|---|
+| 1 | H09 Vei 2803 22 → H04 Hattvika Hillside | **9.62** | 10.00 | 6.29 | 6.930 | 8,406 | 627 |
+| 2 | H09 Vei 2803 22 → H10 Unstad Arctic Resort | 9.29 | 10.00 | 6.32 | 6.829 | 7,803 | 618 |
+| 3 | H03 Henningsvær Bryggehotell → H04 Hattvika Hillside | 9.50 | 10.00 | 5.97 | 6.827 | 6,921 | 643 |
+| 4 | H09 Vei 2803 22 → H12 Nusfjord Village | 9.08 | 10.00 | 6.48 | 6.795 | 8,042 | 605 |
+| 5 | H01 Banhammaren 39 → H04 Hattvika Hillside | 9.33 | 10.00 | 5.82 | 6.742 | 7,031 | 647 |
+| 6 | H03 Henningsvær Bryggehotell → H10 Unstad Arctic Resort | 9.17 | 10.00 | 5.96 | 6.717 | 6,318 | 636 |
+| 7 | H03 Henningsvær Bryggehotell → H12 Nusfjord Village | 8.96 | 10.00 | 6.00 | 6.659 | 6,557 | 629 |
+| 8 | H01 Banhammaren 39 → H10 Unstad Arctic Resort | 9.00 | 10.00 | 5.84 | 6.640 | 6,428 | 638 |
+| 9 | H01 Banhammaren 39 → H12 Nusfjord Village | 8.79 | 10.00 | 5.86 | 6.578 | 6,667 | 632 |
+| 10 | H03 Henningsvær Bryggehotell → H09 Vei 2803 22 | 7.92 | 10.00 | 6.38 | 6.401 | 8,040 | 614 |
+| 11 | H01 Banhammaren 39 → H09 Vei 2803 22 | 7.75 | 10.00 | 6.18 | 6.308 | 8,150 | 620 |
+| 12 | H09 Vei 2803 22 → H03 Henningsvær Bryggehotell | 7.62 | 10.00 | 6.04 | 6.240 | 8,040 | 628 |
+| 13 | H10 Unstad Arctic Resort → H04 Hattvika Hillside | 7.88 | 10.00 | 5.26 | 6.164 | 6,684 | 644 |
+| 14 | H09 Vei 2803 22 → H01 Banhammaren 39 | 7.46 | 10.00 | 5.86 | 6.151 | 8,150 | 633 |
+| 15 | H10 Unstad Arctic Resort → H12 Nusfjord Village | 7.33 | 10.00 | 5.33 | 6.004 | 6,320 | 628 |
+
+**看这里的第 6 名**：`Henningsvær Bryggehotell → Unstad → Eliassen`，**3 晚只要 6,318 元，白天可达 9.17，体验满分** —— 如果你想省钱又不牺牲白天，这是西线收尾里性价比最高的一档。
+
+---
+
+## 6 · 末夜固定在东 / 中部 · 首选池前 5
+
+| 末夜 = | #1 | #2 | #3 | #4 | #5 |
+|---|---|---|---|---|---|
+| **H09 Vei 2803 22**（Gimsøystraumen） | H03→H04｜7.810｜8,745｜550｜白昼 6:29 | H03→H10｜7.792｜8,142｜520 | H01→H04｜7.725｜8,855｜554 | H09→H04｜7.674｜10,231｜534 | H03→H12｜7.566｜8,381｜564 |
+| **H10 Unstad** | H09→H04｜7.439｜8,508｜551｜白昼 5:43 | H03→H04｜7.335｜7,023｜567 | H01→H04｜7.251｜7,133｜571 | H09→H12｜7.167｜8,144｜563 | H03→H12｜7.031｜6,659｜587 |
+| **H12 Nusfjord** | H09→H04｜7.253｜8,747｜576｜白昼 5:17 | H03→H04｜7.149｜7,262｜592 | H09→H10｜7.139｜8,144｜570 | H01→H04｜7.064｜7,372｜596 | H03→H10｜7.027｜6,659｜588 |
+
+（格式：10/2 → 10/3 ｜ 总分 ｜ 3晚元 ｜ 走廊 min）
+
+---
+
+## 7 · 10/2 首夜选项矩阵（末夜固定 ＝ Eliassen H11，每行给出该首夜的最佳 10/3）
+
+| 10/2 住 | 最佳 10/3 | 白天可达 | 体验 | 便利 | 总分 | 3晚元 | →EVE | 10/5 最晚出发 |
+|---|---|---|---|---|---|---|---|---|
+| **H09 Vei 2803 22 全景公寓** | H04 Hattvika Hillside | **9.62** | 10.00 | 6.29 | 6.930 | 8,406 | 4:42 | 13:53 |
+| **H03 Henningsvær Bryggehotell** | H04 Hattvika Hillside | 9.50 | 10.00 | 5.97 | 6.827 | 6,921 | 4:42 | 13:53 |
+| **H01 Banhammaren 39** | H04 Hattvika Hillside | 9.33 | 10.00 | 5.82 | 6.742 | 7,031 | 4:42 | 13:53 |
+| **H10 Unstad Arctic Resort** | H04 Hattvika Hillside | 7.88 | 10.00 | 5.26 | 6.164 | 6,684 | 4:42 | 13:53 |
+| **H04 Hattvika Hillside** | H12 Nusfjord Village | 6.46 | 10.00 | 5.18 | 5.694 | 6,923 | 4:42 | 13:53 |
+| **H05 Fishermans Villa Ballstad** | — 无零连住可行方案 | | | | | | | |
+| **H06 Jusnesveien 55** | — 无零连住可行方案 | | | | | | | |
+
+> **10/2 的四个真实分支**：
+> - **H03 Henningsvær Bryggehotell** —— 落地最省事、有餐厅早餐、单晚最便宜（2,298）。代价：10/3 要横穿一次岛（→H04 79 min）。
+> - **H01 Banhammaren 39** —— 同村公寓、自炊、单晚 2,408，比 H03 贵 110 元且没有早餐服务。
+> - **H09 Vei 2803 22 全景公寓** —— 到 EVE 只有 186 min（全场最短），落地当晚最轻松；单晚 3,783 是全场最贵。
+> - **H10 Unstad Arctic Resort** —— 首夜直接住进西部的冲浪村（单晚 2,061），10/3 再往南挪到 Ballstad 只要 37 min。
+
+---
+
+## 8 · 两套完整对照（控制变量：10/2、10/3 完全相同，只换 10/4）
+
+**基准 A**：10/2 H09（Vei 2803 22）→ 10/3 H04（Hattvika Hillside）
+
+| 10/4 住处 | 白天可达 | 体验 | 便利 | 总分 | 3晚元 | 走廊 min | →EVE | 20:05 最晚出发 | 10/5 白昼 |
+|---|---|---|---|---|---|---|---|---|---|
+| **H11 Eliassen Rorbuer** | **9.62** | 10.00 | 6.29 | 6.930 | 8,406 | 627 | 4:42 | 13:53 | 4:53 |
+| **H09 Vei 2803 22 全景公寓** | 5.46 | 9.00 | 6.83 | **7.674** | 10,231 | 534 | 3:06 | 15:29 | 6:29 |
+| **H10 Unstad Arctic Resort** | 6.75 | 10.00 | 7.43 | 7.439 | 8,508 | 551 | 3:52 | 14:43 | 5:43 |
+| **H12 Nusfjord Village** | 8.17 | 10.00 | 7.36 | 7.253 | 8,747 | 576 | 4:18 | 14:17 | 5:17 |
+| H06 Jusnesveien 55 | — 不可行（房源只能连续两晚） | | | | | | | | |
+
+**基准 B**：10/2 H03（Henningsvær Bryggehotell）→ 10/3 H04（Hattvika Hillside）
+
+| 10/4 住处 | 白天可达 | 体验 | 便利 | 总分 | 3晚元 | 走廊 min | →EVE | 20:05 最晚出发 | 10/5 白昼 |
+|---|---|---|---|---|---|---|---|---|---|
+| **H11 Eliassen Rorbuer** | 9.50 | 10.00 | 5.97 | 6.827 | **6,921** | 643 | 4:42 | 13:53 | 4:53 |
+| **H09 Vei 2803 22 全景公寓** | 5.33 | 10.00 | 6.52 | **7.810** | 8,745 | 550 | 3:06 | 15:29 | 6:29 |
+| **H10 Unstad Arctic Resort** | 6.62 | 10.00 | 7.12 | 7.335 | 7,023 | 567 | 3:52 | 14:43 | 5:43 |
+| **H12 Nusfjord Village** | 8.04 | 10.00 | 7.04 | 7.149 | 7,262 | 592 | 4:18 | 14:17 | 5:17 |
+| H06 Jusnesveien 55 | — 不可行 | | | | | | | | |
+
+### 这就是本次唯一真正的取舍
+
+| | 末夜住西线（Eliassen） | 末夜住东 / 中部（H09） |
 |---|---|---|
-| 1 | **买 OSL↔EVE 两张往返机票（10/1 21:00 去、10/5 20:05 或 10/6 回）** | 它决定返程是「深夜赶路」还是「白天开车」，直接改变住宿最优解（6.4） |
-| 2 | **确认 10/5 vs 10/6 返程，锁定「最后一晚住哪」** | 一旦确定，Section 4 的排名权重才能最终生效；否则现在选的都是过渡方案 |
-| 3 | **订 10/1 夜宿 EVE 机场附近（可免费取消）** | 这是最便宜、最不影响主行程的一笔，早订早安心 |
-| 4 | **订 10/4 的住宿（若按最推荐结构 B，则为 Unstad Arctic Resort）** | 它是全场唯一「无连住约束 + 天区 9.5 + 守光 1 min」，也是最容易被别人抢走的 |
-| 5 | **订 10/2、10/3 的住宿** | 10/2 落 Henningsvær（落脚方便）；10/3 视 10/4 的选择决定是否横穿 |
-| 6 | **订 EVE 租车（明确 22:40 后取车）** | 机场柜台夜间关门，必须提前沟通自助取车 |
-| 7 | **出发前 3 天：查云量预报，做最后一次住宿调整** | 如果预报显示某段连续阴雨，及时把守光夜挪到另一端 |
+| 10/4 白天能走的经典 | **雷讷 / Hamnøy / Å / Reinebringen 全在门口**（往返 18 min） | 雷讷往返 **218 min**，基本放弃西段 |
+| 10/5 返 EVE | **4:42** | 3:06 |
+| 20:05 那班最晚出发 | **13:53** | 15:29 |
+| 10/5 白昼可支配 | 4:53 | **6:29** |
+| 总分（v3） | 6.83–6.93 | **7.67–7.81** |
+
+**代价换算**：选西线收尾 = 10/5 多开 **1 小时 36 分** ＋ 当天早出发 **1 小时 36 分**，换来 10/4 白天可达从 5.33 涨到 **9.50**。
 
 ---
 
-## 8. 图片说明
+## 9 · 逐日时间账
 
-图集中的图片是**各房源所在村落 / 海滩的公开环境实景**，来自本地已下载的图片库（`norway-images/lofoten-towns/`，24 张），**不是房源内部照片**，不能用来看房间与装修；用途是判断「这个位置望出去大概是什么景观」。室内照片请另行查看 Airbnb / Booking 页面。
+### 方案 W ｜西线收尾：10/2 Vei 2803 22 → 10/3 Hattvika Hillside → 10/4 Eliassen Rorbuer
 
-| 编号 | 住地 | 环境图 |
-|---|---|---|
-| H01 | Banhammaren 39 H0304 | henningsvaer.jpg |
-| H02 | Misværveien 2 码头公寓 | henningsvaer-brygge.jpg |
-| H03 | Henningsvær Bryggehotell | henningsvaer-brygge.jpg |
-| H04 | Hattvika Lodge – Hattvika Hillside | ballstad-harbor.jpg |
-| H05 | Fishermans Villa Ballstad | ballstad.jpg |
-| H06 | Jusnesveien 55 | ramberg.jpg |
-| H07 | Oceanview Mini-House – Stunning Views | ramberg.jpg |
-| H08 | Varanes – Elvis Presleys vei 25 | fredvang.jpg |
-| H09 | Arctic Panoramautsikten（Vei 2803 22） | gimsoystraumen.jpg |
-| H10 | Unstad Arctic Resort（山景公寓） | unstad.jpg |
-| H11 | Eliassen Rorbuer | hamnoy.jpg |
-| H12 | Nusfjord Village & Resort | nusfjord-harbor.jpg |
+| 日期 | 移动 | 车程 | 备注 |
+|---|---|---|---|
+| 10/1 | Sandtorgholmen → 住地 | 30 ＋ 186 ＝ **3:36** | 落地 22:40，约 23:20 到店 |
+| 10/2 | 住地 ↔ 斯沃尔韦尔 | 往返 48 min | 白天：Gimsøystraumen / Hov / Henningsvær |
+| 10/3 | 搬家 → Ballstad | 66 min | 住地 ↔ 莱克内斯 往返 30 min |
+| 10/4 | 搬家 → Hamnøy | 63 min | 住地 ↔ 雷讷 往返 18 min |
+| 10/5 | 住地 → EVE | **4:42（282 min）** | 20:05 班最晚 **13:53** 出发 |
 
----
+**分数**：v3 **6.930** ｜ 白天可达 9.62 ｜ 体验 10.00 ｜ 便利 6.29 ｜ 走廊 627 min ｜ 3 晚 8,406 元
 
-## 9. 数据来源与不确定性
+### 方案 E ｜东部收尾：10/2 Vei 2803 22 → 10/3 Hattvika Hillside → 10/4 Vei 2803 22
 
-**数据来源**
+| 日期 | 移动 | 车程 | 备注 |
+|---|---|---|---|
+| 10/1 | 同方案 W | **3:36** | — |
+| 10/2 | 同方案 W | 48 min 往返 | — |
+| 10/3 | 同方案 W | 66 min | — |
+| 10/4 | 搬家 → 回 Gimsøystraumen | 66 min | 住地 ↔ 雷讷 往返 **218 min** |
+| 10/5 | 住地 → EVE | **3:06（186 min）** | 20:05 班最晚 **15:29** 出发 |
 
-- **车程与里程**：OSRM 公开路由服务（`router.project-osrm.org`，driving profile）table 接口，12 个候选 ↔ 12 个锚点完整矩阵。文件：`_lodging12.txt`。
-- **房源价格、可订约束、退订政策**：用户本人提供的候选清单快照（非实时）。
-- **坐标**：Photon 地理编码（`photon.komoot.io`）逐条解析 + 人工核对。
-- **月相**：2026-10-02 / 03 / 04 月面照亮比例约 67% / 56% / 46%。
-- **日出日落**：当地 10 月初日出约 07:50、日落约 18:15–18:30，天文暗夜约从 19:45–20:00 开始（CEST, UTC+2）。
-- **图片**：本地已下载的 Lofoten 村落 / 海滩环境图（24 张）。
-- **底图**：本地离线瓦片，页面断网也能显示地图。
-
-**不确定性**
-
-- **天区是人工判定的定性指标**，不是测量值；没有考虑入住当晚的具体云量——而云量才是决定性因素。
-- **OSRM 是理论车程**，不含交通、天气、施工、渡轮等待与停车拍照时间，实际通常慢 10–20%。
-- **价格与可订状态会变**，实际下单时可能已不同。
-- **10/5 与 10/6 的机票尚未购买**，「最后一晚住哪儿」的最优解无法最终确定。
-- **权重是主观设定的**。若你更在意「少换宿」或「住得舒服」，调高对应权重后排名会显著变化。
-- **未查看任何房源的室内照片与住客评价**，本报告判断只基于位置、价格、约束与外部景观。
-
-**独立性声明**
-
-本报告未参考任何其他来源的住宿结论（包括任何 AI 生成的住宿分析）。所有打分可复算：`_lodging12_score2.py`（模型）+ `_lodging_report_gen.py`（生成器）；原始车程 `_lodging12.txt`；完整排名 `_lodging12_score.txt`。
+**分数**：v3 **7.674** ｜ 白天可达 5.46 ｜ 体验 9.00 ｜ 便利 6.83 ｜ 走廊 534 min ｜ 3 晚 10,231 元
 
 ---
 
-> 🤖 **本分析由 DeepSeek 生成** · 生成日期 2026-09-17
->
-> 免责：本报告为基于公开地理数据与用户提供房源信息的独立分析，不构成预订建议或价格承诺。房源可订性、价格、退订条款请以预订平台实时页面为准；公路状况、天气与航班请以官方渠道（175.no、yr.no、航司）为准。
+## 10 · 总价汇总
+
+**固定项**：10/1 Sandtorgholmen Hotel **1,376.11 元** ｜ 10/5 Sandtorgholmen Hotel **1,415.42 元** ｜ 10/5 奥斯陆机场酒店 ≈ **1,600 元**
+
+| 方案 | 三晚住宿 | 3 晚小计 | 走 10/6 06:30（宿 Sandtorgholmen） | 走 10/5 20:05（宿 OSL 机场酒店） |
+|---|---|---|---|---|
+| **W 西线收尾** Vei 2803 22 → Hattvika Hillside → Eliassen Rorbuer | 3,783 ＋ 2,664 ＋ 1,959 | 8,406 | **11,198 元** | **11,382 元** |
+| **E 东部收尾** Vei 2803 22 → Hattvika Hillside → Vei 2803 22 | 3,783 ＋ 2,664 ＋ 3,783 | 10,231 | 13,022 元 | 13,207 元 |
+| **W 酒店版** Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer | 2,298 ＋ 2,664 ＋ 1,959 | 6,921 | **9,712 元** | **9,897 元** |
+| **E 酒店版** Henningsvær Bryggehotell → Hattvika Hillside → Vei 2803 22 | 2,298 ＋ 2,664 ＋ 3,783 | 8,745 | 11,537 元 | 11,721 元 |
+| **最省版** Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer | 2,298 ＋ 2,061 ＋ 1,959 | **6,318** | 9,109 元 | 9,294 元 |
+
+> 最贵与最省相差约 **4,200 元**（走廊/白天可达的差别在 100–420 min 量级）。按你的口径，这个价差不构成决策依据。
+
+---
+
+## 11 · 敏感性检验：如果再去掉「返程车程」这一维
+
+权重变为 白天可达 0.444 / 体验 0.333 / 便利 0.222，首选池前 15：
+
+| # | 组合 | 新分 | v3 分 | 3晚元 |
+|---|---|---|---|---|
+| 1 | Vei 2803 22 → Hattvika Hillside → **Eliassen Rorbuer** | 9.009 | 6.930 | 8,406 |
+| 2 | Henningsvær Bryggehotell → Hattvika Hillside → **Eliassen** | 8.883 | 6.827 | 6,921 |
+| 3 | Vei 2803 22 → Unstad → **Eliassen** | 8.867 | 6.829 | 7,803 |
+| 4 | Vei 2803 22 → Nusfjord → **Eliassen** | 8.810 | 6.795 | 8,042 |
+| 5 | Banhammaren 39 → Hattvika Hillside → **Eliassen** | 8.774 | 6.742 | 7,031 |
+| 6 | Henningsvær Bryggehotell → Unstad → **Eliassen** | 8.731 | 6.717 | 6,318 |
+| 7 | Henningsvær Bryggehotell → Nusfjord → **Eliassen** | 8.648 | 6.659 | 6,557 |
+| 8 | Banhammaren 39 → Unstad → **Eliassen** | 8.631 | 6.640 | 6,428 |
+| 9 | Vei 2803 22 → Hattvika Hillside → **Nusfjord** | 8.598 | 7.253 | 8,747 |
+| 10 | Banhammaren 39 → Nusfjord → **Eliassen** | 8.544 | 6.578 | 6,667 |
+| 11 | Henningsvær Bryggehotell → Hattvika Hillside → **Nusfjord** | 8.472 | 7.149 | 7,262 |
+| 12 | Vei 2803 22 → Unstad → **Nusfjord** | 8.442 | 7.139 | 8,144 |
+| 13 | Banhammaren 39 → Hattvika Hillside → **Nusfjord** | 8.363 | 7.064 | 7,372 |
+| 14 | Henningsvær Bryggehotell → Unstad → **Nusfjord** | 8.307 | 7.027 | 6,659 |
+| 15 | Henningsvær Bryggehotell → Vei 2803 22 → **Eliassen** | 8.269 | 6.401 | 8,040 |
+
+**结论**：**排名会翻转。** 只要「返程车程」参与打分，榜首一律往东收尾（末夜 H09）；一旦把它拿掉，榜首**全部变成西线收尾（末夜 Eliassen）**。这一维的权重要不要留（0.24 是否给多了），需要你自己判断。
+
+---
+
+## 12 · 点名方案对照
+
+| 方案 | 组合 | v3 总分 | 3晚元 | 走廊 min | 结论 |
+|---|---|---|---|---|---|
+| **A** | H07 Oceanview → H11 Eliassen → H04 Hattvika | 5.059 | 7,870 | 619 | 首选池排名 **246 / 294**，很靠后 |
+| **A2** | H04 → H11 → H07 | — | — | — | **不可行**（H07 只能订 10/2） |
+| **B1** | H04 → H06 Jusnesveien 连住 | 5.845 | 7,149 | 575 | 含连住（房源强制），备选池 |
+| **B2** | H04 → H12 Nusfjord 连住 | — | — | — | **被新约束排除** |
+| **X** | H07 → H11 Eliassen 连住 | — | — | — | **被新约束排除** |
+| **Y** | H07 Oceanview → H10 Unstad → H11 Eliassen | 5.249 | **6,263** | 682 | 总价最低，但首选池排名 **228** |
+| **v2 榜首** | H09 → H10 连住 | 6.553 | 7,905 | 498 | 含连住（自选），备选池 |
+| **v3 #1** | H03 → H04 → H09 | **7.810** | 8,745 | 550 | 首选池第 1 |
+| **v3 #2** | H03 → H10 → H09 | 7.792 | 8,142 | 520 | 首选池第 2 |
+| **v3 #3** | H01 → H04 → H09 | 7.725 | 8,855 | 554 | 首选池第 3 |
+
+---
+
+## 13 · 候选住宿照片
+
+[[img:norway-images/lodgings/banhammaren-39.jpg|H01 · Banhammaren 39（Henningsvær）]]
+[[img:norway-images/lodgings/misvaerveien-2.jpg|H02 · Misværveien 2 码头公寓（Henningsvær）]]
+[[img:norway-images/lodgings/henningsvaer-bryggehotell.jpg|H03 · Henningsvær Bryggehotell（Henningsvær）]]
+[[img:norway-images/lodgings/hattvika-lodge.jpg|H04 · Hattvika Lodge – Hillside（Ballstad）]]
+[[img:norway-images/lodgings/fishermans-villa-ballstad.png|H05 · Fishermans Villa Ballstad（Ballstad）]]
+[[img:norway-images/lodgings/jusnesveien-55.jpg|H06 · Jusnesveien 55（Flakstad / Ramberg）]]
+[[img:norway-images/lodgings/oceanview-mini-house.webp|H07 · Andopveien 35 Oceanview（Ramberg）]]
+[[img:norway-images/lodgings/varanes-cabin.jpg|H08 · Elvis Presleys vei 25 / Varanes（Flakstad）]]
+[[img:norway-images/lodgings/arctic-panoramautsikten.jpg|H09 · Vei 2803 22 全景公寓（Gimsøystraumen）]]
+[[img:norway-images/lodgings/unstad-arctic-resort-booking.jpg|H10 · Unstad Arctic Resort（Unstad）]]
+[[img:norway-images/lodgings/unstad-arctic-surf.jpg|H10 备图 · Unstad 冲浪海滩]]
+[[img:norway-images/lodgings/eliassen-rorbuer.jpg|H11 · Eliassen Rorbuer（Hamnøy）]]
+[[img:norway-images/lodgings/nusfjord-resort.jpg|H12 · Nusfjord Village & Resort（Nusfjord）]]
+
+**机场区 / 其他参考住宿**
+
+[[img:norway-images/lodgings/sandtorgholmen-hotel.webp|10/1 与 10/5 的落脚点 · Sandtorgholmen Hotel]]
+[[img:norway-images/lodgings/tjeldsundbrua-hotel-booking.jpg|备选 · Tjeldsundbrua Hotel]]
+[[img:norway-images/lodgings/aiden-harstad.jpg|备选 · Aiden Harstad]]
+
+---
+
+## 14 · 口径与免责
+
+- **车程**：全部为 OSRM 真实路网计算值，非直线距离；搬家车程含部分实测对照值。
+- **价格**：来自你的预订页截图，单位为元/晚；未含清洁费与税费差异，实际以预订页结算为准。
+- **「白天可达」「体验」「便利」是模型打分**，公式已全部写在第 1 节，可自行复算。
+- **住宿总价不参与打分**，仅作参考量。
+- **已删除的旧口径**：极光可见性 0.30、守光点车程 0.20、「天区」人工判定分、月相修正系数 0.767 / 0.803 / 0.840。**旧版结论（把 Unstad 连住排第一、把 10/4 说成「天然最暗所以最值钱」）不再有效。**
+- **极光**：Lofoten 全域位于极光带内，能否看到取决于当晚云量，住宿位置不构成差异。
+
+> 🤖 本分析由 DeepSeek 生成

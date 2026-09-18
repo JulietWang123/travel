@@ -1,1071 +1,1662 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>罗弗敦 2026 年 10 月初 · 12 个候选住宿专项分析（DeepSeek 生成）</title>
-<meta name="description" content="对 12 个候选住宿做量化排程：极光条件、夜间驾驶、白天景区可达、返程成本、住宿体验、补给与搬家，并给出 9 个推荐结构与 Jusnesveien 55 专项评估。本分析由 DeepSeek 生成。">
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>罗弗敦 10 月候选住宿 · 独立分析（v3 · 去极光版）</title>
 <style>
-
-:root{--ink:#172026;--muted:#647079;--paper:#f4f1e8;--white:#fffaf0;--line:#d8ded9;--blue:#1c5d77;--green:#426b54;--rust:#b65b36;--gold:#c8963e;--violet:#5a4b92;--dark:#102028;--iconic:#b02f3a;--hike:#7f4f24}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.62 Inter,"Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{width:min(1180px,calc(100% - 34px));margin:0 auto}
-a{color:var(--blue)}
-a:hover{color:var(--rust)}
-h1,h2,h3,h4{line-height:1.3;margin:0}
-p{margin:0 0 14px}
-ul,ol{margin:0 0 16px;padding-left:22px}
-li{margin:5px 0}
-strong{color:#0e1a20}
-code{background:rgba(28,93,119,.08);border-radius:5px;padding:1px 5px;font-size:.92em}
-
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;color:var(--white);
-background:linear-gradient(180deg,rgba(16,32,40,.10) 0%,rgba(16,32,40,.55) 46%,rgba(16,32,40,.88) 84%),url("norway-images/lofoten-aurora.jpg") center/cover no-repeat}
-.hero-inner{padding:0 0 54px}
-.kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.46);border-radius:999px;padding:8px 13px;font-size:13px;letter-spacing:.4px;background:rgba(16,32,40,.22);margin:0 8px 14px 0;backdrop-filter:blur(2px)}
-.hero h1{font-size:clamp(30px,4.6vw,54px);letter-spacing:-.5px;max-width:22ch;text-shadow:0 2px 24px rgba(0,0,0,.45)}
-.hero p.lede{max-width:74ch;color:rgba(255,250,240,.9);margin:16px 0 0;font-size:17px}
-.hero .meta{margin-top:20px;font-size:13.5px;color:rgba(255,250,240,.72)}
-
-/* ---------- nav ---------- */
-.chips{position:sticky;top:0;z-index:900;background:rgba(244,241,232,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.chips-inner{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:thin}
-.chips a{flex:0 0 auto;font-size:13px;text-decoration:none;border:1px solid var(--line);background:var(--white);border-radius:999px;padding:6px 12px;color:var(--ink)}
-.chips a:hover{border-color:var(--rust);color:var(--rust)}
-
-/* ---------- sections ---------- */
-section{padding:64px 0;border-bottom:1px solid var(--line)}
-section:nth-of-type(even){background:linear-gradient(180deg,rgba(255,250,240,.75),rgba(244,241,232,.2))}
-.sec-head{margin-bottom:26px}
-.sec-head .num{font-size:13px;letter-spacing:2.4px;color:var(--rust);text-transform:uppercase;font-weight:600}
-.sec-head h2{font-size:clamp(23px,3.1vw,34px);margin:6px 0 10px}
-.sec-head .sub{color:var(--muted);max-width:80ch}
-.note{font-size:13.5px;color:var(--muted)}
-
-/* ---------- cards ---------- */
-.grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
-.card h3{font-size:17px;margin-bottom:8px}
-.card h4{font-size:15px;margin:14px 0 6px;color:var(--blue)}
-.card p:last-child,.card ul:last-child{margin-bottom:0}
-.tile{border-left:4px solid var(--blue)}
-.tile.warn{border-left-color:var(--rust)}
-.tile.good{border-left-color:var(--green)}
-.tile.aurora{border-left-color:var(--violet)}
-.tile.gold{border-left-color:var(--gold)}
-.tag{display:inline-block;font-size:11.5px;letter-spacing:.4px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted);background:var(--paper);margin:0 5px 6px 0}
-.tag.b{color:var(--blue);border-color:rgba(28,93,119,.35);background:rgba(28,93,119,.07)}
-.tag.r{color:var(--rust);border-color:rgba(182,91,54,.35);background:rgba(182,91,54,.08)}
-.tag.g{color:var(--green);border-color:rgba(66,107,84,.35);background:rgba(66,107,84,.08)}
-.tag.v{color:var(--violet);border-color:rgba(90,75,146,.3);background:rgba(90,75,146,.08)}
-.big{font-size:26px;font-weight:700;color:var(--blue);display:block;line-height:1.2}
-.cap{font-size:12.5px;color:var(--muted);margin-top:8px}
-
-/* ---------- tables ---------- */
-.tblwrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
-table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
-th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
-thead th{background:rgba(28,93,119,.08);color:#0e1a20;font-weight:600;white-space:nowrap}
-tbody tr:last-child td{border-bottom:none}
-tbody tr:hover{background:rgba(200,150,62,.07)}
-td.c,th.c{text-align:center;white-space:nowrap}
-td.win{background:rgba(66,107,84,.12);font-weight:600}
-td.lose{background:rgba(182,91,54,.13)}
-.small{font-size:13px}
-
-/* ---------- verdict ---------- */
-.verdict{background:var(--dark);color:var(--white);border-radius:16px;padding:24px 26px;margin:0 0 20px}
-.verdict h3{color:#fff;margin-bottom:10px}
-.verdict strong{color:var(--gold)}
-.verdict p:last-child{margin-bottom:0}
-.callout{border-left:4px solid var(--gold);background:rgba(200,150,62,.1);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 18px}
-.callout p:last-child{margin:0}
-.danger{border-left-color:var(--rust);background:rgba(182,91,54,.1)}
-.plusminus{display:grid;gap:8px;margin:0}
-.plusminus div{border-radius:10px;padding:10px 13px;font-size:14.5px}
-.pm-good{background:rgba(66,107,84,.1);border-left:3px solid var(--green)}
-.pm-bad{background:rgba(182,91,54,.1);border-left:3px solid var(--rust)}
-
-/* ---------- timeline ---------- */
-.day{display:grid;grid-template-columns:104px 1fr;gap:18px;border-bottom:1px dashed var(--line);padding:18px 0}
-.day:last-child{border-bottom:none}
-.day .d{font-weight:700;color:var(--blue)}
-.day .d span{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:3px}
-.day .b h3{font-size:17px;margin-bottom:6px}
-.day .b p{margin-bottom:8px;font-size:15px}
-
-/* ---------- map ---------- */
-.map-block{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px}
-#lofoten-map{height:640px;border-radius:12px;background:#dbe4e2;overflow:hidden}
-.map-controls{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
-.map-controls button{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 13px;transition:.15s}
-.map-controls button:hover{border-color:var(--rust);color:var(--rust)}
-.map-controls button.active{background:var(--blue);border-color:var(--blue);color:#fff}
-.map-controls .sep{width:1px;background:var(--line);margin:2px 4px}
-.legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 0;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);margin-right:6px;vertical-align:-1px}
-.map-notice{display:none;margin:12px 0 0;border-left:4px solid var(--rust);background:rgba(182,91,54,.1);padding:11px 14px;border-radius:0 10px 10px 0;font-size:14px}
-.fallback-map{display:none;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--dark);color:var(--white);padding:18px}
-.fallback-map img{width:100%;border-radius:10px;display:block;margin:12px 0 0;opacity:.9}
-.leaflet-popup-content{font:14px/1.55 Inter,"Noto Sans SC","Microsoft YaHei",sans-serif;margin:12px 14px;width:274px!important}
-.popup-title{font-weight:700;font-size:15px;margin-bottom:6px;color:var(--ink)}
-.popup-note{color:#3d4750;margin-bottom:8px}
-.popup-meta{display:grid;gap:3px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:7px}
-.popup-link{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--blue)}
-.map-tooltip{border:none;box-shadow:0 2px 8px rgba(0,0,0,.22);border-radius:7px;font:600 11.5px Inter,"Noto Sans SC",sans-serif;padding:2px 7px;background:#fff;color:#172026}
-.map-tooltip.base{color:#8a3f22}.map-tooltip.stay{color:#8a6218}.map-tooltip.iconic{color:#8c2129}
-.map-tooltip.hike{color:#5d3a1a}.map-tooltip.aurora{color:#3f3570}.map-tooltip.view{color:#31543f}
-
-/* ---------- gallery ---------- */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px}
-figure{margin:0;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-figure img{width:100%;height:212px;object-fit:cover;display:block}
-figcaption{padding:12px 14px}
-figcaption b{display:block;margin-bottom:4px}
-figcaption span{font-size:13px;color:var(--muted)}
-
-/* ---------- footer ---------- */
-footer{background:var(--dark);color:rgba(255,250,240,.82);padding:40px 0 46px;font-size:14px}
-footer h3{color:#fff;margin-bottom:12px;font-size:16px}
-footer ul{padding-left:20px}
-@media(max-width:720px){
- .hero{min-height:70vh}.hero-inner{padding-bottom:38px}
- #lofoten-map{height:460px}
- section{padding:44px 0}
- .day{grid-template-columns:1fr;gap:6px}
- table{font-size:13.5px}
+:root{
+  --bg:#0f1216; --panel:#161b22; --panel2:#1c2230; --line:#2a3342;
+  --fg:#e6edf3; --muted:#9aa7b4; --accent:#4ea1ff; --accent2:#ffd479;
+  --good:#3fb950; --warn:#f0883e;
 }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:16px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 90px}
+header.hero{
+  position:relative;margin:0 0 34px;padding:56px 22px 44px;
+  background-size:cover;background-position:center;border-bottom:1px solid var(--line);
+}
+header.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,13,18,.45) 0%,rgba(10,13,18,.82) 62%,rgba(15,18,22,1) 100%);
+}
+.hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto}
+.kicker{
+  display:inline-block;padding:4px 12px;border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;font-size:13px;letter-spacing:.4px;color:#dfe8f2;
+  background:rgba(0,0,0,.34);backdrop-filter:blur(4px)
+}
+h1{font-size:clamp(26px,4.2vw,40px);line-height:1.25;margin:16px 0 10px;letter-spacing:-.4px}
+.hero .sub{color:#c8d3de;max-width:780px;margin:0;font-size:15px}
+h2{
+  font-size:23px;margin:52px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--line);
+  scroll-margin-top:18px
+}
+h3{font-size:18px;margin:34px 0 10px;color:#dbe6f1;scroll-margin-top:18px}
+h4{font-size:16px;margin:26px 0 8px;color:#c3cfdb}
+p{margin:12px 0}
+a{color:var(--accent)}
+strong{color:#fff}
+hr{border:0;border-top:1px dashed var(--line);margin:42px 0}
+code{background:#232b38;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13.5px}
 
+blockquote{
+  margin:18px 0;padding:14px 18px;border-left:3px solid var(--accent);
+  background:linear-gradient(90deg,rgba(78,161,255,.10),rgba(78,161,255,0));
+  border-radius:0 8px 8px 0;color:#d7e2ec
+}
+blockquote p{margin:6px 0}
+
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:6px 0}
+
+.tablewrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+thead th{
+  position:sticky;top:0;background:var(--panel2);color:#eaf1f8;
+  text-align:left;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+tbody td{padding:9px 12px;border-bottom:1px solid rgba(42,51,66,.55);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(255,255,255,.018)}
+tbody tr:hover{background:rgba(78,161,255,.07)}
+tbody tr:last-child td{border-bottom:0}
+
+figure{margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;background:#0b0e12}
+figcaption{padding:10px 14px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+
+nav.toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:0 0 10px}
+nav.toc h4{margin:0 0 10px;font-size:14px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+nav.toc li{margin:3px 0;font-size:14px}
+nav.toc a{color:#cfe0f2;text-decoration:none}
+nav.toc a:hover{color:var(--accent);text-decoration:underline}
+@media(max-width:720px){nav.toc ol{columns:1}}
+
+footer{
+  margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px;text-align:center
+}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap hero-inner">
-    <span class="kicker">🤖 本分析由 DeepSeek 生成</span>
-    <span class="kicker">📅 2026-09-17 生成</span>
-    <h1>罗弗敦 10 月初：12 个候选住宿的量化排程</h1>
-    <p class="lede">这份文件只回答一个问题：<strong style="color:#ffd98a">你搜到的这 12 个住处，在 10/2、10/3、10/4 这三晚该怎么排？</strong>评分权重里，「住地能不能看到极光」占 30%、「夜间开多少路」占 20% —— 呼应你提的两个硬约束：<strong style="color:#ffd98a">非常希望看到极光</strong>，以及 <strong style="color:#ffd98a">晚上不要开太多夜路</strong>。</p>
-    <p class="meta">独立分析（未参考任何其他来源的住宿结论）· 底图与照片为本地文件（离线可用）· 全文标注「可引用事实 / 分析推断 / 待核实」</p>
-  </div>
-</header>
-<nav class="chips"><div class="wrap chips-inner">
-  <a href="#s0">结论速览</a>
-  <a href="#s1">12 个候选一览</a>
-  <a href="#s2">交互地图</a>
-  <a href="#s3">打分模型</a>
-  <a href="#s4">排名与推荐</a>
-  <a href="#s5">Jusnesveien 55 专项</a>
-  <a href="#s6">逐日时刻表</a>
-  <a href="#s7">风险与行动</a>
-  <a href="#s8">住宿环境图集</a>
-  <a href="#s9">来源与不确定性</a>
-</div></nav>
-<main>
-<section id="s0"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 0</div>
-    <h2>结论速览：7 条</h2>
-    <p class="sub">只读这一段也能拿到全部判断。每条都能在下方章节找到完整论证与数据。</p>
-  </div>
-  <div class="grid g2">
-    <div class="card tile warn">
-      <span class="tag r">最重要</span>
-      <h3>1. Unstad Arctic Resort 是全场唯一「无连住约束 + 天区 9.5 + 守光 1 分钟 + 2061 元」的候选</h3>
-      <p>它的存在让 10/3、10/4 这两晚几乎没有争议：<strong>任何排法的前 25 名里，10/4 住 Unstad 的占了 16 条</strong>。
-      代价是它到西段 Reine 单程 1:18，10/4 白天要白跑一趟走廊。</p>
-    </div>
-    <div class="card tile">
-      <span class="tag b">直接回答你的问题</span>
-      <h3>2. 10/2 默认住 Henningsvær，是因为「落脚方便」而不是「极光好」</h3>
-      <p>Henningsvær 到 EVE 3:10、有餐厅、渔村味最足 —— 但它北向被 Vågakallen（942 m）山墙挡死，
-      住地天区只有 <strong>4.5/10</strong>，必须开 8–12 min 到 Rørvikstranda 才开阔。
-      如果你的第一顺位是极光，<strong>10/2 更该考虑 Gimsøystraumen 的 Vei 2803 22（天区 7.5、到 EVE 3:07，全场最短）</strong>。
-      差的只是「渔村氛围」和 1485 元/晚 的差价。</p>
-    </div>
-    <div class="card tile good">
-      <span class="tag g">结构性发现</span>
-      <h3>3. 你只有 3 晚，而 5 个候选带硬性连住 / 可订限制</h3>
-      <p>Misværveien 2 锁 10/3–10/4、Elvis Presleys vei 25 锁 10/2–10/3、Andopveien 35 只有 10/2，
-      Fishermans Villa 与 Jusnesveien 55 必须连住两晚。把它们当「自由棋子」摆会直接排不出方案 ——
-      <strong>430 种组合里，只有一小部分合法</strong>。这就是为什么本报告要先做约束筛选、再做打分。</p>
-    </div>
-    <div class="card tile">
-      <span class="tag b">关键取舍</span>
-      <h3>4. 「10/4 住西端」和「10/5 轻松返程」是同一笔账的两种付法</h3>
-      <p>住 Unstad（北部）时：10/4 白天要开 2×78 min 走廊去西段，10/5 返 EVE 232 min（单程）。
-      住 Eliassen（西端）时：10/4 几乎零走廊（Reine 9 min），但 10/5 返 EVE <strong>282 min</strong>。
-      住 Ramberg / Jusnesveien 55（中偏西）：10/4 走廊 2×31 min，10/5 返 <strong>260 min</strong> ——
-      <strong>总走廊最短的其实是 Ramberg / Jusnesveien 55 这一档（322 min）</strong>，模型的「返程」维度把它低估了。</p>
-    </div>
-  </div>
-  <div class="callout"><p><strong>怎么读上面第 4 条：</strong>模型给「返程」的公式是 <code>10 − (到 EVE 分钟 − 190) / 10</code>，所以 Unstad（232 min）得 5.8、Ramberg（260 min）得 3.0、Eliassen（282 min）得 0.8。这个公式惩罚的是「离机场远」，但<strong>没有区分「10/5 有一整个白天」和「10/5 只有半天」</strong>。如果你打算 10/6 早上飞 EVE→OSL，10/5 是完整的一天，返程惩罚就该大幅调低 —— 这一点在第 6 节「返程方案分叉」里单独讨论。</p></div>
-  <div class="grid g3">
-    <div class="card tile gold">
-      <span class="tag">体验分</span>
-      <h3>5. 你要的「挪威特色住宅」+「落地窗海景」，在不换宿的前提下做不满</h3>
-      <p>正宗 rorbu（红房子渔屋）在 <strong>Eliassen / Nusfjord / Hattvika / Fishermans Villa / Bryggehotell</strong>；
-      大落地窗海景在 <strong>Jusnesveien 55 / Andopveien 35 / Vei 2803 22 / Banhammaren 39</strong>。两组几乎不重合 ——
-      所以<strong>至少换一次宿</strong>才能在 3 晚里同时拿到。你的「不介意打包行李换宿」正好用得上。</p>
-    </div>
-    <div class="card tile warn">
-      <span class="tag r">最容易踩的坑</span>
-      <h3>6. 「24 小时内可退」= 灵活性最低，不是最高</h3>
-      <p>它是指<strong>订房后 24 小时内可退、之后不可退</strong>。
-      Jusnesveien 55 就属于这一档 —— 下单后基本锁死。
-      <strong>它应该是「行程骨架定了之后的下单对象」，不是「先占坑再说」的对象。</strong></p>
-    </div>
-    <div class="card tile aurora">
-      <span class="tag v">极光</span>
-      <h3>7. 10/4 是月面最暗的一晚（46%），不该用搬家消耗掉</h3>
-      <p>三晚月面照亮比例：10/2 ≈ 67%、10/3 ≈ 56%、10/4 ≈ 46%（下弦走向，逐夜变暗）。
-      模型里的月相修正系数 0.767 / 0.803 / 0.840 就是由它换算出来的 —— <strong>数字越大代表月光干扰越小</strong>，
-      所以 10/4 拿到的权重最高。月亮的实际影响是<strong>压低暗弱极光的对比度</strong>，
-      但同时也把雪面/海面打亮、让长曝更好看 ——
-      所以「有月亮」不等于「看不到」，只是<strong>更需要开阔地平线、更需要避开山墙</strong>。
-      因此 10/4 这个天然最暗的夜晚，应当落在天区最开阔的住地，而不是落在搬家日。</p>
-    </div>
-  </div>
-</div></section>
-<section id="s1"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 1</div>
-    <h2>12 个候选一览：价格、约束、天区、到各锚点的车程</h2>
-    <p class="sub">全部车程为 OSRM 真实路网计算（<code>_lodging12.txt</code>），非直线距离。「天区」是住地自身看天空的开阔程度（0–10，人工判定，依据见第 3 节）。</p>
-  </div>
-<div class="tblwrap"><table>
-<thead><tr><th>#</th><th>住地</th><th>类型</th><th class="c">单价<br>(元/晚)</th><th class="c">可订/连住约束</th><th class="c">天区</th><th class="c">守光<br>(min)</th><th class="c">EVE</th><th class="c">Svolvær</th><th class="c">Leknes</th><th class="c">Reine</th></tr></thead><tbody>
-<tr><td class="c">1</td><td><strong>Banhammaren 39 H0304</strong><br><span class="small">Banhammaren 39 H0304（Airbnb 公寓）</span></td><td class="small">Airbnb 公寓</td><td class="c">2407.85</td><td class="c small">无连住约束</td><td class="c" class="lose">4.5</td><td class="c">12</td><td class="c">3:11</td><td class="c">0:31</td><td class="c">1:07</td><td class="c">2:03</td></tr>
-<tr><td class="c">2</td><td><strong>Misværveien 2 码头公寓</strong><br><span class="small">Misværveien 2（Airbnb 码头公寓）</span></td><td class="small">Airbnb 码头公寓</td><td class="c">1345.38</td><td class="c small">必须 10/3–10/5 连住两晚</td><td class="c" class="lose">4.5</td><td class="c">8</td><td class="c">3:09</td><td class="c">0:27</td><td class="c">1:04</td><td class="c">2:00</td></tr>
-<tr><td class="c">3</td><td><strong>Henningsvær Bryggehotell</strong><br><span class="small">Henningsvaer Bryggehotell（海景阁楼套房）</span></td><td class="small">精品酒店（海景阁楼 3186 元 / 豪华双人 2298 元）</td><td class="c">2297.93</td><td class="c small">无连住约束</td><td class="c" class="lose">4.5</td><td class="c">9</td><td class="c">3:09</td><td class="c">0:27</td><td class="c">1:03</td><td class="c">1:59</td></tr>
-<tr><td class="c">4</td><td><strong>Hattvika Lodge – Hattvika Hillside</strong><br><span class="small">Hattvika Lodge（Hattvika Hillside）</span></td><td class="small">罗弗敦传统渔屋旅馆</td><td class="c">2664</td><td class="c small">Hillside 无约束；Myklebustbua#2（1878 元）须连住 2 晚</td><td class="c">6.5</td><td class="c">18</td><td class="c">4:05</td><td class="c">1:27</td><td class="c">0:15</td><td class="c">1:08</td></tr>
-<tr><td class="c">5</td><td><strong>Fishermans Villa Ballstad</strong><br><span class="small">Fishermans Villa Ballstad – Lofoten</span></td><td class="small">罗弗敦渔屋民宿</td><td class="c">1917.5</td><td class="c small">必须连住两晚（10/2+10/3 或 10/3+10/4）</td><td class="c">6.5</td><td class="c">17</td><td class="c">4:03</td><td class="c">1:24</td><td class="c">0:12</td><td class="c">1:05</td></tr>
-<tr><td class="c">6</td><td><strong>Jusnesveien 55</strong><br><span class="small">Jusnesveien 55（Airbnb 独栋，大落地窗海景）</span></td><td class="small">Airbnb 大独栋（面积大 · 两屋可联通 · 大落地窗 · 山景+海景）</td><td class="c">2242.5</td><td class="c small">必须连住两晚（10/2+10/3 或 10/3+10/4）</td><td class="c" class="win">8.0</td><td class="c">3</td><td class="c">4:20</td><td class="c">1:41</td><td class="c">0:32</td><td class="c">0:31</td></tr>
-<tr><td class="c">7</td><td><strong>Oceanview Mini-House – Stunning Views</strong><br><span class="small">Oceanview Mini-House – Stunning Views</span></td><td class="small">Airbnb 迷你独栋</td><td class="c">2243</td><td class="c small">只能订到 10/2 一晚</td><td class="c" class="win">8.5</td><td class="c">0</td><td class="c">4:21</td><td class="c">1:42</td><td class="c">0:31</td><td class="c">0:28</td></tr>
-<tr><td class="c">8</td><td><strong>Varanes – Elvis Presleys vei 25</strong><br><span class="small">Varanes – 乡村全新小木屋（Airbnb）</span></td><td class="small">Airbnb 全新乡村小木屋</td><td class="c">3220.07</td><td class="c small">必须连住 10/2+10/3 两晚</td><td class="c" class="win">8.0</td><td class="c">3</td><td class="c">4:20</td><td class="c">1:41</td><td class="c">0:32</td><td class="c">0:31</td></tr>
-<tr><td class="c">9</td><td><strong>Arctic Panoramautsikten（Vei 2803 22）</strong><br><span class="small">Arctic Panoramautsikten Lofoten（带按摩浴缸）</span></td><td class="small">Airbnb 全景公寓（带按摩浴缸）</td><td class="c">3783.34</td><td class="c small">无连住约束</td><td class="c">7.5</td><td class="c">6</td><td class="c">3:06</td><td class="c">0:24</td><td class="c">0:53</td><td class="c">1:49</td></tr>
-<tr><td class="c">10</td><td><strong>Unstad Arctic Resort（山景公寓）</strong><br><span class="small">Unstad Arctic Resort（山景公寓）</span></td><td class="small">北极冲浪度假村公寓</td><td class="c">2061</td><td class="c small">无连住约束</td><td class="c" class="win">9.5</td><td class="c">1</td><td class="c">3:52</td><td class="c">1:06</td><td class="c">0:23</td><td class="c">1:18</td></tr>
-<tr><td class="c">11</td><td><strong>Eliassen Rorbuer</strong><br><span class="small">Eliassen Rorbuer（一室公寓 / 滨水高级一卧）</span></td><td class="small">罗弗敦最经典的红房子渔屋</td><td class="c">1959</td><td class="c small">10/4 房型多（一室 1959 元）；10/2 一室 2576 元；10/3 仅传统两卧 2963 元</td><td class="c" class="win">8.0</td><td class="c">2</td><td class="c">4:42</td><td class="c">2:02</td><td class="c">0:55</td><td class="c">0:09</td></tr>
-<tr><td class="c">12</td><td><strong>Nusfjord Village & Resort</strong><br><span class="small">Nusfjord Village & Resort</span></td><td class="small">历史渔村度假村</td><td class="c">2300</td><td class="c small">无连住约束</td><td class="c" class="lose">4.0</td><td class="c">13</td><td class="c">4:18</td><td class="c">1:38</td><td class="c">0:28</td><td class="c">0:44</td></tr>
+<header class="hero" style="background-image:url('norway-images/lodgings/hattvika-lodge.jpg')">
+<div class="hero-inner">
+<span class="kicker">🤖 本分析由 DeepSeek 生成 · 修订 2026-09-17 · 已删除全部极光打分维度</span>
+<h1>罗弗敦 10 月候选住宿 · 独立分析（v3 · 去极光版）</h1>
+</div></header>
+<div class="wrap">
+<nav class="toc"><h4>目录</h4><ol>
+<li><a href="#sec-1">0 · 这一版改了什么</a></li>
+<li><a href="#sec-2">1 · 打分模型 v3</a></li>
+<li><a href="#sec-3">2 · 12 个候选一览</a></li>
+<li><a href="#sec-4">3 · 【首选池】完全不连住 · TOP 25</a></li>
+<li><a href="#sec-5">4 · 单维度榜首（每个维度各自的前 5）</a></li>
+<li><a href="#sec-6">5 · 末夜固定在西线 Eliassen Rorbuer（Hamnøy H11）· 首选池 TOP 15</a></li>
+<li><a href="#sec-7">6 · 末夜固定在东 / 中部 · 首选池前 5</a></li>
+<li><a href="#sec-8">7 · 10/2 首夜选项矩阵（末夜固定 ＝ Eliassen H11，每行给出该首夜的最佳 10/3）</a></li>
+<li><a href="#sec-9">8 · 两套完整对照（控制变量：10/2、10/3 完全相同，只换 10/4）</a></li>
+<li><a href="#sec-10">9 · 逐日时间账</a></li>
+<li><a href="#sec-11">10 · 总价汇总</a></li>
+<li><a href="#sec-12">11 · 敏感性检验：如果再去掉「返程车程」这一维</a></li>
+<li><a href="#sec-13">12 · 点名方案对照</a></li>
+<li><a href="#sec-14">13 · 候选住宿照片</a></li>
+<li><a href="#sec-15">14 · 口径与免责</a></li>
+</ol></nav>
+<blockquote><p>🤖 本分析由 DeepSeek 生成 ｜ 修订：2026-09-17 ｜ 本版<strong>取代</strong>此前的「极光权重 0.30」版本</p></blockquote>
+<hr>
+<h2 id="sec-1">0 · 这一版改了什么</h2>
+<ol>
+<li><strong>彻底删除极光维度。</strong> 删掉「极光可见性 0.30」与「守光点车程 0.20」两个维度，以及从属于它们的人工「天区」判定分（0–10 定性打分）和自造的月相修正系数（0.767 / 0.803 / 0.840）。</li>
+<li><strong>剩余 4 个维度按原比例归一化。</strong> 原 4 维权重合计 0.50 → 各自除以 0.50。</li>
+<li><strong>新增严格硬约束。</strong> 只禁 <strong>Hamnøy（H11）/ Nusfjord（H12）连住</strong>；其他地方「优先不连住」，但若同地区确实没有别的选择、或房源强制连住，列入<strong>备选池</strong>，不作首选。</li>
+<li><strong>住宿总价退出打分</strong>，只作参考量（按你的口径：价格无所谓，除非价差特别大）。</li>
+<li><strong>返程只保留 10/5 20:05 EVE→OSL 一班</strong>（17:15 那班已按你的要求剔除）。</li>
+</ol>
+<blockquote><p>关于极光，全文只保留这一句客观提示：<strong>Lofoten 全域位于极光带内，能否看到取决于当晚云量，住宿位置不构成差异。</strong></p></blockquote>
+<hr>
+<h2 id="sec-2">1 · 打分模型 v3</h2>
+<div class="tablewrap"><table><thead><tr>
+<th>维度</th>
+<th>权重</th>
+<th>含义</th>
+<th>计算口径</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>白天景区可达</strong></td>
+<td>0.32</td>
+<td>三晚住地分别去斯沃尔韦尔 / 莱克内斯 / 雷讷方不方便</td>
+<td><code>2×→斯沃尔韦尔(10/2) ＋ 2×→莱克内斯(10/3) ＋ 2×→雷讷(10/4)</code>，取均值后线性映射到 0–10</td>
+</tr>
+<tr>
+<td><strong>10/5 返程车程</strong></td>
+<td>0.24</td>
+<td>末夜住地 → EVE 机场</td>
+<td>按 <code>→EVE</code> 分钟数线性映射（190 min ＝ 满分 10）</td>
+</tr>
+<tr>
+<td><strong>住宿体验</strong></td>
+<td>0.24</td>
+<td>地区多样性 ＋ rorbu 特色 ＋ 面海 ＋ 能自炊 ＋ 三晚不重样</td>
+<td><code>多样性(0–3.5) ＋ rorbu 3.0 ＋ 面海 2.5 ＋ 三晚全部可自炊 1.0 ＋ 三晚不重样 1.0</code></td>
+</tr>
+<tr>
+<td><strong>补给 / 搬家 / 首日</strong></td>
+<td>0.20</td>
+<td>超市距离、两次搬家车程、10/1 落地当日车程</td>
+<td><code>0.35×补给 ＋ 0.30×搬家 ＋ 0.35×首日</code></td>
+</tr>
 </tbody></table></div>
-<p class="cap">绿色底 = 天区 ≥ 8.0（住地本身守光条件好）；橙色底 = 天区 ≤ 4.5（必须开车才能守光）。「守光」列 = 该住处开到最近一个「北/西向开阔」合格守光点的单程分钟数。</p>
-  <div class="grid g2" style="margin-top:18px">
-    <div class="card"><h3>Banhammaren 39 H0304 <span class="tag">Henningsvær</span></h3><div class="plusminus"><div class="pm-good">＋ Henningsvær 岛西侧，步行 3 min 到港湾与 Trevarefabrikken；自炊方便</div><div class="pm-bad">− 北向被 Vågakallen（942 m）/ Festvågtind 山墙遮挡，守光要开 12 min</div></div><p class="cap">住地面南/西南对 Vestfjorden；北向被 Austvågøya 山墙（Vågakallen 942 m、Festvågtind）挡，要开 8.6 km / 12 min 到 Rørvikstranda 才开阔</p></div>
-    <div class="card"><h3>Misværveien 2 码头公寓 <span class="tag">Henningsvær</span></h3><div class="plusminus"><div class="pm-good">＋ 12 个候选中单价最低（1345 元/晚），就在码头边；自炊方便</div><div class="pm-bad">− 被连住约束锁死在 10/3–10/4 槽位；且 10/2 无法使用（结构上很别扭）</div></div><p class="cap">同一片 Henningsvær 港湾，北向被同一道山墙挡；到 Rørvikstranda 7.1 km / 8 min。注意必须 10/3–10/5 连住两晚</p></div>
-    <div class="card"><h3>Henningsvær Bryggehotell <span class="tag">Henningsvær</span></h3><div class="plusminus"><div class="pm-good">＋ 码头第一排，自有餐厅+早餐，省掉做饭洗碗；渔村氛围最正统；10/2 落脚最省事</div><div class="pm-bad">− 天区条件与 H01/H02 完全相同（4.5/10），酒店无厨房</div></div><p class="cap">码头第一排酒店、有自有餐厅与早餐，省掉做饭和洗碗；但天区条件跟 H01/H02 完全一样（北向山墙）</p></div>
-    <div class="card"><h3>Hattvika Lodge – Hattvika Hillside <span class="tag">Ballstad</span></h3><div class="plusminus"><div class="pm-good">＋ Ballstad 半岛西端、西/西南向开阔水面；体验挪威渔屋氛围强</div><div class="pm-bad">− 北向被 Vestvågøy 内陆丘陵遮挡，守光要开 18 min 到 Nappstraumen</div></div><p class="cap">Ballstad 西南半岛港湾，西/西南向开阔水面；北向被 Vestvågøy 内陆丘陵部分遮挡，要开 11.8 km / 18 min 到 Nappstraumen 才纯开阔</p></div>
-    <div class="card"><h3>Fishermans Villa Ballstad <span class="tag">Ballstad</span></h3><div class="plusminus"><div class="pm-good">＋ 离 Leknes 仅 9.5 km / 12 min，是 12 个候选中补给最方便的；传统渔屋</div><div class="pm-bad">− 必须连住；天区同 H04（6.5/10）</div></div><p class="cap">与 H04 同一片海岸，天区条件相同；离 Leknes 只有 9.5 km / 12 min，是 12 个候选里补给最方便的。但必须连住两晚</p></div>
-    <div class="card"><h3>Jusnesveien 55 <span class="tag">Flakstad / Ramberg</span></h3><div class="plusminus"><div class="pm-good">＋ 天区 8.0；房子大、两间可联通、落地窗同时看山与海；到 Ramberg 白沙滩 1.8 km / 3 min；到 Leknes 32 min；西段 Reine 仅 31 min</div><div class="pm-bad">− 房东住隔壁（两屋相邻、可联通）；必须连住两晚、不可只住一晚；24h 内可退＝下单后 24h 内可退、之后不可退（灵活性最低档）</div></div><p class="cap">Flakstadøya 西岸外海侧，西/西北向大片开阔水面（Ramberg 白沙滩方向）；到 Ramberg 1.8 km / 3 min。房东住隔壁、房子大、大落地窗海景（你原话）</p></div>
-    <div class="card"><h3>Oceanview Mini-House – Stunning Views <span class="tag">Ramberg</span></h3><div class="plusminus"><div class="pm-good">＋ Ramberg 白沙滩第一排，正西向开阔海面，守光零开车（天区 8.5，全场第 2）</div><div class="pm-bad">− 只能 10/2 一晚，无法承担任意一个两晚槽位；10/2 落地即长途（4.8 h）</div></div><p class="cap">就在 Ramberg 白沙滩第一排，正西向开阔海面，守极光零开车。但只能订到 10/2 一晚——这是它最大的结构性麻烦</p></div>
-    <div class="card"><h3>Varanes – Elvis Presleys vei 25 <span class="tag">Flakstad / Ramberg</span></h3><div class="plusminus"><div class="pm-good">＋ 与 H06 同区，天区条件完全相同（8.0）；全新木屋、设计感强</div><div class="pm-bad">− 3220 元/晚，是全场最贵单笔；两晚 6440 元；且被锁死在 10/2 起点</div></div><p class="cap">与 H06 同一区域，天区条件相同；但 3220 元/晚是三晚方案里最贵的单笔，两晚就是 6440 元。必须 10/2–10/4 连住</p></div>
-    <div class="card"><h3>Arctic Panoramautsikten（Vei 2803 22） <span class="tag">Gimsøystraumen</span></h3><div class="plusminus"><div class="pm-good">＋ Gimsøystraumen 海峡南岸，西北向遮挡远小于 Henningsvær（天区 7.5）；到 EVE 仅 3:07（全场最短）</div><div class="pm-bad">− 3783 元/晚，是全场最贵之一；西北向是 Gimsøya 低地（368 m），并非完全无遮挡</div></div><p class="cap">Gimsøystraumen 海峡南岸，西北向是 Gimsøya 低地（368 m）与海峡水面，遮挡远小于 Henningsvær；到 Rørvikstranda 5.0 km / 6 min、Hov 15.2 km / 18 min。价格最高（3783 元/晚）</p></div>
-    <div class="card"><h3>Unstad Arctic Resort（山景公寓） <span class="tag">Unstad</span></h3><div class="plusminus"><div class="pm-good">＋ 外海西/西北岸、海滩第一排，天区 9.5（全场第 1），走 0.3 km 就到沙滩守光；自炊方便</div><div class="pm-bad">− 到西段 Reine 单程 1:18，白天进出西段要白跑一趟；到 EVE 3:55</div></div><p class="cap">外海西/西北岸、海滩第一排、正对开阔海面、北向无遮挡——12 个候选里住地自身守光条件最好的一个，走 0.3 km 就到沙滩。代价：到西段 Reine 单程 1:18，白天进出西段要白跑一趟</p></div>
-    <div class="card"><h3>Eliassen Rorbuer <span class="tag">Hamnøy</span></h3><div class="plusminus"><div class="pm-good">＋ Hamnøy 桥（公认顶级极光机位）离家 2 min；到 Reine 9 min、Å 20 min；正宗 rorbu 体验</div><div class="pm-bad">− 10/5 返 EVE 需 4:47（全场最远）；10/3 只有高价两卧房型</div></div><p class="cap">Hamnøy 桥是公认的顶级极光机位（朝北/西北），离门口只有 0.5 km / 2 min；面北/西北对 Reinefjord 出海口与 Vestfjorden，西侧 3 km 外才有 Olstinden 群峰。到 Reine 9 min、到 Å 20 min。代价：10/5 返程 4:47</p></div>
-    <div class="card"><h3>Nusfjord Village & Resort <span class="tag">Nusfjord</span></h3><div class="plusminus"><div class="pm-good">＋ 挪威保存最完整的历史渔村之一，挪威特色住宅体验全场最强</div><div class="pm-bad">− 被全岛最高山环绕，天区只有 4.0（全场最低），守光要开 13 min 出村</div></div><p class="cap">挪威保存最完整的历史渔村之一，体验分极高；但被全岛最高山环绕，天空只有「一道缝」，守光要开 12.7 km / 13 min 到 Skagsanden，且要先出村闸口</p></div>
-  </div>
-</div></section>
-<section id="s2"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 2</div>
-    <h2>交互地图：12 个候选住宿 + 12 个锚点 + 5 条推荐动线</h2>
-    <p class="sub">圆点颜色按<strong>住地自身天区</strong>分级（绿 ≥9 / 金 7.5–9 / 橙 6–7.5 / 红 &lt;6）。房子形状的点才是候选住宿，其余是守光点、观景点与集散镇。底图是本地离线瓦片，<strong>file:// 直接双击打开也能显示</strong>。</p>
-  </div>
-
-<div class="map-block">
-  <div class="map-controls" id="route-btns"></div>
-  <div class="map-controls" style="margin-top:8px">
-    <button data-focus="all" class="active">看全部</button>
-    <button data-focus="cand">只看 12 个候选住宿</button>
-    <button data-focus="aurora">只看极光点</button>
-  </div>
-  <div id="lofoten-map"></div>
-  <p class="map-notice" id="map-notice"></p>
-  <div class="fallback-map" id="fallback-map">
-    <h3 style="color:#fff">交互地图未能初始化</h3>
-    <p id="fallback-map-info" style="color:rgba(255,250,240,.85)">已自动切换为文字说明。</p>
-  </div>
-  <div class="legend">
-    <span><i style="background:#426b54"></i>天区 ≥ 9.0</span>
-    <span><i style="background:#c8963e"></i>天区 7.5–9.0</span>
-    <span><i style="background:#b65b36"></i>天区 6.0–7.5</span>
-    <span><i style="background:#b02f3a"></i>天区 &lt; 6.0</span>
-    <span><i style="background:#1c5d77"></i>机场</span>
-    <span><i style="background:#426b54"></i>镇 / 锚点</span>
-    <span><i style="background:#5a4b92"></i>守光点</span>
-  </div>
-  <p class="cap">动线为<strong>示意骨架</strong>（按「机场 → 住宿点 → 集散镇」串起来，不是导航轨迹，'
-  '实际行车请用 Google Maps / Waze 按 E10 与 82 号县道导航）。各段的真实 OSRM 车程见 Section 4 的逐日时刻表。</p>
-</div>
-
-<script src="vendor/leaflet/leaflet.js"></script>
-<script>
-(function () {
-  var POINTS = [{"t": "cand", "lat": 68.15296, "lng": 14.21059, "color": "#b02f3a", "tip": "H01 · Banhammaren 39", "head": "H01 · Banhammaren 39 H0304", "note": "Airbnb 公寓｜无连住约束｜天区 4.5/10｜2,408 元/晚", "good": "Henningsvær 岛西侧，步行 3 min 到港湾与 Trevarefabrikken；自炊方便", "bad": "北向被 Vågakallen（942 m）/ Festvågtind 山墙遮挡，守光要开 12 min"}, {"t": "cand", "lat": 68.15472, "lng": 14.20446, "color": "#b02f3a", "tip": "H02 · Misværveien 2 码头公寓", "head": "H02 · Misværveien 2 码头公寓", "note": "Airbnb 码头公寓｜必须 10/3–10/5 连住两晚｜天区 4.5/10｜1,345 元/晚", "good": "12 个候选中单价最低（1345 元/晚），就在码头边；自炊方便", "bad": "被连住约束锁死在 10/3–10/4 槽位；且 10/2 无法使用（结构上很别扭）"}, {"t": "cand", "lat": 68.15589, "lng": 14.20851, "color": "#b02f3a", "tip": "H03 · Henningsvær Bryggehotell", "head": "H03 · Henningsvær Bryggehotell", "note": "精品酒店（海景阁楼 3186 元 / 豪华双人 2298 元）｜无连住约束｜天区 4.5/10｜2,298 元/晚", "good": "码头第一排，自有餐厅+早餐，省掉做饭洗碗；渔村氛围最正统；10/2 落脚最省事", "bad": "天区条件与 H01/H02 完全相同（4.5/10），酒店无厨房"}, {"t": "cand", "lat": 68.07146, "lng": 13.54799, "color": "#b65b36", "tip": "H04 · Hattvika Hillside", "head": "H04 · Hattvika Lodge – Hattvika Hillside", "note": "罗弗敦传统渔屋旅馆｜Hillside 无约束；Myklebustbua#2（1878 元）须连住 2 晚｜天区 6.5/10｜2,664 元/晚", "good": "Ballstad 半岛西端、西/西南向开阔水面；体验挪威渔屋氛围强", "bad": "北向被 Vestvågøy 内陆丘陵遮挡，守光要开 18 min 到 Nappstraumen"}, {"t": "cand", "lat": 68.08257, "lng": 13.53828, "color": "#b65b36", "tip": "H05 · Fishermans Villa Ballstad", "head": "H05 · Fishermans Villa Ballstad", "note": "罗弗敦渔屋民宿｜必须连住两晚（10/2+10/3 或 10/3+10/4）｜天区 6.5/10｜1,918 元/晚", "good": "离 Leknes 仅 9.5 km / 12 min，是 12 个候选中补给最方便的；传统渔屋", "bad": "必须连住；天区同 H04（6.5/10）"}, {"t": "cand", "lat": 68.10294, "lng": 13.24408, "color": "#c8963e", "tip": "H06 · Jusnesveien 55", "head": "H06 · Jusnesveien 55", "note": "Airbnb 大独栋（面积大 · 两屋可联通 · 大落地窗 · 山景+海景）｜必须连住两晚（10/2+10/3 或 10/3+10/4）｜天区 8.0/10｜2,242 元/晚", "good": "天区 8.0；房子大、两间可联通、落地窗同时看山与海；到 Ramberg 白沙滩 1.8 km / 3 min；到 Leknes 32 min；西段 Reine 仅 31 min", "bad": "房东住隔壁（两屋相邻、可联通）；必须连住两晚、不可只住一晚；24h 内可退＝下单后 24h 内可退、之后不可退（灵活性最低档）"}, {"t": "cand", "lat": 68.08991, "lng": 13.22989, "color": "#c8963e", "tip": "H07 · Andopveien 35 Oceanview", "head": "H07 · Oceanview Mini-House – Stunning Views", "note": "Airbnb 迷你独栋｜只能订到 10/2 一晚｜天区 8.5/10｜2,243 元/晚", "good": "Ramberg 白沙滩第一排，正西向开阔海面，守光零开车（天区 8.5，全场第 2）", "bad": "只能 10/2 一晚，无法承担任意一个两晚槽位；10/2 落地即长途（4.8 h）"}, {"t": "cand", "lat": 68.10201, "lng": 13.23811, "color": "#c8963e", "tip": "H08 · Elvis Presleys vei 25", "head": "H08 · Varanes – Elvis Presleys vei 25", "note": "Airbnb 全新乡村小木屋｜必须连住 10/2+10/3 两晚｜天区 8.0/10｜3,220 元/晚", "good": "与 H06 同区，天区条件完全相同（8.0）；全新木屋、设计感强", "bad": "3220 元/晚，是全场最贵单笔；两晚 6440 元；且被锁死在 10/2 起点"}, {"t": "cand", "lat": 68.23511, "lng": 14.22833, "color": "#c8963e", "tip": "H09 · Vei 2803 22 全景公寓", "head": "H09 · Arctic Panoramautsikten（Vei 2803 22）", "note": "Airbnb 全景公寓（带按摩浴缸）｜无连住约束｜天区 7.5/10｜3,783 元/晚", "good": "Gimsøystraumen 海峡南岸，西北向遮挡远小于 Henningsvær（天区 7.5）；到 EVE 仅 3:07（全场最短）", "bad": "3783 元/晚，是全场最贵之一；西北向是 Gimsøya 低地（368 m），并非完全无遮挡"}, {"t": "cand", "lat": 68.26521, "lng": 13.59126, "color": "#426b54", "tip": "H10 · Unstad Arctic Resort", "head": "H10 · Unstad Arctic Resort（山景公寓）", "note": "北极冲浪度假村公寓｜无连住约束｜天区 9.5/10｜2,061 元/晚", "good": "外海西/西北岸、海滩第一排，天区 9.5（全场第 1），走 0.3 km 就到沙滩守光；自炊方便", "bad": "到西段 Reine 单程 1:18，白天进出西段要白跑一趟；到 EVE 3:55"}, {"t": "cand", "lat": 67.94753, "lng": 13.13152, "color": "#c8963e", "tip": "H11 · Eliassen Rorbuer", "head": "H11 · Eliassen Rorbuer", "note": "罗弗敦最经典的红房子渔屋｜10/4 房型多（一室 1959 元）；10/2 一室 2576 元；10/3 仅传统两卧 2963 元｜天区 8.0/10｜1,959 元/晚", "good": "Hamnøy 桥（公认顶级极光机位）离家 2 min；到 Reine 9 min、Å 20 min；正宗 rorbu 体验", "bad": "10/5 返 EVE 需 4:47（全场最远）；10/3 只有高价两卧房型"}, {"t": "cand", "lat": 68.03526, "lng": 13.34841, "color": "#b02f3a", "tip": "H12 · Nusfjord Village", "head": "H12 · Nusfjord Village & Resort", "note": "历史渔村度假村｜无连住约束｜天区 4.0/10｜2,300 元/晚", "good": "挪威保存最完整的历史渔村之一，挪威特色住宅体验全场最强", "bad": "被全岛最高山环绕，天区只有 4.0（全场最低），守光要开 13 min 出村"}, {"t": "airport", "lat": 68.4913, "lng": 16.6781, "color": "#1c5d77", "tip": "EVE 机场（10/1 夜宿圈）", "head": "EVE 机场（10/1 夜宿圈）", "note": "10/1 两人分别 14:30 / 15:55 抵 OSL，当晚 21:00→22:40 飞 EVE。这是 10/2 首日长途的起点约束。", "good": "", "bad": ""}, {"t": "view", "lat": 68.2342, "lng": 14.5683, "color": "#426b54", "tip": "Svolvær", "head": "Svolvær", "note": "东段锚点，E10 进岛后的第一个补给/餐饮城。", "good": "", "bad": ""}, {"t": "view", "lat": 68.1475, "lng": 13.6115, "color": "#426b54", "tip": "Leknes", "head": "Leknes", "note": "中段锚点，唯一有大型超市（周日也要注意）与机场。", "good": "", "bad": ""}, {"t": "view", "lat": 67.9326, "lng": 13.0895, "color": "#426b54", "tip": "Reine", "head": "Reine", "note": "西段锚点，默认的 10/4 白天终点。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.102, "lng": 13.297, "color": "#5a4b92", "tip": "Skagsanden 海滩", "head": "Skagsanden 海滩", "note": "Ramberg 一片最常用的守光沙滩，沙面反光能放大暗弱极光。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.089, "lng": 13.231, "color": "#5a4b92", "tip": "Rambergstranda 白沙滩", "head": "Rambergstranda 白沙滩", "note": "正西向开阔外海，是「住地零开车守光」条件最好的一片沙滩。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.2697, "lng": 13.584, "color": "#5a4b92", "tip": "Unstad 海滩", "head": "Unstad 海滩", "note": "外海西北岸第一排，北向无遮挡，天区条件全场最好。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.1788, "lng": 14.2112, "color": "#5a4b92", "tip": "Rørvikstranda", "head": "Rørvikstranda", "note": "Henningsvær 一带最近的合格守光点，要开 8–12 min 才能离开山墙遮挡。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.302, "lng": 13.649, "color": "#5a4b92", "tip": "Eggum", "head": "Eggum", "note": "北海岸开阔极光点，从 Unstad 出发 12 min。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.2092, "lng": 13.5037, "color": "#5a4b92", "tip": "Uttakleiv 海滩", "head": "Uttakleiv 海滩", "note": "北海岸经典沙滩，西向开阔。", "good": "", "bad": ""}, {"t": "aurora", "lat": 68.3065, "lng": 14.189, "color": "#5a4b92", "tip": "Hov / Gimsøya", "head": "Hov / Gimsøya", "note": "Gimsøystraumen 北岸，Vei 2803 出发约 18 min。", "good": "", "bad": ""}, {"t": "view", "lat": 68.034, "lng": 13.349, "color": "#426b54", "tip": "Nusfjord", "head": "Nusfjord", "note": "历史渔村，白天体验分极高，但夜间天区受限。", "good": "", "bad": ""}];
-  var ROUTES = [{"mode": "A", "label": "A · Vei 2803 → Unstad 连住", "color": "#1c5d77", "legs": [[[68.4913, 16.6781], [68.2342, 14.5683], [68.23511, 14.22833]], [[68.23511, 14.22833], [68.1475, 13.6115], [68.26521, 13.59126]], [[68.26521, 13.59126], [68.1475, 13.6115], [68.034, 13.349], [67.94639, 13.13762], [67.9326, 13.0895], [67.94639, 13.13762], [68.26521, 13.59126]], [[68.26521, 13.59126], [68.1475, 13.6115], [68.2342, 14.5683], [68.4913, 16.6781]]]}, {"mode": "B", "label": "B · Henningsvær 起步 → Unstad 连住", "color": "#426b54", "legs": [[[68.4913, 16.6781], [68.2342, 14.5683], [68.15589, 14.20851]], [[68.15589, 14.20851], [68.1475, 13.6115], [68.26521, 13.59126]], [[68.26521, 13.59126], [68.1475, 13.6115], [68.034, 13.349], [67.94639, 13.13762], [67.9326, 13.0895], [67.94639, 13.13762], [68.26521, 13.59126]], [[68.26521, 13.59126], [68.1475, 13.6115], [68.2342, 14.5683], [68.4913, 16.6781]]]}, {"mode": "C", "label": "C · Vei 2803 → Unstad → Eliassen", "color": "#5a4b92", "legs": [[[68.4913, 16.6781], [68.2342, 14.5683], [68.23511, 14.22833]], [[68.23511, 14.22833], [68.1475, 13.6115], [68.26521, 13.59126]], [[68.26521, 13.59126], [68.1475, 13.6115], [68.034, 13.349], [67.94639, 13.13762], [67.9326, 13.0895], [67.94639, 13.13762], [67.94753, 13.13152]], [[67.94753, 13.13152], [68.1475, 13.6115], [68.2342, 14.5683], [68.4913, 16.6781]]]}, {"mode": "F", "label": "F · Jusnesveien 55 连住（Henningsvær 起步）", "color": "#b65b36", "legs": [[[68.4913, 16.6781], [68.2342, 14.5683], [68.15589, 14.20851]], [[68.15589, 14.20851], [68.1475, 13.6115], [68.10294, 13.24408]], [[68.10294, 13.24408], [68.1475, 13.6115], [68.034, 13.349], [67.94639, 13.13762], [67.9326, 13.0895], [67.94639, 13.13762], [68.10294, 13.24408]], [[68.10294, 13.24408], [68.1475, 13.6115], [68.2342, 14.5683], [68.4913, 16.6781]]]}, {"mode": "X", "label": "X · Jusnesveien 55 连住（Ramberg 白沙滩起步）", "color": "#b02f3a", "legs": [[[68.4913, 16.6781], [68.2342, 14.5683], [68.08991, 13.22989]], [[68.08991, 13.22989], [68.1475, 13.6115], [68.10294, 13.24408]], [[68.10294, 13.24408], [68.1475, 13.6115], [68.034, 13.349], [67.94639, 13.13762], [67.9326, 13.0895], [67.94639, 13.13762], [68.10294, 13.24408]], [[68.10294, 13.24408], [68.1475, 13.6115], [68.2342, 14.5683], [68.4913, 16.6781]]]}];
-
-  var mapEl = document.getElementById("lofoten-map");
-  var noticeEl = document.getElementById("map-notice");
-  var fallbackEl = document.getElementById("fallback-map");
-  var fallbackInfoEl = document.getElementById("fallback-map-info");
-  function fail(reason) {
-    if (fallbackEl) { fallbackEl.style.display = "block"; }
-    if (fallbackInfoEl) { fallbackInfoEl.textContent = reason; }
-    if (noticeEl) { noticeEl.textContent = reason; }
-  }
-  if (!mapEl) { return; }
-  if (!window.L) { fail("本地 Leaflet 文件没有成功载入，请确认 vendor/leaflet/leaflet.js 与 HTML 在同一目录树内。"); return; }
-  try {
-    var map = L.map(mapEl, { scrollWheelZoom: false }).setView([68.15, 13.9], 8);
-    var tileErr = 0;
-    var base = L.tileLayer("vendor/tiles/lofoten/{z}/{x}/{y}.png", {
-      minZoom: 6, maxZoom: 11, attribution: "&copy; OpenStreetMap contributors" });
-    base.on("tileerror", function () { tileErr += 1; if (tileErr >= 4) { fail("本地地图瓦片缺失或无法读取（vendor/tiles/lofoten/）。"); } });
-    base.addTo(map);
-
-    function icon(color, big) {
-      var s = big ? 18 : 14;
-      return L.divIcon({ className: "",
-        html: '<span style="display:block;width:' + s + 'px;height:' + s + 'px;border-radius:'
-              + (big ? "2px" : "50%") + ';background:' + color
-              + ';border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.4);"></span>',
-        iconSize: [s, s], iconAnchor: [s / 2, s / 2], popupAnchor: [0, -10] });
-    }
-
-    var candLayer = L.layerGroup().addTo(map);
-    var auroraLayer = L.layerGroup().addTo(map);
-    var anchorLayer = L.layerGroup().addTo(map);
-
-    POINTS.forEach(function (p) {
-      var isCand = p.t === "cand";
-      var html = '<div class="popup-title">' + p.head + '</div>'
-               + '<div class="popup-meta">' + p.note + '</div>';
-      if (p.good) { html += '<div class="popup-note">＋ ' + p.good + '</div>'; }
-      if (p.bad) { html += '<div class="popup-note">－ ' + p.bad + '</div>'; }
-      var m = L.marker([p.lat, p.lng], { icon: icon(p.color, isCand) })
-               .bindPopup(html)
-               .bindTooltip(p.tip, { permanent: true, direction: "right", offset: [9, 0],
-                                     className: "map-tooltip" });
-      if (isCand) { candLayer.addLayer(m); }
-      else if (p.t === "aurora") { auroraLayer.addLayer(m); }
-      else { anchorLayer.addLayer(m); }
-    });
-
-    var routeLayer = L.layerGroup().addTo(map);
-    var routeBounds = {};
-    ROUTES.forEach(function (r) {
-      var b = L.latLngBounds([]);
-      routeBounds[r.mode] = b;
-      r.legs.forEach(function (leg) {
-        leg.forEach(function (pt) { b.extend(pt); });
-        L.polyline(leg, { color: r.color, weight: 3, opacity: 0.85,
-                          dashArray: "7 6" }).addTo(routeLayer);
-      });
-    });
-
-    var btns = document.getElementById("route-btns");
-    var mode = "A";
-    function setMode(next) {
-      mode = next;
-      routeLayer.clearLayers();
-      ROUTES.forEach(function (r) {
-        if (next !== "all" && r.mode !== next) { return; }
-        r.legs.forEach(function (leg) {
-          L.polyline(leg, { color: r.color, weight: 3, opacity: 0.85,
-                            dashArray: "7 6" }).addTo(routeLayer);
-        });
-      });
-      Array.prototype.forEach.call(document.querySelectorAll("[data-mode]"), function (b) {
-        b.classList.toggle("active", b.getAttribute("data-mode") === next);
-      });
-      if (next !== "all" && routeBounds[next]) { map.fitBounds(routeBounds[next], { padding: [40, 40] }); }
-    }
-    if (btns) {
-      [["all", "全部动线"]].concat(ROUTES.map(function (r) { return [r.mode, r.label]; }))
-        .forEach(function (pair) {
-          var b = document.createElement("button");
-          b.textContent = pair[1];
-          b.setAttribute("data-mode", pair[0]);
-          b.addEventListener("click", function () { setMode(pair[0]); });
-          btns.appendChild(b);
-        });
-    }
-    Array.prototype.forEach.call(document.querySelectorAll("[data-focus]"), function (b) {
-      b.addEventListener("click", function () {
-        var k = b.getAttribute("data-focus");
-        Array.prototype.forEach.call(document.querySelectorAll("[data-focus]"), function (x) {
-          x.classList.toggle("active", x === b);
-        });
-        candLayer[ k === "cand" || k === "all" ? "addTo" : "removeFrom" ](map);
-        auroraLayer[ k === "aurora" || k === "all" ? "addTo" : "removeFrom" ](map);
-        anchorLayer[ k === "all" ? "addTo" : "removeFrom" ](map);
-      });
-    });
-    setMode("A");
-  } catch (err) {
-    fail("交互地图初始化失败：" + (err && err.message ? err.message : err));
-  }
-})();
-
-</script>
-</div></section>
-<section id="s3"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 3</div>
-    <h2>打分模型：六个维度、固定权重、可复算</h2>
-    <p class="sub">三个晚上 = 10/2、10/3、10/4 各住哪儿。12 个候选 → 12³ = 1728 种排列，剔除连住/单晚硬约束后剩 <strong>430 种可行组合</strong>，逐条打分排序。模型源码：<code>tools/_lodging12_score2.py</code>，结果全文：<code>tools/_lodging12_score.txt</code>。</p>
-  </div>
-<div class="tblwrap"><table>
-<thead><tr><th>维度</th><th>权重</th><th>衡量什么</th><th>怎么算</th></tr></thead><tbody>
-<tr><td><strong>极光条件</strong></td><td class="c">0.30</td><td>三晚住地天空开阔度，且<strong>加重最后一晚</strong>（10/4 的住处决定 10/4 夜与 10/5 凌晨能不能守）</td><td><code>0.55×(三晚天区月相加权均) + 0.45×(10/4 天区)</code>；10/4 天区 ≥8 追加 +0.8；10/4 守光车程 ≤5 min 追加 +0.5</td></tr>
-<tr><td><strong>夜间驾驶</strong></td><td class="c">0.20</td><td>每晚为了守光要开出去多远（直接对应你「不想多开夜路」）</td><td><code>10 − (三晚守光车程均值 / 3)</code></td></tr>
-<tr><td><strong>白天景区可达</strong></td><td class="c">0.16</td><td>白天从住地往返 Svolvær / Leknes / Reine 的总里程，惩罚「白天空跑」</td><td>10/2 按 <code>2×Svolvær</code>、10/3 按 <code>2×Leknes</code>、10/4 按 <code>2×Reine</code>，取均值后线性衰减</td></tr>
-<tr><td><strong>10/5 返程</strong></td><td class="c">0.12</td><td>10/5 从最后一个住处回 EVE 机场的车程</td><td><code>10 − (返程 min − 190) / 10</code>，190 min 为满分线</td></tr>
-<tr><td><strong>住宿体验</strong></td><td class="c">0.12</td><td>你提的两个硬愿望：至少 1 晚挪威特色住宅、至少 1 晚落地窗海景</td><td>区域数 2 个 +2.5、3 个 +3.5；含 rorbu（红房子渔屋）+3.0；含海景 +2.5；三晚全可自炊 +1.0；三晚全不同 +1.0</td></tr>
-<tr><td><strong>补给与搬家</strong></td><td class="c">0.10</td><td>买菜/加油的方便度、换宿当天要开多远、10/2 落地后要开多远</td><td><code>0.35×补给 + 0.30×搬家 + 0.35×落地日里程</code></td></tr>
+<p><strong>总分 ＝ 0.32×白天可达 ＋ 0.24×返程 ＋ 0.24×体验 ＋ 0.20×便利</strong></p>
+<h3>硬约束（不满足直接排除）</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>编号</th>
+<th>约束</th>
+</tr></thead><tbody>
+<tr>
+<td>H02</td>
+<td>只能连住 <strong>10/3–10/4</strong></td>
+</tr>
+<tr>
+<td>H08</td>
+<td>只能连住 <strong>10/2–10/3</strong></td>
+</tr>
+<tr>
+<td>H07</td>
+<td>只能订到 <strong>10/2</strong> 一晚</td>
+</tr>
+<tr>
+<td>H05 / H06</td>
+<td>只能<strong>连续两晚</strong></td>
+</tr>
+<tr>
+<td>H11 / H12</td>
+<td><strong>禁止连住</strong>（Hamnøy / Nusfjord）</td>
+</tr>
 </tbody></table></div>
-
-<div class="callout"><p><strong>模型的三条已知盲区（我主动标注，不藏）：</strong></p>
-<p>① <strong>「返程」只算里程，不算「还剩多少白天」。</strong>Unstad 与 Jusnesveien 55 的返程车程都在 4:20 上下，
-但 10/5 那天从 Unstad 去西段要 1:18 单程（白跑），从 Jusnesveien 55 只要 31 min。
-把「10/5 白天有效时间」折算进走廊总里程后，两者的真实差距比模型显示的要小很多 —— 见 Section 5。</p>
-<p>② <strong>「天区」是我对地形与朝向的人工判断（0–10），不是软件测出来的。</strong>
-它的依据是住地正对的水面/山脉方位、以及到最近合格守光点的实测车程。判断依据写在了每张卡片里。</p>
-<p>③ <strong>「10/2 落地日里程」的惩罚过于敏感。</strong>该项按每多 9 min 扣 1 分衰减，
-于是「10/2 直接开到 Ramberg」几乎必定被扣到 2 分上下。但 10/2 开 4.8 h 到底能不能接受，
-是<strong>你自己的主观偏好</strong>，模型不该替你做决定 —— 见 Section 5 的 H07 对比。</p></div>
-
-</div></section>
-<section id="s4"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 4</div>
-    <h2>430 种组合的排名，与 9 个推荐结构</h2>
-    <p class="sub">下表是综合权重下的前 12 名。高亮行是 Section 4.2 里我逐条命名的结构。</p>
-  </div>
-<div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr style="background:#fdf6e3"><td class='c'>01</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.95</strong></td><td class='c'>9.49</td><td class='c'>9.11</td><td class='c'>6.42</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>8.34</td><td class='c'>7,905</td></tr>
-<tr style="background:#fdf6e3"><td class='c'>02</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.94</strong></td><td class='c'>9.07</td><td class='c'>8.78</td><td class='c'>6.29</td><td class='c'>5.80</td><td class='c'>8.00</td><td class='c'>7.98</td><td class='c'>6,420</td></tr>
-<tr><td class='c'>03</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.88</strong></td><td class='c'>9.05</td><td class='c'>7.22</td><td class='c'>6.75</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.43</td><td class='c'>8,508</td></tr>
-<tr><td class='c'>04</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.86</strong></td><td class='c'>9.27</td><td class='c'>9.00</td><td class='c'>5.08</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>5.72</td><td class='c'>7,803</td></tr>
-<tr style="background:#fdf6e3"><td class='c'>05</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.79</strong></td><td class='c'>8.59</td><td class='c'>9.00</td><td class='c'>9.29</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.32</td><td class='c'>7,803</td></tr>
-<tr><td class='c'>06</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.78</strong></td><td class='c'>8.77</td><td class='c'>8.22</td><td class='c'>5.04</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>8.00</td><td class='c'>8,142</td></tr>
-<tr><td class='c'>07</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Nusfjord Village</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.74</strong></td><td class='c'>8.68</td><td class='c'>7.78</td><td class='c'>6.21</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>6.94</td><td class='c'>8,144</td></tr>
-<tr><td class='c'>08</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Henningsvær Bryggehotell</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.70</strong></td><td class='c'>8.76</td><td class='c'>8.22</td><td class='c'>4.75</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.70</td><td class='c'>8,142</td></tr>
-<tr><td class='c'>09</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.64</strong></td><td class='c'>8.85</td><td class='c'>8.67</td><td class='c'>4.96</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>5.66</td><td class='c'>6,318</td></tr>
-<tr><td class='c'>10</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.63</strong></td><td class='c'>8.63</td><td class='c'>6.89</td><td class='c'>6.62</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.12</td><td class='c'>7,023</td></tr>
-<tr><td class='c'>11</td><td><strong>Banhammaren 39</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.59</strong></td><td class='c'>9.07</td><td class='c'>8.44</td><td class='c'>6.12</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>7.86</td><td class='c'>6,530</td></tr>
-<tr><td class='c'>12</td><td><strong>Unstad Arctic Resort</strong> → <strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.57</strong></td><td class='c'>9.33</td><td class='c'>7.78</td><td class='c'>5.00</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>6.40</td><td class='c'>6,786</td></tr>
+<p><strong>可行组合（已剔硬约束 ＋ Hamnøy/Nusfjord 连住）共 404 个</strong>：其中<strong>无连住 294 个</strong>、<strong>含连住 110 个</strong>。 3 晚住宿小计区间：<strong>4,752 – 10,530 元</strong>。</p>
+<hr>
+<h2 id="sec-3">2 · 12 个候选一览</h2>
+<p>车程均为 OSRM 真实路网（分钟）。「单价」为元/晚，来自你的预订页截图。</p>
+<div class="tablewrap"><table><thead><tr>
+<th>编号</th>
+<th>住处</th>
+<th>地区</th>
+<th>单价<br>(元/晚)</th>
+<th>→EVE</th>
+<th>→斯沃尔韦尔</th>
+<th>→莱克内斯</th>
+<th>→雷讷</th>
+<th>可订 / 连住约束</th>
+</tr></thead><tbody>
+<tr>
+<td>H01</td>
+<td>Banhammaren 39</td>
+<td>Henningsvær</td>
+<td>2,408</td>
+<td>191</td>
+<td>31</td>
+<td>67</td>
+<td>123</td>
+<td>无连住约束</td>
+</tr>
+<tr>
+<td>H02</td>
+<td>Misværveien 2 码头公寓</td>
+<td>Henningsvær</td>
+<td>1,345</td>
+<td>189</td>
+<td>27</td>
+<td>64</td>
+<td>120</td>
+<td>只能连住 10/3–10/4</td>
+</tr>
+<tr>
+<td>H03</td>
+<td>Henningsvær Bryggehotell</td>
+<td>Henningsvær</td>
+<td>2,298</td>
+<td>189</td>
+<td>27</td>
+<td>63</td>
+<td>119</td>
+<td>无连住约束（酒店）</td>
+</tr>
+<tr>
+<td>H04</td>
+<td>Hattvika Lodge – Hillside</td>
+<td>Ballstad</td>
+<td>2,664</td>
+<td>245</td>
+<td>87</td>
+<td>15</td>
+<td>68</td>
+<td>无连住约束</td>
+</tr>
+<tr>
+<td>H05</td>
+<td>Fishermans Villa Ballstad</td>
+<td>Ballstad</td>
+<td>1,918</td>
+<td>243</td>
+<td>84</td>
+<td>12</td>
+<td>65</td>
+<td>只能连续两晚</td>
+</tr>
+<tr>
+<td>H06</td>
+<td>Jusnesveien 55</td>
+<td>Flakstad / Ramberg</td>
+<td>2,243</td>
+<td>260</td>
+<td>101</td>
+<td>32</td>
+<td>31</td>
+<td>只能连续两晚</td>
+</tr>
+<tr>
+<td>H07</td>
+<td>Andopveien 35 Oceanview</td>
+<td>Ramberg</td>
+<td>2,243</td>
+<td>261</td>
+<td>102</td>
+<td>31</td>
+<td>28</td>
+<td>只能订 10/2 一晚</td>
+</tr>
+<tr>
+<td>H08</td>
+<td>Elvis Presleys vei 25（Varanes）</td>
+<td>Flakstad / Ramberg</td>
+<td>3,220</td>
+<td>260</td>
+<td>101</td>
+<td>32</td>
+<td>31</td>
+<td>只能连住 10/2–10/3</td>
+</tr>
+<tr>
+<td>H09</td>
+<td>Vei 2803 22 全景公寓</td>
+<td>Gimsøystraumen</td>
+<td>3,783</td>
+<td>186</td>
+<td>24</td>
+<td>53</td>
+<td>109</td>
+<td>无连住约束</td>
+</tr>
+<tr>
+<td>H10</td>
+<td>Unstad Arctic Resort</td>
+<td>Unstad</td>
+<td>2,061</td>
+<td>232</td>
+<td>66</td>
+<td>23</td>
+<td>78</td>
+<td>无连住约束</td>
+</tr>
+<tr>
+<td>H11</td>
+<td>Eliassen Rorbuer</td>
+<td>Hamnøy</td>
+<td>1,959</td>
+<td>282</td>
+<td>122</td>
+<td>55</td>
+<td>9</td>
+<td>无连住约束，但<strong>禁连住</strong></td>
+</tr>
+<tr>
+<td>H12</td>
+<td>Nusfjord Village &amp; Resort</td>
+<td>Nusfjord</td>
+<td>2,300</td>
+<td>258</td>
+<td>98</td>
+<td>28</td>
+<td>44</td>
+<td>无连住约束，但<strong>禁连住</strong></td>
+</tr>
 </tbody></table></div>
-  <p class="cap">「夜路」列高分 = 不用为守光开车；「白天」列高分 = 白天景区近；「便利」列高分 = 好买菜、少搬家、10/2 落地少赶路。</p>
-<h3 style="margin-top:26px">4.1 换权重会怎样：七张敏感度表</h3>
-<p>同一批 430 个组合，只改「看什么」：</p>
-<div class="grid g2">
-  <div class="card tile"><h3>只看极光条件</h3><p>把极光当唯一目标时的排序。注意第一名不是 Unstad 连住，而是 <strong>Vei 2803 → Unstad → Unstad（9.63）</strong>。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.33</strong></td><td class='c'>9.63</td><td class='c'>9.78</td><td class='c'>3.17</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>5.64</td><td class='c'>6,365</td></tr>
-<tr><td class='c'>02</td><td><strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.31</strong></td><td class='c'>9.56</td><td class='c'>9.56</td><td class='c'>2.33</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>3.84</td><td class='c'>6,081</td></tr>
-<tr><td class='c'>03</td><td><strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.52</strong></td><td class='c'>9.55</td><td class='c'>9.56</td><td class='c'>3.33</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>4.30</td><td class='c'>6,081</td></tr>
-<tr><td class='c'>04</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.95</strong></td><td class='c'>9.49</td><td class='c'>9.11</td><td class='c'>6.42</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>8.34</td><td class='c'>7,905</td></tr>
-<tr><td class='c'>05</td><td><strong>Unstad Arctic Resort</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.20</strong></td><td class='c'>9.48</td><td class='c'>9.11</td><td class='c'>3.42</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>5.71</td><td class='c'>7,905</td></tr>
-<tr><td class='c'>06</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.35</strong></td><td class='c'>9.41</td><td class='c'>9.67</td><td class='c'>1.83</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>4.00</td><td class='c'>6,263</td></tr>
-<tr><td class='c'>07</td><td><strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.41</strong></td><td class='c'>9.35</td><td class='c'>7.78</td><td class='c'>3.79</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>6.63</td><td class='c'>6,786</td></tr>
-<tr><td class='c'>08</td><td><strong>Elvis Presleys vei 25</strong> → <strong>Elvis Presleys vei 25</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.07</strong></td><td class='c'>9.34</td><td class='c'>9.22</td><td class='c'>2.83</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>5.55</td><td class='c'>8,501</td></tr>
-</tbody></table></div></div>
-  <div class="card tile"><h3>只看夜间驾驶</h3><p>最「不折腾」的排法。会强烈偏向守光车程≡0 的住地。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.33</strong></td><td class='c'>9.63</td><td class='c'>9.78</td><td class='c'>3.17</td><td class='c'>5.80</td><td class='c'>6.00</td><td class='c'>5.64</td><td class='c'>6,365</td></tr>
-<tr><td class='c'>02</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.35</strong></td><td class='c'>9.41</td><td class='c'>9.67</td><td class='c'>1.83</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>4.00</td><td class='c'>6,263</td></tr>
-<tr><td class='c'>03</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.18</strong></td><td class='c'>8.73</td><td class='c'>9.67</td><td class='c'>6.04</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>3.62</td><td class='c'>6,263</td></tr>
-<tr><td class='c'>04</td><td><strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.52</strong></td><td class='c'>8.87</td><td class='c'>9.56</td><td class='c'>7.54</td><td class='c'>0.80</td><td class='c'>9.00</td><td class='c'>5.70</td><td class='c'>6,081</td></tr>
-<tr><td class='c'>05</td><td><strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.52</strong></td><td class='c'>9.55</td><td class='c'>9.56</td><td class='c'>3.33</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>4.30</td><td class='c'>6,081</td></tr>
-<tr><td class='c'>06</td><td><strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.31</strong></td><td class='c'>9.56</td><td class='c'>9.56</td><td class='c'>2.33</td><td class='c'>5.80</td><td class='c'>9.00</td><td class='c'>3.84</td><td class='c'>6,081</td></tr>
-<tr><td class='c'>07</td><td><strong>Andopveien 35 Oceanview</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>6.87</strong></td><td class='c'>8.50</td><td class='c'>9.56</td><td class='c'>4.71</td><td class='c'>0.80</td><td class='c'>9.00</td><td class='c'>4.78</td><td class='c'>6,161</td></tr>
-<tr><td class='c'>08</td><td><strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.16</strong></td><td class='c'>8.65</td><td class='c'>9.44</td><td class='c'>6.21</td><td class='c'>0.80</td><td class='c'>9.00</td><td class='c'>5.08</td><td class='c'>5,979</td></tr>
-</tbody></table></div></div>
-  <div class="card tile"><h3>只看白天景区可达</h3><p>最「白天不空跑」的排法。这一列是 Unstad 连住的死穴，前 8 名里几乎看不到它。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.33</strong></td><td class='c'>8.14</td><td class='c'>7.11</td><td class='c'>9.62</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.29</td><td class='c'>8,406</td></tr>
-<tr><td class='c'>02</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Hattvika Hillside</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.09</strong></td><td class='c'>7.72</td><td class='c'>6.78</td><td class='c'>9.50</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>5.97</td><td class='c'>6,921</td></tr>
-<tr><td class='c'>03</td><td><strong>Banhammaren 39</strong> → <strong>Hattvika Hillside</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>6.98</strong></td><td class='c'>7.72</td><td class='c'>6.44</td><td class='c'>9.33</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>5.82</td><td class='c'>7,031</td></tr>
-<tr><td class='c'>04</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.79</strong></td><td class='c'>8.59</td><td class='c'>9.00</td><td class='c'>9.29</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.32</td><td class='c'>7,803</td></tr>
-<tr><td class='c'>05</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.54</strong></td><td class='c'>8.16</td><td class='c'>8.67</td><td class='c'>9.17</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>5.96</td><td class='c'>6,318</td></tr>
-<tr><td class='c'>06</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Nusfjord Village</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.26</strong></td><td class='c'>7.78</td><td class='c'>7.67</td><td class='c'>9.08</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.48</td><td class='c'>8,042</td></tr>
-<tr><td class='c'>07</td><td><strong>Banhammaren 39</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.44</strong></td><td class='c'>8.16</td><td class='c'>8.33</td><td class='c'>9.00</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>5.84</td><td class='c'>6,428</td></tr>
-<tr><td class='c'>08</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Nusfjord Village</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.00</strong></td><td class='c'>7.35</td><td class='c'>7.33</td><td class='c'>8.96</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>6,557</td></tr>
-</tbody></table></div></div>
-  <div class="card tile"><h3>只看 10/5 返程</h3><p>离 EVE 越近越好（Henningsvær / Gimsøystraumen 区）。这一列的极端答案是「最后一晚睡在机场旁边」，但那样极光就废了。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.51</strong></td><td class='c'>6.56</td><td class='c'>8.22</td><td class='c'>5.00</td><td class='c'>10.00</td><td class='c'>10.00</td><td class='c'>6.96</td><td class='c'>8,142</td></tr>
-<tr><td class='c'>02</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.28</strong></td><td class='c'>6.98</td><td class='c'>8.56</td><td class='c'>5.12</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>7.32</td><td class='c'>9,628</td></tr>
-<tr><td class='c'>03</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.17</strong></td><td class='c'>6.76</td><td class='c'>8.44</td><td class='c'>3.79</td><td class='c'>10.00</td><td class='c'>9.00</td><td class='c'>5.70</td><td class='c'>9,526</td></tr>
-<tr><td class='c'>04</td><td><strong>Banhammaren 39</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.16</strong></td><td class='c'>6.56</td><td class='c'>7.89</td><td class='c'>4.83</td><td class='c'>10.00</td><td class='c'>8.00</td><td class='c'>6.84</td><td class='c'>8,252</td></tr>
-<tr><td class='c'>05</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.13</strong></td><td class='c'>6.54</td><td class='c'>6.67</td><td class='c'>5.46</td><td class='c'>10.00</td><td class='c'>9.00</td><td class='c'>6.83</td><td class='c'>10,231</td></tr>
-<tr><td class='c'>06</td><td><strong>Unstad Arctic Resort</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.13</strong></td><td class='c'>7.26</td><td class='c'>9.11</td><td class='c'>3.38</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>6.71</td><td class='c'>7,905</td></tr>
-<tr><td class='c'>07</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.07</strong></td><td class='c'>6.34</td><td class='c'>8.11</td><td class='c'>3.67</td><td class='c'>10.00</td><td class='c'>10.00</td><td class='c'>5.64</td><td class='c'>8,040</td></tr>
-<tr><td class='c'>08</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.07</strong></td><td class='c'>6.27</td><td class='c'>7.67</td><td class='c'>3.75</td><td class='c'>10.00</td><td class='c'>8.00</td><td class='c'>8.98</td><td class='c'>9,865</td></tr>
-</tbody></table></div></div>
-  <div class="card tile"><h3>只看住宿体验</h3><p>区域多、有红房子、有海景、能自炊。Eliassen Rorbuer 与 Hattvika Hillside 是这一列的常客。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.88</strong></td><td class='c'>9.05</td><td class='c'>7.22</td><td class='c'>6.75</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.43</td><td class='c'>8,508</td></tr>
-<tr><td class='c'>02</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.86</strong></td><td class='c'>9.27</td><td class='c'>9.00</td><td class='c'>5.08</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>5.72</td><td class='c'>7,803</td></tr>
-<tr><td class='c'>03</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong> → <strong>Eliassen Rorbuer</strong></td><td class='c'><strong>7.79</strong></td><td class='c'>8.59</td><td class='c'>9.00</td><td class='c'>9.29</td><td class='c'>0.80</td><td class='c'>10.00</td><td class='c'>6.32</td><td class='c'>7,803</td></tr>
-<tr><td class='c'>04</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.78</strong></td><td class='c'>8.77</td><td class='c'>8.22</td><td class='c'>5.04</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>8.00</td><td class='c'>8,142</td></tr>
-<tr><td class='c'>05</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Nusfjord Village</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.74</strong></td><td class='c'>8.68</td><td class='c'>7.78</td><td class='c'>6.21</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>6.94</td><td class='c'>8,144</td></tr>
-<tr><td class='c'>06</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Henningsvær Bryggehotell</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.70</strong></td><td class='c'>8.76</td><td class='c'>8.22</td><td class='c'>4.75</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.70</td><td class='c'>8,142</td></tr>
-<tr><td class='c'>07</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Eliassen Rorbuer</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.64</strong></td><td class='c'>8.85</td><td class='c'>8.67</td><td class='c'>4.96</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>5.66</td><td class='c'>6,318</td></tr>
-<tr><td class='c'>08</td><td><strong>Henningsvær Bryggehotell</strong> → <strong>Hattvika Hillside</strong> → <strong>Unstad Arctic Resort</strong></td><td class='c'><strong>7.63</strong></td><td class='c'>8.63</td><td class='c'>6.89</td><td class='c'>6.62</td><td class='c'>5.80</td><td class='c'>10.00</td><td class='c'>7.12</td><td class='c'>7,023</td></tr>
-</tbody></table></div></div>
-  <div class="card tile"><h3>只看总价（三晚）</h3><p>阈值很清楚：想压到 6000 元附近，几乎只能选 <strong>Unstad（2061）+ Eliassen（1959）</strong> 这套组合。</p><div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>3 晚元</th></tr></thead><tbody>
-<tr><td class='c'>01</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>7.13</strong></td><td class='c'>6.54</td><td class='c'>6.67</td><td class='c'>5.46</td><td class='c'>10.00</td><td class='c'>9.00</td><td class='c'>6.83</td><td class='c'>10,231</td></tr>
-<tr><td class='c'>02</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Hattvika Hillside</strong></td><td class='c'><strong>6.49</strong></td><td class='c'>6.08</td><td class='c'>6.67</td><td class='c'>5.58</td><td class='c'>4.50</td><td class='c'>9.00</td><td class='c'>8.15</td><td class='c'>10,231</td></tr>
-<tr><td class='c'>03</td><td><strong>Hattvika Hillside</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>6.38</strong></td><td class='c'>6.55</td><td class='c'>6.67</td><td class='c'>1.25</td><td class='c'>10.00</td><td class='c'>9.00</td><td class='c'>6.02</td><td class='c'>10,231</td></tr>
-<tr><td class='c'>04</td><td><strong>Elvis Presleys vei 25</strong> → <strong>Elvis Presleys vei 25</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>6.38</strong></td><td class='c'>6.83</td><td class='c'>8.67</td><td class='c'>1.54</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>4.31</td><td class='c'>10,223</td></tr>
-<tr><td class='c'>05</td><td><strong>Banhammaren 39</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>6.72</strong></td><td class='c'>6.27</td><td class='c'>7.33</td><td class='c'>3.58</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>8.79</td><td class='c'>9,975</td></tr>
-<tr><td class='c'>06</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Banhammaren 39</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>6.64</strong></td><td class='c'>6.25</td><td class='c'>7.33</td><td class='c'>3.29</td><td class='c'>10.00</td><td class='c'>6.00</td><td class='c'>8.48</td><td class='c'>9,975</td></tr>
-<tr><td class='c'>07</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Vei 2803 22 全景公寓</strong> → <strong>Banhammaren 39</strong></td><td class='c'><strong>6.25</strong></td><td class='c'>4.88</td><td class='c'>7.33</td><td class='c'>3.29</td><td class='c'>9.90</td><td class='c'>6.00</td><td class='c'>8.82</td><td class='c'>9,975</td></tr>
-<tr><td class='c'>08</td><td><strong>Vei 2803 22 全景公寓</strong> → <strong>Nusfjord Village</strong> → <strong>Vei 2803 22 全景公寓</strong></td><td class='c'><strong>6.89</strong></td><td class='c'>6.17</td><td class='c'>7.22</td><td class='c'>4.92</td><td class='c'>10.00</td><td class='c'>8.00</td><td class='c'>6.46</td><td class='c'>9,867</td></tr>
-</tbody></table></div></div>
-</div>
-<h3 style="margin-top:26px">4.2 九个推荐结构（逐个点评）</h3>
-<p>下面每条都能在地图 Section 2 上按对应按钮高亮动线。「排名」是它在 430 个组合里的综合位次。</p>
-<p class="note">注：我原本还留了第 10 条候选结构 H「Henningsvær → Jusnesveien 55 → Eliassen」，但它在约束筛选阶段就被剔除了 —— Jusnesveien 55（H06）必须连住两晚，只住 10/3 一晚不成立。所以下面是 9 条，全部通过硬约束校验。</p>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 A</span>
-  <h3>极光优先 · 最省夜路</h3>
-  <p><strong>Vei 2803 22 全景公寓 → Unstad Arctic Resort → Unstad Arctic Resort</strong> ｜ 综合第 <strong>1</strong> 名 ｜ 总分 <strong>7.95</strong> ｜ 三晚 <strong>7,905 元</strong></p>
-  <p>极光 9.49 ／ 夜路 9.11 ／ 白天 6.42 ／ 返程 5.80 ／ 体验 6.00 ／ 便利 8.34</p>
-<p><strong>点评：</strong>10/2 住 Gimsøystraumen 南岸 —— 到 EVE 只要 3:07（全场最短），
- 落地当晚最省事，天区 7.5 也能撑一晚；10/3 搬到 Unstad 连住两晚，把天区 9.5 这张王牌留给 10/3、10/4。
- <strong>它的短板全在白天：</strong>10/4 若要去 Reine，Unstad 单程 1:18，往返白跑 2:36。</p>
- <p><strong>适合：</strong>「极光是我唯一硬指标，白天随便看看就行」。<strong>不适合：</strong>想把经典机位（Reine、Hamnøy、Å）都走一遍。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 B</span>
-  <h3>均衡首选 · 渔村氛围 + 最强天区</h3>
-  <p><strong>Henningsvær Bryggehotell → Unstad Arctic Resort → Unstad Arctic Resort</strong> ｜ 综合第 <strong>2</strong> 名 ｜ 总分 <strong>7.94</strong> ｜ 三晚 <strong>6,420 元</strong></p>
-  <p>极光 9.07 ／ 夜路 8.78 ／ 白天 6.29 ／ 返程 5.80 ／ 体验 8.00 ／ 便利 7.98</p>
-<p><strong>点评：</strong>10/2 落 Henningsvær Bryggehotell（码头第一排、有自有餐厅和早餐，落地当晚不用买菜做饭），
- 10/3 横穿到 Unstad 连住两晚。体验分 8.0 —— 酒店 + 渔村 + 海景 + 全程可自炊的混合。
- <strong>这是我最推荐的「第一次来罗弗敦」版本</strong>：10/2 不赶路、10/3–10/4 极光条件拉满、10/5 返程 3:55 也还能接受。</p>
- <p><strong>适合：</strong>想同时拿到「极光 + 挪威特色住处 + 不太折腾」三件事。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 C</span>
-  <h3>省走廊 · 西端红房子收尾</h3>
-  <p><strong>Vei 2803 22 全景公寓 → Unstad Arctic Resort → Eliassen Rorbuer</strong> ｜ 综合第 <strong>5</strong> 名 ｜ 总分 <strong>7.79</strong> ｜ 三晚 <strong>7,803 元</strong></p>
-  <p>极光 8.59 ／ 夜路 9.00 ／ 白天 9.29 ／ 返程 0.80 ／ 体验 10.00 ／ 便利 6.32</p>
-<p><strong>点评：</strong>前两晚与结构 A 相同，10/4 换到 Hamnøy 的 Eliassen Rorbuer。
- 好处是<strong>10/4 白天已经在西段</strong>（Reine 9 min、Å 20 min），不用从 Unstad 空跑 2:36；
- 红房子体验 + Hamnøy 桥守光只要 2 min，极光 8.59、体验 10.0。</p>
- <p><strong>代价很直接：</strong>10/5 从 Hamnøy 返 EVE 是 4:47，返程维度只有 0.80 分。
- 如果 10/5 晚上就走，你必须在<strong>上午 11:00 前</strong>离开（见 Section 6 的时刻表）。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 D</span>
-  <h3>预算友好 · 三晚 6081 元</h3>
-  <p><strong>Unstad Arctic Resort → Unstad Arctic Resort → Eliassen Rorbuer</strong> ｜ 综合第 <strong>17</strong> 名 ｜ 总分 <strong>7.52</strong> ｜ 三晚 <strong>6,081 元</strong></p>
-  <p>极光 8.87 ／ 夜路 9.56 ／ 白天 7.54 ／ 返程 0.80 ／ 体验 9.00 ／ 便利 5.70</p>
-<p><strong>点评：</strong>三晚 6081 元，是全场最便宜的第一梯队（Unstad 2061×2 + Eliassen 1959）。
- 两晚 Unstad 把极光条件顶到 9.55（敏感度表里排第 2），代价是 10/4 白天基本放弃西段。</p>
- <p><strong>适合：</strong>预算敏感，但绝不肯在极光上让步。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 E</span>
-  <h3>两晚连住 · 酒店 + 渔屋 + 红房子</h3>
-  <p><strong>Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer</strong> ｜ 综合第 <strong>14</strong> 名 ｜ 总分 <strong>7.54</strong> ｜ 三晚 <strong>6,318 元</strong></p>
-  <p>极光 8.16 ／ 夜路 8.67 ／ 白天 9.17 ／ 返程 0.80 ／ 体验 10.00 ／ 便利 5.96</p>
-<p><strong>点评：</strong>Henningsvær → Unstad → Eliassen，三晚三种完全不同的住处，
- 体验分 10.0（酒店 + 冲浪度假村 + 红房子渔屋）。综合第 14 名（7.54，6318 元）——
- 比结构 C 多花 0 元，但 10/2 从天区 7.5 换成 4.5，多换了一次宿。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 F</span>
-  <h3>Jusnesveien 55 连住版</h3>
-  <p><strong>Henningsvær Bryggehotell → Jusnesveien 55 → Jusnesveien 55</strong> ｜ 综合第 <strong>31</strong> 名 ｜ 总分 <strong>7.33</strong> ｜ 三晚 <strong>6,783 元</strong></p>
-  <p>极光 7.94 ／ 夜路 8.33 ／ 白天 7.88 ／ 返程 3.00 ／ 体验 8.00 ／ 便利 6.97</p>
-<p><strong>点评：</strong>把 Jusnesveien 55 当作 10/3–10/4 的连住基地，10/2 先睡 Henningsvær 倒时差。
- <strong>这是「住 Jusnesveien 55」的最稳妥排法</strong>，完整论证见 <a href="#s5">Section 5</a>。</p>
- <p><strong>它的真正短板不是极光（7.94 很健康），而是：</strong>
- ① 10/3 要横穿一次岛（Henningsvær → Flakstad，98 min）；
- ② 10/5 返 EVE 4:20，返程分 3.0。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 G</span>
-  <h3>10/2 单晚最优（零开车守光）</h3>
-  <p><strong>Andopveien 35 Oceanview → Unstad Arctic Resort → Unstad Arctic Resort</strong> ｜ 综合第 <strong>29</strong> 名 ｜ 总分 <strong>7.33</strong> ｜ 三晚 <strong>6,365 元</strong></p>
-  <p>极光 9.63 ／ 夜路 9.78 ／ 白天 3.17 ／ 返程 5.80 ／ 体验 6.00 ／ 便利 5.64</p>
-<p><strong>点评：</strong>10/2 直接开到 Ramberg，住白沙滩第一排的迷你独栋（天区 8.5，全场第 2），
- 落地当晚守光零开车；10/3 搬到 1.8 km 外的 Unstad 连住两晚（天区 9.5，全场第 1）。
- <strong>极光条件全场最优的一版</strong>，但罚在「10/2 落地后要开 4.8 h」。</p>
- <p>这个罚分是主观的 —— 见 Section 5。如果你落地当天体力还行、又愿意用「开远点」换「第一晚就有极光」，它是极好的选择。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 I</span>
-  <h3>保留 Henningsvær + 西端</h3>
-  <p><strong>Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer</strong> ｜ 综合第 <strong>53</strong> 名 ｜ 总分 <strong>7.09</strong> ｜ 三晚 <strong>6,921 元</strong></p>
-  <p>极光 7.72 ／ 夜路 6.78 ／ 白天 9.50 ／ 返程 0.80 ／ 体验 10.00 ／ 便利 5.97</p>
-<p><strong>点评：</strong>Henningsvær → Hattvika Hillside（Ballstad）→ Eliassen。
- Ballstad 离 Leknes 只有 12–15 min，<strong>补给最方便</strong>；Hattvika 是天区 6.5 的渔屋，
- 但北向被 Vestvågøy 丘陵挡，守光要开 18 min 到 Nappstraumen。返程同样是 4:47 的硬伤。</p>
-</div>
-<div class="card tile" style="margin-top:14px">
-  <span class="tag b">结构 J</span>
-  <h3>把 Nusfjord 当住处</h3>
-  <p><strong>Henningsvær Bryggehotell → Nusfjord Village → Nusfjord Village</strong> ｜ 综合第 <strong>341</strong> 名 ｜ 总分 <strong>5.59</strong> ｜ 三晚 <strong>6,898 元</strong></p>
-  <p>极光 3.64 ／ 夜路 6.11 ／ 白天 7.50 ／ 返程 3.20 ／ 体验 8.00 ／ 便利 7.29</p>
-<p><strong>点评：</strong>把 Nusfjord Village 当住处。</p>
- <p><strong>我必须直说：这是我这份分析里最不推荐的一条。</strong>
- Nusfjord 的白天体验确实全场最强（挪威保存最完整的历史渔村之一），
- 但它被全岛最高的一圈山围住，天空只有「一道缝」，<strong>天区只有 4.0/10，是 12 个候选里最低的</strong>，
- 要守光必须先出村闸口再开 13 min 到 Skagsanden。拿它当住宿基地，等于每晚都主动放弃极光条件。</p>
- <p><strong>更合理的用法：</strong>把 Nusfjord 当成 10/4 白天的一个参观点，晚上回西段住。</p>
-</div>
-</div></section>
-<section id="s5"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 5</div>
-    <h2>专项评估：Jusnesveien 55（大独栋：两屋可联通 · 大落地窗 · 山+海）</h2>
-    <p class="sub">12 个候选里，只有它同时满足「你明确说过的落地窗 + 山海景观」+「位置在全岛中段」，所以单独做一节。本节每个数字都能在 <code>_lodging12.txt</code>（OSRM 实测车程）与 <code>_lodging12_score.txt</code>（430 组合打分）里复核。</p>
-  </div>
-<h3>5.1 硬事实（可引用事实）</h3>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:26%">项目</th><th style="width:34%">数值</th><th>含义</th></tr></thead><tbody>
-<tr><td><strong>位置</strong></td><td>Flakstadøya 西岸（68.103°N, 13.244°E）</td><td class="small">在 Henningsvær 与 Reine 之间的中偏西段，属 Flakstad 区</td></tr>
-<tr><td><strong>房型</strong></td><td>Airbnb <strong>大独栋</strong>：房子面积大，<strong>两间屋可联通</strong>（可拆成两个独立空间）、大落地窗山水景、带厨房</td><td class="small">房东就住在隔壁屋子（两屋相邻、可联通，不是合住）；可自炊 —— 你提的两个愿望里「落地窗」+「能看山看海」两条同时命中</td></tr>
-<tr><td><strong>单价 / 连带成本</strong></td><td>2,242.50 元/晚；连住两晚 <strong>4,485 元</strong></td><td class="small">12 个候选中第 6 贵；比 Unstad（2,061）贵 181 元/晚，比 Eliassen 10/4 房型（1,959）贵 284 元/晚</td></tr>
-<tr><td><strong>可订约束</strong></td><td><strong>必须连住两晚</strong></td><td class="small">三晚里只能占 10/3–10/4 或 10/2–10/3 两个连续槽位，不能只住一晚</td></tr>
-<tr><td><strong>退订政策</strong></td><td><strong>24 小时内可退</strong></td><td class="small">＝订房后 24h 内可退、之后不可退。<strong>这是灵活性最低的一档</strong>，下单即锁死</td></tr>
-<tr><td><strong>到 Ramberg 白沙滩</strong></td><td>1.8 km / 3 min</td><td class="small">自家门口就是「住地零开车守光」合格点</td></tr>
-<tr><td><strong>到 Skagsanden</strong></td><td>3.1 km / 4 min</td><td class="small">沙面反光可放大暗弱极光</td></tr>
-<tr><td><strong>到 Flakstad 教堂</strong></td><td>3.3 km / 4 min</td><td class="small">著名红教堂，白天顺路打卡</td></tr>
-<tr><td><strong>到 Nusfjord</strong></td><td>14.8 km / 15 min</td><td class="small">历史渔村体验，全场第 2 近（仅次于住 Nusfjord 本身）</td></tr>
-<tr><td><strong>到 Reine / Hamnøy</strong></td><td>27.3 km / 31 min ｜ 22.0 km / 23 min</td><td class="small">西段核心。到 Å 再 13 min，合计约 44 min</td></tr>
-<tr><td><strong>到 Leknes</strong></td><td>30.2 km / 32 min</td><td class="small">全岛唯一大型超市与机场；买菜的常规去处</td></tr>
-<tr><td><strong>到 Svolvær</strong></td><td>94.5 km / 1:41</td><td class="small">东段大城；若 10/2 走东线进来可顺路补给</td></tr>
-<tr><td><strong>到 Henningsvær</strong></td><td>86.4 km / 1:32</td><td class="small">两个热门区之间的横穿成本，这是它的主要短板之一</td></tr>
-<tr><td><strong>到 Ballstad</strong></td><td>34.8 km / 39 min</td><td class="small">Hattvika / Fishermans Villa 那一带</td></tr>
-<tr><td><strong>到 EVE 机场</strong></td><td><strong>260.0 km / 4:25</strong></td><td class="small">全场第 3 远（仅次于 Eliassen 4:47、Nusfjord 4:21… 精确为 4:25 与 Nusfjord 并列第 3）</td></tr>
-<tr><td><strong>住地天区</strong></td><td>8.0 / 10（人工判定）</td><td class="small">全场并列第 3（Unstad 9.5 &gt; Oceanview 8.5 &gt; Jusnesveien 55 = Elvis Presleys 8.0）</td></tr>
-<tr><td><strong>守光车程</strong></td><td>3 min</td><td class="small">全场第 2 短（Oceanview 0 min、Eliassen 2 min、Jusnesveien 3 min）</td></tr>
+<figure><img src="norway-images/lodgings/banhammaren-39.jpg" alt="H01 · Banhammaren 39（Henningsvær）" loading="lazy">
+<figcaption>H01 · Banhammaren 39（Henningsvær）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/henningsvaer-bryggehotell.jpg" alt="H03 · Henningsvær Bryggehotell（Henningsvær 码头第一排）" loading="lazy">
+<figcaption>H03 · Henningsvær Bryggehotell（Henningsvær 码头第一排）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/hattvika-lodge.jpg" alt="H04 · Hattvika Lodge – Hillside（Ballstad 半岛西端）" loading="lazy">
+<figcaption>H04 · Hattvika Lodge – Hillside（Ballstad 半岛西端）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/arctic-panoramautsikten.jpg" alt="H09 · Vei 2803 22 全景公寓（Gimsøystraumen）" loading="lazy">
+<figcaption>H09 · Vei 2803 22 全景公寓（Gimsøystraumen）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/eliassen-rorbuer.jpg" alt="H11 · Eliassen Rorbuer（Hamnøy 正宗 rorbu）" loading="lazy">
+<figcaption>H11 · Eliassen Rorbuer（Hamnøy 正宗 rorbu）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/nusfjord-resort.jpg" alt="H12 · Nusfjord Village &amp; Resort（历史渔村）" loading="lazy">
+<figcaption>H12 · Nusfjord Village &amp; Resort（历史渔村）</figcaption>
+</figure>
+<hr>
+<h2 id="sec-4">3 · 【首选池】完全不连住 · TOP 25</h2>
+<blockquote><p>这一池满足「三晚三个不同住处」，是默认推荐池。</p></blockquote>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>10/2 → 10/3 → 10/4</th>
+<th>总分</th>
+<th>白天可达</th>
+<th>返程</th>
+<th>体验</th>
+<th>便利</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+</tr></thead><tbody>
+<tr>
+<td>01</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → Vei 2803 22 全景公寓</td>
+<td><strong>7.810</strong></td>
+<td>5.33</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.52</td>
+<td>8,745</td>
+<td>550</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Henningsvær Bryggehotell → Unstad Arctic Resort → Vei 2803 22 全景公寓</td>
+<td>7.792</td>
+<td>5.00</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.96</td>
+<td>8,142</td>
+<td>520</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Banhammaren 39 → Hattvika Hillside → Vei 2803 22 全景公寓</td>
+<td>7.725</td>
+<td>5.17</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.36</td>
+<td>8,855</td>
+<td>554</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Henningsvær Bryggehotell</td>
+<td>7.717</td>
+<td>5.04</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.52</td>
+<td>8,745</td>
+<td>550</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Vei 2803 22 全景公寓 → Unstad Arctic Resort → Henningsvær Bryggehotell</td>
+<td>7.699</td>
+<td>4.71</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.96</td>
+<td>8,142</td>
+<td>520</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Vei 2803 22 全景公寓</td>
+<td>7.674</td>
+<td>5.46</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>6.83</td>
+<td>10,231</td>
+<td>534</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Banhammaren 39</td>
+<td>7.616</td>
+<td>4.88</td>
+<td>9.90</td>
+<td>10.00</td>
+<td>6.40</td>
+<td>8,855</td>
+<td>554</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Henningsvær Bryggehotell → Nusfjord Village → Vei 2803 22 全景公寓</td>
+<td>7.566</td>
+<td>4.79</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.16</td>
+<td>8,381</td>
+<td>564</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Banhammaren 39 → Nusfjord Village → Vei 2803 22 全景公寓</td>
+<td>7.489</td>
+<td>4.62</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.05</td>
+<td>8,491</td>
+<td>567</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Vei 2803 22 全景公寓 → Nusfjord Village → Henningsvær Bryggehotell</td>
+<td>7.473</td>
+<td>4.50</td>
+<td>10.00</td>
+<td>10.00</td>
+<td>6.16</td>
+<td>8,381</td>
+<td>564</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Unstad Arctic Resort</td>
+<td>7.439</td>
+<td>6.75</td>
+<td>5.80</td>
+<td>10.00</td>
+<td>7.43</td>
+<td>8,508</td>
+<td>551</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Vei 2803 22 全景公寓 → Nusfjord Village → Banhammaren 39</td>
+<td>7.380</td>
+<td>4.33</td>
+<td>9.90</td>
+<td>10.00</td>
+<td>6.09</td>
+<td>8,491</td>
+<td>567</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → Unstad Arctic Resort</td>
+<td>7.335</td>
+<td>6.62</td>
+<td>5.80</td>
+<td>10.00</td>
+<td>7.12</td>
+<td>7,023</td>
+<td>567</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Banhammaren 39 → Hattvika Hillside → Henningsvær Bryggehotell</td>
+<td>7.328</td>
+<td>4.75</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>6.24</td>
+<td>7,370</td>
+<td>570</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Banhammaren 39 → Henningsvær Bryggehotell → Vei 2803 22 全景公寓</td>
+<td>7.327</td>
+<td>3.17</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>8.77</td>
+<td>8,489</td>
+<td>422</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Henningsvær Bryggehotell → Banhammaren 39 → Vei 2803 22 全景公寓</td>
+<td>7.318</td>
+<td>3.17</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>8.73</td>
+<td>8,489</td>
+<td>424</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → Banhammaren 39</td>
+<td>7.312</td>
+<td>4.75</td>
+<td>9.90</td>
+<td>9.00</td>
+<td>6.28</td>
+<td>7,370</td>
+<td>570</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Banhammaren 39 → Unstad Arctic Resort → Henningsvær Bryggehotell</td>
+<td>7.271</td>
+<td>4.42</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>6.49</td>
+<td>6,767</td>
+<td>540</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Banhammaren 39 → Vei 2803 22 全景公寓 → Henningsvær Bryggehotell</td>
+<td>7.267</td>
+<td>3.17</td>
+<td>10.00</td>
+<td>9.00</td>
+<td>8.47</td>
+<td>8,489</td>
+<td>440</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Henningsvær Bryggehotell → Unstad Arctic Resort → Banhammaren 39</td>
+<td>7.254</td>
+<td>4.42</td>
+<td>9.90</td>
+<td>9.00</td>
+<td>6.53</td>
+<td>6,767</td>
+<td>540</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Nusfjord Village</td>
+<td>7.253</td>
+<td>8.17</td>
+<td>3.20</td>
+<td>10.00</td>
+<td>7.36</td>
+<td>8,747</td>
+<td>576</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Banhammaren 39 → Hattvika Hillside → Unstad Arctic Resort</td>
+<td>7.251</td>
+<td>6.46</td>
+<td>5.80</td>
+<td>10.00</td>
+<td>6.96</td>
+<td>7,133</td>
+<td>571</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Henningsvær Bryggehotell → Vei 2803 22 全景公寓 → Banhammaren 39</td>
+<td>7.250</td>
+<td>3.17</td>
+<td>9.90</td>
+<td>9.00</td>
+<td>8.51</td>
+<td>8,489</td>
+<td>440</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Banhammaren 39 → Unstad Arctic Resort → Vei 2803 22 全景公寓</td>
+<td>7.236</td>
+<td>4.83</td>
+<td>10.00</td>
+<td>8.00</td>
+<td>6.84</td>
+<td>8,252</td>
+<td>522</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Banhammaren 39 → Hattvika Hillside → Banhammaren 39</td>
+<td>7.235</td>
+<td>4.58</td>
+<td>9.90</td>
+<td>9.00</td>
+<td>6.16</td>
+<td>7,480</td>
+<td>574</td>
+</tr>
 </tbody></table></div>
-<h3 style="margin-top:28px">5.2 含 Jusnesveien 55 的 8 种合法排法，逐个排名</h3>
-<p>下表最后三列是本节的<strong>核心论证</strong>：模型只看「返程到 EVE 的分钟数」，而真实成本应该看「10/4 白天去西段的往返 + 10/5 返程」这条走廊总里程。</p>
-<div class="tblwrap"><table>
-<thead><tr><th>#</th><th>10/2 → 10/3 → 10/4</th><th>综合<br>排名</th><th>总分</th><th>极光</th><th>夜路</th><th>白天</th><th>返程</th><th>体验</th><th>便利</th><th>三晚元</th><th>10/4 走廊<br>往返(min)</th><th>10/5 返<br>EVE(min)</th><th>合计</th></tr></thead><tbody>
-<tr><td class="c">1</td><td>Vei 2803 22 全景公寓 → Jusnesveien 55 → Jusnesveien 55</td><td class="c"><strong>28</strong></td><td class="c"><strong>7.34</strong></td><td class="c">8.36</td><td class="c">8.67</td><td class="c">8.00</td><td class="c">3.00</td><td class="c">6.00</td><td class="c">7.39</td><td class="c">8,268</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td></tr>
-<tr><td class="c">2</td><td>Henningsvær Bryggehotell → Jusnesveien 55 → Jusnesveien 55</td><td class="c"><strong>31</strong></td><td class="c"><strong>7.33</strong></td><td class="c">7.94</td><td class="c">8.33</td><td class="c">7.88</td><td class="c">3.00</td><td class="c">8.00</td><td class="c">6.97</td><td class="c">6,783</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td></tr>
-<tr><td class="c">3</td><td>Unstad Arctic Resort → Jusnesveien 55 → Jusnesveien 55</td><td class="c"><strong>47</strong></td><td class="c"><strong>7.16</strong></td><td class="c">8.65</td><td class="c">9.22</td><td class="c">6.25</td><td class="c">3.00</td><td class="c">6.00</td><td class="c">6.39</td><td class="c">6,546</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td></tr>
-<tr><td class="c">4</td><td>Jusnesveien 55 → Jusnesveien 55 → Unstad Arctic Resort</td><td class="c"><strong>62</strong></td><td class="c"><strong>7.05</strong></td><td class="c">9.34</td><td class="c">9.22</td><td class="c">2.83</td><td class="c">5.80</td><td class="c">6.00</td><td class="c">5.31</td><td class="c">6,546</td><td class="c">156</td><td class="c">232</td><td class="c"><strong>388</strong></td></tr>
-<tr><td class="c">5</td><td>Banhammaren 39 → Jusnesveien 55 → Jusnesveien 55</td><td class="c"><strong>68</strong></td><td class="c"><strong>6.99</strong></td><td class="c">7.94</td><td class="c">8.00</td><td class="c">7.71</td><td class="c">3.00</td><td class="c">6.00</td><td class="c">6.91</td><td class="c">6,893</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td></tr>
-<tr><td class="c">6</td><td>Jusnesveien 55 → Jusnesveien 55 → Eliassen Rorbuer</td><td class="c"><strong>79</strong></td><td class="c"><strong>6.96</strong></td><td class="c">8.43</td><td class="c">9.11</td><td class="c">5.71</td><td class="c">0.80</td><td class="c">9.00</td><td class="c">5.16</td><td class="c">6,444</td><td class="c">18</td><td class="c">282</td><td class="c"><strong>300</strong></td></tr>
-<tr><td class="c">7</td><td>Andopveien 35 Oceanview → Jusnesveien 55 → Jusnesveien 55</td><td class="c"><strong>97</strong></td><td class="c"><strong>6.86</strong></td><td class="c">8.50</td><td class="c">9.33</td><td class="c">4.75</td><td class="c">3.00</td><td class="c">6.00</td><td class="c">6.01</td><td class="c">6,728</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td></tr>
-<tr><td class="c">8</td><td>Jusnesveien 55 → Jusnesveien 55 → Nusfjord Village</td><td class="c"><strong>333</strong></td><td class="c"><strong>5.61</strong></td><td class="c">4.72</td><td class="c">7.89</td><td class="c">4.25</td><td class="c">3.20</td><td class="c">8.00</td><td class="c">5.89</td><td class="c">6,785</td><td class="c">88</td><td class="c">258</td><td class="c"><strong>346</strong></td></tr>
+<p><strong>这一池的结构性特征</strong>：前 10 名里，末夜（10/4）全部落在 <strong>Vei 2803 22 全景公寓（H09，Gimsøystraumen）或 Henningsvær</strong> —— 也就是<strong>东侧</strong>。原因是 10/4 决定 10/5 的返程车程，而 EVE 在东北角。</p>
+<hr>
+<h2 id="sec-5">4 · 单维度榜首（每个维度各自的前 5）</h2>
+<h3>4.1 白天景区可达最高</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>组合</th>
+<th>白天可达</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>Vei 2803 22 全景公寓 → Hattvika Hillside → Eliassen Rorbuer</td>
+<td><strong>9.62</strong></td>
+<td>6.930</td>
+<td>8,406</td>
+<td>627</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer</td>
+<td>9.50</td>
+<td>6.827</td>
+<td>6,921</td>
+<td>643</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Banhammaren 39 → Hattvika Hillside → Eliassen Rorbuer</td>
+<td>9.33</td>
+<td>6.742</td>
+<td>7,031</td>
+<td>647</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Vei 2803 22 全景公寓 → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td>9.29</td>
+<td>6.829</td>
+<td>7,803</td>
+<td>618</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td>9.17</td>
+<td>6.717</td>
+<td>6,318</td>
+<td>636</td>
+</tr>
 </tbody></table></div>
-<p class="cap">「10/4 走廊往返」＝ 10/4 当天从住处往返西段 Reine 的车程（不走这条线则记 0，但那就等于放弃西段）。「合计」＝ 两者相加，是「最后一晚住这儿」的真实机动代价。</p>
-<h3 style="margin-top:28px">5.3 它真正的四个优点</h3>
-
-<div class="grid g4">
-  <div class="card tile good">
-    <span class="tag g">优点 1</span>
-    <h3>它是唯一「中段位置 + 高天区」的组合</h3>
-    <p>天区 8.0 的住地只有三个：Jusnesveien 55、Elvis Presleys vei 25（同在 Flakstad，3,220 元/晚）、
-    Oceanview（同在 Ramberg，但只能住 10/2）。<strong>能连住两晚当中段基地的，只有 Jusnesveien 55。</strong></p>
-    <p>守光只要 3 min —— 对比 Henningsvær 那一片的 8–12 min，这是每晚都省下来的时间。</p>
-  </div>
-  <div class="card tile good">
-    <span class="tag g">优点 2</span>
-    <h3>空间条件全场最好：大 + 两屋可联通 + 落地窗看山海</h3>
-    <p>这是 12 个候选里唯一「房子本身很大」的一个：<strong>两间屋可联通</strong>，可以拆成两个独立空间
-    （两人各自休息互不打扰，也能拼成一个大公共区）。落地窗<strong>同时看山与海</strong>，不是只有一面海景。</p>
-    <p>对比 Henningsvær 的酒店房、Eliassen 的一室 rorbu —— 都是单间尺度。想要「宅在屋里也值」的空间感，只有它能给。</p>
-  </div>
-  <div class="card tile good">
-    <span class="tag g">优点 3</span>
-    <h3>白天可达性其实非常均衡</h3>
-    <p>西段 Reine 31 min、Nusfjord 15 min、Leknes 32 min、Ballstad 39 min —— <strong>四项都不超过 40 min</strong>。
-    全 12 个候选里，没有第二个住地能同时做到这四点。</p>
-    <p>对比 Unstad：Reine 78 min、Nusfjord 46 min；对比 Henningsvær：Reine 119 min、Nusfjord 87 min。</p>
-  </div>
-  <div class="card tile good">
-    <span class="tag g">优点 4</span>
-    <h3>它是「只换一次宿」方案里唯一的解</h3>
-    <p>你说了「不介意换宿」，但也说了「希望减少回头路」。如果最终倾向<strong>只换一次宿</strong>，
-    那 10/3–10/4 连住 Jusnesveien 55、10/2 睡 Henningsvær 收尾东段，是唯一能兼顾「西段可当天往返」与「东段也已覆盖」的排法。</p>
-  </div>
+<h3>4.2 返程车程最轻</h3>
+<p>与「住宿体验」同榜：<strong>首选池 #01–#05</strong>（返程 10.00，末夜都在 H09 东侧）。</p>
+<h3>4.3 住宿体验分最高</h3>
+<p>同 4.2 —— <strong>首选池 #01–#05</strong>。</p>
+<h3>4.4 补给 / 搬家 / 首日最省心</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>组合</th>
+<th>便利</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>Henningsvær Bryggehotell → Banhammaren 39 → Henningsvær Bryggehotell</td>
+<td><strong>8.97</strong></td>
+<td>6.393</td>
+<td>7,004</td>
+<td><strong>412</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Banhammaren 39 → Henningsvær Bryggehotell → Banhammaren 39</td>
+<td>8.85</td>
+<td>6.293</td>
+<td>7,114</td>
+<td>416</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Vei 2803 22 全景公寓 → Henningsvær Bryggehotell → Banhammaren 39</td>
+<td>8.81</td>
+<td>7.217</td>
+<td>8,489</td>
+<td>422</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Banhammaren 39 → Henningsvær Bryggehotell → Vei 2803 22 全景公寓</td>
+<td>8.77</td>
+<td>7.327</td>
+<td>8,489</td>
+<td>422</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Henningsvær Bryggehotell → Banhammaren 39 → Vei 2803 22 全景公寓</td>
+<td>8.73</td>
+<td>7.318</td>
+<td>8,489</td>
+<td>424</td>
+</tr>
+</tbody></table></div>
+<blockquote><p>注意 4.4 与 4.2/4.3 是<strong>对立</strong>的：最省心的一族（前 2 名）白天可达只有 2.58–2.75，等于把白天全耗在补货和搬家上。</p></blockquote>
+<h3>4.5 3 晚总价最低</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>组合</th>
+<th>3晚元</th>
+<th>总分</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>Andopveien 35 Oceanview → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td><strong>6,263</strong></td>
+<td>5.249</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td>6,318</td>
+<td>6.717</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Unstad Arctic Resort → Henningsvær Bryggehotell → Eliassen Rorbuer</td>
+<td>6,318</td>
+<td>5.277</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Unstad Arctic Resort → Nusfjord Village → Eliassen Rorbuer</td>
+<td>6,320</td>
+<td>6.004</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Nusfjord Village → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td>6,320</td>
+<td>5.314</td>
+</tr>
+</tbody></table></div>
+<h3>4.6 走廊总时长最短（＝总驾驶量最少）</h3>
+<p>同 4.4 前 5（走廊 412 / 416 / 422 / 422 / 424 min）。</p>
+<hr>
+<h2 id="sec-6">5 · 末夜固定在西线 Eliassen Rorbuer（Hamnøy H11）· 首选池 TOP 15</h2>
+<blockquote><p>如果你想让最后一晚睡在「正宗 rorbu ＋ 雷讷 / Å 就在门口」的西线，10/5 返程要 <strong>4:42（282 min）</strong>，20:05 那班最晚 <strong>13:53</strong> 出发；10/5 白昼可支配只剩约 <strong>4:53</strong>。</p></blockquote>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>10/2 → 10/3</th>
+<th>白天可达</th>
+<th>体验</th>
+<th>便利</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>H09 Vei 2803 22 → H04 Hattvika Hillside</td>
+<td><strong>9.62</strong></td>
+<td>10.00</td>
+<td>6.29</td>
+<td>6.930</td>
+<td>8,406</td>
+<td>627</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H09 Vei 2803 22 → H10 Unstad Arctic Resort</td>
+<td>9.29</td>
+<td>10.00</td>
+<td>6.32</td>
+<td>6.829</td>
+<td>7,803</td>
+<td>618</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H03 Henningsvær Bryggehotell → H04 Hattvika Hillside</td>
+<td>9.50</td>
+<td>10.00</td>
+<td>5.97</td>
+<td>6.827</td>
+<td>6,921</td>
+<td>643</td>
+</tr>
+<tr>
+<td>4</td>
+<td>H09 Vei 2803 22 → H12 Nusfjord Village</td>
+<td>9.08</td>
+<td>10.00</td>
+<td>6.48</td>
+<td>6.795</td>
+<td>8,042</td>
+<td>605</td>
+</tr>
+<tr>
+<td>5</td>
+<td>H01 Banhammaren 39 → H04 Hattvika Hillside</td>
+<td>9.33</td>
+<td>10.00</td>
+<td>5.82</td>
+<td>6.742</td>
+<td>7,031</td>
+<td>647</td>
+</tr>
+<tr>
+<td>6</td>
+<td>H03 Henningsvær Bryggehotell → H10 Unstad Arctic Resort</td>
+<td>9.17</td>
+<td>10.00</td>
+<td>5.96</td>
+<td>6.717</td>
+<td>6,318</td>
+<td>636</td>
+</tr>
+<tr>
+<td>7</td>
+<td>H03 Henningsvær Bryggehotell → H12 Nusfjord Village</td>
+<td>8.96</td>
+<td>10.00</td>
+<td>6.00</td>
+<td>6.659</td>
+<td>6,557</td>
+<td>629</td>
+</tr>
+<tr>
+<td>8</td>
+<td>H01 Banhammaren 39 → H10 Unstad Arctic Resort</td>
+<td>9.00</td>
+<td>10.00</td>
+<td>5.84</td>
+<td>6.640</td>
+<td>6,428</td>
+<td>638</td>
+</tr>
+<tr>
+<td>9</td>
+<td>H01 Banhammaren 39 → H12 Nusfjord Village</td>
+<td>8.79</td>
+<td>10.00</td>
+<td>5.86</td>
+<td>6.578</td>
+<td>6,667</td>
+<td>632</td>
+</tr>
+<tr>
+<td>10</td>
+<td>H03 Henningsvær Bryggehotell → H09 Vei 2803 22</td>
+<td>7.92</td>
+<td>10.00</td>
+<td>6.38</td>
+<td>6.401</td>
+<td>8,040</td>
+<td>614</td>
+</tr>
+<tr>
+<td>11</td>
+<td>H01 Banhammaren 39 → H09 Vei 2803 22</td>
+<td>7.75</td>
+<td>10.00</td>
+<td>6.18</td>
+<td>6.308</td>
+<td>8,150</td>
+<td>620</td>
+</tr>
+<tr>
+<td>12</td>
+<td>H09 Vei 2803 22 → H03 Henningsvær Bryggehotell</td>
+<td>7.62</td>
+<td>10.00</td>
+<td>6.04</td>
+<td>6.240</td>
+<td>8,040</td>
+<td>628</td>
+</tr>
+<tr>
+<td>13</td>
+<td>H10 Unstad Arctic Resort → H04 Hattvika Hillside</td>
+<td>7.88</td>
+<td>10.00</td>
+<td>5.26</td>
+<td>6.164</td>
+<td>6,684</td>
+<td>644</td>
+</tr>
+<tr>
+<td>14</td>
+<td>H09 Vei 2803 22 → H01 Banhammaren 39</td>
+<td>7.46</td>
+<td>10.00</td>
+<td>5.86</td>
+<td>6.151</td>
+<td>8,150</td>
+<td>633</td>
+</tr>
+<tr>
+<td>15</td>
+<td>H10 Unstad Arctic Resort → H12 Nusfjord Village</td>
+<td>7.33</td>
+<td>10.00</td>
+<td>5.33</td>
+<td>6.004</td>
+<td>6,320</td>
+<td>628</td>
+</tr>
+</tbody></table></div>
+<p><strong>看这里的第 6 名</strong>：<code>Henningsvær Bryggehotell → Unstad → Eliassen</code>，<strong>3 晚只要 6,318 元，白天可达 9.17，体验满分</strong> —— 如果你想省钱又不牺牲白天，这是西线收尾里性价比最高的一档。</p>
+<hr>
+<h2 id="sec-7">6 · 末夜固定在东 / 中部 · 首选池前 5</h2>
+<div class="tablewrap"><table><thead><tr>
+<th>末夜 =</th>
+<th>#1</th>
+<th>#2</th>
+<th>#3</th>
+<th>#4</th>
+<th>#5</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>H09 Vei 2803 22</strong>（Gimsøystraumen）</td>
+<td>H03→H04｜7.810｜8,745｜550｜白昼 6:29</td>
+<td>H03→H10｜7.792｜8,142｜520</td>
+<td>H01→H04｜7.725｜8,855｜554</td>
+<td>H09→H04｜7.674｜10,231｜534</td>
+<td>H03→H12｜7.566｜8,381｜564</td>
+</tr>
+<tr>
+<td><strong>H10 Unstad</strong></td>
+<td>H09→H04｜7.439｜8,508｜551｜白昼 5:43</td>
+<td>H03→H04｜7.335｜7,023｜567</td>
+<td>H01→H04｜7.251｜7,133｜571</td>
+<td>H09→H12｜7.167｜8,144｜563</td>
+<td>H03→H12｜7.031｜6,659｜587</td>
+</tr>
+<tr>
+<td><strong>H12 Nusfjord</strong></td>
+<td>H09→H04｜7.253｜8,747｜576｜白昼 5:17</td>
+<td>H03→H04｜7.149｜7,262｜592</td>
+<td>H09→H10｜7.139｜8,144｜570</td>
+<td>H01→H04｜7.064｜7,372｜596</td>
+<td>H03→H10｜7.027｜6,659｜588</td>
+</tr>
+</tbody></table></div>
+<p>（格式：10/2 → 10/3 ｜ 总分 ｜ 3晚元 ｜ 走廊 min）</p>
+<hr>
+<h2 id="sec-8">7 · 10/2 首夜选项矩阵（末夜固定 ＝ Eliassen H11，每行给出该首夜的最佳 10/3）</h2>
+<div class="tablewrap"><table><thead><tr>
+<th>10/2 住</th>
+<th>最佳 10/3</th>
+<th>白天可达</th>
+<th>体验</th>
+<th>便利</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>→EVE</th>
+<th>10/5 最晚出发</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>H09 Vei 2803 22 全景公寓</strong></td>
+<td>H04 Hattvika Hillside</td>
+<td><strong>9.62</strong></td>
+<td>10.00</td>
+<td>6.29</td>
+<td>6.930</td>
+<td>8,406</td>
+<td>4:42</td>
+<td>13:53</td>
+</tr>
+<tr>
+<td><strong>H03 Henningsvær Bryggehotell</strong></td>
+<td>H04 Hattvika Hillside</td>
+<td>9.50</td>
+<td>10.00</td>
+<td>5.97</td>
+<td>6.827</td>
+<td>6,921</td>
+<td>4:42</td>
+<td>13:53</td>
+</tr>
+<tr>
+<td><strong>H01 Banhammaren 39</strong></td>
+<td>H04 Hattvika Hillside</td>
+<td>9.33</td>
+<td>10.00</td>
+<td>5.82</td>
+<td>6.742</td>
+<td>7,031</td>
+<td>4:42</td>
+<td>13:53</td>
+</tr>
+<tr>
+<td><strong>H10 Unstad Arctic Resort</strong></td>
+<td>H04 Hattvika Hillside</td>
+<td>7.88</td>
+<td>10.00</td>
+<td>5.26</td>
+<td>6.164</td>
+<td>6,684</td>
+<td>4:42</td>
+<td>13:53</td>
+</tr>
+<tr>
+<td><strong>H04 Hattvika Hillside</strong></td>
+<td>H12 Nusfjord Village</td>
+<td>6.46</td>
+<td>10.00</td>
+<td>5.18</td>
+<td>5.694</td>
+<td>6,923</td>
+<td>4:42</td>
+<td>13:53</td>
+</tr>
+<tr>
+<td><strong>H05 Fishermans Villa Ballstad</strong></td>
+<td>— 无零连住可行方案</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>H06 Jusnesveien 55</strong></td>
+<td>— 无零连住可行方案</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<blockquote><p><strong>10/2 的四个真实分支</strong>： - <strong>H03 Henningsvær Bryggehotell</strong> —— 落地最省事、有餐厅早餐、单晚最便宜（2,298）。代价：10/3 要横穿一次岛（→H04 79 min）。 - <strong>H01 Banhammaren 39</strong> —— 同村公寓、自炊、单晚 2,408，比 H03 贵 110 元且没有早餐服务。 - <strong>H09 Vei 2803 22 全景公寓</strong> —— 到 EVE 只有 186 min（全场最短），落地当晚最轻松；单晚 3,783 是全场最贵。 - <strong>H10 Unstad Arctic Resort</strong> —— 首夜直接住进西部的冲浪村（单晚 2,061），10/3 再往南挪到 Ballstad 只要 37 min。</p></blockquote>
+<hr>
+<h2 id="sec-9">8 · 两套完整对照（控制变量：10/2、10/3 完全相同，只换 10/4）</h2>
+<p><strong>基准 A</strong>：10/2 H09（Vei 2803 22）→ 10/3 H04（Hattvika Hillside）</p>
+<div class="tablewrap"><table><thead><tr>
+<th>10/4 住处</th>
+<th>白天可达</th>
+<th>体验</th>
+<th>便利</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+<th>→EVE</th>
+<th>20:05 最晚出发</th>
+<th>10/5 白昼</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>H11 Eliassen Rorbuer</strong></td>
+<td><strong>9.62</strong></td>
+<td>10.00</td>
+<td>6.29</td>
+<td>6.930</td>
+<td>8,406</td>
+<td>627</td>
+<td>4:42</td>
+<td>13:53</td>
+<td>4:53</td>
+</tr>
+<tr>
+<td><strong>H09 Vei 2803 22 全景公寓</strong></td>
+<td>5.46</td>
+<td>9.00</td>
+<td>6.83</td>
+<td><strong>7.674</strong></td>
+<td>10,231</td>
+<td>534</td>
+<td>3:06</td>
+<td>15:29</td>
+<td>6:29</td>
+</tr>
+<tr>
+<td><strong>H10 Unstad Arctic Resort</strong></td>
+<td>6.75</td>
+<td>10.00</td>
+<td>7.43</td>
+<td>7.439</td>
+<td>8,508</td>
+<td>551</td>
+<td>3:52</td>
+<td>14:43</td>
+<td>5:43</td>
+</tr>
+<tr>
+<td><strong>H12 Nusfjord Village</strong></td>
+<td>8.17</td>
+<td>10.00</td>
+<td>7.36</td>
+<td>7.253</td>
+<td>8,747</td>
+<td>576</td>
+<td>4:18</td>
+<td>14:17</td>
+<td>5:17</td>
+</tr>
+<tr>
+<td>H06 Jusnesveien 55</td>
+<td>— 不可行（房源只能连续两晚）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<p><strong>基准 B</strong>：10/2 H03（Henningsvær Bryggehotell）→ 10/3 H04（Hattvika Hillside）</p>
+<div class="tablewrap"><table><thead><tr>
+<th>10/4 住处</th>
+<th>白天可达</th>
+<th>体验</th>
+<th>便利</th>
+<th>总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+<th>→EVE</th>
+<th>20:05 最晚出发</th>
+<th>10/5 白昼</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>H11 Eliassen Rorbuer</strong></td>
+<td>9.50</td>
+<td>10.00</td>
+<td>5.97</td>
+<td>6.827</td>
+<td><strong>6,921</strong></td>
+<td>643</td>
+<td>4:42</td>
+<td>13:53</td>
+<td>4:53</td>
+</tr>
+<tr>
+<td><strong>H09 Vei 2803 22 全景公寓</strong></td>
+<td>5.33</td>
+<td>10.00</td>
+<td>6.52</td>
+<td><strong>7.810</strong></td>
+<td>8,745</td>
+<td>550</td>
+<td>3:06</td>
+<td>15:29</td>
+<td>6:29</td>
+</tr>
+<tr>
+<td><strong>H10 Unstad Arctic Resort</strong></td>
+<td>6.62</td>
+<td>10.00</td>
+<td>7.12</td>
+<td>7.335</td>
+<td>7,023</td>
+<td>567</td>
+<td>3:52</td>
+<td>14:43</td>
+<td>5:43</td>
+</tr>
+<tr>
+<td><strong>H12 Nusfjord Village</strong></td>
+<td>8.04</td>
+<td>10.00</td>
+<td>7.04</td>
+<td>7.149</td>
+<td>7,262</td>
+<td>592</td>
+<td>4:18</td>
+<td>14:17</td>
+<td>5:17</td>
+</tr>
+<tr>
+<td>H06 Jusnesveien 55</td>
+<td>— 不可行</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h3>这就是本次唯一真正的取舍</h3>
+<div class="tablewrap"><table><thead><tr>
+<th></th>
+<th>末夜住西线（Eliassen）</th>
+<th>末夜住东 / 中部（H09）</th>
+</tr></thead><tbody>
+<tr>
+<td>10/4 白天能走的经典</td>
+<td><strong>雷讷 / Hamnøy / Å / Reinebringen 全在门口</strong>（往返 18 min）</td>
+<td>雷讷往返 <strong>218 min</strong>，基本放弃西段</td>
+</tr>
+<tr>
+<td>10/5 返 EVE</td>
+<td><strong>4:42</strong></td>
+<td>3:06</td>
+</tr>
+<tr>
+<td>20:05 那班最晚出发</td>
+<td><strong>13:53</strong></td>
+<td>15:29</td>
+</tr>
+<tr>
+<td>10/5 白昼可支配</td>
+<td>4:53</td>
+<td><strong>6:29</strong></td>
+</tr>
+<tr>
+<td>总分（v3）</td>
+<td>6.83–6.93</td>
+<td><strong>7.67–7.81</strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>代价换算</strong>：选西线收尾 = 10/5 多开 <strong>1 小时 36 分</strong> ＋ 当天早出发 <strong>1 小时 36 分</strong>，换来 10/4 白天可达从 5.33 涨到 <strong>9.50</strong>。</p>
+<hr>
+<h2 id="sec-10">9 · 逐日时间账</h2>
+<h3>方案 W ｜西线收尾：10/2 Vei 2803 22 → 10/3 Hattvika Hillside → 10/4 Eliassen Rorbuer</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>日期</th>
+<th>移动</th>
+<th>车程</th>
+<th>备注</th>
+</tr></thead><tbody>
+<tr>
+<td>10/1</td>
+<td>Sandtorgholmen → 住地</td>
+<td>30 ＋ 186 ＝ <strong>3:36</strong></td>
+<td>落地 22:40，约 23:20 到店</td>
+</tr>
+<tr>
+<td>10/2</td>
+<td>住地 ↔ 斯沃尔韦尔</td>
+<td>往返 48 min</td>
+<td>白天：Gimsøystraumen / Hov / Henningsvær</td>
+</tr>
+<tr>
+<td>10/3</td>
+<td>搬家 → Ballstad</td>
+<td>66 min</td>
+<td>住地 ↔ 莱克内斯 往返 30 min</td>
+</tr>
+<tr>
+<td>10/4</td>
+<td>搬家 → Hamnøy</td>
+<td>63 min</td>
+<td>住地 ↔ 雷讷 往返 18 min</td>
+</tr>
+<tr>
+<td>10/5</td>
+<td>住地 → EVE</td>
+<td><strong>4:42（282 min）</strong></td>
+<td>20:05 班最晚 <strong>13:53</strong> 出发</td>
+</tr>
+</tbody></table></div>
+<p><strong>分数</strong>：v3 <strong>6.930</strong> ｜ 白天可达 9.62 ｜ 体验 10.00 ｜ 便利 6.29 ｜ 走廊 627 min ｜ 3 晚 8,406 元</p>
+<h3>方案 E ｜东部收尾：10/2 Vei 2803 22 → 10/3 Hattvika Hillside → 10/4 Vei 2803 22</h3>
+<div class="tablewrap"><table><thead><tr>
+<th>日期</th>
+<th>移动</th>
+<th>车程</th>
+<th>备注</th>
+</tr></thead><tbody>
+<tr>
+<td>10/1</td>
+<td>同方案 W</td>
+<td><strong>3:36</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>10/2</td>
+<td>同方案 W</td>
+<td>48 min 往返</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10/3</td>
+<td>同方案 W</td>
+<td>66 min</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10/4</td>
+<td>搬家 → 回 Gimsøystraumen</td>
+<td>66 min</td>
+<td>住地 ↔ 雷讷 往返 <strong>218 min</strong></td>
+</tr>
+<tr>
+<td>10/5</td>
+<td>住地 → EVE</td>
+<td><strong>3:06（186 min）</strong></td>
+<td>20:05 班最晚 <strong>15:29</strong> 出发</td>
+</tr>
+</tbody></table></div>
+<p><strong>分数</strong>：v3 <strong>7.674</strong> ｜ 白天可达 5.46 ｜ 体验 9.00 ｜ 便利 6.83 ｜ 走廊 534 min ｜ 3 晚 10,231 元</p>
+<hr>
+<h2 id="sec-11">10 · 总价汇总</h2>
+<p><strong>固定项</strong>：10/1 Sandtorgholmen Hotel <strong>1,376.11 元</strong> ｜ 10/5 Sandtorgholmen Hotel <strong>1,415.42 元</strong> ｜ 10/5 奥斯陆机场酒店 ≈ <strong>1,600 元</strong></p>
+<div class="tablewrap"><table><thead><tr>
+<th>方案</th>
+<th>三晚住宿</th>
+<th>3 晚小计</th>
+<th>走 10/6 06:30（宿 Sandtorgholmen）</th>
+<th>走 10/5 20:05（宿 OSL 机场酒店）</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>W 西线收尾</strong> Vei 2803 22 → Hattvika Hillside → Eliassen Rorbuer</td>
+<td>3,783 ＋ 2,664 ＋ 1,959</td>
+<td>8,406</td>
+<td><strong>11,198 元</strong></td>
+<td><strong>11,382 元</strong></td>
+</tr>
+<tr>
+<td><strong>E 东部收尾</strong> Vei 2803 22 → Hattvika Hillside → Vei 2803 22</td>
+<td>3,783 ＋ 2,664 ＋ 3,783</td>
+<td>10,231</td>
+<td>13,022 元</td>
+<td>13,207 元</td>
+</tr>
+<tr>
+<td><strong>W 酒店版</strong> Henningsvær Bryggehotell → Hattvika Hillside → Eliassen Rorbuer</td>
+<td>2,298 ＋ 2,664 ＋ 1,959</td>
+<td>6,921</td>
+<td><strong>9,712 元</strong></td>
+<td><strong>9,897 元</strong></td>
+</tr>
+<tr>
+<td><strong>E 酒店版</strong> Henningsvær Bryggehotell → Hattvika Hillside → Vei 2803 22</td>
+<td>2,298 ＋ 2,664 ＋ 3,783</td>
+<td>8,745</td>
+<td>11,537 元</td>
+<td>11,721 元</td>
+</tr>
+<tr>
+<td><strong>最省版</strong> Henningsvær Bryggehotell → Unstad Arctic Resort → Eliassen Rorbuer</td>
+<td>2,298 ＋ 2,061 ＋ 1,959</td>
+<td><strong>6,318</strong></td>
+<td>9,109 元</td>
+<td>9,294 元</td>
+</tr>
+</tbody></table></div>
+<blockquote><p>最贵与最省相差约 <strong>4,200 元</strong>（走廊/白天可达的差别在 100–420 min 量级）。按你的口径，这个价差不构成决策依据。</p></blockquote>
+<hr>
+<h2 id="sec-12">11 · 敏感性检验：如果再去掉「返程车程」这一维</h2>
+<p>权重变为 白天可达 0.444 / 体验 0.333 / 便利 0.222，首选池前 15：</p>
+<div class="tablewrap"><table><thead><tr>
+<th>#</th>
+<th>组合</th>
+<th>新分</th>
+<th>v3 分</th>
+<th>3晚元</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>Vei 2803 22 → Hattvika Hillside → <strong>Eliassen Rorbuer</strong></td>
+<td>9.009</td>
+<td>6.930</td>
+<td>8,406</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → <strong>Eliassen</strong></td>
+<td>8.883</td>
+<td>6.827</td>
+<td>6,921</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Vei 2803 22 → Unstad → <strong>Eliassen</strong></td>
+<td>8.867</td>
+<td>6.829</td>
+<td>7,803</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Vei 2803 22 → Nusfjord → <strong>Eliassen</strong></td>
+<td>8.810</td>
+<td>6.795</td>
+<td>8,042</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Banhammaren 39 → Hattvika Hillside → <strong>Eliassen</strong></td>
+<td>8.774</td>
+<td>6.742</td>
+<td>7,031</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Henningsvær Bryggehotell → Unstad → <strong>Eliassen</strong></td>
+<td>8.731</td>
+<td>6.717</td>
+<td>6,318</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Henningsvær Bryggehotell → Nusfjord → <strong>Eliassen</strong></td>
+<td>8.648</td>
+<td>6.659</td>
+<td>6,557</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Banhammaren 39 → Unstad → <strong>Eliassen</strong></td>
+<td>8.631</td>
+<td>6.640</td>
+<td>6,428</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Vei 2803 22 → Hattvika Hillside → <strong>Nusfjord</strong></td>
+<td>8.598</td>
+<td>7.253</td>
+<td>8,747</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Banhammaren 39 → Nusfjord → <strong>Eliassen</strong></td>
+<td>8.544</td>
+<td>6.578</td>
+<td>6,667</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Henningsvær Bryggehotell → Hattvika Hillside → <strong>Nusfjord</strong></td>
+<td>8.472</td>
+<td>7.149</td>
+<td>7,262</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Vei 2803 22 → Unstad → <strong>Nusfjord</strong></td>
+<td>8.442</td>
+<td>7.139</td>
+<td>8,144</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Banhammaren 39 → Hattvika Hillside → <strong>Nusfjord</strong></td>
+<td>8.363</td>
+<td>7.064</td>
+<td>7,372</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Henningsvær Bryggehotell → Unstad → <strong>Nusfjord</strong></td>
+<td>8.307</td>
+<td>7.027</td>
+<td>6,659</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Henningsvær Bryggehotell → Vei 2803 22 → <strong>Eliassen</strong></td>
+<td>8.269</td>
+<td>6.401</td>
+<td>8,040</td>
+</tr>
+</tbody></table></div>
+<p><strong>结论</strong>：<strong>排名会翻转。</strong> 只要「返程车程」参与打分，榜首一律往东收尾（末夜 H09）；一旦把它拿掉，榜首<strong>全部变成西线收尾（末夜 Eliassen）</strong>。这一维的权重要不要留（0.24 是否给多了），需要你自己判断。</p>
+<hr>
+<h2 id="sec-13">12 · 点名方案对照</h2>
+<div class="tablewrap"><table><thead><tr>
+<th>方案</th>
+<th>组合</th>
+<th>v3 总分</th>
+<th>3晚元</th>
+<th>走廊 min</th>
+<th>结论</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>H07 Oceanview → H11 Eliassen → H04 Hattvika</td>
+<td>5.059</td>
+<td>7,870</td>
+<td>619</td>
+<td>首选池排名 <strong>246 / 294</strong>，很靠后</td>
+</tr>
+<tr>
+<td><strong>A2</strong></td>
+<td>H04 → H11 → H07</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>不可行</strong>（H07 只能订 10/2）</td>
+</tr>
+<tr>
+<td><strong>B1</strong></td>
+<td>H04 → H06 Jusnesveien 连住</td>
+<td>5.845</td>
+<td>7,149</td>
+<td>575</td>
+<td>含连住（房源强制），备选池</td>
+</tr>
+<tr>
+<td><strong>B2</strong></td>
+<td>H04 → H12 Nusfjord 连住</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>被新约束排除</strong></td>
+</tr>
+<tr>
+<td><strong>X</strong></td>
+<td>H07 → H11 Eliassen 连住</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>被新约束排除</strong></td>
+</tr>
+<tr>
+<td><strong>Y</strong></td>
+<td>H07 Oceanview → H10 Unstad → H11 Eliassen</td>
+<td>5.249</td>
+<td><strong>6,263</strong></td>
+<td>682</td>
+<td>总价最低，但首选池排名 <strong>228</strong></td>
+</tr>
+<tr>
+<td><strong>v2 榜首</strong></td>
+<td>H09 → H10 连住</td>
+<td>6.553</td>
+<td>7,905</td>
+<td>498</td>
+<td>含连住（自选），备选池</td>
+</tr>
+<tr>
+<td><strong>v3 #1</strong></td>
+<td>H03 → H04 → H09</td>
+<td><strong>7.810</strong></td>
+<td>8,745</td>
+<td>550</td>
+<td>首选池第 1</td>
+</tr>
+<tr>
+<td><strong>v3 #2</strong></td>
+<td>H03 → H10 → H09</td>
+<td>7.792</td>
+<td>8,142</td>
+<td>520</td>
+<td>首选池第 2</td>
+</tr>
+<tr>
+<td><strong>v3 #3</strong></td>
+<td>H01 → H04 → H09</td>
+<td>7.725</td>
+<td>8,855</td>
+<td>554</td>
+<td>首选池第 3</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="sec-14">13 · 候选住宿照片</h2>
+<figure><img src="norway-images/lodgings/banhammaren-39.jpg" alt="H01 · Banhammaren 39（Henningsvær）" loading="lazy">
+<figcaption>H01 · Banhammaren 39（Henningsvær）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/misvaerveien-2.jpg" alt="H02 · Misværveien 2 码头公寓（Henningsvær）" loading="lazy">
+<figcaption>H02 · Misværveien 2 码头公寓（Henningsvær）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/henningsvaer-bryggehotell.jpg" alt="H03 · Henningsvær Bryggehotell（Henningsvær）" loading="lazy">
+<figcaption>H03 · Henningsvær Bryggehotell（Henningsvær）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/hattvika-lodge.jpg" alt="H04 · Hattvika Lodge – Hillside（Ballstad）" loading="lazy">
+<figcaption>H04 · Hattvika Lodge – Hillside（Ballstad）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/fishermans-villa-ballstad.png" alt="H05 · Fishermans Villa Ballstad（Ballstad）" loading="lazy">
+<figcaption>H05 · Fishermans Villa Ballstad（Ballstad）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/jusnesveien-55.jpg" alt="H06 · Jusnesveien 55（Flakstad / Ramberg）" loading="lazy">
+<figcaption>H06 · Jusnesveien 55（Flakstad / Ramberg）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/oceanview-mini-house.webp" alt="H07 · Andopveien 35 Oceanview（Ramberg）" loading="lazy">
+<figcaption>H07 · Andopveien 35 Oceanview（Ramberg）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/varanes-cabin.jpg" alt="H08 · Elvis Presleys vei 25 / Varanes（Flakstad）" loading="lazy">
+<figcaption>H08 · Elvis Presleys vei 25 / Varanes（Flakstad）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/arctic-panoramautsikten.jpg" alt="H09 · Vei 2803 22 全景公寓（Gimsøystraumen）" loading="lazy">
+<figcaption>H09 · Vei 2803 22 全景公寓（Gimsøystraumen）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/unstad-arctic-resort-booking.jpg" alt="H10 · Unstad Arctic Resort（Unstad）" loading="lazy">
+<figcaption>H10 · Unstad Arctic Resort（Unstad）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/unstad-arctic-surf.jpg" alt="H10 备图 · Unstad 冲浪海滩" loading="lazy">
+<figcaption>H10 备图 · Unstad 冲浪海滩</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/eliassen-rorbuer.jpg" alt="H11 · Eliassen Rorbuer（Hamnøy）" loading="lazy">
+<figcaption>H11 · Eliassen Rorbuer（Hamnøy）</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/nusfjord-resort.jpg" alt="H12 · Nusfjord Village &amp; Resort（Nusfjord）" loading="lazy">
+<figcaption>H12 · Nusfjord Village &amp; Resort（Nusfjord）</figcaption>
+</figure>
+<p><strong>机场区 / 其他参考住宿</strong></p>
+<figure><img src="norway-images/lodgings/sandtorgholmen-hotel.webp" alt="10/1 与 10/5 的落脚点 · Sandtorgholmen Hotel" loading="lazy">
+<figcaption>10/1 与 10/5 的落脚点 · Sandtorgholmen Hotel</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/tjeldsundbrua-hotel-booking.jpg" alt="备选 · Tjeldsundbrua Hotel" loading="lazy">
+<figcaption>备选 · Tjeldsundbrua Hotel</figcaption>
+</figure>
+<figure><img src="norway-images/lodgings/aiden-harstad.jpg" alt="备选 · Aiden Harstad" loading="lazy">
+<figcaption>备选 · Aiden Harstad</figcaption>
+</figure>
+<hr>
+<h2 id="sec-15">14 · 口径与免责</h2>
+<ul>
+<li><strong>车程</strong>：全部为 OSRM 真实路网计算值，非直线距离；搬家车程含部分实测对照值。</li>
+<li><strong>价格</strong>：来自你的预订页截图，单位为元/晚；未含清洁费与税费差异，实际以预订页结算为准。</li>
+<li><strong>「白天可达」「体验」「便利」是模型打分</strong>，公式已全部写在第 1 节，可自行复算。</li>
+<li><strong>住宿总价不参与打分</strong>，仅作参考量。</li>
+<li><strong>已删除的旧口径</strong>：极光可见性 0.30、守光点车程 0.20、「天区」人工判定分、月相修正系数 0.767 / 0.803 / 0.840。<strong>旧版结论（把 Unstad 连住排第一、把 10/4 说成「天然最暗所以最值钱」）不再有效。</strong></li>
+<li><strong>极光</strong>：Lofoten 全域位于极光带内，能否看到取决于当晚云量，住宿位置不构成差异。</li>
+</ul>
+<blockquote><p>🤖 本分析由 DeepSeek 生成</p></blockquote>
+<footer>🤖 本分析由 DeepSeek 生成 · 仅供出行参考</footer>
 </div>
-
-<h3 style="margin-top:28px">5.4 它真正的三个缺点</h3>
-
-<div class="grid g3">
-  <div class="card tile warn">
-    <span class="tag r">缺点 1</span>
-    <h3>10/5 返程 4:25，且它不是「最后一晚」问题的解</h3>
-    <p>关键不在于 4:25 这个数字（Unstad 3:55 也没好多少），而在于<strong>它的位置让它既不能照顾 10/4 也不能照顾 10/5</strong>：
-    10/4 去西段要 62 min 往返，10/5 回 EVE 要 260 min。两头都不省的「中间位」。</p>
-    <p>见 5.5 的走廊总账。</p>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">缺点 2</span>
-    <h3>连住两晚 + 24h 退订 + 不能只住一晚 = 三重锁死</h3>
-    <p>下单后 24h 内可退、之后不可退，<strong>且必须连住两晚、不能只待一天</strong> —— 它<strong>没有酒店那种「住一晚就走」的灵活性</strong>。
-    一旦 10 月的天气预报转向（例如西段连续阴雨、北段放晴），你没有任何腾挪空间。</p>
-    <p>在你「非常希望看到极光」的前提下，<strong>把灵活性压到最低是有代价的</strong> —— 这是把它当「首选」而不是「唯一选」的头号理由。</p>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">缺点 3</span>
-    <h3>它不是 rorbu，体验分少 3 分</h3>
-    <p>体验分只有 8.0，因为不含红房子渔屋（rorbu）。你最想要的「挪威特色住宅」这一条，
-    它<strong>给不了</strong>。要靠 10/2 的 Henningsvær 或 10/4 的 Eliassen 来补。</p>
-  </div>
-</div>
-
-<h3 style="margin-top:28px">5.5 「10/5 返程 4:25」该怎么读：走廊总账</h3>
-<p>假设 10/5 是一个完整白天（即 10/5 晚上才飞 EVE→OSL，或 10/6 早班机），那么“最后一晚住哪儿”的真实成本是下面这张表。排序按合计分钟。</p>
-<div class="tblwrap"><table>
-<thead><tr><th>最后一晚住地</th><th>10/4 白天去西段<br>往返 (min)</th><th>10/5 返 EVE<br>(min)</th><th>合计 (min)</th><th>折算小时</th></tr></thead><tbody>
-<tr style="background:#fdf6e3"><td>Eliassen Rorbuer（Hamnøy）</td><td class="c">18</td><td class="c">282</td><td class="c"><strong>300</strong></td><td class="c">5.0 h</td></tr>
-<tr><td>Oceanview（Ramberg）</td><td class="c">56</td><td class="c">261</td><td class="c"><strong>317</strong></td><td class="c">5.3 h</td></tr>
-<tr style="background:#fdf6e3"><td>Jusnesveien 55（Flakstad）</td><td class="c">62</td><td class="c">260</td><td class="c"><strong>322</strong></td><td class="c">5.4 h</td></tr>
-<tr><td>Nusfjord Village</td><td class="c">88</td><td class="c">258</td><td class="c"><strong>346</strong></td><td class="c">5.8 h</td></tr>
-<tr><td>Hattvika（Ballstad）</td><td class="c">136</td><td class="c">245</td><td class="c"><strong>381</strong></td><td class="c">6.3 h</td></tr>
-<tr style="background:#fdf6e3"><td>Unstad Arctic Resort</td><td class="c">156</td><td class="c">232</td><td class="c"><strong>388</strong></td><td class="c">6.5 h</td></tr>
-<tr><td>Vei 2803 22（Gimsøystraumen）</td><td class="c">218</td><td class="c">186</td><td class="c"><strong>404</strong></td><td class="c">6.7 h</td></tr>
-<tr><td>Henningsvær Bryggehotell</td><td class="c">238</td><td class="c">189</td><td class="c"><strong>427</strong></td><td class="c">7.1 h</td></tr>
-</tbody></table></div>
-
-<div class="callout"><p><strong>结论（这是本节最需要你注意的一段）：</strong></p>
-<p>① <strong>住 Eliassen（西端）的走廊总里程最短（300 min）</strong>，因为它把「10/4 去西段」这件事变成 18 min，
-代价是 10/5 要开 282 min 回机场。这与模型给出的结论<strong>正好相反</strong> ——
-模型给 Eliassen 的返程分只有 0.80（因为 282 min 离 190 min 满分线太远），却没算「它省掉了 2 小时走廊」。</p>
-<p>② <strong>住 Unstad 的走廊总里程最长（388 min）</strong>。但模型给它的返程分是 5.80，比 Eliassen 高 5 分。
-这就是我在 Section 3 里主动标注的「盲区 ①」。</p>
-<p>③ <strong>Jusnesveien 55 的 322 min 处在中间</strong>：比 Unstad 省 66 min，比 Eliassen 多 22 min。
-换句话说，<strong>「Jusnesveien 55 返程太远」这个直觉是对的，但它不是 12 个候选里最差的</strong> —— 最差的是 Unstad 连住。</p></div>
-
-<h3 style="margin-top:28px">5.6 结论：什么时候选它，什么时候别选</h3>
-
-<div class="grid g2">
-  <div class="card tile good">
-    <span class="tag g">选它</span>
-    <h3>满足下面任意 2 条，Jusnesveien 55 就是好选择</h3>
-    <p>① 你想<strong>只换一次宿</strong>（10/2 东段 → 10/3–10/4 中段），不愿每晚打包。</p>
-    <p>② 你不打算 10/4 冲西段，而是把 10/4 安排在北海岸（Eggum / Uttakleiv / Haukland）或 Nusfjord —— 这些从 Flakstad 出发都在 15–40 min。</p>
-    <p>③ 你接受「10/5 是完整白天」（10/5 晚飞或 10/6 早班机），因此 4:25 的返程可以放在白天从容开。</p>
-    <p>④ 你确定要「落地窗海景 + 大房子 + 自己做饭」这种居住方式，而不是红房子的渔村氛围。</p>
-    <p><strong>在①②③④都成立的情况下，它是我这份分析里第二推荐的中段基地</strong>（第一是 Unstad，但 Unstad 白天可达性差得多）。</p>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">别选它</span>
-    <h3>满足下面任意 2 条，建议换掉</h3>
-    <p>① 你的第一顺位是极光，且愿意为「住地天区 9.5 + 守光 1 min」牺牲白天 —— <strong>那应该选 Unstad</strong>（便宜 181 元/晚，天区高 1.5 分）。</p>
-    <p>② 你想把最经典的一天（10/4 西段：Reine / Hamnøy / Å / Reinebringen）走扎实 —— <strong>那应该 10/4 晚上就住西端 Eliassen</strong>，走廊从 62 min 直接降到 18 min。</p>
-    <p>③ 你非常在意「挪威特色住宅」这条愿望 —— Jusnesveien 55 是普通独栋，<strong>不是 rorbu</strong>。</p>
-    <p>④ 你担心 10 月天气多变、需要保留改期灵活性 —— 24h 退订 + 连住两晚等于放弃这个选项。</p>
-  </div>
-</div>
-
-
-<div class="callout"><p><strong>一句话总结 Jusnesveien 55：</strong>
-它不是一个「坏房源」，而是一个<strong>被放在错误问题上的好房源</strong>。
-它的优势（中段均衡、白天可达性好、天区 8.0）正好是「当基地」的优势；
-但你的核心诉求是「每晚都能看到极光 + 少开夜路」，这两条它都排不到第一。
-<strong>如果 10/2 你选择住在它，然后 10/3–10/4 换到 Unstad，那就是把自己的优势丢掉了。</strong>
-最优用法是「10/2 睡东段（Henningsvær）+ 10/3–10/4 连住它」（＝结构 F），
-或干脆承认「它只是 12 选 3 里的第 4–5 顺位」，把位置让给 Unstad / Eliassen。</p></div>
-
-</div></section>
-<section id="s6"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 6</div>
-    <h2>三个结构的逐日时刻表，与返程方案分叉</h2>
-    <p class="sub">所有车程为 OSRM 实测。<strong>10/5 怎么回 OSL 是本行程最大的未定变量</strong>（机票尚未购买），因此先看 6.4 的返程分叉，再倒推 10/5 的安排。</p>
-  </div>
-<h3>6.1 结构 B：Henningsvær Bryggehotell → Unstad ×2（最推荐）</h3>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:11%">日期</th><th style="width:30%">驾驶</th><th style="width:37%">白天安排</th><th>夜间</th></tr></thead><tbody>
-<tr><td><strong>10/1 (四)</strong></td><td class="small">OSL 15:55 抵达两人会合 → 21:00 OSL→EVE → 22:40 落地</td><td class="small">夜宿 EVE 机场旁（Sandtorgholmen / Evenes 一带，约 30 min）</td><td class="small">当晚不可能进岛，也不该进岛</td></tr>
-<tr><td><strong>10/2 (五)</strong></td><td class="small">EVE → Henningsvær 189.0 km / <strong>3:10</strong></td><td class="small">途经 Svolvær（补给 + 加油，E10 沿线）；15:00 前后抵达；下午逛 Henningsvær 港湾、Trevarefabrikken</td><td class="small">黄昏后若天晴：开 8.6 km / 12 min 到 Rørvikstranda 守光</td></tr>
-<tr><td><strong>10/3 (六)</strong></td><td class="small">Henningsvær → Unstad 58.0 km / <strong>1:02</strong>；或绕 Leknes 补给（60.2 km / 1:03）</td><td class="small">中午前出发；下午 Unstad 海滩散步、Lofotr 维京博物馆（11.1 km / 13 min）</td><td class="small">夜：出门 0.3 km 就是沙滩，守光零压力；备选 Eggum 21.2 km / 23 min</td></tr>
-<tr><td><strong>10/4 (日)</strong></td><td class="small">Unstad → Reine 72.9 km / <strong>1:18</strong>（单程）；返程再 1:18</td><td class="small"><strong>二选一：</strong>(a) 走西段 Reine / Hamnøy / Å / Reinebringen，合计 2:36 纯驾驶；(b) 走北海岸 Uttakleiv 23.3 km / 29 min + Haukland 20.9 km / 24 min + Eggum</td><td class="small">夜：回 Unstad 守光；⚠️ 周日 Leknes 超市多数关门，10/3 就要把菜买足</td></tr>
-<tr><td><strong>10/5 (一)</strong></td><td class="small">Unstad → EVE 231.6 km / <strong>3:55</strong></td><td class="small">若赶 17:15 航班须 15:45 到 EVE → <strong>11:50 前必须出发</strong>；若赶 20:05 航班须 18:35 到 → <strong>14:40 前出发</strong></td><td class="small">夜宿 OSL 机场附近</td></tr>
-<tr><td><strong>10/6 (二)</strong></td><td class="small">OSL 出发 17:00（经 Doha）</td><td class="small">行李托运 14:00–14:30 必须完成；上午可在 Oslo 市区或机场休息</td><td class="small">抵达杭州 10/7 18:05</td></tr>
-</tbody></table></div>
-<h3 style="margin-top:26px">6.2 结构 C：Vei 2803 → Unstad → Eliassen（西端收尾）</h3>
-<p>10/1、10/2 与结构 B 基本一致（10/2 落脚点从 Henningsvær 换成 Gimsøystraumen 南岸，车程 186.0 km / 3:07 反而短 3 min，但少了餐厅与渔村氛围）。差异全在 10/4–10/5：</p>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:11%">日期</th><th style="width:30%">驾驶</th><th style="width:37%">白天安排</th><th>夜间</th></tr></thead><tbody>
-<tr><td><strong>10/3 (六)</strong></td><td class="small">Vei 2803 → Unstad 46.7 km / <strong>0:50</strong></td><td class="small">上午可先在北侧 Rørvikstranda（5.0 km / 6 min）、Hov（15.2 km / 18 min）走一圈</td><td class="small">Unstad 守光</td></tr>
-<tr><td><strong>10/4 (日)</strong></td><td class="small">Unstad → Hamnøy 67.7 km / <strong>1:10</strong>（单程）</td><td class="small">把西段（Reine 5.4 km / 9 min、Å 13.5 km / 20 min、Reinebringen 5.1 km / 9 min）走扎实，晚上直接入住 Eliassen，<strong>不用再开回来</strong></td><td class="small">Hamnøy 桥（顶级极光机位）离家 0.5 km / 2 min</td></tr>
-<tr><td><strong>10/5 (一)</strong></td><td class="small">Hamnøy → EVE 281.7 km / <strong>4:47</strong> ⚠️</td><td class="small">若赶 17:15 航班须 15:45 到 EVE → <strong>10:58 前必须出发</strong>（几乎等于放弃 10/5 白天）；若赶 20:05 航班须 18:35 到 → <strong>13:48 前出发</strong></td><td class="small">夜宿 OSL 机场附近</td></tr>
-</tbody></table></div>
-<p class="cap">结构 C 的本质是「用 10/5 的 1 小时换 10/4 的 2 小时」。如果你确定 10/5 只用来赶路，它比结构 B 更划算；如果你指望 10/5 还能看点什么，它很难受。</p>
-<h3 style="margin-top:26px">6.3 结构 F：Henningsvær → Jusnesveien 55 ×2</h3>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:11%">日期</th><th style="width:30%">驾驶</th><th style="width:37%">白天安排</th><th>夜间</th></tr></thead><tbody>
-<tr><td><strong>10/2 (五)</strong></td><td class="small">EVE → Henningsvær 189.0 km / <strong>3:10</strong></td><td class="small">同结构 B：Svolvær 补给 → Henningsvær 港湾</td><td class="small">Rørvikstranda 8.6 km / 12 min</td></tr>
-<tr><td><strong>10/3 (六)</strong></td><td class="small">Henningsvær → Jusnesveien 55 86.4 km / <strong>1:32</strong>（横穿一次岛）</td><td class="small">途经 Leknes（60.2 km / 1:03）把菜买足 —— ⚠️ 周日不开门；下午 Flakstad 教堂 3.3 km / 4 min</td><td class="small">Ramberg 白沙滩 1.8 km / 3 min，守光零压力</td></tr>
-<tr><td><strong>10/4 (日)</strong></td><td class="small">住处 → Reine 27.3 km / <strong>0:31</strong>（单程）</td><td class="small"><strong>西段是当天最划算的一站</strong>：Reine 31 min、Hamnøy 23 min、Nusfjord 15 min 都在半小时圈内；也可以反过来走 Nusfjord（15 min）+ Ramberg + Skagsanden</td><td class="small">回住处；备选 Skagsanden 3.1 km / 4 min</td></tr>
-<tr><td><strong>10/5 (一)</strong></td><td class="small">住处 → EVE 260.0 km / <strong>4:25</strong> ⚠️</td><td class="small">若赶 17:15 航班须 15:45 到 EVE → <strong>11:20 前必须出发</strong>；若赶 20:05 航班须 18:35 到 → <strong>14:10 前出发</strong></td><td class="small">夜宿 OSL 机场附近</td></tr>
-</tbody></table></div>
-<p class="cap">结构 F 的 10/4 是三个结构里最舒服的一天：<strong>单程 31 min 就能到西段核心，而结构 B 要 78 min、结构 C 要 70 min</strong>。代价集中在 10/3（横穿 1:32）与 10/5（4:25 返程）。</p>
-<h3 style="margin-top:26px">6.4 返程方案分叉（🔥 关键决策点）</h3>
-<p>10/6 的 OSL 出发时间是 17:00，必须在 14:00–14:30 完成行李托运。这意味着你<strong>必须在前一晚（10/5）或当天上午（10/6）从 EVE 飞到 OSL</strong>。两条路：</p>
-<div class="tblwrap"><table>
-<thead><tr><th>方案</th><th>怎么走</th><th>10/5 白天</th><th>风险</th></tr></thead><tbody>
-<tr><td><strong>甲 · 10/5 晚飞</strong><br><span class="tag g">推荐</span></td><td>10/5 乘 17:15→19:00 或 20:05→21:50 EVE→OSL，夜宿 OSL 机场酒店，10/6 白天在 Oslo 休息，17:00 起飞</td><td class="small">要用来开车去机场。住 Unstad 须 11:50 前出发（赶 17:15）或 14:40 前（赶 20:05）</td><td class="small">低。<strong>且 10/5 夜宿机场意味着 10/5 晚上看不到极光</strong></td></tr>
-<tr><td><strong>乙 · 10/6 早飞</strong></td><td>10/5 仍住罗弗敦，10/6 乘 11:05→12:50 Norwegian 到 OSL，14:00 托运 —— 或 06:15/06:30 早班机</td><td class="small"><strong>10/5 是完整一天</strong>，可以安排全天行程并守最后一晚极光</td><td class="small">中。11:05 那班到 OSL 12:50，距 14:00 托运只有 70 min，<strong>任何延误都会导致误机</strong>；早班机则要凌晨出发（Unstad 3:55 车程 → 需 01:30 出发，几乎不可行）</td></tr>
-</tbody></table></div>
-
-<div class="callout"><p><strong>这个分叉直接改变了「最后一晚该住哪儿」的答案：</strong></p>
-<p>如果选<strong>方案乙</strong>（10/5 完整白天），那么 10/5 的返程车程只是「白天的 4 小时车」，
-不是「深夜赶飞机」，返程维度的权重就该从 0.12 降到 0.05 以下。此时<strong>结构 C（西端 Eliassen 收尾）会反超</strong>，
-因为它的走廊总里程最短（300 min vs 结构 B 的 388 min）。</p>
-<p>如果选<strong>方案甲</strong>（10/5 晚飞），那 10/5 白天被压缩，<strong>建议住得离机场近一点</strong> —— 
-此时反而应该考虑「10/4 住 Unstad 或东段、10/5 上午玩半天就撤」。</p>
-<p><strong>这就是为什么 OSL↔EVE 的机票必须先定。</strong>它不只是交通，它决定了整套住宿排程的最优解。</p></div>
-
-</div></section>
-<section id="s7"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 7</div>
-    <h2>风险清单、待核实项与行动顺序</h2>
-    <p class="sub">标 <span class="tag b">可引用事实</span> 的是已核实信息；标 <span class="tag v">分析推断</span> 的是我的判断；标 <span class="tag r">待核实</span> 的必须在出发前确认。</p>
-  </div>
-<h3>7.1 风险清单</h3>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:20%">风险</th><th style="width:9%">性质</th><th style="width:37%">具体表现</th><th>缓解办法</th></tr></thead><tbody>
-<tr><td><strong>云量（最大的单一风险）</strong></td><td class="c"><span class="tag r">待核实</span></td><td class="small">10 月初罗弗敦的常年云量偏高，晴夜概率是「看得到极光」的决定因素，比 Kp 指数重要得多</td><td class="small">订房保留灵活性（避开连住两晚 + 24h 退订的组合）；落地后每天用 yr.no / Yr 的逐时云量预报决定当晚住地</td></tr>
-<tr><td><strong>月面亮度 67% / 56% / 46%</strong></td><td class="c"><span class="tag b">可引用事实</span></td><td class="small">10/2 最亮、10/4 最暗。月亮在天空时会压暗暗弱极光，但不会让强极光消失</td><td class="small">优先把「守光夜」安排在 10/4（月面最低）；月相已计入模型权重（MOON = 0.767 / 0.803 / 0.840… 修正项）</td></tr>
-<tr><td><strong>周日 Leknes 超市关门</strong></td><td class="c"><span class="tag r">待核实</span></td><td class="small">10/4 是周日。挪威多数超市周日不营业，Leknes 是岛上唯一大型超市</td><td class="small"><strong>10/3（周六）就把两天的菜与燃料买足</strong>；加油站自助泵通常仍可用</td></tr>
-<tr><td><strong>夜间加油与充电</strong></td><td class="c"><span class="tag v">分析推断</span></td><td class="small">罗弗敦夜间加油站多数无人值守，部分站点夜间仅支持特定银行卡；电车充电桩在西段稀疏</td><td class="small">每天傍晚前把油箱加到 3/4 以上；若租电车，务必在 Leknes 或 Svolvær 补满</td></tr>
-<tr><td><strong>E10 / Rv82 路段与天气</strong></td><td class="c"><span class="tag v">分析推断</span></td><td class="small">岛上桥梁与山口在强风与雨夹雪时会临时限速或短时封闭；10 月已可能出现夜间路面结冰</td><td class="small">出发前查 175.no（挪威公路实时路况）；避免深夜在无路灯的桥上停车拍照</td></tr>
-<tr><td><strong>10/5 返程压线</strong></td><td class="c"><span class="tag v">分析推断</span></td><td class="small">住 Unstad 赶 17:15 航班须 11:50 前出发；住 Eliassen 更早（10:58）。任何延误都会错过航班</td><td class="small"><strong>优先买 20:05（EVE→OSL）</strong>那一班；或干脆改成 10/6 早班机（返程方案乙）</td></tr>
-<tr><td><strong>连住与退订双锁</strong></td><td class="c"><span class="tag b">可引用事实</span></td><td class="small">H02 必须连住 10/3+10/4 两晚；H08 必须连住 10/2+10/3 两晚；H05 与 H06 各需连住两晚（10/2+10/3 或 10/3+10/4）；H07 只能订 10/2 一晚；H06 等为「24h 内可退」</td><td class="small">把这类房源视为<strong>不可撤销承诺</strong>，只在确定行程后下单；优先用「免费取消」档房源当备胎</td></tr>
-<tr><td><strong>10/6 OSL 托运截止</strong></td><td class="c"><span class="tag b">可引用事实</span></td><td class="small">17:00 出发的国际航班，行李托运须在 14:00–14:30 完成</td><td class="small">如果选 10/6 11:05 EVE→OSL，到达 12:50，缓冲只有 70 min，<strong>建议改 06:15 / 06:30 早班机</strong></td></tr>
-<tr><td><strong>EVE 租车点营业时间</strong></td><td class="c"><span class="tag r">待核实</span></td><td class="small">Evenes 机场的租车柜台夜间（22:40 落地那班）多数已关门，需提前约「钥匙箱自助取车」</td><td class="small">订车时明确备注 22:40 后取车，并要求自助取车流程说明</td></tr>
-<tr><td><strong>10/1 落地当晚进岛</strong></td><td class="c"><span class="tag v">分析推断</span></td><td class="small">22:40 落地 EVE，若当晚再开 3 小时进岛，将变成凌晨 2 点的夜间长途</td><td class="small"><strong>当晚就住 EVE 机场附近</strong>，10/2 白天再进岛（本报告所有结构都按这个前提排）</td></tr>
-</tbody></table></div>
-<h3 style="margin-top:26px">7.2 待核实清单（出发前必须确认）</h3>
-
-<div class="grid g2">
-  <div class="card tile warn">
-    <span class="tag r">待核实 · 交通</span>
-    <ul class="small">
-      <li>10/1 OSL→EVE 是否买 <strong>21:00</strong> 那班（17:55 那班太赶：15:55 才落地 OSL）</li>
-      <li>10/5 或 10/6 的 EVE→OSL 航班最终选哪班（决定住宿最优解，见 6.4）</li>
-      <li>EVE 租车是否可 22:40 后自助取车、是否有里程限制</li>
-      <li>渡轮是否需要（本行程不上 Bodø 往返线，但若改行程需查 Moskenes–Bodø）</li>
-    </ul>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">待核实 · 住宿</span>
-    <ul class="small">
-      <li>12 个候选的<strong>实时可订状态与价格</strong>（本报告价格为用户提供的快照）</li>
-      <li>每个房源的准确退订条款（「24h 内可退」的具体截止时刻与时区）</li>
-      <li>H06 Jusnesveien 55 是否真的允许「10/3–10/4」这两晚（连住切分点要再确认）</li>
-      <li>带厨房的房源是否提供基本调料、是否有洗碗机</li>
-    </ul>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">待核实 · 天气与极光</span>
-    <ul class="small">
-      <li>10/2、10/3、10/4 的<strong>逐时云量预报</strong>（出发前 3 天才有意义）</li>
-      <li>太阳活动与地磁预报（NOAA SWPC 3-day forecast）</li>
-      <li>当地极光团是否值得作为「住地天区差」时的备选</li>
-    </ul>
-  </div>
-  <div class="card tile warn">
-    <span class="tag r">待核实 · 其他</span>
-    <ul class="small">
-      <li>周日超市营业时间（Leknes / Svolvær / Reine）</li>
-      <li>E10 与 Rv82 的实时路况、是否有施工</li>
-      <li>挪威 10 月是否已要求冬季胎（通常 11 月起，但北部可能提前）</li>
-    </ul>
-  </div>
-</div>
-
-<h3 style="margin-top:26px">7.3 建议行动顺序</h3>
-<div class="tblwrap"><table>
-<thead><tr><th style="width:7%">顺序</th><th style="width:26%">行动</th><th>为什么必须现在做</th></tr></thead><tbody>
-<tr><td class="c"><strong>1</strong></td><td><strong>买 OSL↔EVE 两张往返机票（10/1 21:00 去、10/5 20:05 或 10/6 回）</strong></td><td class="small">它决定返程是「深夜赶路」还是「白天开车」，直接改变住宿最优解（6.4）</td></tr>
-<tr><td class="c"><strong>2</strong></td><td><strong>确认 10/5 vs 10/6 返程，锁定「最后一晚住哪」</strong></td><td class="small">一旦确定，Section 4 的排名权重才能最终生效；否则现在选的都是过渡方案</td></tr>
-<tr><td class="c"><strong>3</strong></td><td><strong>订 10/1 夜宿 EVE 机场附近（可免费取消）</strong></td><td class="small">这是最便宜、最不影响主行程的一笔，早订早安心</td></tr>
-<tr><td class="c"><strong>4</strong></td><td><strong>订 10/4 的住宿（若按最推荐结构 B，则为 Unstad Arctic Resort）</strong></td><td class="small">它是全场唯一「无连住约束 + 天区 9.5 + 守光 1 min」，也是最容易被别人抢走的</td></tr>
-<tr><td class="c"><strong>5</strong></td><td><strong>订 10/2、10/3 的住宿</strong></td><td class="small">10/2 落 Henningsvær（落脚方便）；10/3 视 10/4 的选择决定是否横穿</td></tr>
-<tr><td class="c"><strong>6</strong></td><td><strong>订 EVE 租车（明确 22:40 后取车）</strong></td><td class="small">机场柜台夜间关门，必须提前沟通自助取车</td></tr>
-<tr><td class="c"><strong>7</strong></td><td><strong>出发前 3 天：查云量预报，做最后一次住宿调整</strong></td><td class="small">如果预报显示某段连续阴雨，及时把守光夜挪到另一端</td></tr>
-</tbody></table></div>
-</div></section>
-<section id="s8"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 8</div>
-    <h2>住宿所在环境的实景图集</h2>
-    <p class="sub">说明：以下图片是<strong>各房源所在村落 / 海滩的公开环境实景</strong>，来自本地已下载的图片库（离线可用）。<strong>它们不是房源内部照片</strong>，不能用来看房间与装修；用途是判断「这个位置望出去大概是什么景观」。</p>
-  </div>
-<div class="gallery">
-  <figure>
-    <img src="norway-images/lofoten-towns/henningsvaer.jpg" alt="Banhammaren 39 H0304" loading="lazy">
-    <figcaption><strong>H01 · Banhammaren 39</strong><br>位置：Henningsvær ｜ 天区 4.5/10 ｜ 守光 12 min
-      <br><span class="small">Airbnb 公寓</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/henningsvaer-brygge.jpg" alt="Misværveien 2 码头公寓" loading="lazy">
-    <figcaption><strong>H02 · Misværveien 2 码头公寓</strong><br>位置：Henningsvær ｜ 天区 4.5/10 ｜ 守光 8 min
-      <br><span class="small">Airbnb 码头公寓</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/henningsvaer-brygge.jpg" alt="Henningsvær Bryggehotell" loading="lazy">
-    <figcaption><strong>H03 · Henningsvær Bryggehotell</strong><br>位置：Henningsvær ｜ 天区 4.5/10 ｜ 守光 9 min
-      <br><span class="small">精品酒店（海景阁楼 3186 元 / 豪华双人 2298 元）</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/ballstad-harbor.jpg" alt="Hattvika Lodge – Hattvika Hillside" loading="lazy">
-    <figcaption><strong>H04 · Hattvika Hillside</strong><br>位置：Ballstad ｜ 天区 6.5/10 ｜ 守光 18 min
-      <br><span class="small">罗弗敦传统渔屋旅馆</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/ballstad.jpg" alt="Fishermans Villa Ballstad" loading="lazy">
-    <figcaption><strong>H05 · Fishermans Villa Ballstad</strong><br>位置：Ballstad ｜ 天区 6.5/10 ｜ 守光 17 min
-      <br><span class="small">罗弗敦渔屋民宿</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/ramberg.jpg" alt="Jusnesveien 55" loading="lazy">
-    <figcaption><strong>H06 · Jusnesveien 55</strong><br>位置：Flakstad / Ramberg ｜ 天区 8.0/10 ｜ 守光 3 min
-      <br><span class="small">Airbnb 大独栋（面积大 · 两屋可联通 · 大落地窗 · 山景+海景）</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/ramberg.jpg" alt="Oceanview Mini-House – Stunning Views" loading="lazy">
-    <figcaption><strong>H07 · Andopveien 35 Oceanview</strong><br>位置：Ramberg ｜ 天区 8.5/10 ｜ 守光 0 min
-      <br><span class="small">Airbnb 迷你独栋</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/fredvang.jpg" alt="Varanes – Elvis Presleys vei 25" loading="lazy">
-    <figcaption><strong>H08 · Elvis Presleys vei 25</strong><br>位置：Flakstad / Ramberg ｜ 天区 8.0/10 ｜ 守光 3 min
-      <br><span class="small">Airbnb 全新乡村小木屋</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/gimsoystraumen.jpg" alt="Arctic Panoramautsikten（Vei 2803 22）" loading="lazy">
-    <figcaption><strong>H09 · Vei 2803 22 全景公寓</strong><br>位置：Gimsøystraumen ｜ 天区 7.5/10 ｜ 守光 6 min
-      <br><span class="small">Airbnb 全景公寓（带按摩浴缸）</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/unstad.jpg" alt="Unstad Arctic Resort（山景公寓）" loading="lazy">
-    <figcaption><strong>H10 · Unstad Arctic Resort</strong><br>位置：Unstad ｜ 天区 9.5/10 ｜ 守光 1 min
-      <br><span class="small">北极冲浪度假村公寓</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/hamnoy.jpg" alt="Eliassen Rorbuer" loading="lazy">
-    <figcaption><strong>H11 · Eliassen Rorbuer</strong><br>位置：Hamnøy ｜ 天区 8.0/10 ｜ 守光 2 min
-      <br><span class="small">罗弗敦最经典的红房子渔屋</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src="norway-images/lofoten-towns/nusfjord-harbor.jpg" alt="Nusfjord Village & Resort" loading="lazy">
-    <figcaption><strong>H12 · Nusfjord Village</strong><br>位置：Nusfjord ｜ 天区 4.0/10 ｜ 守光 13 min
-      <br><span class="small">历史渔村度假村</span>
-    </figcaption>
-  </figure>
-</div>
-<p class="cap">图片库共 24 张，覆盖 Lofoten 主要村落与海滩。如需按「房源 → 实拍」逐个核对，请在 Airbnb / Booking 页面另行查看室内照片。</p>
-</div></section>
-<section id="s9"><div class="wrap">
-  <div class="sec-head">
-    <div class="num">Section 9</div>
-    <h2>数据来源、方法与不确定性声明</h2>
-  </div>
-<div class="grid g2">
-
-  <div class="card">
-    <span class="tag b">数据来源</span>
-    <h3>本报告用到的数据</h3>
-    <ul class="small">
-      <li><strong>车程与里程</strong>：OSRM 公开路由服务（<code>router.project-osrm.org</code>，driving profile）
-      的 table 接口，一次算 12 个候选 ↔ 12 个锚点的完整矩阵。文件：<code>_lodging12.txt</code>。</li>
-      <li><strong>房源价格、面积、可订约束、退订政策</strong>：由你本人提供的候选清单快照（非实时）。</li>
-      <li><strong>坐标</strong>：Photon 地理编码（<code>photon.komoot.io</code>）逐条解析 + 人工核对。</li>
-      <li><strong>月相</strong>：2026 年 10 月 2/3/4 日日面照亮比例约 67% / 56% / 46%（满月约在 10/26 前后，故本时段为下弦走向）。</li>
-      <li><strong>日出日落</strong>：当地 10 月初日出约 07:50、日落约 18:15–18:30，天文暗夜约从 19:45–20:00 开始（CEST, UTC+2）。</li>
-      <li><strong>图片</strong>：本地已下载的 Lofoten 村落 / 海滩环境实景图（<code>norway-images/lofoten-towns/</code>），共 24 张。</li>
-      <li><strong>底图</strong>：本地离线瓦片（<code>vendor/tiles/lofoten</code>），因此本页面<strong>断网也能正常显示地图</strong>。</li>
-    </ul>
-  </div>
-  <div class="card">
-    <span class="tag v">方法与假设</span>
-    <h3>打分模型怎么来的</h3>
-    <ul class="small">
-      <li>对 12 个候选做全排列 <code>12³ = 1,728</code> 种，套用硬约束（连住、可订日、至少两处不同住地）后剩
-      <strong>430 种合法排法</strong>，逐个打分排序。</li>
-      <li>权重：<strong>极光 0.30</strong> / 夜间驾驶 0.20 / 白天景区可达 0.16 / 10-5 返程 0.12 / 住宿体验 0.12 / 补给与搬家 0.10。</li>
-      <li>权重分配依据你的原话：「<strong>非常希望可以看到极光</strong>」定 0.30；「不要开太多夜路」定 0.20；
-      其余按次要偏好分配。</li>
-      <li>极光分 = 三晚住地天区分的月相加权平均 × 0.55 + 最后一晚天区 × 0.45，
-      再对「最后一晚天区 ≥ 8.0」+0.8、「最后一晚守光 ≤ 5 min」+0.5。</li>
-      <li>「天区」（1–10）是<strong>人工判定的定性指标</strong>：综合住地正对的开阔水面朝向、
-      周边山体对北向 / 西北向天空的遮挡、以及到最近合格守光点的车程。</li>
-    </ul>
-  </div>
-
-
-  <div class="card tile warn">
-    <span class="tag r">不确定性</span>
-    <h3>这些结论哪里可能错</h3>
-    <ul class="small">
-      <li><strong>天区是人工判定，不是测量值。</strong>它的依据是地形朝向与到守光点的车程，
-      没有考虑你入住那晚的具体云量 —— 而云量才是决定性因素。</li>
-      <li><strong>OSRM 是理论车程。</strong>不含交通、天气、施工、渡轮等待、以及你自己停车拍照的时间；
-      实际通常比它慢 10–20%。</li>
-      <li><strong>价格与可订状态会变。</strong>本报告的价格是你的清单快照，实际下单时可能已不同；
-      连住约束也可能已被别人订走。</li>
-      <li><strong>10/5 与 10/6 的机票尚未购买</strong>，因此「最后一晚住哪儿」的最优解无法最终确定（见 6.4）。</li>
-      <li><strong>模型的主观性</strong>：权重是我按你的表述设定的。如果你其实更在意「少换宿」或「住得舒服」，
-      把对应权重调高，排名会显著变化。Section 4.3 已给出单维度敏感性排序，便于你自行换算。</li>
-      <li><strong>我没有看过任何一个房源的室内照片与真实住客评价。</strong>
-      本报告的判断只基于位置、价格、约束与外部景观，不含房源品质评价。</li>
-    </ul>
-  </div>
-  <div class="card">
-    <span class="tag b">独立性声明</span>
-    <h3>本报告与其他来源的关系</h3>
-    <ul class="small">
-      <li>本报告<strong>未参考任何其他来源的住宿结论</strong>（包括任何 AI 生成的住宿分析）。</li>
-      <li>数据链完全来自：你提供的候选清单快照 + OSRM 实测车程 + 当地天文数据 + 本地图片库。</li>
-      <li>所有打分都可复算：脚本 <code>_lodging12_score2.py</code>（模型）+ <code>_lodging_report_gen.py</code>（本页生成器）；
-      原始车程 <code>_lodging12.txt</code>；完整排名 <code>_lodging12_score.txt</code>。</li>
-      <li>本报告已把「我做过的判断」与「可查证的事实」分开标注，便于你交叉验证与推翻。</li>
-    </ul>
-  </div>
-
-</div>
-<div class="callout danger"><p><strong>免责：</strong>本报告为基于公开地理数据与用户提供房源信息的独立分析，不构成预订建议或价格承诺。房源可订性、价格、退订条款请以预订平台实时页面为准；公路状况、天气与航班请以官方渠道（175.no、yr.no、航司）为准。</p></div>
-</div></section>
-</main>
-
-<footer><div class="wrap">
-  <p><strong>罗弗敦 10 月初：12 个候选住宿的量化排程</strong></p>
-  <p class="small">🤖 <strong>本分析由 DeepSeek 生成</strong> · 📅 2026-09-17 生成 ·
-  独立分析（未参考任何其他来源的住宿结论）</p>
-  <p class="small">底图与照片均为本地文件，页面可离线打开。所有车程为 OSRM 实测，实际请预留 10–20% 余量。</p>
-</div></footer>
-<script src="vendor/leaflet/leaflet.js"></script>
-<script>
-/* 全部交互逻辑已在 Section 2 内联，此处仅作占位以确保 Leaflet 在 DOM 之后加载 */
-</script>
 </body>
 </html>
