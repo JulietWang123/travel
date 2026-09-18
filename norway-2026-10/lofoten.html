@@ -1684,27 +1684,24 @@
     try {
     const map = L.map(mapElement, { scrollWheelZoom: false }).setView([68.1, 13.95], 8);
 
-    let loadedTileCount = 0;
-    const primaryTiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 18,
+    // 底图改用随页面一起下发的本地离线瓦片（z6-z11，覆盖罗弗敦全域 + EVE + Bodø）。
+    // 不再请求 OpenStreetMap / CARTO 等远程服务：断网、内网或请求被拦截时同样显示真地图。
+    let failedTileCount = 0;
+    const baseTiles = L.tileLayer("vendor/tiles/lofoten/{z}/{x}/{y}.png", {
+      minZoom: 6,
+      maxZoom: 11,
       attribution: '&copy; OpenStreetMap contributors'
     });
-    primaryTiles.on("tileload", () => { loadedTileCount += 1; });
-    primaryTiles.addTo(map);
-
-    setTimeout(() => {
-      if (loadedTileCount > 0) return;
-      map.removeLayer(primaryTiles);
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-        maxZoom: 18,
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-      }).addTo(map);
-    }, 3600);
+    baseTiles.on("tileerror", () => {
+      failedTileCount += 1;
+      if (failedTileCount >= 12) renderFallbackMap("本地离线底图读取失败，已切换为内置示意图。");
+    });
+    baseTiles.addTo(map);
 
     setTimeout(() => {
       if (mapElement.querySelector(".leaflet-tile-loaded")) return;
-      renderFallbackMap("在线地图底图没有加载成功。");
-    }, 7600);
+      renderFallbackMap("本地离线底图没有加载成功，已切换为内置示意图。");
+    }, 4000);
 
     const colors = {
       airport: "#1c5d77",
